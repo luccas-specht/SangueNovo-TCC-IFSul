@@ -1,9 +1,9 @@
-import { useAxios } from '../api/use-axios.hook';
+import { useAxiosApiSangueNovo } from '../api/useAxios.hook';
 
-const axios = useAxios();
+const axios = useAxiosApiSangueNovo();
 
-const useRegister = () => {
-    const register = async (name: string, email: string, password: string) => {
+const useSingUp = () => {
+    const singUp = async (name: string, email: string, password: string) => {
         try {
             const response = await axios.post('/users', {
                 name: name,
@@ -15,7 +15,7 @@ const useRegister = () => {
             return error.response;
         }
     }
-    return { register }
+    return { singUp }
 }
 
-export { useRegister }
+export { useSingUp }

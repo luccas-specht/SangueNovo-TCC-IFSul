@@ -1,6 +1,6 @@
 import 'styled-components';
 declare module 'styled-components' {
-  export interface DefaultTheme {
+  interface DefaultTheme {
     colors: {
       primary: string;
       primary2: string;
@@ -14,4 +14,6 @@ declare module 'styled-components' {
       white: string
     };
   }
-}
+};
+
+export { DefaultTheme };

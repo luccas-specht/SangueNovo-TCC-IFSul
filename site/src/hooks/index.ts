@@ -1,4 +1,3 @@
-export { useAxios } from './api/use-axios.hook';
-export { useAuth } from './use-auth/use-auth.hooks'
-export { useRegister } from './use-register/use-register.hook'
-export { useAppointment } from './use-appointment/use-appointment';
+export { useAuth } from './useAuth/useAuth.hook'
+export { useSingUp } from './useSingUp/useSingUp.hook'
+export { useCEP } from './useCep/useCep.hook';

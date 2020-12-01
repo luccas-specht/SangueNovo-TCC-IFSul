@@ -1,6 +1,6 @@
-import { useAxios } from '../api/use-axios.hook';
+import { useAxiosApiSangueNovo } from '../api/useAxios.hook';
 
-const axios = useAxios();
+const axios = useAxiosApiSangueNovo();
 
 const useAuth = () => {
     const authentication = async (email: string, password: string) => {
