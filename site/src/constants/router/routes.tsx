@@ -1,20 +1,20 @@
 import { 
     Dashboard, 
-    SingIn, 
-    SingUp, 
+    Login, 
+    Register, 
     ForgotPassword } from '../../ui/pages/index';
 
 const paths = {
   default: () => '/',
-  singIn: () => '/sing-in',
-  singUp: () => '/sing-up',
+  login: () => '/sing-in',
+  register: () => '/sing-up',
   forgotPassword: ()=>'/forgot-password',
   dashboard: ()=> '/dashboard'
 };
 
 const components = {
-  singIn: SingIn,
-  singUp: SingUp,
+  login: Login,
+  register: Register,
   forgotPassword: ForgotPassword,
   dashboard: Dashboard
 };
@@ -23,17 +23,17 @@ const routers = [
   {
     isPublic: true,
     path: paths.default(),
-    component: components.singIn,
+    component: components.login,
   },
   {
     isPublic: true,
-    path: paths.singIn(),
-    component: components.singIn,
+    path: paths.login(),
+    component: components.register,
   },
   {
     isPublic: true,
-    path: paths.singUp(),
-    component: components.singUp,
+    path: paths.register(),
+    component: components.register,
   },
   {
     isPublic: true,

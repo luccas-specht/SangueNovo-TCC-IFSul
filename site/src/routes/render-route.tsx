@@ -14,7 +14,7 @@ const RenderRoute = ({ component, path, isPublic }: RouteAuthProps) => {
   const token = localStorage.getItem('@GoBarber:token');
   
   if(isPublic){
-    if (token) return <Redirect to="/dashboard" />
+    if (token || path !== 'singUp' || path !== 'singUp' ) return <Redirect to="/dashboard" />
     
     return <Route path={path} component={component}/> 
    

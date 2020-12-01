@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SingUp = () => (
+const Register = () => (
   <h1>singUp</h1>
 );
-export { SingUp };
+export { Register };

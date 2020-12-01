@@ -1,3 +1,3 @@
-export { FormLogin } from './formSingIn/formSingIn.component';
-export { FormRegister } from './formSIngUp/formSingUp.component';
+export { formRegister } from './formRegister/formRegister.component';
+export { FormLogin } from './formLogin/formLogin.component';
 export { FormForgotPassword } from './formForgotPassword/formForgotPassword.component';
