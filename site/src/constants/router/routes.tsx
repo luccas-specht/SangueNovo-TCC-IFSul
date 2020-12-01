@@ -6,7 +6,7 @@ import {
 
 const paths = {
   default: () => '/',
-  singIn: () => '/login',
+  singIn: () => '/sing-in',
   singUp: () => '/sing-up',
   forgotPassword: ()=>'/forgot-password',
   dashboard: ()=> '/dashboard'
@@ -41,7 +41,7 @@ const routers = [
     component: components.forgotPassword,
   },
   {
-    isPublic: false,
+    isPublic: true,
     path: paths.dashboard(),
     component: components.dashboard,
   }
