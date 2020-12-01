@@ -18,4 +18,4 @@ const useSingUp = () => {
     return { singUp }
 }
 
-export { useSingUp }
+export { useSingUp };

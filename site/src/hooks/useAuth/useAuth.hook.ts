@@ -17,4 +17,4 @@ const useAuth = () => {
     return { authentication }
 }
 
-export { useAuth }
+export { useAuth };

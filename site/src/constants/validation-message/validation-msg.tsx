@@ -13,4 +13,5 @@ const validationMessage = {
   requiredPassword,
   requiredName
 };
+
 export { validationMessage };

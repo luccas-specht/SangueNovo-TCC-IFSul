@@ -5,7 +5,7 @@ const useAxiosApiSangueNovo = (headers?: object): AxiosInstance => (
 );
 
 const useAxiosApiViaCEP = (): AxiosInstance => (
-     axios.create({ baseURL: 'https://viacep.com.br/ws' })
+     axios.create({ baseURL: 'https://viacep.com.br/ws/' })
 );
 
 export { useAxiosApiSangueNovo, useAxiosApiViaCEP };

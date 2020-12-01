@@ -14,4 +14,4 @@ const useCEP = () => {
     return { findAdressByCEP }
 }
 
-export { useCEP }
+export { useCEP };
