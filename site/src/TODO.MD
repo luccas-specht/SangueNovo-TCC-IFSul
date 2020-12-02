@@ -1,5 +1,3 @@
-# arrumar rotas:
+# arrumar rotas, # user context:
 
---> arrumar algo parecido na que eu tinha usado antes no GoBarber(public route clean).
-
---> e trocar o route-manager, tirar daquele map de rotas.
+--> ver melhor lugar para armazenar o token

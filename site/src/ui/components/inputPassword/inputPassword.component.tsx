@@ -1,7 +1,6 @@
 import React from 'react';
 
 import * as SC from './inputPassword.style';
-
 interface PropsInputPassword {
     id: string;
     icon?: any;
