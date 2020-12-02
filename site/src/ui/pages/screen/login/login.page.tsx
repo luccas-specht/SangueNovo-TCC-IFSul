@@ -1,11 +1,14 @@
 import React from "react";
 
-const Login  = () => {
+import * as SC from './login.style';
 
-return (
-    <h1>sing in</h1>
-  );
-  
-}
+import { FormLogin } from '../components'
+
+const Login = () => (
+  <>
+    <h1>test sing in</h1>
+    <FormLogin/>
+  </>
+);
 
 export { Login };

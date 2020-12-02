@@ -2,20 +2,18 @@ import { useAxiosApiSangueNovo } from '../api/useAxios.hook';
 
 const axios = useAxiosApiSangueNovo();
 
-const useSingUp = () => {
-    const singUp = async (name: string, email: string, password: string) => {
+const useRedefinePassword = () => {
+    const resetPassword = async (email: string) => {
         try {
-            const response = await axios.post('/users', {
-                name: name,
+            const response = await axios.post('/auth', {
                 email: email,
-                password: password
             })
             return response.data;
         } catch (error) {
             return error.response;
         }
     }
-    return { singUp }
+    return { resetPassword }
 }
 
-export { useSingUp };
+export { useRedefinePassword };

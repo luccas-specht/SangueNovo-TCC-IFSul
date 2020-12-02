@@ -6,8 +6,8 @@ import {
 
 const paths = {
   default: () => '/',
-  login: () => '/sing-in',
-  register: () => '/sing-up',
+  login: () => '/sign-in',
+  register: () => '/sign-up',
   forgotPassword: ()=>'/forgot-password',
   dashboard: ()=> '/dashboard'
 };
@@ -23,27 +23,27 @@ const routers = [
   {
     isPublic: true,
     path: paths.default(),
-    component: components.login,
+    component: components.login
   },
   {
     isPublic: true,
     path: paths.login(),
-    component: components.register,
+    component: components.register
   },
   {
     isPublic: true,
     path: paths.register(),
-    component: components.register,
+    component: components.register
   },
   {
     isPublic: true,
     path: paths.forgotPassword(),
-    component: components.forgotPassword,
+    component: components.forgotPassword
   },
   {
     isPublic: true,
     path: paths.dashboard(),
-    component: components.dashboard,
+    component: components.dashboard
   }
 ];
 
