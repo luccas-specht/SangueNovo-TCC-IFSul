@@ -19,32 +19,29 @@ const components = {
   dashboard: Dashboard
 };
 
-const routers = [
-  {
-    isPublic: true,
+const ROUTERS = {
+  /*publics here*/
+ default: {
     path: paths.default(),
     component: components.login
   },
-  {
-    isPublic: true,
+ login: {
     path: paths.login(),
-    component: components.register
+    component: components.login
   },
-  {
-    isPublic: true,
+ register: {
     path: paths.register(),
     component: components.register
   },
-  {
-    isPublic: true,
+  forgotPassword: {
     path: paths.forgotPassword(),
     component: components.forgotPassword
   },
-  {
-    isPublic: true,
+  /*privates here*/
+  dashboard: {
     path: paths.dashboard(),
     component: components.dashboard
   }
-];
+};
 
-export { routers };
+export { ROUTERS };

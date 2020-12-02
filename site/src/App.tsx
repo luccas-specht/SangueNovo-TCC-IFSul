@@ -1,6 +1,6 @@
 import React from 'react';
-import { RouteManger } from './routes';
+import { RenderedRoute } from './routes';
 
-const App = () => <RouteManger />;
+const App = () => <RenderedRoute />;
 
 export { App };

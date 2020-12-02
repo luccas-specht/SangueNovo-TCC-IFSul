@@ -1,1 +1,1 @@
-export { RouteManger } from './route-manager';
+export { RenderedRoute } from './renderedRoute.route';
