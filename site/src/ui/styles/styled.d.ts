@@ -2,16 +2,14 @@ import 'styled-components';
 declare module 'styled-components' {
   interface DefaultTheme {
     colors: {
-      primary: string;
-      primary2: string;
-      primary3: string;
-      gray: string;
-      grayHard: string;
-      shape: string;
-      blackMedium: string;
-      inputs: string;
-      error: string;
-      white: string
+      redLight: string,
+      grayLight: string,
+      whiteLight: string,
+      grayDarklLight: string,
+      redDark: string,
+      whiteDark: string,
+      blackMediumDark: string,
+      blackHighDark: string,
     };
   }
 };
