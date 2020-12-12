@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as SC from './forgotPassword.style';
+// import * as SC from './forgotPassword.style';
 
 import { FormForgotPassword } from '../components';
 

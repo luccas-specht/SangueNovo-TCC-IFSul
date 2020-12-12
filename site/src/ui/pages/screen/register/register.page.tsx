@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as SC from './register.style';
+// import * as SC from './register.style';
 
 import { FormRegister } from '../components';
 

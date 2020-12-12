@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as SC from './inputText.style';
+// import * as SC from './inputText.style';
 interface PropsInputText {
     id: string;
     icon?: any;

@@ -2,9 +2,9 @@ import React from "react";
 
 import { Header } from '../../../components';
 
-import * as SC from './login.style';
+// import * as SC from './login.style';
 
-import { FormLogin } from '../components'
+// import { FormLogin } from '../components'
 
 const Login = () => (
   <>
