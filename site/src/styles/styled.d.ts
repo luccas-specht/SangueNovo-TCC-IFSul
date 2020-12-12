@@ -3,11 +3,13 @@ declare module 'styled-components' {
   interface DefaultTheme {
     title: string,
     colors: {
-      primary: string,
+      text: string,
+      primary: string;
       primary1: string,
       secundary: string,
       background: string,
-      text: string
+      backgroundInput: string;
+      white: string; 
     },
   }
 };

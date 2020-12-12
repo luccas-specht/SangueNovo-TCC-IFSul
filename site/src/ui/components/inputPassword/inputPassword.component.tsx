@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import * as SC from './inputPassword.style';
+import * as SC from './inputPassword.style';
 interface PropsInputPassword {
     id: string;
     icon?: any;
@@ -20,7 +20,19 @@ const InputPassword = ({
     placeholder, 
     onChange
 }: PropsInputPassword) => {
-
+  return(
+    <SC.Container>
+      {icon}
+    <SC.Input
+      id={id}
+      type='password'
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      onChange={onChange}
+    />
+   </SC.Container>
+  );
 };
 
 export { InputPassword };

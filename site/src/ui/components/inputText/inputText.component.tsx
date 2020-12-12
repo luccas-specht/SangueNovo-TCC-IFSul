@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import * as SC from './inputText.style';
+import * as SC from './inputText.style';
 interface PropsInputText {
     id: string;
     icon?: any;
@@ -16,11 +16,24 @@ const InputText = ({
     icon, 
     name, 
     value, 
-    error, 
     placeholder, 
     onChange
 }: PropsInputText) => {
 
+  return (
+      <SC.Container>
+        {icon}
+        <SC.Input
+          id={id}
+          type='text'
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+          
+        />
+      </SC.Container>
+  );
 };
 
 export { InputText };

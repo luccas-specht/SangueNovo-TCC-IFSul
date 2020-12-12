@@ -5,7 +5,6 @@ import { useTheme } from '../../../hooks';
 
 const Header = ({handle}: any) => {
     const { theme, changeTheme } = useTheme();
-    console.log('tema', theme.title)
     return(
         <>
         <SC.Container>
