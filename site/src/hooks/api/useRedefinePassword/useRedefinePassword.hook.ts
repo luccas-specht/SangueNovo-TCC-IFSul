@@ -1,20 +1,19 @@
-import { useAxiosApiSangueNovo } from '../api/useAxios.hook';
+import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
 
 const axios = useAxiosApiSangueNovo();
 
-const useAuth = () => {
-    const authentication = async (email: string, password: string) => {
+const useRedefinePassword = () => {
+    const resetPassword = async (email: string) => {
         try {
             const response = await axios.post('/auth', {
                 email: email,
-                password: password
             })
             return response.data;
         } catch (error) {
             return error.response;
         }
     }
-    return { authentication }
+    return { resetPassword }
 }
 
-export { useAuth };
+export { useRedefinePassword };

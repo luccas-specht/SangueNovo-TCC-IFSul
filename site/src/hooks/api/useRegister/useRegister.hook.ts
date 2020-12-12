@@ -1,4 +1,4 @@
-import { useAxiosApiSangueNovo } from '../api/useAxios.hook';
+import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
 
 const axios = useAxiosApiSangueNovo();
 

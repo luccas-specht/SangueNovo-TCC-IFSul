@@ -10,8 +10,8 @@ const CreateGlobalStyle = createGlobalStyle`
    }
 
  body {
-    background: ${(props) => props.theme.colors.primary3};
-    color: ${(props) => props.theme.colors.primary2};
+    background: ${(props) => props.theme.colors.background};
+    color: ${(props) => props.theme.colors.primary};
     -webkit-font-smoothing: antialiased;
  }
 

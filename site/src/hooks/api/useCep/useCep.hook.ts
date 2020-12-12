@@ -1,4 +1,4 @@
-import { useAxiosApiViaCEP } from '../api/useAxios.hook';
+import { useAxiosApiViaCEP } from '../useAxios/useAxios.hook';
 
 const axios = useAxiosApiViaCEP();
 

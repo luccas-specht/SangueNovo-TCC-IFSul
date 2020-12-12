@@ -1,23 +1,34 @@
 import React from 'react';
 
-import { Switch } from 'react-router-dom';
+import { Switch, BrowserRouter } from 'react-router-dom';
+
+import { ThemeProvider } from 'styled-components';
+
+import { CreateGlobalStyle } from '../styles';
+
+import { useTheme } from '../hooks'
 
 import { ROUTERS } from '../constants';
 
 import { PublicRoute } from './publicRoute.route';
 import { PrivateRoute } from './privateRoute.route';
 
- const RenderedRoute = () => (
-    <Switch>
+ const RenderedRoute = () => {
+   const {theme} = useTheme();
+   
+   return(
+   <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <Switch>
         <PublicRoute 
-          path={ROUTERS.default.path}
           exact
+          path={ROUTERS.default.path}
           component={ROUTERS.default.component}
          />
         
         <PublicRoute
-          path={ROUTERS.login.path}
           exact
+          path={ROUTERS.login.path}
           component={ROUTERS.login.component}
         />
         
@@ -28,17 +39,21 @@ import { PrivateRoute } from './privateRoute.route';
          />
         
         <PublicRoute 
-          path={ROUTERS.forgotPassword.path}  
           exact
+          path={ROUTERS.forgotPassword.path} 
           component={ROUTERS.forgotPassword.component}
         />
 
         <PrivateRoute 
-          path={ROUTERS.dashboard.path}
           exact
+          path={ROUTERS.dashboard.path}
           component={ROUTERS.dashboard.component}
         />
-    </Switch >
+      </Switch >
+      </BrowserRouter>
+      <CreateGlobalStyle/>
+    </ThemeProvider >
 );
+   }
 
 export { RenderedRoute };

@@ -1,3 +1,4 @@
-import { Button } from './button/button.component';
-import { InputPassword } from './inputPassword/inputPassword.component';
-import { InputText } from './inputText/inputText.component';
+export { Button } from './button/button.component';
+export { InputPassword } from './inputPassword/inputPassword.component';
+export { InputText } from './inputText/inputText.component';
+export { Header } from './header/header.component';
