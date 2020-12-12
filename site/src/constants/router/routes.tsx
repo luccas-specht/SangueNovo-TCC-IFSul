@@ -2,13 +2,15 @@ import {
     Dashboard, 
     Login, 
     Register, 
-    ForgotPassword } from '../../ui/pages/index';
+    ForgotPassword,
+   } from '../../ui/pages/index';
 
 const paths = {
   default: () => '/',
   login: () => '/sign-in',
   register: () => '/sign-up',
   forgotPassword: ()=>'/forgot-password',
+  resetPassowrd: ()=> '/reset-password',
   dashboard: ()=> '/dashboard'
 };
 
@@ -36,6 +38,11 @@ const ROUTERS = {
   forgotPassword: {
     path: paths.forgotPassword(),
     component: components.forgotPassword
+  },
+  resetPassword: {
+      path: paths.resetPassowrd(),
+      // colocar isso:
+      // component: components.resetPassword,
   },
   /*privates here*/
   dashboard: {

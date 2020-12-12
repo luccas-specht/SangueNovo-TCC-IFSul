@@ -3,17 +3,31 @@ import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
 const axios = useAxiosApiSangueNovo();
 
 const useRedefinePassword = () => {
-    const resetPassword = async (email: string) => {
+
+    const forgotPassword = async (email: string) => {
         try {
-            const response = await axios.post('/auth', {
-                email: email,
+            const response = await axios.post('/password/forgot', {
+                email: email
             })
             return response.data;
         } catch (error) {
             return error.response;
         }
     }
-    return { resetPassword }
+
+    const resetPassword = async (password: string, token: string) => {
+        try {
+            const response = await axios.post('/password/reset', {
+                password: password,
+                token: token
+            })
+            return response.data;
+        } catch (error) {
+            return error.response;
+        }
+    }
+
+    return { forgotPassword, resetPassword }
 }
 
-export { useRedefinePassword };
+export { useRedefinePassword }
