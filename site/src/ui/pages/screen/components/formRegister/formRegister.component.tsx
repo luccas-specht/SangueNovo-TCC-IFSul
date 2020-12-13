@@ -63,6 +63,29 @@ const FormRegister = () => {
      }
    });
 
+  //  const [donation, setDonation] = useState<boolean>();
+  // const [institution, setInstitution] = useState<boolean>();
+
+  // const handleActive = useCallback((who: 'donation' | 'institution' ) => {
+  //   if(who === 'donation'){
+  //     setInstitution(false);
+  //     setDonation(true);
+  //   }else{
+  //     setDonation(false);
+  //     setDonation(true);
+  //   }
+  // },[donation, institution]);
+
+  // return(
+  //   <ul>
+  //     <li onClick={()=> handleActive('donation')}>
+  //       Sou Doador
+  //     </li>
+  //     <li onClick={()=> handleActive('institution')}>
+  //      Sou Instituição
+  //     </li>
+  //   </ul>
+
   return(
       <>
         <ToastContainer />

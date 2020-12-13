@@ -15,9 +15,10 @@ const Login = () => {
     <SC.Container>
       <SC.Context>
         <SC.AnimationContext>
-          <img src={theme.title === 'light' ? logoSangueNovoLight: logoSangueNovoDark} 
-            alt='Logo Sangue Novo' />
-  
+          <img 
+            src={theme.title === 'light' ? logoSangueNovoLight: logoSangueNovoDark} 
+            alt='Logo Sangue Novo'
+           />
           <FormLogin />
         </SC.AnimationContext>
       </SC.Context>
