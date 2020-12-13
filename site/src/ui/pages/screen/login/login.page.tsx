@@ -2,6 +2,8 @@ import React from 'react';
 
 import { FormLogin } from '../components';
 
+import { FaSun, FaMoon} from 'react-icons/fa';
+
 import * as SC from './login.style';
 
 import { useTheme } from '../../../../hooks';

@@ -9,6 +9,7 @@ import { useRegister } from '../../../../../hooks'
 import { validationMessage } from '../../../../../constants';
 
 import { InputText, InputPassword, Button } from '../../../../components';
+import { DonorSpecificInput } from '../donorSpecificInput/donorSpecificInput.component';
 
 import * as Yup from 'yup'
 import { useFormik } from "formik";
@@ -129,45 +130,48 @@ const FormRegister = ({ donator }: FormRegisterProps) => {
       <SC.Title>Faça seu Login</SC.Title>
       <InputText
         icon={<FiUser size={20} />}
-        id="name"
-        name="name"
+        id="name_razaoSocial"
+        name="name_razaoSocial"
         placeholder='Nome'
         value={formik.values.name_razaoSocial}
         error={formik.errors.name_razaoSocial}
         onChange={formik.handleChange}
         />  
         { donator ?
-          <>
-            <InputText
+            <SC.ContextInputs>
+            <DonorSpecificInput
+              icon={<BiCalendar size={20} />}
+              id="birthday"
+              name="birthday"
+              type='text'
+              placeholder='Data de nascimento'
+              value={formik.values.birthday}
+              error={formik.errors.birthday}
+              onChange={formik.handleChange}
+            /> 
+          <DonorSpecificInput
             icon={<BiIdCard size={22} />}
             id="cpf_cnpf"
             name="cpf_cnpf"
+            type='text'
             placeholder='CPF'
             value={formik.values.cpf_cnpf}
             error={formik.errors.cpf_cnpf}
             onChange={formik.handleChange}
-          />  
+          />   
+            </SC.ContextInputs>
+          : 
           <InputText
-            icon={<BiCalendar size={20} />}
-            id="birthday"
-            name="birthday"
-            placeholder='Data de nascimento'
-            value={formik.values.name_razaoSocial}
-            error={formik.errors.name_razaoSocial}
-            onChange={formik.handleChange}
-          /> 
-        </>
-        :
-        <InputText
           icon={<BiIdCard size={22} />}
           id="cpf_cnpf"
           name="cpf_cnpf"
-          placeholder='CNPj'
+          placeholder='CNPJ'
           value={formik.values.cpf_cnpf}
           error={formik.errors.cpf_cnpf}
           onChange={formik.handleChange}
-        />  
-      }
+        />   
+        }
+      
 
     <InputText
       icon={<FiMail size={20} />}

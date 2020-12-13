@@ -14,7 +14,7 @@ import { PublicRoute } from './publicRoute.route';
 import { PrivateRoute } from './privateRoute.route';
 
  const RenderedRoute = () => {
-   const {theme} = useTheme();
+   const { theme } = useTheme();
    
    return(
    <ThemeProvider theme={theme}>

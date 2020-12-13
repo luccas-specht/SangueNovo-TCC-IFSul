@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Form = styled.form`
   margin: 80px 0;
-  width: 340px;
+  width: 424px;
   text-align: center;
 
   a {

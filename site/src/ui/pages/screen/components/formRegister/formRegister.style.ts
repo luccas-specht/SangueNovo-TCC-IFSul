@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Form = styled.form`
   margin: 80px 0;
-  width: 340px;
+  width: 424px;
   text-align: center;
   a {
     color: ${(props) => props.theme.colors.text};
@@ -41,15 +41,17 @@ const BackToSingIn = styled(Link)`
   }
 `;
 
-const ContainerInputs = styled.div`
-    width: 100%;
+const ContextInputs = styled.div`
     display: flex;
     align-items: center;
-    border: 2px solid red;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 8px;
 `;
+
 
 export { Form, 
         Title, 
         BackToSingIn,
-        ContainerInputs
+        ContextInputs
          };
