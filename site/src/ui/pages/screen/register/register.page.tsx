@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FormRegister } from '../components';
+import { FormRegister, IconChangeTheme } from '../components';
 
 import * as SC from './register.style';
 
@@ -13,10 +13,12 @@ const Register = () => {
     <SC.Container>
       <SC.ImgBackground/>
       <SC.Context>
+      <IconChangeTheme namePage='register'/>
         <SC.AnimationContext>
-        <img src={theme.logo} 
-            alt='Logo Sangue Novo'
-          />
+        <img 
+          src={theme.logo} 
+          alt='Logo Sangue Novo'
+        />
           <FormRegister donator={true} />
         </SC.AnimationContext>
       </SC.Context>

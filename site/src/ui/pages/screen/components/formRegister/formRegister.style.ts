@@ -33,11 +33,13 @@ const BackToSingIn = styled(Link)`
   transition: color 0.3s;
   display: flex;
   align-items: center;
+  
   &:hover {
     color: ${(props) => shade(0.2, props.theme.colors.primary)};
   }
+
   svg {
-    margin-right: 10px;
+    margin-right: 8px;
   }
 `;
 

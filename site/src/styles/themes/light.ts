@@ -8,6 +8,7 @@ const light: DefaultTheme = {
   colors: {
     text: '#666360',
     backgroundInput: '#FFF',
+    titleColor: '#666360',
     primary: '#BF0404',
     primary1: '#3E3B47',
     secundary: '#FF9000',

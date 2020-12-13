@@ -1,22 +1,63 @@
-import styled from 'styled-components';
-
-const Container = styled.div`
-    display: flex;
-    align-items: center;
-    height: 40px;
-    width: 25%;
-
-    svg {
-        color: ${props => props.theme.colors.colorIconDarkLight};
-        width: 23px;
-        height: 23px;
-        margin-top: -120px;
-        margin-right: -600px;
-        display: flex;
-        flex: 1;
-        cursor: pointer;
+import styled, { css } from 'styled-components';
+interface IconChangeTheme {
+    namePage: 'login' | 'register' | 'forgotPassword';
+ }
+ 
+const Container = styled.div<IconChangeTheme>`
+    ${props => props.namePage === 'login' && 
+        css`
+            display: flex;
+            align-items: center;
+            height: 40px;
+            width: 10%;
+            max-width: 50px; 
+            margin-right: -600px;
+            margin-top: -100px;
+            
+            svg {
+                color: ${props => props.theme.colors.colorIconDarkLight};
+                width: 25px;
+                height: 25px;
+                cursor: pointer;
+            }`
     }
 
+    ${props => props.namePage === 'register' && 
+            css`
+                display: flex;
+                align-items: center;
+                height: 40px;
+                width: 10%;
+                max-width: 50px; 
+                margin-right: -450px;
+                margin-top: -100px;
+
+                svg {
+                    color: ${props => props.theme.colors.colorIconDarkLight};
+                    width: 25px;
+                    height: 25px;
+                    cursor: pointer;
+                }`
+    }
+
+    ${props => props.namePage === 'forgotPassword' && 
+            css`
+                display: flex;
+                align-items: center;
+                height: 40px;
+                width: 10%;
+                max-width: 50px; 
+                margin-right: -600px;
+                margin-top: -100px;
+
+                svg {
+                    color: ${props => props.theme.colors.colorIconDarkLight};
+                    width: 25px;
+                    height: 25px;
+                    cursor: pointer;
+                }`
+    }
 `;
+
 
 export { Container };

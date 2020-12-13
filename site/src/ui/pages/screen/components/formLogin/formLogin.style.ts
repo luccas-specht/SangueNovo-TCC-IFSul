@@ -32,7 +32,6 @@ const Title = styled.h1`
 const CreateAccount = styled(Link)`
   color: ${(props) => props.theme.colors.primary};
   display: block;
-  margin-top: 24px;
   transition: color 0.3s;
   display: flex;
   align-items: center;
@@ -40,7 +39,7 @@ const CreateAccount = styled(Link)`
     color: ${(props) => shade(0.2, props.theme.colors.primary)};
   }
   svg {
-    margin-right: 16px;
+    margin-right: 10px;
   }
 `;
 

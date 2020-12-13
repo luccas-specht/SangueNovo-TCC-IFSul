@@ -12,7 +12,7 @@ const Login = () => {
   return(
     <SC.Container>
       <SC.Context>
-      <IconChangeTheme/>  
+      <IconChangeTheme namePage='login'/>  
         <SC.AnimationContext>
           <SC.ContextLogin>
           <img 
