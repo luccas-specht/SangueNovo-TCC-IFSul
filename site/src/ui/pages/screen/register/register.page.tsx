@@ -21,7 +21,7 @@ const Register = () => {
           src={theme.title === 'light' ? logoSangueNovoLight: logoSangueNovoDark} 
           alt='Logo Sangue Novo'
          />
-          <FormRegister />
+          <FormRegister donator={true} />
         </SC.AnimationContext>
       </SC.Context>
     </SC.Container>

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
+
 const Container = styled.div`
   background: ${(props) => props.theme.colors.backgroundInput};
   border-radius: 10px;
@@ -29,4 +31,12 @@ const Input = styled.input`
     color: ${(props) => props.theme.colors.text};
   }
 `;
-export { Container, Input };
+
+const CloseEye = styled(MdRemoveRedEye)`
+  cursor: pointer;
+`;
+
+const OpenEye = styled(BsFillEyeSlashFill)`
+  cursor: pointer;
+`;
+export { Container, Input, CloseEye, OpenEye };

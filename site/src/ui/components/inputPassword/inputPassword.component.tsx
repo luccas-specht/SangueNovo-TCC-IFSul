@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import * as SC from './inputPassword.style';
 interface PropsInputPassword {
@@ -20,17 +20,29 @@ const InputPassword = ({
     placeholder, 
     onChange
 }: PropsInputPassword) => {
+  const [type, setType] = useState<'text'|'password'>('password');
+
   return(
     <SC.Container>
       {icon}
     <SC.Input
       id={id}
-      type='password'
+      type={type}
       name={name}
       value={value}
       placeholder={placeholder}
       onChange={onChange}
     />
+    {type === 'text' ? 
+    <SC.CloseEye
+     size={20}
+     onClick={()=> setType('password')}
+     />
+     : 
+     <SC.OpenEye 
+      size={20} 
+      onClick={()=> setType('text')}
+    />}
    </SC.Container>
   );
 };
