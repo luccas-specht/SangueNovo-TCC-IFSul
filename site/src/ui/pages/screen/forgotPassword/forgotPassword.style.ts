@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import loginImgLight from '../../../assets/images/login-background-light.png';
 import loginImgDark from '../../../assets/images/login-background-dark.png';
@@ -18,21 +18,9 @@ const Context = styled.div`
   max-width: 800px;
 `;
 
-interface ImgBackgroundProps {
-  titleThemeLight: string
-}
-
-const ImgBackground = styled.div<ImgBackgroundProps>`
+const ImgBackground = styled.div`
   flex: 1;
-   ${props => 
-      props.titleThemeLight === 'light'? 
-      css` 
-        background: url(${loginImgLight}) no-repeat center;
-      ` 
-      : css` 
-        background: url(${loginImgDark}) no-repeat center;
-      ` 
-   };
+  background: url(${props => props.theme.imageBackground}) no-repeat center;
   background-size: cover;
 `;
 
