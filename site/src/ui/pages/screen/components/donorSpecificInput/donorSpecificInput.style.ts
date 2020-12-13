@@ -5,8 +5,8 @@ const Container = styled.div`
   border-radius: 10px;
   border: 2px solid ${(props) => props.theme.colors.backgroundInput};
   padding: 16px;
-  width: 205px;
-  max-height: 55px;
+  width: 207px;
+  height: 58px;
   color: ${(props) => props.theme.colors.text};
   display: flex;
   align-items: center;

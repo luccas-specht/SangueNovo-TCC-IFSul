@@ -1,8 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
 
-import loginImgLight from '../../../assets/images/register-background-light.png';
-import loginImgDark from '../../../assets/images/register-background-dark.png';
-
 const Container = styled.div`
   height: 100vh;
   display: flex;
@@ -42,8 +39,31 @@ const AnimationContext = styled.div`
   animation: ${appearFromRight} 1.2s;
 `;
 
+const Tab = styled.ul`
+  display: flex;
+  color: ${props => props.theme.colors.text};
+  width: 55%;
+  justify-content: space-between;
+  height: 25px;
+  margin-top: 20px;
+`;
+
+interface TabsProps {
+  isActive: boolean
+}
+
+const Tabs = styled.li<TabsProps>`
+    cursor: pointer;
+    ${props => props.isActive && css`
+      border-radius: 2px;
+      border-bottom: 3px solid red;
+    `}
+`;
+
 export { 
     Container, 
     Context, 
     ImgBackground, 
-    AnimationContext };
+    AnimationContext,
+    Tab,
+    Tabs };

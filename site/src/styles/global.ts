@@ -15,16 +15,16 @@ const CreateGlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
  }
 
- body, input, button {
+ body, input, button, li {
   font: 1rem 'Roboto', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6, strong {
+  h1, h2, h3, h4, h5, h6, strong, li {
    font-weight: 600;
    color: ${(props) => props.theme.colors.titleColor};
   }
 
- button {
+ button, li {
     cursor: pointer;
   }
 
