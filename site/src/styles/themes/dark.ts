@@ -9,7 +9,8 @@ const dark: DefaultTheme = {
     secundary: 'FF9000',
     background: '#232129',
     backgroundInput: '#FFF',
-    white: '#FFF'
+    white: '#FFF',
+    colorIconDarkLight: '#FF9000',
   },
 };
 export { dark };

@@ -9,7 +9,8 @@ const light: DefaultTheme = {
     primary1: '#3E3B47',
     secundary: '#FF9000',
     background: '#F2F2F2',
-    white: '#fff'
+    white: '#fff',
+    colorIconDarkLight: '#28262E',
   },
 };
 
