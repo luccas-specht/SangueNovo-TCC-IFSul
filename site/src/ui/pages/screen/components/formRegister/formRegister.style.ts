@@ -5,7 +5,6 @@ import { shade } from 'polished';
 import { Link } from 'react-router-dom';
 
 const Form = styled.form`
-  margin: 80px 0;
   width: 424px;
   text-align: center;
   a {
@@ -17,13 +16,6 @@ const Form = styled.form`
       color: ${(props) => shade(0.2, props.theme.colors.text)};
     }
   }
-`;
-
-const Title = styled.h1`
-  margin-bottom: 24px;
-  font-style: normal;
-  line-height: 32px;
-  text-align: center;
 `;
 
 const BackToSingIn = styled(Link)`
@@ -53,7 +45,6 @@ const ContextInputs = styled.div`
 
 
 export { Form, 
-        Title, 
         BackToSingIn,
         ContextInputs
          };

@@ -36,6 +36,8 @@ const appearFromRight = keyframes`
 `;
 
 const AnimationContext = styled.div`
+  padding-top: 20px;
+  margin-top: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;

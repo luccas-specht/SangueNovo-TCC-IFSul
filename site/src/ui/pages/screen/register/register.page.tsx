@@ -31,6 +31,7 @@ const Register = () => {
       <SC.Context>
       <IconChangeTheme namePage='register'/>
         <SC.AnimationContext>
+        <SC.ContextLogoSideBar>
         <img 
           src={theme.logo} 
           alt='Logo Sangue Novo'
@@ -49,6 +50,7 @@ const Register = () => {
               Sou Instituição
             </SC.Tabs>
           </SC.Tab>
+          </SC.ContextLogoSideBar>
           <FormRegister donator={activeTab} />
         </SC.AnimationContext>
       </SC.Context>

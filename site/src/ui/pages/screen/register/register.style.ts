@@ -37,6 +37,8 @@ const AnimationContext = styled.div`
   flex-direction: column;
   align-items: center;
   animation: ${appearFromRight} 1.2s;
+  justify-content: space-around;
+  height: 70%;
 `;
 
 const Tab = styled.ul`
@@ -45,7 +47,6 @@ const Tab = styled.ul`
   width: 55%;
   justify-content: space-between;
   height: 25px;
-  margin-top: 20px;
 `;
 
 interface TabsProps {
@@ -60,10 +61,24 @@ const Tabs = styled.li<TabsProps>`
     `}
 `;
 
+const ContextLogoSideBar = styled.div`
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+
+    ul{
+      margin-top: 80px;
+    }
+`;
+
 export { 
     Container, 
     Context, 
     ImgBackground, 
     AnimationContext,
     Tab,
-    Tabs };
+    Tabs,
+    ContextLogoSideBar };

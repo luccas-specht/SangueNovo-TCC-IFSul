@@ -12,7 +12,7 @@ const Container = styled.div<IconChangeTheme>`
             width: 10%;
             max-width: 50px; 
             margin-right: -600px;
-            margin-top: -100px;
+            margin-top: -95px;
             
             svg {
                 color: ${props => props.theme.colors.colorIconDarkLight};
@@ -30,7 +30,7 @@ const Container = styled.div<IconChangeTheme>`
                 width: 10%;
                 max-width: 50px; 
                 margin-right: -450px;
-                margin-top: -100px;
+                margin-top: -130px;
 
                 svg {
                     color: ${props => props.theme.colors.colorIconDarkLight};
@@ -48,7 +48,7 @@ const Container = styled.div<IconChangeTheme>`
                 width: 10%;
                 max-width: 50px; 
                 margin-right: -600px;
-                margin-top: -100px;
+                margin-top: -134.5px;
 
                 svg {
                     color: ${props => props.theme.colors.colorIconDarkLight};
