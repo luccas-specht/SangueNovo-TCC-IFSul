@@ -1,8 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-import loginImgLight from '../../../assets/images/login-background-light.png';
-import loginImgDark from '../../../assets/images/login-background-dark.png';
-
 const Container = styled.div`
   height: 100vh;
   display: flex;

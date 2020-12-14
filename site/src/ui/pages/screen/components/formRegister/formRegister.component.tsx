@@ -3,9 +3,6 @@ import React, { useEffect } from 'react';
 import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { BiIdCard, BiCalendar } from 'react-icons/bi';
 
-import { useHistory } from 'react-router-dom';
-
-import { useRegister } from '../../../../../hooks'
 import { validationMessage } from '../../../../../constants';
 
 import { InputText, InputPassword, Button } from '../../../../components';
@@ -14,8 +11,7 @@ import { DonorSpecificInput } from '../donorSpecificInput/donorSpecificInput.com
 import * as Yup from 'yup'
 import { useFormik } from "formik";
 
-import { toastConfig } from '../../../../../configs';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import * as SC from './formRegister.style';
@@ -33,8 +29,6 @@ interface FormRegisterData {
 }
 
 const FormRegister = ({ donator }: FormRegisterProps) => {
-  const history = useHistory();
-  const { register } = useRegister();
 
   const initialValuesInstitution = {
      name_razaoSocial: '',

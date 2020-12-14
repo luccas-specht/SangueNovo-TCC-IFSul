@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { FiMail, FiArrowLeft } from 'react-icons/fi';
 
 import { useRedefinePassword } from '../../../../../hooks'
