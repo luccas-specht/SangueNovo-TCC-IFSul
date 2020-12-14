@@ -178,7 +178,7 @@ const FormRegister = ({ donator }: FormRegisterProps) => {
       />
       <Button
        type='submit'
-       title='Entrar'
+       title='Cadastrar'
       />
      <SC.BackToSingIn to='sign-in'>
         <FiArrowLeft />

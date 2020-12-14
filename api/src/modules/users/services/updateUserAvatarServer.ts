@@ -23,14 +23,10 @@ class UpdateUserAvatarService {
        
         const user = await this.usersRepository.findById(user_id)
 
-        if (!user) {
-            throw new AppError('usuario não autenticado', 401)
-        }
-
-        if (user.avatar) {
-            await this.storageProvider.deleteFile(user.avatar);
-        }
-
+        if (!user) throw new AppError('usuario não autenticado', 401)
+        
+        if (user.avatar) await this.storageProvider.deleteFile(user.avatar);
+        
         const fileName = await this.storageProvider.saveFile(avatarFileName);
         user.avatar = fileName
 

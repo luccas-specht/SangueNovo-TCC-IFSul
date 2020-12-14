@@ -5,9 +5,12 @@ import { shade } from 'polished';
 import { Link } from 'react-router-dom';
 
 const Form = styled.form`
-  margin: 80px 0;
   width: 424px;
   text-align: center;
+  
+  > div{
+    margin-bottom: 8px;
+  }
 
   a {
     color: ${(props) => props.theme.colors.text};
@@ -19,6 +22,23 @@ const Form = styled.form`
       color: ${(props) => shade(0.2, props.theme.colors.text)};
     }
   
+  }
+`;
+
+const BackToSingIn = styled(Link)`
+  color: ${(props) => props.theme.colors.primary};
+  display: block;
+  margin-top: 24px;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  
+  &:hover {
+    color: ${(props) => shade(0.2, props.theme.colors.primary)};
+  }
+
+  svg {
+    margin-right: 8px;
   }
 `;
 
@@ -44,24 +64,9 @@ const CreateAccount = styled(Link)`
   }
 `;
 
-const BackToSignIn = styled(Link)`
-  color: ${(props) => props.theme.colors.primary};
-  margin-top: 24px;
-  transition: color 0.3s;
-  display: flex;
-  align-items: center;
-  &:hover {
-    color: ${(props) => shade(0.2, props.theme.colors.primary)};
-  }
-  svg {
-    margin-right: 10px;
-  }
-  
-`;
-
 export { 
   Form, 
   Title,
   CreateAccount, 
-  BackToSignIn
+  BackToSingIn
  };

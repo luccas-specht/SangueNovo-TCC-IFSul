@@ -1,5 +1,6 @@
+import { ISendMail } from './ISendMail'
 interface IMailProvider {
-    sendMail(to: string, body: string): Promise<any>;
+    sendMail(data: ISendMail): Promise<any>;
 }
 
 export { IMailProvider };

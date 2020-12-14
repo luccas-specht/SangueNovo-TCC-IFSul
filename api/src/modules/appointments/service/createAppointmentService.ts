@@ -14,19 +14,19 @@ interface Request {
 @injectable()
 class CreateAppointmentService {
   constructor(
-    @inject('AppointmentsRepository')
-    private appointmentsRepository: IAppointmentsRepository
+    @inject('AppointmentRepository')
+    private appointmentRepository: IAppointmentsRepository
     ) {}
 
   public async execute({ date, provider_id }: Request): Promise<Appointment> {
    
     const appointmentDate = startOfHour(date);
 
-    const findAppointmentInSame = await this.appointmentsRepository.findByDate(appointmentDate);
+    const findAppointmentInSame = await this.appointmentRepository.findByDate(appointmentDate);
 
     if (findAppointmentInSame) throw new AppError('horário está ocupado');
 
-    return await this.appointmentsRepository.createAndSave(provider_id, appointmentDate);
+    return await this.appointmentRepository.createAndSave(provider_id, appointmentDate);
     
   }
 }

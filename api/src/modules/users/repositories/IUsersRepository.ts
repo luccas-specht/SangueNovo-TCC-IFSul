@@ -5,6 +5,7 @@ interface IUsersRepository {
     findById(id: string): Promise<Users | undefined>;
     findByEmail(email: string): Promise<Users | undefined>;
     createAndSave(name: string, email: string, password: string): Promise<Users>;
+    findAllProvides(exceptUserId?: string): Promise<Users[]>;
 };
 
 export { IUsersRepository };

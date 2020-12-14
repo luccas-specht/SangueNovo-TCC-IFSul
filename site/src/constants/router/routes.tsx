@@ -3,7 +3,8 @@ import {
     Login, 
     Register, 
     ForgotPassword,
-   } from '../../ui/pages/index';
+    ResetPassword
+   } from '../../ui/pages';
 
 const paths = {
   default: () => '/',
@@ -18,12 +19,14 @@ const components = {
   login: Login,
   register: Register,
   forgotPassword: ForgotPassword,
-  dashboard: Dashboard
+  dashboard: Dashboard,
+  resetPassword: ResetPassword
 };
 
 const ROUTERS = {
   /*publics here*/
- default: {
+ 
+  default: {
     path: paths.default(),
     component: components.login
   },
@@ -40,10 +43,10 @@ const ROUTERS = {
     component: components.forgotPassword
   },
   resetPassword: {
-      path: paths.resetPassowrd(),
-      // colocar isso:
-      // component: components.resetPassword,
+    path: paths.resetPassowrd(),
+    component: components.resetPassword,
   },
+  
   /*privates here*/
   dashboard: {
     path: paths.dashboard(),

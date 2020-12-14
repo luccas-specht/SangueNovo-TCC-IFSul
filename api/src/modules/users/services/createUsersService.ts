@@ -27,8 +27,8 @@ class CreateUserService {
     const hasedPassword = await hash(password, 8);
 
     return await this.usersRepository.createAndSave(name, email, hasedPassword);
-  }
+  };
 
-}
+};
 
 export { CreateUserService };

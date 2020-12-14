@@ -6,11 +6,11 @@
  import { useTheme } from '../../../../../hooks';
  
  import * as SC from './iconChangeTheme.style';
- interface IconChangeTheme {
-    namePage: 'login' | 'register' | 'forgotPassword';
+ interface IconChangeThemeProps {
+    namePage: 'login' | 'register' | 'forgotPassword' | 'resetPassword';
  }
  
- const IconChangeTheme = ({ namePage }: IconChangeTheme) => {
+ const IconChangeTheme = ({ namePage }: IconChangeThemeProps) => {
     const { theme, changeTheme } = useTheme();
      
     return (

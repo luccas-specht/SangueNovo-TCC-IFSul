@@ -10,7 +10,7 @@ import * as Yup from 'yup'
 import { useRedefinePassword } from '../../../../../hooks'
 
 import { InputPassword, Button } from '../../../../components';
-import { Form, Title } from './formResetPassword.style';
+import { BackToSingIn, Form, Title } from './formResetPassword.style';
 
 import { validationMessage } from '../../../../../constants'
 
@@ -88,6 +88,9 @@ const  FormResetPassword  = () => {
           />
 
         <Button type='submit' title='Alterar Senha' />
+      <BackToSingIn to='sign-in'>
+        Cancelar
+     </BackToSingIn>
       </Form>
     </>
   );

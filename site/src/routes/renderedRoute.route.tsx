@@ -44,6 +44,12 @@ import { PrivateRoute } from './privateRoute.route';
           component={ROUTERS.forgotPassword.component}
         />
 
+         <PublicRoute 
+          exact
+          path={ROUTERS.resetPassword.path} 
+          component={ROUTERS.resetPassword.component}
+        />
+
         <PrivateRoute 
           exact
           path={ROUTERS.dashboard.path}

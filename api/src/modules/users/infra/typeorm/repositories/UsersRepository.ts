@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Not } from 'typeorm';
 
 import { Users } from '../entities/users';
 
@@ -28,6 +28,10 @@ class UsersRepository implements IUsersRepository {
    return await this.ormRepository.save(appointment);
   }
 
+  public async findAllProvides(exceptUserId?: string): Promise<Users[]>{
+    return exceptUserId ? await this.ormRepository.find({ where: { id: Not(exceptUserId) } })
+    : await this.ormRepository.find();
+  }
 };
 
 export { UsersRepository };
