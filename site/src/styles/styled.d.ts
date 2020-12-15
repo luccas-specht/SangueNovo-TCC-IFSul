@@ -13,8 +13,9 @@ declare module 'styled-components' {
       white: string; 
       colorIconDarkLight: string;
     },
-    imageBackground: string;
     logo: string;
+    imageLoginBackground: string;
+    imageRegisterBackground: string;
   }
 };
 

@@ -21,7 +21,7 @@ const Context = styled.div`
 
 const ImgBackground = styled.div`
   flex: 1;
-  background: url(${props => props.theme.imageBackground}) no-repeat center;
+  background: url(${props => props.theme.imageLoginBackground}) no-repeat center;
   background-size: cover;
 `;
 
