@@ -1,13 +1,16 @@
 import { container } from 'tsyringe';
 
-import { IUsersRepository } from '@modules/donator/repositories/IUsersRepository';
-import { UsersRepository } from '@modules/donator/infra/typeorm/repositories/UsersRepository';
+import { IUsersRepository } from '@modules/Irepository/IUsersRepository';
+import { UsersRepository } from '@modules/infra/typeorm/repositories/UserRepository';
 
 import { IStorageProvider } from './providers/StorageProvider/models/IStorageProvider';
 import { DiskStorageProvider } from './providers/StorageProvider/implementations/DiskStorageProvider';
 
-import { IUsersTokenRepository } from '@modules/donator/repositories/IUserTokens';
-import { UsersTokenRepository } from '@modules/donator/infra/typeorm/repositories/UsersTokenRepository';
+// import { IUsersTokenRepository } from '@modules/Irepository/IUserTokens';
+// import { UsersTokenRepository } from '@modules/infra/typeorm/repositories/UsersTokenRepository';
+
+import { IDonatorRepository } from '@modules/Irepository/IDonatorRepository';
+import { DonatorRepository } from '@modules/infra/typeorm/repositories/DonatorRepository';
 
 import { IMailProvider } from './providers/MailProvider/models/IMailProvider';
 import { EtherealMailProvider } from './providers/MailProvider/implementations/EtherealMailProvider';
@@ -19,7 +22,9 @@ container.registerSingleton<IMailTemplateProvider>('MailTemplateProvider', Handl
 
 container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepository);
 
-container.registerSingleton<IUsersTokenRepository>('UsersTokenRepository', UsersTokenRepository);
+container.registerSingleton<IDonatorRepository>('DonatorRepository', DonatorRepository);
+
+// container.registerSingleton<IUsersTokenRepository>('UsersTokenRepository', UsersTokenRepository);
 
 container.registerSingleton<IStorageProvider>('StorageProvider', DiskStorageProvider);
 

@@ -1,9 +1,8 @@
 import { Router } from 'express';
 
-import { donatorRouter } from '@modules/donator/infra/http/routes/users.route';
-import { authRouter } from '@modules/donator/infra/http/routes/auth.route';
-import { passwordRouter } from '@modules/donator/infra/http/routes/password.route';
-import { profileRouter } from '@modules/donator/infra/http/routes/profile.route';
+import { donatorRouter } from '@modules/infra/http/routes/users.route';
+import { authRouter } from '@modules/infra/http/routes/auth.route';
+import { profileRouter } from '@modules/infra/http/routes/profile.route';
 
 export const routes = Router();
 
@@ -15,4 +14,3 @@ routes.use('/donator', donatorRouter);
 /*both users*/
 routes.use('/profile', profileRouter);
 routes.use('/auth', authRouter);
-routes.use('/password', passwordRouter);
