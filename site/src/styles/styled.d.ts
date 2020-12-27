@@ -12,6 +12,7 @@ declare module 'styled-components' {
       backgroundInput: string;
       white: string; 
       colorIconDarkLight: string;
+      tabColor: string;
     },
     logo: string;
     imageLoginBackground: string;

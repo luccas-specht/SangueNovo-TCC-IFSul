@@ -1,19 +1,18 @@
 import { Router } from 'express';
 
-import { appointmentsRouter } from '@modules/appointments/infra/http/routes/appointments.route';
-import { providersRouter } from '@modules/appointments/infra/http/routes/provides.route';
-import { userRouter } from '@modules/users/infra/http/routes/users.route';
-import { authRouter } from '@modules/users/infra/http/routes/auth.route';
-import { passwordRoutes } from '@modules/users/infra/http/routes/password.route';
-import { profileRouter } from '@modules/users/infra/http/routes/profile.route';
+import { donatorRouter } from '@modules/donator/infra/http/routes/users.route';
+import { authRouter } from '@modules/donator/infra/http/routes/auth.route';
+import { passwordRouter } from '@modules/donator/infra/http/routes/password.route';
+import { profileRouter } from '@modules/donator/infra/http/routes/profile.route';
 
-const routes = Router();
+export const routes = Router();
 
-routes.use('/appointments', appointmentsRouter);
-routes.use('/users', userRouter);
-routes.use('/auth', authRouter);
-routes.use('/password', passwordRoutes);
+/*Donator routes here: */
+routes.use('/donator', donatorRouter);
+
+/*Institution routes here: */
+
+/*both users*/
 routes.use('/profile', profileRouter);
-routes.use('/providers', providersRouter)
-
-export { routes };
+routes.use('/auth', authRouter);
+routes.use('/password', passwordRouter);

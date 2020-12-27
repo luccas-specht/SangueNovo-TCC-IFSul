@@ -5,11 +5,9 @@ interface IMailContact {
     email: string;
 };
 
-interface ISendMail {
+export interface ISendMail {
     to: IMailContact;
     from?: IMailContact;
     subject: string;
     templateData: IParseMailTemplate
 };
-
-export { ISendMail };

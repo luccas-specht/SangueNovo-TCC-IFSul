@@ -43,7 +43,6 @@ const AnimationContext = styled.div`
 
 const Tab = styled.ul`
   display: flex;
-  color: ${props => props.theme.colors.text};
   width: 55%;
   justify-content: space-between;
   height: 25px;
@@ -55,9 +54,11 @@ interface TabsProps {
 
 const Tabs = styled.li<TabsProps>`
     cursor: pointer;
+    color: ${(props) => props.theme.colors.text};;
     ${props => props.isActive && css`
       border-radius: 2px;
-      border-bottom: 3px solid red;
+      border-bottom: 3px solid ${(props) => props.theme.colors.primary};
+      color: ${(props) => props.theme.colors.tabColor}; 
     `}
 `;
 

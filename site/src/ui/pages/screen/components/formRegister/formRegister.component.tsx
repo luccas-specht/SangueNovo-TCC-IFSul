@@ -100,16 +100,16 @@ const FormRegister = ({ donator }: FormRegisterProps) => {
     <>
     <ToastContainer />
        <SC.Form onSubmit={formik.handleSubmit}>   
-          { donator ?
-          <>
+          { donator ? 
+          (<>
                <InputText
-               icon={<FiUser size={20} />}
-               id="name_razaoSocial"
-               name="name_razaoSocial"
-               placeholder='Nome'
-               value={formik.values.name_razaoSocial}
-               error={formik.errors.name_razaoSocial}
-               onChange={formik.handleChange}
+                icon={<FiUser size={20} />}
+                id="name_razaoSocial"
+                name="name_razaoSocial"
+                placeholder='Nome'
+                value={formik.values.name_razaoSocial}
+                error={formik.errors.name_razaoSocial}
+                onChange={formik.handleChange}
                />  
               <SC.ContextInputs>
                 <DonorSpecificInput
@@ -132,31 +132,30 @@ const FormRegister = ({ donator }: FormRegisterProps) => {
                 error={formik.errors.cpf_cnpf}
                 onChange={formik.handleChange}
               /> 
-               
             </SC.ContextInputs>
-           </>
+           </>)
           : 
-          <>
+          (<>
           <InputText
-               icon={<FiUser size={20} />}
-               id="name_razaoSocial"
-               name="name_razaoSocial"
-               placeholder='Razão social'
-               value={formik.values.name_razaoSocial}
-               error={formik.errors.name_razaoSocial}
-               onChange={formik.handleChange}
-               />  
+            icon={<FiUser size={20} />}
+            id="name_razaoSocial"
+            name="name_razaoSocial"
+            placeholder='Razão social'
+            value={formik.values.name_razaoSocial}
+            error={formik.errors.name_razaoSocial}
+            onChange={formik.handleChange}
+            />  
           <InputText
-          icon={<BiIdCard size={22} />}
-          id="cpf_cnpf"
-          name="cpf_cnpf"
-          placeholder='CNPJ'
-          value={formik.values.cpf_cnpf}
-          error={formik.errors.cpf_cnpf}
-          onChange={formik.handleChange}
+            icon={<BiIdCard size={22} />}
+            id="cpf_cnpf"
+            name="cpf_cnpf"
+            placeholder='CNPJ'
+            value={formik.values.cpf_cnpf}
+            error={formik.errors.cpf_cnpf}
+            onChange={formik.handleChange}
          /> 
-         </>
-          }
+         </>)
+        }
         
       <InputText
         icon={<FiMail size={20} />}

@@ -16,8 +16,8 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 const AuthProvider = ({ children }: AuthProviderProps)=> {
     const [authUser, setAuthUser] = useState<AuthenticatedUserProps>(()=>{
-        const token = localStorage.getItem('@GoBarber:token');
-        const user = localStorage.getItem('@GoBarber:user');
+        const token = localStorage.getItem('@SangueNovo:token');
+        const user = localStorage.getItem('@SangueNovo:user');
  
         if(token && user){
          return {token, user: JSON.parse(user)}
@@ -26,14 +26,14 @@ const AuthProvider = ({ children }: AuthProviderProps)=> {
      });
 
     const authenticatedUser = ({ token, user }: AuthenticatedUserProps): void => {
-      localStorage.setItem('@GoBarber:token', token);
-      localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+      localStorage.setItem('@SangueNovo:token', token);
+      localStorage.setItem('@SangueNovo:user', JSON.stringify(user));
       setAuthUser({ token, user });
     }
 
     const signOut = (): void => {
-        localStorage.removeItem('@GoBarber:token');
-        localStorage.removeItem('@GoBarber:user');
+        localStorage.removeItem('@SangueNovo:token');
+        localStorage.removeItem('@SangueNovo:user');
         setAuthUser({} as AuthenticatedUserProps);
     }
 

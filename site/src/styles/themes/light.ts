@@ -17,6 +17,7 @@ const light: DefaultTheme = {
     background: '#F2F2F2',
     white: '#fff',
     colorIconDarkLight: '#666360',
+    tabColor: '#232129'
   },
     logo: logoSangueNovoLight,
     imageLoginBackground: loginImgLight,

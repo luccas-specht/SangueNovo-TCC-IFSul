@@ -1,16 +1,13 @@
 import { container } from 'tsyringe';
 
-import { IAppointmentsRepository } from '@modules/appointments/repositories/IAppointmentsRepository';
-import { AppointmentRepository } from '@modules/appointments/infra/typeorm/repositories/appointment';
-
-import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
-import { UsersRepository } from '@modules/users/infra/typeorm/repositories/UsersRepository';
+import { IUsersRepository } from '@modules/donator/repositories/IUsersRepository';
+import { UsersRepository } from '@modules/donator/infra/typeorm/repositories/UsersRepository';
 
 import { IStorageProvider } from './providers/StorageProvider/models/IStorageProvider';
 import { DiskStorageProvider } from './providers/StorageProvider/implementations/DiskStorageProvider';
 
-import { IUsersTokenRepository } from '@modules/users/repositories/IUserTokens';
-import { UsersTokenRepository } from '@modules/users/infra/typeorm/repositories/UsersTokenRepository';
+import { IUsersTokenRepository } from '@modules/donator/repositories/IUserTokens';
+import { UsersTokenRepository } from '@modules/donator/infra/typeorm/repositories/UsersTokenRepository';
 
 import { IMailProvider } from './providers/MailProvider/models/IMailProvider';
 import { EtherealMailProvider } from './providers/MailProvider/implementations/EtherealMailProvider';
@@ -19,8 +16,6 @@ import { IMailTemplateProvider } from './providers/MailTemplateProvider/models/I
 import { HandlebarsMailTemplateProvider } from './providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider';
 
 container.registerSingleton<IMailTemplateProvider>('MailTemplateProvider', HandlebarsMailTemplateProvider);
-
-container.registerSingleton<IAppointmentsRepository>('AppointmentRepository', AppointmentRepository);
 
 container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepository);
 

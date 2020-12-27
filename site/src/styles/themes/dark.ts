@@ -17,6 +17,7 @@ const dark: DefaultTheme = {
     backgroundInput: '#FFF',
     white: '#FFF',
     colorIconDarkLight: '#FF9000',
+    tabColor: '#FFF'
   },
   logo: logoSangueNovoDark,
   imageLoginBackground: loginImgDark,
