@@ -1,7 +1,6 @@
-import { Donator} from '../infra/typeorm/entities/Donator';
+import { AppDonator} from '../infra/typeorm/entities/AppDonator';
+import { AppCPF } from '../infra/typeorm/entities/AppCPF';
 
 export interface IDonatorRepository {
-    save(donator: Donator): Promise<Donator>;
-    findByEmail(email: string): Promise<Donator | undefined>;
-    createAndSave(name: string, cpf: string, birthday: Date, email: string, password: string): Promise<Donator>;
+    save(donator: AppDonator): Promise<AppDonator>;
 };

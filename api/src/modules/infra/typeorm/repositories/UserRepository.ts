@@ -1,38 +1,30 @@
-import { getRepository, Repository, Not } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
-import { User } from '../entities/User';
+import { AppUser } from '../entities/AppUser';
 
-import { IUsersRepository } from '@modules/Irepository/IUsersRepository';
+import { IUserRepository } from '@modules/Irepository/IUsersRepository';
 
-class UsersRepository implements IUsersRepository {
-  private ormRepository: Repository<User>
+export class UserRepository implements IUserRepository {
+  private ormRepository: Repository<AppUser>
 
   constructor (){
-   this.ormRepository = getRepository(User);
+   this.ormRepository = getRepository(AppUser);
   }
 
-  public async save(user: User): Promise<User> {
+  public async save(user: AppUser): Promise<AppUser> {
    return await this.ormRepository.save(user);
   }
   
-  public async findById(id: string): Promise<User | undefined> {
+  public async findById(id: string): Promise<AppUser | undefined> {
    return await this.ormRepository.findOne({ where: { id } });
   }
 
-  public async findByEmail(email: string): Promise<User | undefined> {
+  public async findByEmail(email: string): Promise<AppUser | undefined> {
    return await this.ormRepository.findOne({ where: { email } });
   }
   
-  public async createAndSave(name: string, email: string, password: string): Promise<User> {
+  public async createAndSave(email: string, password: string): Promise<AppUser> {
    const appointment = this.ormRepository.create({ email, password });
    return await this.ormRepository.save(appointment);
   }
-
-  public async findAllProvides(exceptUserId?: string): Promise<User[]>{
-    return exceptUserId 
-    ? await this.ormRepository.find({ where: { id: Not(exceptUserId) } })
-    : await this.ormRepository.find();
-  }
 };
-
-export { UsersRepository };

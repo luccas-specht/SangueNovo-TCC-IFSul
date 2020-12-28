@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import { DonatorController } from '../controllers/UserController'
+import { DonatorController } from '../../../controllers/UserController'
 
 export const donatorRouter = Router();
 
 const donatorController = new DonatorController();
 
-donatorRouter.post('/create/donator', donatorController.createDonator);
+donatorRouter.post('/', donatorController.createDonator);

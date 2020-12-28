@@ -1,9 +1,8 @@
-import { User } from '../infra/typeorm/entities/User'
+import { AppUser } from '../infra/typeorm/entities/AppUser'
 
-export interface IUsersRepository {
-    save(user: User): Promise<User>;
-    findById(id: string): Promise<User | undefined>;
-    findByEmail(email: string): Promise<User | undefined>;
-    createAndSave(name: string, email: string, password: string): Promise<User>;
-    findAllProvides(exceptUserId?: string): Promise<User[]>;
+export interface IUserRepository {
+    save(user: AppUser): Promise<AppUser>;
+    findById(id: string): Promise<AppUser | undefined>;
+    findByEmail(email: string): Promise<AppUser | undefined>;
+    createAndSave(email: string, password: string): Promise<AppUser>;
 };

@@ -3,11 +3,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  Entity
 } from 'typeorm';
 
-@Entity('tb_user')
-export abstract class User {
+export abstract class AppUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -17,8 +15,8 @@ export abstract class User {
   @Column('varchar')
   password: string;
 
-  @Column()
-  active: boolean;
+  @Column('boolean')
+  active: boolean = true;
 
   @CreateDateColumn()
   created_at: Date;
