@@ -15,6 +15,9 @@ export abstract class AppUser {
   @Column('varchar')
   password: string;
 
+  @Column('varchar')
+  avatar: string;
+
   @Column('boolean')
   active: boolean = true;
 
