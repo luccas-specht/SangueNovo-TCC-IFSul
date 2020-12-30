@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Form = styled.form`
   width: 424px;
+  margin-top: -550px;
   text-align: center;
   a {
     color: ${(props) => props.theme.colors.text};

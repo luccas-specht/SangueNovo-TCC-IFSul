@@ -1,8 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
 
-const Container = styled.div`
+interface PropsContainer {
+  isFilled: boolean;
+  isFocus: boolean;
+  isErrored: boolean;
+}
+
+const Container = styled.div<PropsContainer>`
   background: ${(props) => props.theme.colors.backgroundInput};
   border-radius: 10px;
   border: 2px solid ${(props) => props.theme.colors.backgroundInput};
@@ -15,6 +21,23 @@ const Container = styled.div`
   svg {
     margin-right: 16px;
   }
+
+  ${(props) =>
+    props.isErrored &&
+    css`
+    
+    `}
+  ${(props) =>
+    props.isFocus &&
+    css`
+      color: ${(props) => props.theme.colors.primary};
+      border-color: ${(props) => props.theme.colors.primary};
+    `}
+  ${(props) =>
+    props.isFilled &&
+    css`
+      color: ${(props) => props.theme.colors.primary};
+  `}
 `;
 
 const Input = styled.input`

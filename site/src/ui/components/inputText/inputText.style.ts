@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+interface propsConatiner {
+  isFilled: boolean;
+  isFocus: boolean; 
+  isErrored: boolean;
+}
+
+export const Container = styled.div<propsConatiner>`
   background: ${(props) => props.theme.colors.backgroundInput};
   border-radius: 10px;
   border: 2px solid ${(props) => props.theme.colors.backgroundInput};
@@ -19,7 +25,7 @@ const Container = styled.div`
   }
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   color: ${(props) => props.theme.colors.text};
   flex: 1;
   background: transparent;
@@ -29,4 +35,3 @@ const Input = styled.input`
     color: ${(props) => props.theme.colors.text};
   }
 `;
-export { Container, Input };

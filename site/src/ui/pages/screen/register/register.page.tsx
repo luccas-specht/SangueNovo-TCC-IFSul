@@ -6,22 +6,19 @@ import * as SC from './register.style';
 
 import { useTheme } from '../../../../hooks';
 
-const Register = () => {
+export const Register = () => {
   const { theme } = useTheme();
   
-  const [activeTab, setActiveTab] = useState<boolean>(true);
   const [isDonator, setIsDonator] = useState<boolean>(true);
-  const [isInstitution, setisInstitution] = useState<boolean>(false);
+  const [isInstitution, setIsInstitution] = useState<boolean>(false);
 
   const handleChangeTabs = (tabName: 'donator' | 'institution') => {
     if(tabName === 'donator'){
-      setActiveTab(true);
       setIsDonator(true);
-      setisInstitution(false);
-    }else{
-      setActiveTab(false);
+      setIsInstitution(false);
+    } else {
       setIsDonator(false);
-      setisInstitution(true);
+      setIsInstitution(true);
     }
   }
   
@@ -51,11 +48,9 @@ const Register = () => {
             </SC.Tabs>
           </SC.Tab>
           </SC.ContextLogoSideBar>
-          <FormRegister donator={activeTab} />
+          <FormRegister isDonator={isDonator} />
         </SC.AnimationContext>
       </SC.Context>
     </SC.Container>
   );
-}
-
-export { Register };
+};

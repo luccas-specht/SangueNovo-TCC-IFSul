@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { BiIdCard, BiCalendar } from 'react-icons/bi';
 
@@ -8,16 +10,19 @@ import { validationMessage } from '../../../../../constants';
 import { InputText, InputPassword, Button } from '../../../../components';
 import { DonorSpecificInput } from '../donorSpecificInput/donorSpecificInput.component';
 
+import { useRegister } from '../../../../../hooks';
+
 import * as Yup from 'yup'
 import { useFormik } from "formik";
 
-import { ToastContainer } from 'react-toastify';
+import { toastConfig } from '../../../../../configs';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import * as SC from './formRegister.style';
 
 interface FormRegisterProps {
-  donator: boolean
+  isDonator: boolean
 }
 
 interface FormRegisterData {
@@ -28,7 +33,9 @@ interface FormRegisterData {
     password: string;
 }
 
-const FormRegister = ({ donator }: FormRegisterProps) => {
+export const FormRegister = ({ isDonator }: FormRegisterProps) => {
+  const { registerDonator, registerInstitution } = useRegister();
+  const { push } = useHistory();
 
   const initialValuesInstitution = {
      name_razaoSocial: '',
@@ -60,7 +67,7 @@ const FormRegister = ({ donator }: FormRegisterProps) => {
      .required(validationMessage.requiredName),
     cpf_cnpf: Yup.string() /*TODO: adicionar validação de cpf e cnpj*/ 
      .required(validationMessage.requiredCPF),
-    birthday: Yup.string()
+    birthday: Yup.string() /*TODO: adicionar validação data*/ 
      .required(validationMessage.requiredBirthDay),
     email: Yup.string()
       .required(validationMessage.requiredEmail)
@@ -70,37 +77,46 @@ const FormRegister = ({ donator }: FormRegisterProps) => {
       .min(6, validationMessage.min6Char)
   });
 
-  //  const onRegister = async ({ nameazaoSocial, cpfCnpf, email, password }: FormRegisterData): Promise<void> => {
-  //    const response = await register(nameRazaoSocial, cpfCnpf, email, password);
-  //    if(response.status === 400){
-  //      toast.error(`${response.data.message}`, toastConfig);
-  //      formik.resetForm();
-  //    }else{
-  //      toast.success('Cadastro realizado com sucesso', toastConfig);
-  //      history.push('/dashboard');
-  //    }
-  //  }
+   const onRegister = async ({ 
+     name_razaoSocial, 
+     cpf_cnpf, 
+     birthday, 
+     email, 
+     password
+    }: FormRegisterData): Promise<void> => {
+    let response
 
+    if(isDonator) {
+      response = await registerDonator(name_razaoSocial, cpf_cnpf, birthday, email, password)
+     } else {
+      response = await registerInstitution(name_razaoSocial, cpf_cnpf, email, password);
+    } 
+    console.log('response', response)
+     if(response?.status === 400){
+       toast.error(`${response.data.message}`, toastConfig);
+       formik.resetForm();
+     }else{
+       push('/sign-in');
+     }
+   };
 
    const formik = useFormik({
-     initialValues: donator ? initialValuesDonator : initialValuesInstitution,
-     validationSchema: donator ? validationsDonator : validationsInstitution,
+     initialValues: isDonator ? initialValuesDonator : initialValuesInstitution,
+     validationSchema: isDonator ? validationsDonator : validationsInstitution,
      onSubmit: (values: FormRegisterData) => {
-      // onRegister(values)
+      onRegister(values)
      }
    });
 
-   console.log('form error', formik.errors )
-
-   useEffect(()=>{
+   useEffect(() => {
     formik.resetForm();
-  },[donator]);
+  }, [isDonator]);
   
   return(
     <>
     <ToastContainer />
        <SC.Form onSubmit={formik.handleSubmit}>   
-          { donator ? 
+          { isDonator ? 
           (<>
                <InputText
                 icon={<FiUser size={20} />}
@@ -152,7 +168,7 @@ const FormRegister = ({ donator }: FormRegisterProps) => {
             placeholder='CNPJ'
             value={formik.values.cpf_cnpf}
             error={formik.errors.cpf_cnpf}
-            onChange={formik.handleChange}
+            onChange={formik.handleChange}  
          /> 
          </>)
         }
@@ -187,5 +203,3 @@ const FormRegister = ({ donator }: FormRegisterProps) => {
   </>
   );
 };
-
-export { FormRegister };

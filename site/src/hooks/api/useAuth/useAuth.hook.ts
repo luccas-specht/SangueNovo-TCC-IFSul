@@ -2,7 +2,7 @@ import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
 
 const axios = useAxiosApiSangueNovo();
 
-const useAuth = () => {
+export const useAuth = () => {
     const authentication = async (email: string, password: string) => {
         try {
             const response = await axios.post('/auth', {
@@ -15,6 +15,4 @@ const useAuth = () => {
         }
     }
     return { authentication }
-}
-
-export { useAuth };
+};

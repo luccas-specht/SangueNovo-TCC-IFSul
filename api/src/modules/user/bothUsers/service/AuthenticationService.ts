@@ -9,7 +9,6 @@ import { MESSAGEINVALID } from '@constants/messageToUser';
 
 import { ValidationEmailAlreadyExistsService } from '../service/ValidationEmailAlreadyExistsService';
 
-
 interface IRequest {
   email: string;
   password: string;

@@ -2,21 +2,38 @@ import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
 
 const axios = useAxiosApiSangueNovo();
 
-const useRegister = () => {
-    const register = async (nameRazaoSocial: string, cpfCnpf: string, email: string, password: string ) => {
+export const useRegister = () => {
+    const registerInstitution = async (razaoSocial: string, cnpf: string, email: string, password: string ) => {
         try {
-            const response = await axios.post('/users', {
-                nameRazaoSocial: nameRazaoSocial,
-                cpfCnpf: cpfCnpf,
-                email: email,
-                password: password
+            const response = await axios.post('/institution', {
+                razaoSocial,
+                typeCnpj: {
+                    cnpj: cnpf 
+                },
+                email,
+                password
             })
             return response.data;
         } catch (error) {
             return error.response;
         }
     }
-    return { register }
-}
 
-export { useRegister };
+    const registerDonator = async (name: string, cpf: string, birthday: Date, email: string, password: string ) => {
+        try {
+            const response = await axios.post('/donator', {
+                name,
+                typeCpf: {
+                    cpf: cpf
+                },
+                birthday,
+                email,
+                password
+            })
+            return response.data;
+        } catch (error) {
+            return error.response;
+        }
+    }
+    return { registerDonator, registerInstitution }
+};

@@ -3,7 +3,7 @@ interface IconChangeTheme {
     namePage: 'login' | 'register' | 'forgotPassword' | 'resetPassword';
  }
  
-const Container = styled.div<IconChangeTheme>`
+export const Container = styled.div<IconChangeTheme>`
     ${props => props.namePage === 'login' && 
         css`
             display: flex;
@@ -66,7 +66,7 @@ const Container = styled.div<IconChangeTheme>`
                     width: 10%;
                     max-width: 50px; 
                     margin-right: -600px;
-                    margin-top: -134.5px;
+                    margin-top: -165px;
 
                     svg {
                         color: ${props => props.theme.colors.colorIconDarkLight};
@@ -76,6 +76,3 @@ const Container = styled.div<IconChangeTheme>`
                     }`
     }
 `;
-
-
-export { Container };
