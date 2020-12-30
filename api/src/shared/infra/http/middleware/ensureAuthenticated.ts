@@ -4,7 +4,7 @@ import { verify } from 'jsonwebtoken';
 import { authConfig } from '@config/auth';
 import { AppError } from '@shared/errors/appError';
 
-import { messageInvalidToken, messageMissingToken} from '@modules/constants/messageToUser';
+import { MESSAGEINVALID } from 'constants/messageToUser';
 
 interface TokenPayLoad {
   iat: number;
@@ -15,7 +15,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
 
   const authHeader = request.headers.authorization
 
-  if (!authHeader) throw new AppError(messageMissingToken, 401)
+  if (!authHeader) throw new AppError(MESSAGEINVALID.missingToken, 401)
 
   const [, token] = authHeader.split(' ')
 
@@ -30,6 +30,6 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
     return next()
 
   } catch {
-    throw new AppError(messageInvalidToken, 401);
+    throw new AppError(MESSAGEINVALID.invalidToken, 401);
   }
 }

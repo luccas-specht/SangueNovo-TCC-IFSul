@@ -25,6 +25,7 @@ export class CreateTableTbDonator1609160669551 implements MigrationInterface {
                     {
                       name: 'cpf',
                       type: 'varchar',
+                      isUnique: true,
                     },
                     {
                       name: 'avatar',

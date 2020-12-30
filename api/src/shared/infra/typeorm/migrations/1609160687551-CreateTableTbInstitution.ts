@@ -19,12 +19,9 @@ export class CreateTableTbInstitution1609160687551 implements MigrationInterface
                       type: 'varchar',
                     },
                     {
-                      name: 'birthday',
-                      type: 'varchar',
-                    },
-                    {
                       name: 'cnpj',
                       type: 'varchar',
+                      isUnique: true,
                     },
                     {
                       name: 'avatar',

@@ -3,9 +3,9 @@ import { injectable, inject } from 'tsyringe';
 
 import { AppError } from '@shared/errors/appError';
 
-import { IDonatorRepository, IDTODonator } from '../Irepository/IDonatorRepository';
+import { IDonatorRepository, IDTODonator } from '../iRepository/IDonatorRepository';
 
-import { MESSAGEINVALID } from '../constants/messageToUser';
+import { MESSAGEINVALID } from '../../../../constants/messageToUser';
 
 interface RequestCreateDonationService {
   name: string;

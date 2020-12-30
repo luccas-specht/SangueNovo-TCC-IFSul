@@ -2,7 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 
 import { AppDonator } from '../entities/AppDonator';
 
-import { IDonatorRepository, IDTODonator } from '@modules/Irepository/IDonatorRepository';
+import { IDonatorRepository, IDTODonator } from '@modules/user/donator/iRepository/IDonatorRepository';
 
 export class DonatorRepository implements IDonatorRepository {
   private ormRepository: Repository<AppDonator>

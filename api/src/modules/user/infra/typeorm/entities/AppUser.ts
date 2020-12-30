@@ -2,8 +2,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
-  IsNull,
+  UpdateDateColumn
 } from 'typeorm';
 
 export abstract class AppUser {
@@ -26,10 +25,14 @@ export abstract class AppUser {
   @Column('boolean')
   active: boolean;
 
-  @CreateDateColumn()
-  created_at: Date;
+  @CreateDateColumn({
+    name: 'created_at'
+  })
+  createdAt: Date;
     
-  @UpdateDateColumn()
-  updated_at: Date;
+  @UpdateDateColumn({
+    name: 'updated_at'
+  })
+  updatedAt: Date;
   
 };

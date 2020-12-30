@@ -1,7 +1,9 @@
 import { Entity, Column } from 'typeorm';
 
-import { AppUser } from './AppUser';
+import { AppUser } from '@modules/user/infra/typeorm/entities/AppUser';
+
 import { AppCpf } from './AppCpf';
+
 @Entity('tb_donator')
 export class AppDonator extends AppUser{
 
