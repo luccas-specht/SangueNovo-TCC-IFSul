@@ -4,7 +4,7 @@ import { IInstitutionRepository } from '../../institution/iRepository/IInstituti
 import { IDonatorRepository } from '../../donator/iRepository/IDonatorRepository';
 
 @injectable()
-export class ValidationEmailAlreadyExistsService {
+export class FindByCpfOrCnpjUserService {
   
   constructor(
     @inject('DonatorRepository')
@@ -14,9 +14,9 @@ export class ValidationEmailAlreadyExistsService {
     private institutionRepository: IInstitutionRepository
     ) {}
 
-  public async validationEmailAlreadyExists(email: string): Promise<any> {
-    return await this.donatorRepository.findByEmail(email) 
-    || await this.institutionRepository.findByEmail(email)
+  public async findByCpfOrCnpjUserExists(cpfOrCnpj: string): Promise<any> {
+    return await this.donatorRepository.findByCpf(cpfOrCnpj) 
+    || await this.institutionRepository.findByCnpj(cpfOrCnpj)
     || undefined;
   }   
 }

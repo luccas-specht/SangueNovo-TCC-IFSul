@@ -7,9 +7,9 @@ import { MESSAGEINVALID } from '@constants/messageToUser';
 
 import { IInstitutionRepository, IDTOInstitution } from '../iRepository/IInstitutionRepository';
 
-import { ValidationCpfOrCnpjAlreadyExistsService } from '@modules/user/bothUsers/service/ValidationCpfOrCnpjAlreadyExistsService';
+import { FindByCpfOrCnpjUserService } from '@modules/user/bothUsers/service/FindByCpfOrCnpjUserService';
 
-import { ValidationEmailAlreadyExistsService } from '@modules/user/bothUsers/service/ValidationEmailAlreadyExistsService';
+import { FindByEmailUserService } from '@modules/user/bothUsers/service/FindByEmailUserService';
 interface RequestCreateInstitutionService {
   razaoSocial: string;
   email: string;
@@ -21,22 +21,22 @@ interface RequestCreateInstitutionService {
 export class CreateInstitutionService {
 
   constructor(
-    @inject('ValidationEmailAlreadyExistsService')
-    private validationEmailAlreadyExistsService: ValidationEmailAlreadyExistsService,
+    @inject('FindByEmailUserService')
+    private findByEmailUserService: FindByEmailUserService,
 
-    @inject('ValidationCpfOrCnpjAlreadyExistsService')
-    private validationCpfOrCnpjAlreadyExistsService: ValidationCpfOrCnpjAlreadyExistsService,
+    @inject('FindByCpfOrCnpjUserService')
+    private findByCpfOrCnpjUserService: FindByCpfOrCnpjUserService,
 
     @inject('InstitutionRepository')
     private institutionRepository: IInstitutionRepository
     ) {} 
   
   public async execute({ razaoSocial, cnpj, email, password }: RequestCreateInstitutionService): Promise<void> {
-    const emailUsed = await this.validationEmailAlreadyExistsService.validationEmailAlreadyExists(email)
+    const emailUsed = await this.findByEmailUserService.findByEmailUserService(email)
 
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
     
-    const cnpjUsed = await this.validationCpfOrCnpjAlreadyExistsService.validationCpfOrCnpjAlreadyExists(cnpj)
+    const cnpjUsed = await this.findByCpfOrCnpjUserService.findByCpfOrCnpjUserExists(cnpj)
 
     if (cnpjUsed) throw new AppError(MESSAGEINVALID.cnpjAlreadyExists, 400)
 

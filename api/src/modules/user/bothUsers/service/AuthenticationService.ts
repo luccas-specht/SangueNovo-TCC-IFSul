@@ -7,7 +7,7 @@ import { AppError } from '@shared/errors/appError';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
 
-import { ValidationEmailAlreadyExistsService } from '../service/ValidationEmailAlreadyExistsService';
+import { FindByEmailUserService } from './FindByEmailUserService';
 
 interface IRequest {
   email: string;
@@ -27,13 +27,13 @@ interface IResponse {
 export class AuthenticationService {
   
   constructor(
-    @inject('ValidationEmailAlreadyExistsService')
-    private validationEmailAlreadyExistsService: ValidationEmailAlreadyExistsService
+    @inject('FindByEmailUserService')
+    private findByEmailUserService: FindByEmailUserService
     ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
   
-    const user = await this.validationEmailAlreadyExistsService.validationEmailAlreadyExists(email);
+    const user = await this.findByEmailUserService.validationEmailAlreadyExists(email);
 
     if (!user || !user?.active) throw new AppError(MESSAGEINVALID.unathorized, 401);
 

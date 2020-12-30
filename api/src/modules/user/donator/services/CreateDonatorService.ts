@@ -5,8 +5,8 @@ import { AppError } from '@shared/errors/appError';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
 
-import { ValidationCpfOrCnpjAlreadyExistsService } from '@modules/user/bothUsers/service/ValidationCpfOrCnpjAlreadyExistsService';
-import { ValidationEmailAlreadyExistsService } from '@modules/user/bothUsers/service/ValidationEmailAlreadyExistsService';
+import { FindByCpfOrCnpjUserService } from '@modules/user/bothUsers/service/FindByCpfOrCnpjUserService';
+import { FindByEmailUserService } from '@modules/user/bothUsers/service/FindByEmailUserService';
 
 import { IDonatorRepository, IDTODonator } from '../iRepository/IDonatorRepository';
 
@@ -24,19 +24,19 @@ export class CreateDonatorService {
     @inject('DonatorRepository')
     private donatorRepository: IDonatorRepository,
 
-    @inject('ValidationEmailAlreadyExistsService')
-    private validationEmailAlreadyExistsService: ValidationEmailAlreadyExistsService,
+    @inject('FindByEmailUserService')
+    private findByEmailUserService: FindByEmailUserService,
 
-    @inject('ValidationCpfOrCnpjAlreadyExistsService')
-    private validationCpfOrCnpjAlreadyExistsService: ValidationCpfOrCnpjAlreadyExistsService,
+    @inject('FindByCpfOrCnpjUserService')
+    private findByCpfOrCnpjUserService: FindByCpfOrCnpjUserService,
     ) {} 
   
   public async execute({ name, cpf, birthday, email, password }: RequestCreateDonationService): Promise<void> {
-    const emailUsed = await this.validationEmailAlreadyExistsService.validationEmailAlreadyExists(email)
+    const emailUsed = await this.findByEmailUserService.findByEmailUserService(email)
     
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
     
-    const cpfUsed = await this.validationCpfOrCnpjAlreadyExistsService.validationCpfOrCnpjAlreadyExists(cpf)
+    const cpfUsed = await this.findByCpfOrCnpjUserService.findByCpfOrCnpjUserExists(cpf)
 
     if (cpfUsed) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
 

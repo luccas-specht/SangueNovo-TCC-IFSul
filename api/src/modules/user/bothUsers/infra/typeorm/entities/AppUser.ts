@@ -6,7 +6,6 @@ import {
 } from 'typeorm';
 
 export abstract class AppUser {
-
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -34,5 +33,4 @@ export abstract class AppUser {
     name: 'updated_at'
   })
   updatedAt: Date;
-  
 };

@@ -4,6 +4,7 @@ import { donatorRouter } from '@modules/user/donator/infra/http/routes/donator.r
 import { institutionRouter } from "@modules/user/institution/infra/http/routes/institution.route";
 
 import { authRouter } from '@modules/user/bothUsers/infra/http/routes/Auth.route';
+import { resetPasswordRoute } from '@modules/user/bothUsers/infra/http/routes/ResetPassword.route';
 
 export const routes = Router();
 
@@ -14,4 +15,6 @@ routes.use('/donator', donatorRouter);
 routes.use('/institution', institutionRouter);
 
 /*both users*/
-routes.use('/auth', authRouter)
+routes.use('/auth', authRouter);
+routes.use('/forgot', resetPasswordRoute)
+routes.use('/reset', resetPasswordRoute);

@@ -8,13 +8,13 @@ import { IInstitutionRepository } from '@modules/user/institution/iRepository/II
 import { InstitutionRepository } from '@modules/user/institution/infra/typeorm/repositories/InstitutionRepository';
 
 /*services*/
-import { ValidationEmailAlreadyExistsService } from '@modules/user/bothUsers/service/ValidationEmailAlreadyExistsService';
-import { ValidationCpfOrCnpjAlreadyExistsService } from '@modules/user/bothUsers/service/ValidationCpfOrCnpjAlreadyExistsService';
+import { FindByEmailUserService } from '@modules/user/bothUsers/service/FindByEmailUserService';
+import { FindByCpfOrCnpjUserService } from '@modules/user/bothUsers/service/FindByCpfOrCnpjUserService';
 
 container.registerSingleton<IDonatorRepository>('DonatorRepository', DonatorRepository);
 
 container.registerSingleton<IInstitutionRepository>('InstitutionRepository', InstitutionRepository);
 
 /*sera? TODO: pesquisar outra forma de fazer isso*/
-container.registerSingleton<any>('ValidationEmailAlreadyExistsService', ValidationEmailAlreadyExistsService);
-container.registerSingleton<any>('ValidationCpfOrCnpjAlreadyExistsService', ValidationCpfOrCnpjAlreadyExistsService);
+container.registerSingleton<any>('FindByEmailUserService', FindByEmailUserService);
+container.registerSingleton<any>('FindByCpfOrCnpjUserService', FindByCpfOrCnpjUserService);
