@@ -3,7 +3,6 @@ import { container } from 'tsyringe';
 
 import { AuthenticationService } from '@modules/user/bothUsers/service/AuthenticationService';
 
-
 export class AuthController {
     public async createAuth(request: Request, response: Response): Promise<Response> {
         const { email, password } = request.body;
