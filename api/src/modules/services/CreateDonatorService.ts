@@ -2,18 +2,16 @@ import { hash } from 'bcryptjs';
 import { injectable, inject } from 'tsyringe';
 
 import { AppError } from '@shared/errors/appError';
-import { AppDonator } from '../infra/typeorm/entities/AppDonator';
 
-import { IDonatorRepository } from '../Irepository/IDonatorRepository';
-import { IUserRepository } from '../Irepository/IUsersRepository';
+import { IDonatorRepository, IDTODonator } from '../Irepository/IDonatorRepository';
 
-import { messagaEmailAlreadyExists } from '../constants/messageToUser';
+import { MESSAGEINVALID } from '../constants/messageToUser';
 
 interface RequestCreateDonationService {
   name: string;
   email: string;
   password: string;
-  cpf: any, 
+  cpf: string, 
   birthday: Date,
 }
 
@@ -23,29 +21,28 @@ export class CreateDonatorService {
   constructor(
     @inject('DonatorRepository')
     private donatorRepository: IDonatorRepository,
-   
-    @inject('UserRepository')
-    private userRepository: IUserRepository
     ) {} 
   
-  public async execute({ name, cpf, birthday, email, password }: RequestCreateDonationService): Promise<AppDonator> {
-    const user = await this.userRepository.findByEmail(email);
+  public async execute({ name, cpf, birthday, email, password }: RequestCreateDonationService): Promise<void> {
+    const emailUsed = await this.donatorRepository.findByEmail(email)
 
-    if (user) throw new AppError(messagaEmailAlreadyExists, 400);
+    if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
     
-    const hasedPassword = await hash(password, 8);
+    const cpfUsed = await this.donatorRepository.findByCpf(cpf)
 
-    const userCreated = await this.userRepository.createAndSave(email, hasedPassword);
+    if (cpfUsed) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
 
-    const { id } = userCreated;
+    const hasedPassword = await hash(password, 8)
 
-    const userToSave = {
-      id,
+    const donator = {
       name,
       cpf,
-      birthday
-    } as AppDonator
-    
-    return await this.donatorRepository.save(userToSave);
-  };
-};
+      birthday,
+      email,
+      password: hasedPassword,
+      active: true
+    } as IDTODonator
+
+    await this.donatorRepository.createAndSave(donator)
+  } 
+}

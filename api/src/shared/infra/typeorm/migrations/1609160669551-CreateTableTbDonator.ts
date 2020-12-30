@@ -15,6 +15,23 @@ export class CreateTableTbDonator1609160669551 implements MigrationInterface {
                       default: 'uuid_generate_v4()'
                     },
                     {
+                      name: 'name',
+                      type: 'varchar',
+                    },
+                    {
+                      name: 'birthday',
+                      type: 'timestamp',
+                    },
+                    {
+                      name: 'cpf',
+                      type: 'varchar',
+                    },
+                    {
+                      name: 'avatar',
+                      type: 'varchar',
+                      isNullable: true,
+                    },
+                    {
                       name: 'email',
                       type: 'varchar',
                       isUnique: true,
@@ -36,23 +53,6 @@ export class CreateTableTbDonator1609160669551 implements MigrationInterface {
                       name: 'updated_at',
                       type: 'timestamp',
                       default: 'now()',
-                    },
-                    {
-                      name: 'name',
-                      type: 'varchar',
-                    },
-                    {
-                      name: 'birthday',
-                      type: 'varchar',
-                    },
-                    {
-                      name: 'cpf',
-                      type: 'varchar',
-                    },
-                    {
-                      name: 'avatar',
-                      type: 'varchar',
-                      isNullable: true,
                     }
                 ]
             })

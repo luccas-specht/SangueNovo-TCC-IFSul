@@ -13,23 +13,23 @@ interface TokenPayLoad {
 }
 export function ensureAuthenticated(request: Request, response: Response, next: NextFunction): void {
 
-  const authHeader = request.headers.authorization;
+  const authHeader = request.headers.authorization
 
-  if (!authHeader) throw new AppError(messageMissingToken, 401);
+  if (!authHeader) throw new AppError(messageMissingToken, 401)
 
-  const [, token] = authHeader.split(' ');
+  const [, token] = authHeader.split(' ')
 
   try {
-    const decoded = verify(token, authConfig.jwt.secret);
+    const decoded = verify(token, authConfig.jwt.secret)
 
-    const { sub } = decoded as TokenPayLoad;
+    const { sub } = decoded as TokenPayLoad
 
     request.user = {
       id: sub,
     };
-    return next();
+    return next()
 
   } catch {
     throw new AppError(messageInvalidToken, 401);
   }
-};
+}

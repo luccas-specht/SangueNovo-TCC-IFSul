@@ -15,6 +15,23 @@ export class CreateTableTbInstitution1609160687551 implements MigrationInterface
                       default: 'uuid_generate_v4()'
                     },
                     {
+                      name: 'razao_social',
+                      type: 'varchar',
+                    },
+                    {
+                      name: 'birthday',
+                      type: 'varchar',
+                    },
+                    {
+                      name: 'cnpj',
+                      type: 'varchar',
+                    },
+                    {
+                      name: 'avatar',
+                      type: 'varchar',
+                      isNullable: true,
+                    },
+                    {
                       name: 'email',
                       type: 'varchar',
                       isUnique: true,
@@ -36,23 +53,6 @@ export class CreateTableTbInstitution1609160687551 implements MigrationInterface
                       name: 'updated_at',
                       type: 'timestamp',
                       default: 'now()',
-                    },
-                    {
-                      name: 'razao_social',
-                      type: 'varchar',
-                    },
-                    {
-                      name: 'birthday',
-                      type: 'varchar',
-                    },
-                    {
-                      name: 'cnpj',
-                      type: 'varchar',
-                    },
-                    {
-                      name: 'avatar',
-                      type: 'varchar',
-                      isNullable: true,
                     }
                 ]
             })

@@ -3,9 +3,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  IsNull,
 } from 'typeorm';
 
 export abstract class AppUser {
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -15,15 +17,19 @@ export abstract class AppUser {
   @Column('varchar')
   password: string;
 
-  @Column('varchar')
+  @Column({ 
+    type:'varchar',
+    nullable: true 
+   })
   avatar: string;
 
   @Column('boolean')
-  active: boolean = true;
+  active: boolean;
 
   @CreateDateColumn()
   created_at: Date;
     
   @UpdateDateColumn()
   updated_at: Date;
+  
 };

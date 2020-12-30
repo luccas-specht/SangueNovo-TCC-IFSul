@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { DonatorController } from '../../../controllers/UserController'
+import { DonatorController } from '@modules/controllers/DonatorController';
 
 export const donatorRouter = Router();
 

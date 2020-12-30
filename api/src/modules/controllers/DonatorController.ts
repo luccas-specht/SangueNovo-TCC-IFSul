@@ -6,18 +6,18 @@ import { CreateDonatorService } from '@modules/services/CreateDonatorService';
 export class DonatorController {
 
     public async createDonator(request: Request, response: Response): Promise<Response> {
-        const { name, cpf, birthday, email, password } = request.body;
+        const { name, type_cpf, birthday, email, password } = request.body;
+        console.log('oq chegou', request.body)
 
+        const { cpf } = type_cpf;
         const createDonatorService = container.resolve(CreateDonatorService);
-        const user = await createDonatorService.execute({ 
+        await createDonatorService.execute({ 
             name, 
             cpf, 
             birthday,
             email, 
             password
         });
-        console.log(new Date())
-
-        return response.json(user);
+        return response.json(200);
     }
 };
