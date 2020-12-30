@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { AuthenticationService } from '@modules/user/service/AuthenticationService';
+import { AuthenticationService } from '@modules/user/bothUsers/service/AuthenticationService';
 
 
 export class AuthController {

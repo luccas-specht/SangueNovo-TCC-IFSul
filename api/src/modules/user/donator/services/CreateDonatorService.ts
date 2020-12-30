@@ -3,9 +3,12 @@ import { injectable, inject } from 'tsyringe';
 
 import { AppError } from '@shared/errors/appError';
 
-import { IDonatorRepository, IDTODonator } from '../iRepository/IDonatorRepository';
+import { MESSAGEINVALID } from '@constants/messageToUser';
 
-import { MESSAGEINVALID } from '../../../../constants/messageToUser';
+import { ValidationCpfOrCnpjAlreadyExistsService } from '@modules/user/bothUsers/service/ValidationCpfOrCnpjAlreadyExistsService';
+import { ValidationEmailAlreadyExistsService } from '@modules/user/bothUsers/service/ValidationEmailAlreadyExistsService';
+
+import { IDonatorRepository, IDTODonator } from '../iRepository/IDonatorRepository';
 
 interface RequestCreateDonationService {
   name: string;
@@ -17,18 +20,23 @@ interface RequestCreateDonationService {
 
 @injectable()
 export class CreateDonatorService {
-
   constructor(
     @inject('DonatorRepository')
     private donatorRepository: IDonatorRepository,
+
+    @inject('ValidationEmailAlreadyExistsService')
+    private validationEmailAlreadyExistsService: ValidationEmailAlreadyExistsService,
+
+    @inject('ValidationCpfOrCnpjAlreadyExistsService')
+    private validationCpfOrCnpjAlreadyExistsService: ValidationCpfOrCnpjAlreadyExistsService,
     ) {} 
   
   public async execute({ name, cpf, birthday, email, password }: RequestCreateDonationService): Promise<void> {
-    const emailUsed = await this.donatorRepository.findByEmail(email)
-
+    const emailUsed = await this.validationEmailAlreadyExistsService.validationEmailAlreadyExists(email)
+    
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
     
-    const cpfUsed = await this.donatorRepository.findByCpf(cpf)
+    const cpfUsed = await this.validationCpfOrCnpjAlreadyExistsService.validationCpfOrCnpjAlreadyExists(cpf)
 
     if (cpfUsed) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
 

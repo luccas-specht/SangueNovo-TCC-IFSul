@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm';
 
-import { AppUser } from '@modules/user/infra/typeorm/entities/AppUser';
+import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
 
 import { AppCpf } from './AppCpf';
 

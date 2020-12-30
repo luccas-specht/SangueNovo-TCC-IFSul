@@ -7,8 +7,7 @@ import { AppError } from '@shared/errors/appError';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
 
-import { IInstitutionRepository } from '../institution/iRepository/IInstitutionRepository';
-import { IDonatorRepository } from '../donator/iRepository/IDonatorRepository';
+import { ValidationEmailAlreadyExistsService } from '../service/ValidationEmailAlreadyExistsService';
 
 
 interface IRequest {
@@ -27,21 +26,17 @@ interface IResponse {
 
 @injectable()
 export class AuthenticationService {
+  
   constructor(
-    @inject('DonatorRepository')
-    private donatorRepository: IDonatorRepository ,
-
-    @inject('InstitutionRepository')
-    private institutionRepository: IInstitutionRepository
+    @inject('ValidationEmailAlreadyExistsService')
+    private validationEmailAlreadyExistsService: ValidationEmailAlreadyExistsService
     ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
   
-    const user = await this.validationEmailAlreadyExists(email);
+    const user = await this.validationEmailAlreadyExistsService.validationEmailAlreadyExists(email);
 
-    if (!user) throw new AppError(MESSAGEINVALID.unathorized, 401);
-
-    if (!user.active) throw new AppError(MESSAGEINVALID.unathorized, 401);
+    if (!user || !user?.active) throw new AppError(MESSAGEINVALID.unathorized, 401);
 
     const passwordMatched = await compare(password, user.password);
 
@@ -61,12 +56,7 @@ export class AuthenticationService {
             name, 
             razaoSocial, 
             avatar },
-            token };
+            token 
+         };
   }
-
-  private async validationEmailAlreadyExists(email: string): Promise<any> {
-    return await this.donatorRepository.findByEmail(email) 
-    || await this.institutionRepository.findByEmail(email)
-    || undefined;
-  }   
 }
