@@ -2,7 +2,7 @@ import { Entity,
          Column, 
          OneToOne, 
          JoinColumn,
-        PrimaryGeneratedColumn } from 'typeorm';
+         PrimaryGeneratedColumn } from 'typeorm';
 
 import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
 
@@ -14,10 +14,13 @@ export class AppInstitution {
   @Column('varchar')
   razao_social: string;
 
-  @Column('varchar')
+  @Column({ 
+    unique: true, 
+    type: 'varchar'
+ })
   cnpj: string;
 
   @OneToOne(() => AppUser)
-  @JoinColumn()
+  @JoinColumn({name: 'tb_user_fk'})
   tb_user_fk: AppUser;
 };

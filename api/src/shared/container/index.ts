@@ -1,20 +1,17 @@
 import { container } from 'tsyringe';
 
 /*providers*/
-import { IDonatorRepository } from '@modules/user/donator/iRepository/IDonatorRepository';
+import { IDonatorRepository } from '@modules/user/donator/IRepository/IDonatorRepository';
 import { DonatorRepository } from '@modules/user/donator/infra/typeorm/repositories/DonatorRepository';
 
 import { IInstitutionRepository } from '@modules/user/institution/iRepository/IInstitutionRepository';
 import { InstitutionRepository } from '@modules/user/institution/infra/typeorm/repositories/InstitutionRepository';
 
-/*services*/
-import { FindByEmailUserService } from '@modules/user/bothUsers/service/FindByEmailUserService';
-import { FindByCpfOrCnpjUserService } from '@modules/user/bothUsers/service/FindByCpfOrCnpjUserService';
+import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
+import { UserRepository } from '@modules/user/bothUsers/infra/typeorm/repositories/UserRepository';
 
 container.registerSingleton<IDonatorRepository>('DonatorRepository', DonatorRepository);
 
-container.registerSingleton<IInstitutionRepository>('InstitutionRepository', InstitutionRepository);
+container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 
-/*sera? TODO: pesquisar outra forma de fazer isso*/
-container.registerSingleton<any>('FindByEmailUserService', FindByEmailUserService);
-container.registerSingleton<any>('FindByCpfOrCnpjUserService', FindByCpfOrCnpjUserService);
+container.registerSingleton<IInstitutionRepository>('InstitutionRepository', InstitutionRepository);

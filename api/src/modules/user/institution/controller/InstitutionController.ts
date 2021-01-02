@@ -6,9 +6,8 @@ import { CreateInstitutionService } from '@modules/user/institution/service/Crea
 export class InstitutionController {
 
     public async createInstitution(request: Request, response: Response): Promise<Response> {
-        const { razaoSocial, typeCnpj, email, password } = request.body;
+        const { razaoSocial, cnpj, email, password } = request.body;
 
-        const { cnpj } = typeCnpj;
         const createInstitutionService = container.resolve(CreateInstitutionService);
         await createInstitutionService.execute({ 
             razaoSocial, 

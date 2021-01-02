@@ -5,11 +5,11 @@ import { AppError } from '@shared/errors/appError';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
 
-import { IInstitutionRepository, IDTOInstitution } from '../iRepository/IInstitutionRepository';
+import { IInstitutionRepository } from '../iRepository/IInstitutionRepository';
 
-import { FindByCpfOrCnpjUserService } from '@modules/user/bothUsers/service/FindByCpfOrCnpjUserService';
+import { AppInstitution } from '../infra/typeorm/entities/AppInstitution';
 
-import { FindByEmailUserService } from '@modules/user/bothUsers/service/FindByEmailUserService';
+import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
 interface RequestCreateInstitutionService {
   razaoSocial: string;
   email: string;
@@ -21,35 +21,32 @@ interface RequestCreateInstitutionService {
 export class CreateInstitutionService {
 
   constructor(
-    @inject('FindByEmailUserService')
-    private findByEmailUserService: FindByEmailUserService,
-
-    @inject('FindByCpfOrCnpjUserService')
-    private findByCpfOrCnpjUserService: FindByCpfOrCnpjUserService,
-
     @inject('InstitutionRepository')
-    private institutionRepository: IInstitutionRepository
+    private institutionRepository: IInstitutionRepository,
+
+    @inject('UserRepository')
+    private userRepository: IUserRepository
     ) {} 
   
   public async execute({ razaoSocial, cnpj, email, password }: RequestCreateInstitutionService): Promise<void> {
-    const emailUsed = await this.findByEmailUserService.findByEmailUserService(email)
+    const emailUsed = await this.userRepository.findByEmail(email)
 
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
     
-    const cnpjUsed = await this.findByCpfOrCnpjUserService.findByCpfOrCnpjUserExists(cnpj)
+    const cnpjUsed = await this.institutionRepository.findByCnpj(cnpj)
 
     if (cnpjUsed) throw new AppError(MESSAGEINVALID.cnpjAlreadyExists, 400)
 
     const hasedPassword = await hash(password, 8)
 
-    const donator = {
-      razaoSocial,
-      cnpj,
-      email,
-      password: hasedPassword,
-      active: true
-    } as IDTOInstitution
+    const user = await this.userRepository.create(email, hasedPassword, true);
 
-    await this.institutionRepository.createAndSave(donator)
+    const institution = {
+      razao_social: razaoSocial,
+      cnpj,
+      tbUserFk: user
+    } as AppInstitution
+
+    await this.institutionRepository.save(institution)
   } 
 }

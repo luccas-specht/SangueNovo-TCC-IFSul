@@ -7,7 +7,6 @@ import { AppError } from '@shared/errors/appError';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
 
-import { FindByEmailUserService } from './FindByEmailUserService';
 
 interface IRequest {
   email: string;
@@ -28,7 +27,7 @@ export class AuthenticationService {
   
   constructor(
     @inject('FindByEmailUserService')
-    private findByEmailUserService: FindByEmailUserService
+    private findByEmailUserService: any
     ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -50,11 +49,12 @@ export class AuthenticationService {
 
      const { id, name, razaoSocial, avatar } = user;
 
-    return { user: { 
+    return { 
+      user: { 
             id, 
-            name, 
-            razaoSocial, 
-            avatar },
+            userName: name ? name : razaoSocial,
+            avatar 
+          },
             token 
          };
   }

@@ -17,10 +17,13 @@ export class AppDonator {
   @Column('date')
   birthday: Date;
 
-  @Column('varchar')
+  @Column({ 
+    unique: true, 
+    type: 'varchar'
+ })
   cpf: string;
 
   @OneToOne(() => AppUser)
-  @JoinColumn()
+  @JoinColumn({ name: 'tb_user_fk' })
   tb_user_fk: AppUser;
 };

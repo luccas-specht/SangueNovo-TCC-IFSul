@@ -11,7 +11,10 @@ export class AppUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar')
+  @Column({ 
+    unique: true, 
+    type: 'varchar'
+ })
   email: string;
 
   @Column('varchar')
