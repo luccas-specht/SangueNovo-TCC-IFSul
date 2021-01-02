@@ -14,22 +14,16 @@ export class AppUserToken {
   
   @Column()
   @Generated('uuid')
-  tokenId: string;
+  token_id: string;
   
-  @Column({
-   name: 'userId'
-  })
+  @Column()
   @Generated('uuid')
-  userId: string;
+  user_id: string;
   
-  @CreateDateColumn({
-    name: 'created_at'
-  })
-  createdAt: Date;
+  @CreateDateColumn()
+  created_at: Date;
   
-  @UpdateDateColumn({
-    name: 'updated_at'
-  })
-  updatedAt: Date;
+  @UpdateDateColumn()
+  updated_at: Date;
 };
   

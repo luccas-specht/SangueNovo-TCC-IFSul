@@ -1,11 +1,15 @@
-import { Entity, Column } from 'typeorm';
-
+import { Entity, 
+         Column, 
+         OneToOne, 
+         PrimaryGeneratedColumn,
+         JoinColumn } from 'typeorm';
+      
 import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
 
-import { AppCpf } from './AppCpf';
-
 @Entity('tb_donator')
-export class AppDonator extends AppUser{
+export class AppDonator {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column('varchar')
   name: string;
@@ -16,4 +20,7 @@ export class AppDonator extends AppUser{
   @Column('varchar')
   cpf: string;
 
+  @OneToOne(() => AppUser)
+  @JoinColumn()
+  tb_user_fk: AppUser;
 };

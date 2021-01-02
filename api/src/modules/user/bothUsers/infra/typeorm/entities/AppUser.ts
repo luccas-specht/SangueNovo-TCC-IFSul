@@ -2,10 +2,12 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  Entity
 } from 'typeorm';
 
-export abstract class AppUser {
+@Entity('tb_user')
+export class AppUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -24,13 +26,9 @@ export abstract class AppUser {
   @Column('boolean')
   active: boolean;
 
-  @CreateDateColumn({
-    name: 'created_at'
-  })
-  createdAt: Date;
+  @CreateDateColumn()
+  created_at: Date;
     
-  @UpdateDateColumn({
-    name: 'updated_at'
-  })
-  updatedAt: Date;
+  @UpdateDateColumn()
+  updated_at: Date;
 };
