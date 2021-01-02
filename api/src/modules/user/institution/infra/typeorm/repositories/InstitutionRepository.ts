@@ -2,7 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 
 import { AppInstitution } from '../entities/AppInstitution';
 
-import { IInstitutionRepository} from '../../../iRepository/IInstitutionRepository';
+import { IInstitutionRepository} from '../../../IRepository/IInstitutionRepository';
 
 export class InstitutionRepository implements IInstitutionRepository {
   private ormRepository: Repository<AppInstitution>
@@ -21,5 +21,9 @@ export class InstitutionRepository implements IInstitutionRepository {
   
   public async findByCnpj(cnpj: string): Promise<AppInstitution | undefined> {
     return await this.ormRepository.findOne({ where: { cnpj } })
+  }
+
+  public async findByIdUser(tb_user_fk: string): Promise<AppInstitution | undefined> {
+    return await this.ormRepository.findOne({ where: { tb_user_fk } })
   }
 }

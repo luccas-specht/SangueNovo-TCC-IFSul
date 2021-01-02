@@ -7,6 +7,7 @@ import { MESSAGEINVALID } from '@constants/messageToUser';
 
 import { IDonatorRepository  } from '../IRepository/IDonatorRepository';
 import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
+import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
 
 import { AppDonator } from '@modules/user/donator/infra/typeorm/entities/AppDonator';
 
@@ -25,7 +26,10 @@ export class CreateDonatorService {
     private userRepository: IUserRepository,
 
     @inject('DonatorRepository')
-    private donatorRepository: IDonatorRepository
+    private donatorRepository: IDonatorRepository,
+
+    @inject('InstitutionRepository')
+    private institutionRepository: IInstitutionRepository,
     ) {} 
   
   public async execute({ name, cpf, birthday, email, password }: Request): Promise<void> {
@@ -37,16 +41,19 @@ export class CreateDonatorService {
 
     if (cpfUsed) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
 
+    const checkIfCpfIsEqualToCnpj = await this.institutionRepository.findByCnpj(cpf)
+
+    if (checkIfCpfIsEqualToCnpj) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
+
     const hasedPassword = await hash(password, 8)
 
     const user = await this.userRepository.create(email, hasedPassword, true);
 
-    console.log('user criado:', user)
     const donator = {
       name,
       cpf,
       birthday,
-      tbUserFk: user
+      tb_user_fk: user
     } as AppDonator
 
     await this.donatorRepository.save(donator)

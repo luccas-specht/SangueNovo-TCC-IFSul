@@ -7,6 +7,9 @@ import { AppError } from '@shared/errors/appError';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
 
+import { IUserRepository } from '../IRepository/IUserRepository';
+import { IDonatorRepository } from '@modules/user/donator/IRepository/IDonatorRepository';
+import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
 
 interface IRequest {
   email: string;
@@ -26,36 +29,50 @@ interface IResponse {
 export class AuthenticationService {
   
   constructor(
-    @inject('FindByEmailUserService')
-    private findByEmailUserService: any
+    @inject('UserRepository')
+    private userRepository: IUserRepository,
+
+    @inject('InstitutionRepository')
+    private institutionRepository: IInstitutionRepository,
+
+    @inject('DonatorRepository')
+    private donatorRepository: IDonatorRepository
     ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
   
-    const user = await this.findByEmailUserService.validationEmailAlreadyExists(email);
+    const user = await this.userRepository.findByEmail(email)
 
-    if (!user || !user?.active) throw new AppError(MESSAGEINVALID.unathorized, 401);
+    if (!user || !user?.active) throw new AppError(MESSAGEINVALID.unathorized, 401)
 
-    const passwordMatched = await compare(password, user.password);
+    const passwordMatched = await compare(password, user.password)
 
-    if (!passwordMatched) throw new AppError(MESSAGEINVALID.unathorized, 401);
+    if (!passwordMatched) throw new AppError(MESSAGEINVALID.unathorized, 401)
 
-    const { secret, expiresIn } = authConfig.jwt;
+    let userType: any
+    userType = await this.donatorRepository.findByIdUser(user.id)
+    
+    if(!userType) {
+      userType = await this.institutionRepository.findByIdUser(user.id)
+    } 
+
+    const { secret, expiresIn } = authConfig.jwt
 
     const token = sign({}, secret, { 
         subject: user.id,
         expiresIn: expiresIn
-     });
+     })
 
-     const { id, name, razaoSocial, avatar } = user;
+     const { name, razao_social } = userType
+     const { id, avatar } = user
 
     return { 
       user: { 
             id, 
-            userName: name ? name : razaoSocial,
+            userName: name ? name : razao_social,
             avatar 
           },
             token 
-         };
+         }
   }
 }

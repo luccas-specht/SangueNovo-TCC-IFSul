@@ -5,11 +5,11 @@ import { AppError } from '@shared/errors/appError';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
 
-import { IInstitutionRepository } from '../iRepository/IInstitutionRepository';
+import { IInstitutionRepository } from '../IRepository/IInstitutionRepository';
+import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
+import { IDonatorRepository } from '@modules/user/donator/IRepository/IDonatorRepository';
 
 import { AppInstitution } from '../infra/typeorm/entities/AppInstitution';
-
-import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
 interface RequestCreateInstitutionService {
   razaoSocial: string;
   email: string;
@@ -19,13 +19,15 @@ interface RequestCreateInstitutionService {
 
 @injectable()
 export class CreateInstitutionService {
-
   constructor(
     @inject('InstitutionRepository')
     private institutionRepository: IInstitutionRepository,
 
     @inject('UserRepository')
-    private userRepository: IUserRepository
+    private userRepository: IUserRepository,
+
+    @inject('DonatorRepository')
+    private donatorRepository: IDonatorRepository,
     ) {} 
   
   public async execute({ razaoSocial, cnpj, email, password }: RequestCreateInstitutionService): Promise<void> {
@@ -37,6 +39,10 @@ export class CreateInstitutionService {
 
     if (cnpjUsed) throw new AppError(MESSAGEINVALID.cnpjAlreadyExists, 400)
 
+    const checkIfCnpjIsEqualToCpf = await this.donatorRepository.findByCpf(cnpj)
+
+    if (checkIfCnpjIsEqualToCpf) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
+
     const hasedPassword = await hash(password, 8)
 
     const user = await this.userRepository.create(email, hasedPassword, true);
@@ -44,7 +50,7 @@ export class CreateInstitutionService {
     const institution = {
       razao_social: razaoSocial,
       cnpj,
-      tbUserFk: user
+      tb_user_fk: user
     } as AppInstitution
 
     await this.institutionRepository.save(institution)
