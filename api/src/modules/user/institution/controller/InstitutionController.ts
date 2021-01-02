@@ -15,6 +15,6 @@ export class InstitutionController {
             email, 
             password
         });
-        return response.json(200);
+        return response.status(200);
     }
 };

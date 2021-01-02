@@ -5,6 +5,8 @@ import { institutionRouter } from "@modules/user/institution/infra/http/routes/i
 
 import { authRouter } from '@modules/user/bothUsers/infra/http/routes/Auth.route';
 
+import { passwordRoutes } from '@modules/user/bothUsers/infra/http/routes/Password.route';
+
 export const routes = Router();
 
 /*Donator routes here: */
@@ -15,3 +17,4 @@ routes.use('/institution', institutionRouter);
 
 /*both users*/
 routes.use('/auth', authRouter);
+routes.use('/password', passwordRoutes);

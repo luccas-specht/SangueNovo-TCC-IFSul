@@ -16,6 +16,6 @@ export class DonatorController {
             email, 
             password
         });
-        return response.json(200);
+        return response.status(200);
     }
 };
