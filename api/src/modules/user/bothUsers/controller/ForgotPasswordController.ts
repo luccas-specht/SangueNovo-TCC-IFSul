@@ -7,6 +7,7 @@ import { ResetPasswordService } from '@modules/user/bothUsers/service/ResetPasso
 export class ForgotPasswordController {
     public async sendForgotPasswordEmail(request: Request, response: Response): Promise<Response> {
         const { email } = request.body;
+        console.log('email', email)
   
         const sendForgotPasswordEmailService = container.resolve(
             SendForgotPasswordEmailService

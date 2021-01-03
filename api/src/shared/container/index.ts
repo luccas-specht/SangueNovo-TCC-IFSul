@@ -4,6 +4,9 @@ import { container } from 'tsyringe';
 import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
 import { UserRepository } from '@modules/user/bothUsers/infra/typeorm/repositories/UserRepository';
 
+import { IUserTokenRepository } from '@modules/user/bothUsers/IRepository/IUserTokenRepository';
+import { UserTokenRepository } from '@modules/user/bothUsers/infra/typeorm/repositories/UserTokenRepository';
+
 import { IDonatorRepository } from '@modules/user/donator/IRepository/IDonatorRepository';
 import { DonatorRepository } from '@modules/user/donator/infra/typeorm/repositories/DonatorRepository';
 
@@ -21,6 +24,7 @@ import { IMailTemplateProvider } from './providers/MailTemplateProvider/models/I
 import { HandlebarsMailTemplateProvider } from './providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider';
 
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
+container.registerSingleton<IUserTokenRepository>('UserTokenRepository', UserTokenRepository);
 container.registerSingleton<IDonatorRepository>('DonatorRepository', DonatorRepository);
 container.registerSingleton<IInstitutionRepository>('InstitutionRepository', InstitutionRepository);
 
