@@ -35,22 +35,16 @@ export class CreateDonatorService {
   public async execute({ name, cpf, birthday, email, password }: Request): Promise<void> {
     const emailUsed = await this.userRepository.findByEmail(email)
     
-    if (emailUsed){
-      throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
-    } 
-    
+    if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
+   
     const cpfUsed = await this.donatorRepository.findByCpf(cpf)
 
-    if (cpfUsed){
-      throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
-    } 
-
+    if (cpfUsed) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
+    
     const checkIfCpfIsEqualToCnpj = await this.institutionRepository.findByCnpj(cpf)
 
-    if (checkIfCpfIsEqualToCnpj) {
-      throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
-    } 
-
+    if (checkIfCpfIsEqualToCnpj) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
+    
     const hasedPassword = await hash(password, 8)
 
     const user = await this.userRepository.create(email, hasedPassword, true);

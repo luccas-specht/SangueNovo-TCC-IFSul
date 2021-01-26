@@ -69,8 +69,7 @@ export class AuthenticationService {
             id, 
             userName: name ?? razao_social,
             avatar 
-          },
-            token 
-         }
+          }, token 
+      }
   }
 }
