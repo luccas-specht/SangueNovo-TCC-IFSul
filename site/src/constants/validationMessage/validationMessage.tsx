@@ -10,7 +10,7 @@ const requiredCNPJ = 'Por favor, preencha o campo de CNPJ.';
 const requiredBirthDay = 'Por favor, preencha o campo data de aniversário.';
 const requiredPasswordsMustMatch = 'Confirmação incorreta.'
 
-const validationMessage = {
+export const validationMessage = {
   required,
   min6Char,
   validEmail,
@@ -23,4 +23,3 @@ const validationMessage = {
   requiredBirthDay,
   requiredPasswordsMustMatch
 };
-export { validationMessage };

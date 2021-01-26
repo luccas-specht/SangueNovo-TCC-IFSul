@@ -40,7 +40,8 @@ export class AuthenticationService {
     ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
-  
+    let userType: any
+
     const user = await this.userRepository.findByEmail(email)
 
     if (!user || !user?.active) throw new AppError(MESSAGEINVALID.unathorized, 401)
@@ -49,13 +50,10 @@ export class AuthenticationService {
 
     if (!passwordMatched) throw new AppError(MESSAGEINVALID.unathorized, 401)
 
-    let userType: any
     userType = await this.donatorRepository.findByIdUser(user.id)
     
-    if(!userType) {
-      userType = await this.institutionRepository.findByIdUser(user.id)
-    } 
-
+    if(!userType) userType = await this.institutionRepository.findByIdUser(user.id)
+    
     const { secret, expiresIn } = authConfig.jwt
 
     const token = sign({}, secret, { 
@@ -65,11 +63,11 @@ export class AuthenticationService {
 
      const { name, razao_social } = userType
      const { id, avatar } = user
-
+    
     return { 
       user: { 
             id, 
-            userName: name ? name : razao_social,
+            userName: name ?? razao_social,
             avatar 
           },
             token 

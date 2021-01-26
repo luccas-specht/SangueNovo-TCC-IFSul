@@ -20,7 +20,7 @@ interface FormLoginData {
     password: string;
 }
 
-const FormLogin = () => {
+export const FormLogin = () => {
   const history = useHistory();
   const { authentication } = useAuth();
 
@@ -88,9 +88,7 @@ const FormLogin = () => {
       <SC.CreateAccount to='sign-up'>
           <FiLogIn />
           Criar conta
-        </SC.CreateAccount>
+      </SC.CreateAccount>
     </>
   );
 };
-
-export { FormLogin };

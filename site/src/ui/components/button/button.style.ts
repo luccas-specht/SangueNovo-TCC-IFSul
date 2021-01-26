@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { shade } from 'polished';
 
-const Button = styled.button`
+export const Button = styled.button`
   background: ${(props) => props.theme.colors.primary};
   color: ${(props) => props.theme.colors.white};
   width: 100%;
@@ -19,5 +19,3 @@ const Button = styled.button`
     background: ${(props) => shade(0.2, props.theme.colors.primary)};
   }
 `;
-
-export { Button };

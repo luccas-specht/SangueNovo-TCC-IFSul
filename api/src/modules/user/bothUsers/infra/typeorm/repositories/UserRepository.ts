@@ -13,18 +13,18 @@ export class UserRepository implements IUserRepository {
 
   public async create(email: string, password: string, active: boolean): Promise<AppUser> {
     const user = this.ormRepository.create({ email, password, active});
-    return await this.ormRepository.save(user);
+    return this.ormRepository.save(user);
   }
 
   public async save(user: AppUser): Promise<AppUser> {
-   return await this.ormRepository.save(user)
+   return this.ormRepository.save(user)
   }
 
   public async findById(id: string): Promise<AppUser | undefined> {
-    return await this.ormRepository.findOne({ where: { id } })
+    return this.ormRepository.findOne({ where: { id } })
   }
   
   public async findByEmail(email: string): Promise<AppUser | undefined> {
-    return await this.ormRepository.findOne({ where: { email } })
+    return this.ormRepository.findOne({ where: { email } })
   }
 }

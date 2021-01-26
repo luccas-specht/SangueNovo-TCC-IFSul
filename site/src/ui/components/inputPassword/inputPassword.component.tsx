@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import * as SC from './inputPassword.style';
 interface PropsInputPassword {
     id: string;
-    icon?: any;
+    icon: React.ReactNode;
     name: string;
     value: string;
     error?: any;
@@ -47,15 +47,10 @@ export const InputPassword = ({
       onBlur={handleInputBlur}
     />
     {type === 'text' ? 
-    <SC.CloseEye
-     size={20}
-     onClick={()=> setType('password')}
-     />
-     : 
-     <SC.OpenEye 
-      size={20} 
-      onClick={()=> setType('text')}
-    />}
+      <SC.CloseEye size={20} onClick={() => setType('password')}/>
+       : 
+       <SC.OpenEye size={20} onClick={() => setType('text')}/>
+     }
     {error}
    </SC.Container>
   );

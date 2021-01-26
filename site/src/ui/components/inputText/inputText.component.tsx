@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import * as SC from './inputText.style';
 interface PropsInputText {
     id: string;
-    icon?: any;
+    icon: React.ReactNode;
     name: string;
     value: string;
     error?: any;
@@ -13,6 +13,7 @@ interface PropsInputText {
 
 export const InputText = ({
     id, 
+    icon,
     error, 
     name, 
     value, 
@@ -33,6 +34,7 @@ export const InputText = ({
       isFocus={isFocus} 
       isErrored={!!error}
      >
+       {icon}
         <SC.Input
           id={id}
           type='text'
@@ -43,6 +45,6 @@ export const InputText = ({
           onFocus={() => setIsFocus(true)}
           onBlur={handleInputBlur}
         />
-      </SC.Container>
+    </SC.Container>
   );
 };

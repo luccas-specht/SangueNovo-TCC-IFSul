@@ -4,7 +4,7 @@ import * as SC from './donorSpecificInput.style';
 
 interface PropsInputText {
     id: string;
-    icon?: any;
+    icon: React.ReactNode;
     name: string;
     value: string;
     error?: any;
@@ -13,7 +13,7 @@ interface PropsInputText {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   }
 
-const DonorSpecificInput = ({
+export const DonorSpecificInput = ({
     id, 
     icon, 
     name, 
@@ -21,9 +21,7 @@ const DonorSpecificInput = ({
     placeholder, 
     type,
     onChange
-}: PropsInputText) => {
-
-  return (
+}: PropsInputText) => (
       <SC.Container>
         {icon}
         <SC.Input
@@ -37,6 +35,3 @@ const DonorSpecificInput = ({
         />
       </SC.Container>
   );
-};
-
-export { DonorSpecificInput };

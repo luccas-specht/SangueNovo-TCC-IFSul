@@ -19,7 +19,7 @@ interface FormPassowrdData {
     email: string;
 }
 
-const FormForgotPassword = () => {
+export const FormForgotPassword = () => {
   const history = useHistory();
   const { forgotPassword } = useRedefinePassword();
 
@@ -75,5 +75,3 @@ const FormForgotPassword = () => {
     </>
   );
 };
-
-export { FormForgotPassword };
