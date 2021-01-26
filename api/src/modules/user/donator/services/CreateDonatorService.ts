@@ -33,6 +33,7 @@ export class CreateDonatorService {
     ) {} 
   
   public async execute({ name, cpf, birthday, email, password }: Request): Promise<void> {
+    console.log('data:', name, cpf, birthday, email, password)
     const emailUsed = await this.userRepository.findByEmail(email)
     
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
@@ -56,6 +57,7 @@ export class CreateDonatorService {
       tb_user_fk: user
     } as AppDonator
 
-    await this.donatorRepository.save(donator)
+    const a = await this.donatorRepository.save(donator)
+    console.log('a', a)
   } 
 }

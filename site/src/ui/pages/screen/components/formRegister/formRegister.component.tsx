@@ -45,7 +45,10 @@ export const FormRegister = ({ isDonator }: FormRegisterProps) => {
    } as FormRegisterData
 
    const initialValuesDonator = {
-   ...initialValuesInstitution,
+    name_razaoSocial: '',
+    cpf_cnpf: '',
+    email: '',
+    password: '',
     birthday: null,
   } as FormRegisterData
 
@@ -91,12 +94,13 @@ export const FormRegister = ({ isDonator }: FormRegisterProps) => {
      } else {
       response = await registerInstitution(name_razaoSocial, cpf_cnpf, email, password);
     } 
+
     console.log('response', response)
-     if(response?.status === 400){
-       toast.error(`${response.data.message}`, toastConfig);
-       formik.resetForm();
-     }else{
+     if(response?.status === 200){
        push('/sign-in');
+     }else{
+      formik.resetForm();
+      toast.error(`${response.data?.message}`, toastConfig);
      }
    };
 

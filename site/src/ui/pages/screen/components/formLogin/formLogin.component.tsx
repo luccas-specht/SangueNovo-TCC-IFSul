@@ -40,6 +40,7 @@ export const FormLogin = () => {
 
    const onLogin = async ({ email, password }: FormLoginData): Promise<void> => {
      const response = await authentication(email, password);
+     console.log('res', response)
      if(response.status === 401){
        toast.error(`${response.data.message}`, toastConfig);
        formik.resetForm();
