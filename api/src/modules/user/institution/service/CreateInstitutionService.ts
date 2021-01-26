@@ -41,7 +41,7 @@ export class CreateInstitutionService {
 
     const checkIfCnpjIsEqualToCpf = await this.donatorRepository.findByCpf(cnpj)
 
-    if (checkIfCnpjIsEqualToCpf) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400)
+    if (checkIfCnpjIsEqualToCpf) throw new AppError(MESSAGEINVALID.cnpjAlreadyExists, 400)
 
     const hasedPassword = await hash(password, 8)
 

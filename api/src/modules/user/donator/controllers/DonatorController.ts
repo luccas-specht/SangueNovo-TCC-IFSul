@@ -9,13 +9,13 @@ export class DonatorController {
         const { name, cpf, birthday, email, password } = request.body;
 
         const createDonatorService = container.resolve(CreateDonatorService);
-        await createDonatorService.execute({ 
+         await createDonatorService.execute({ 
             name, 
             cpf, 
             birthday,
             email, 
             password
         });
-        return response.status(200);
+        return response.json().status(200);
     }
 };

@@ -3,18 +3,19 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  Entity
+  Entity,
 } from 'typeorm';
+
 
 @Entity('tb_user')
 export class AppUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ 
-    unique: true, 
-    type: 'varchar'
- })
+  @Column({
+    type: 'varchar', 
+    unique: true
+  })
   email: string;
 
   @Column('varchar')
