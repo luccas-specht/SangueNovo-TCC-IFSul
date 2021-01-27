@@ -45,10 +45,10 @@ export async function ensureResetRequest(
         await schemaResetPassowrd.validate({ 
             password, 
             password_confirmation, 
-            token },
-            { 
-                abortEarly: false
-             })   
+            token 
+            }, { 
+            abortEarly: false 
+            })   
       return next();
 
     } catch (err) {

@@ -58,6 +58,5 @@ export class CreateDonatorService {
     } as AppDonator
 
     const a = await this.donatorRepository.save(donator)
-    console.log('a', a)
   } 
 }
