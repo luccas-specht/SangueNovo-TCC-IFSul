@@ -7,15 +7,14 @@ import { ResetPasswordService } from '@modules/user/bothUsers/service/ResetPasso
 export class ForgotPasswordController {
     public async sendForgotPasswordEmail(request: Request, response: Response): Promise<Response> {
         const { email } = request.body;
-        console.log('email', email)
-  
+
         const sendForgotPasswordEmailService = container.resolve(
             SendForgotPasswordEmailService
         );
             
         await sendForgotPasswordEmailService.execute({ email });
     
-        return response.status(204)
+        return response.json().status(204)
     }
 
     public async resetPassword(request: Request, response: Response): Promise<Response> {
@@ -30,6 +29,6 @@ export class ForgotPasswordController {
           token
         });
     
-        return response.status(204)
+        return response.json().status(204)
     }
 };

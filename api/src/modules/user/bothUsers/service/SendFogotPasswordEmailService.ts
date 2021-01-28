@@ -63,13 +63,13 @@ export class SendForgotPasswordEmailService {
 
   private async findUserAssociated(userId: string): Promise<string> {
      let userType: any
+     
      userType = await this.donatorRepository.findByIdUser(userId)
      
-     if(!userType) {
-       userType = await this.institutionRepository.findByIdUser(userId)
-     } 
+     if(!userType) userType = await this.institutionRepository.findByIdUser(userId)
+      
      const { name, razao_social } = userType;
 
-     return name ? name : razao_social;
+     return name ?? razao_social;
   }
 }
