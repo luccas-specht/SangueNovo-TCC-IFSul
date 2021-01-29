@@ -21,20 +21,9 @@ export const InputPassword = ({
     onChange
 }: PropsInputPassword) => {
   const [type, setType] = useState<'text'|'password'>('password');
-  const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [isFilled, setIsFilled] = useState<boolean>(false);
-
-  const handleInputBlur = useCallback(() => {
-    setIsFocus(false);
-    setIsFilled(!!value);
-  }, [value]);
-
+  
   return(
-    <SC.Container 
-      isFilled={isFilled} 
-      isFocus={isFocus} 
-      isErrored={!!error}
-     >
+    <SC.Container >
       {icon}
     <SC.Input
       id={id}
@@ -43,8 +32,6 @@ export const InputPassword = ({
       value={value}
       placeholder={placeholder}
       onChange={onChange}
-      onFocus={() => setIsFocus(true)}
-      onBlur={handleInputBlur}
     />
     {type === 'text' ? 
       <SC.CloseEye size={20} onClick={() => setType('password')}/>

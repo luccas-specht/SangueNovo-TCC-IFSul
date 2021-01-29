@@ -1,12 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
-const CreateGlobalStyle = createGlobalStyle`
+export const CreateGlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap');
   * {
       padding: 0;
       margin: 0;
       outline: 0;
-      box-sizing:border-box;
+      box-sizing: border-box;
    }
 
  body {
@@ -14,6 +14,10 @@ const CreateGlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.colors.text};
     -webkit-font-smoothing: antialiased;
  }
+
+ html, body, #root {
+    height: 100vh;
+  }
 
  body, input, button, li {
   font: 1rem 'Roboto', sans-serif;
@@ -36,5 +40,3 @@ const CreateGlobalStyle = createGlobalStyle`
     list-style: none;
   } 
 `;
-
-export { CreateGlobalStyle };

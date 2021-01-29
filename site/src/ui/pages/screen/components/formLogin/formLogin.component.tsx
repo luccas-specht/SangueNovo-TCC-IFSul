@@ -5,6 +5,8 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { useAuth } from '../../../../../hooks'
 import { validationMessage } from '../../../../../constants';
 
+import logo from '../../../../assets/images/logo.png';
+
 import { InputPassword, InputText, Button } from '../../../../components';
 
 import * as Yup from 'yup'
@@ -40,7 +42,6 @@ export const FormLogin = () => {
 
    const onLogin = async ({ email, password }: FormLoginData): Promise<void> => {
      const response = await authentication(email, password);
-     console.log('res', response)
      if(response.status === 401){
        toast.error(`${response.data.message}`, toastConfig);
        formik.resetForm();
@@ -61,35 +62,38 @@ export const FormLogin = () => {
   return(
     <>
       <ToastContainer />
-      <SC.Form onSubmit={formik.handleSubmit}>
-       <SC.Title>Faça seu logon</SC.Title>
-          <InputText
-            icon={<FiMail size={20} />}
-            id="email"
-            name="email"
-            placeholder='E-mail'
-            value={formik.values.email}
-            error={formik.errors.email}
-            onChange={formik.handleChange}
-          />    
-           <InputPassword
-             icon={<FiLock size={20} />}
-             id="password"
-             name="password"
-             placeholder='Senha'
-             error={formik.errors.password}
-             value={formik.values.password}
-             onChange={formik.handleChange}
-          />
-
-        <Button type='submit' title='Entrar' />
-        <Link to='forgot-password'>Esqueci a minha senha</Link>
-      </SC.Form>
-
-      <SC.CreateAccount to='sign-up'>
+      <SC.Container> 
+        <img src={logo} alt="logo sangue novo"/>
+        <SC.Form onSubmit={formik.handleSubmit}>
+         <SC.Title>Faça seu logon</SC.Title>
+            <InputText
+              icon={<FiMail size={20} />}
+              id="email"
+              name="email"
+              placeholder='E-mail'
+              value={formik.values.email}
+              error={formik.errors.email}
+              onChange={formik.handleChange}
+            />    
+             <InputPassword
+               icon={<FiLock size={20} />}
+               id="password"
+               name="password"
+               placeholder='Senha'
+               error={formik.errors.password}
+               value={formik.values.password}
+               onChange={formik.handleChange}
+            />
+          <Button type='submit' title='Entrar' />
+          <Link to='forgot-password'> 
+            Esqueci a minha senha
+          </Link>
+        </SC.Form>
+        <SC.CreateAccount to='sign-up'>
           <FiLogIn />
           Criar conta
-      </SC.CreateAccount>
+        </SC.CreateAccount>
+      </SC.Container>
     </>
   );
 };

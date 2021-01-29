@@ -1,17 +1,11 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
 
-interface PropsContainer {
-  isFilled: boolean;
-  isFocus: boolean;
-  isErrored: boolean;
-}
-
-const Container = styled.div<PropsContainer>`
-  background: ${(props) => props.theme.colors.backgroundInput};
+export const Container = styled.div`
+  background-color: ${({theme}) => theme.colors.background};
   border-radius: 10px;
-  border: 2px solid ${(props) => props.theme.colors.backgroundInput};
+  border: 2px solid ${({theme}) => theme.colors.background};
   padding: 16px;
   width: 100%;
   color: ${(props) => props.theme.colors.text};
@@ -21,26 +15,9 @@ const Container = styled.div<PropsContainer>`
   svg {
     margin-right: 16px;
   }
-
-  ${(props) =>
-    props.isErrored &&
-    css`
-    
-    `}
-  ${(props) =>
-    props.isFocus &&
-    css`
-      color: ${(props) => props.theme.colors.primary};
-      border-color: ${(props) => props.theme.colors.primary};
-    `}
-  ${(props) =>
-    props.isFilled &&
-    css`
-      color: ${(props) => props.theme.colors.primary};
-  `}
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   color: ${(props) => props.theme.colors.text};
   flex: 1;
   background: transparent;
@@ -51,11 +28,10 @@ const Input = styled.input`
   }
 `;
 
-const CloseEye = styled(MdRemoveRedEye)`
+export const CloseEye = styled(MdRemoveRedEye)`
   cursor: pointer;
 `;
 
-const OpenEye = styled(BsFillEyeSlashFill)`
+export const OpenEye = styled(BsFillEyeSlashFill)`
   cursor: pointer;
 `;
-export { Container, Input, CloseEye, OpenEye };

@@ -7,9 +7,9 @@ interface propsConatiner {
 }
 
 export const Container = styled.div<propsConatiner>`
-  background: ${(props) => props.theme.colors.backgroundInput};
+  background-color: ${({theme}) => theme.colors.background};
   border-radius: 10px;
-  border: 2px solid ${(props) => props.theme.colors.backgroundInput};
+  border: 2px solid ${({theme}) => theme.colors.background};
   padding: 16px;
   width: 100%;
   color: ${(props) => props.theme.colors.text};
