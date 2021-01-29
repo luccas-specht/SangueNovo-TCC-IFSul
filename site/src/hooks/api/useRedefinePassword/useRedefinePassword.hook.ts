@@ -2,7 +2,7 @@ import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
 
 const axios = useAxiosApiSangueNovo();
 
-const useRedefinePassword = () => {
+export const useRedefinePassword = () => {
 
     const forgotPassword = async (email: string) => {
         try {
@@ -28,6 +28,4 @@ const useRedefinePassword = () => {
     }
 
     return { forgotPassword, resetPassword }
-}
-
-export { useRedefinePassword }
+};

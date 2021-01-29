@@ -2,12 +2,10 @@ import React from 'react';
 
 import { ThemeProvider } from './context/theme.context';
 
-import { RenderedRoute } from './routes';
+import { RenderRoute } from './routes';
 
-const App = () => (
+export const App = () => (
     <ThemeProvider>
-     <RenderedRoute />
+     <RenderRoute />
    </ThemeProvider>
 );
-
-export { App };

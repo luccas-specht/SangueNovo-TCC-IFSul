@@ -8,12 +8,12 @@ import { CreateGlobalStyle } from '../styles';
 
 import { useTheme } from '../hooks'
 
-import { ROUTERS } from '../constants';
+import { routes } from '../constants';
 
 import { PublicRoute } from './publicRoute.route';
 import { PrivateRoute } from './privateRoute.route';
 
- const RenderedRoute = () => {
+ export const RenderRoute = () => {
    const { theme } = useTheme();
    
    return(
@@ -22,38 +22,38 @@ import { PrivateRoute } from './privateRoute.route';
       <Switch>
         <PublicRoute 
           exact
-          path={ROUTERS.default.path}
-          component={ROUTERS.default.component}
+          path={routes.default.path}
+          component={routes.default.component}
          />
         
         <PublicRoute
           exact
-          path={ROUTERS.login.path}
-          component={ROUTERS.login.component}
+          path={routes.login.path}
+          component={routes.login.component}
         />
         
         <PublicRoute 
-          path={ROUTERS.register.path}
           exact
-          component={ROUTERS.register.component}
+          path={routes.register.path}
+          component={routes.register.component}
          />
         
         <PublicRoute 
           exact
-          path={ROUTERS.forgotPassword.path} 
-          component={ROUTERS.forgotPassword.component}
+          path={routes.forgotPassword.path} 
+          component={routes.forgotPassword.component}
         />
 
          <PublicRoute 
           exact
-          path={ROUTERS.resetPassword.path} 
-          component={ROUTERS.resetPassword.component}
+          path={routes.resetPassword.path} 
+          component={routes.resetPassword.component}
         />
 
         <PrivateRoute 
           exact
-          path={ROUTERS.dashboard.path}
-          component={ROUTERS.dashboard.component}
+          path={routes.dashboard.path}
+          component={routes.dashboard.component}
         />
       </Switch >
       </BrowserRouter>
@@ -61,5 +61,3 @@ import { PrivateRoute } from './privateRoute.route';
     </ThemeProvider >
 );
    }
-
-export { RenderedRoute };

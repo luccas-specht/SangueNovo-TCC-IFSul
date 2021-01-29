@@ -1,4 +1,9 @@
-import React, { createContext, useState, useCallback } from 'react';
+import React, { 
+  createContext, 
+  useState, 
+  useCallback
+} from 'react';
+
 import { DefaultTheme } from '../styles/styled';
 
 import { dark } from '../styles/themes/dark';
@@ -13,9 +18,9 @@ interface ThemeContextData {
   changeTheme(): void;
 };
 
-const ThemeContext = createContext<ThemeContextData>({} as ThemeContextData);
+export const ThemeContext = createContext<ThemeContextData>({} as ThemeContextData);
 
-const ThemeProvider = ({ children }: ThemeContextProps) => {
+export const ThemeProvider = ({ children }: ThemeContextProps) => {
   const [theme, setTheme] = useState<DefaultTheme>(light);
 
   const changeTheme = useCallback(() => {
@@ -32,5 +37,3 @@ const ThemeProvider = ({ children }: ThemeContextProps) => {
     </ThemeContext.Provider>
   );
 };
-
-export { ThemeProvider, ThemeContext };

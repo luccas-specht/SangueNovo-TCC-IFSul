@@ -6,6 +6,4 @@ interface PropsButton {
     type: 'button' | 'submit' | 'reset';
   }
 
-export const Button = ({ title, type }: PropsButton) => (
-  <SC.Button type={type}> {title}</SC.Button>
-);
+export const Button = ({ title, type }: PropsButton) => <SC.Button type={type}> {title} </SC.Button>;

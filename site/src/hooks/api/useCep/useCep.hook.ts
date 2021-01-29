@@ -2,7 +2,7 @@ import { useAxiosApiViaCEP } from '../useAxios/useAxios.hook';
 
 const axios = useAxiosApiViaCEP();
 
-const useCEP = () => {
+export const useCEP = () => {
     const findAdressByCEP = async (CEP: string) => {
         try {
             const response = await axios.get(`${CEP}/json/`)
@@ -12,6 +12,4 @@ const useCEP = () => {
         }
     }
     return { findAdressByCEP }
-}
-
-export { useCEP };
+};

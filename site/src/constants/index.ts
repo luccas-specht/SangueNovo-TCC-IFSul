@@ -1,2 +1,3 @@
-export { ROUTERS } from './router/routes';
+export { routes } from './router/routes';
 export { validationMessage } from './validationMessage/validationMessage';
+export { yupValidation } from './yup/yupValidation';

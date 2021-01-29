@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
-const PrivateRoute = ({ component, path }: RouteProps) => {
+export const PrivateRoute = ({ component, path }: RouteProps) => {
     // validar onde salvar o token
     const isToken = localStorage.getItem('token salvo no localStorage');
       
@@ -10,5 +10,3 @@ const PrivateRoute = ({ component, path }: RouteProps) => {
     
     return <Route path={path} component={component} />
 };
-
-export { PrivateRoute };

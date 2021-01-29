@@ -6,7 +6,7 @@ import * as SC from './forgotPassword.style';
 
 import { useTheme } from '../../../../hooks';
 
-const ForgotPassword = () => {
+export const ForgotPassword = () => {
   const { theme } = useTheme();
   return(
     <SC.Container>
@@ -22,6 +22,4 @@ const ForgotPassword = () => {
       <SC.ImgBackground  />
     </SC.Container>
   );
-}
-
-export { ForgotPassword };
+};

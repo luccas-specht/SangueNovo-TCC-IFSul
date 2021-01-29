@@ -23,7 +23,7 @@ const components = {
   resetPassword: ResetPassword
 };
 
-const ROUTERS = {
+export const routes = {
   /*publics here*/
  
   default: {
@@ -53,5 +53,3 @@ const ROUTERS = {
     component: components.dashboard
   }
 };
-
-export { ROUTERS };

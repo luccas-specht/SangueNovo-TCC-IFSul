@@ -10,17 +10,14 @@
     namePage: 'login' | 'register' | 'forgotPassword' | 'resetPassword';
  }
  
- const IconChangeTheme = ({ namePage }: IconChangeThemeProps) => {
+ export const IconChangeTheme = ({ namePage }: IconChangeThemeProps) => {
     const { theme, changeTheme } = useTheme();
-     
+    
     return (
          <SC.Container namePage={namePage}>
             {theme.title === 'light' ?  
             <FiMoon onClick={changeTheme}/> :
             <FiSun onClick={changeTheme}/> }
          </SC.Container>
-     );
-   
+     );   
  };
-
- export { IconChangeTheme };

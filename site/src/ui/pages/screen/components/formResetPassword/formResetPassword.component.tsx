@@ -88,9 +88,9 @@ const  FormResetPassword  = () => {
           />
 
         <Button type='submit' title='Alterar Senha' />
-      <BackToSingIn to='sign-in'>
-        Cancelar
-     </BackToSingIn>
+        <BackToSingIn to='sign-in'>
+          Cancelar
+        </BackToSingIn>
       </Form>
     </>
   );

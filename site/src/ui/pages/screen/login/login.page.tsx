@@ -6,7 +6,7 @@ import * as SC from './login.style';
 
 import { useTheme } from '../../../../hooks';
 
-const Login = () => {
+export const Login = () => {
   const { theme } = useTheme();
  
   return(
@@ -27,5 +27,3 @@ const Login = () => {
     </SC.Container>
   );
 }
-
-export { Login };
