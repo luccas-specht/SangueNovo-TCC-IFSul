@@ -11,7 +11,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.backgroundSecudary};
 
   img {
     margin: 30px 0;

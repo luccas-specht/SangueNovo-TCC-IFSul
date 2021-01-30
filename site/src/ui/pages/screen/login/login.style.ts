@@ -13,11 +13,24 @@ export const Context = styled.div`
   display: flex;
 `;
 
+export const WrapperImg = styled.div`
+  margin-top: 50px;
+  padding-left: 10%;
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  justify-content: space-between;
+  
+    & :first-child {
+      max-width: 160px; 
+      max-height: 120px; 
+    }
+`;
 
 export const appearFromRight = keyframes`
   from{
     opacity: 0;
-    transform: translateX(-80px);
+    transform: translateX(-100px);
   }
   to{
     opacity: 1;
@@ -25,28 +38,17 @@ export const appearFromRight = keyframes`
   }
 `;
 
+
 export const AnimationContext = styled.div`
+  margin: 0 14%;
   display: flex;
-  flex-direction: column;
   align-self: center;
   align-items: center;
-  animation: ${appearFromRight} 1.5s;
+  animation: ${appearFromRight} 2s;
 `;
 
-export const WrapperImg = styled.div`
-  margin-top: 50px;
-  padding-left: 200px;
-  display: flex;
-  height: 80%;
-  flex-direction: column;
-  justify-content: space-between;
-  
-    & :first-child {
-      max-width: 159px; 
-      max-height: 114px; 
-    }
-`;
-
-export const ColumnRight = styled.div`
-
+export const ImgRight = styled.img`
+  max-width: 200px; 
+  max-height: 230px;
+  align-self: flex-end;
 `;

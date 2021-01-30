@@ -8,8 +8,8 @@ declare module 'styled-components' {
       primary: string;
       primary1: string,
       secundary: string,
-      background: string,
-      backgroundInput: string;
+      backgroundPrimary: string,
+      backgroundSecudary: string,
       white: string; 
       colorIconDarkLight: string;
       tabColor: string;

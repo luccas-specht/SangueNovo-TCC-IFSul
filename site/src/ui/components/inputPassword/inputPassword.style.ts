@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
 
 export const Container = styled.div`
-  background-color: ${({theme}) => theme.colors.background};
+  background-color: ${({theme}) => theme.colors.backgroundPrimary};
   border-radius: 10px;
-  border: 2px solid ${({theme}) => theme.colors.background};
+  border: 2px solid ${({theme}) => theme.colors.backgroundPrimary};
   padding: 16px;
   width: 100%;
   color: ${(props) => props.theme.colors.text};

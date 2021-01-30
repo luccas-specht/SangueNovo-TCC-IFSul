@@ -33,25 +33,24 @@ export const FormLogin = () => {
 
    const validations = Yup.object().shape({
      email: Yup.string()
-       .required(validationMessage.requiredEmail)
-       .email(validationMessage.validEmail),
+     .email(validationMessage.validEmail) 
+     .required(validationMessage.requiredEmail),
      password: Yup.string()
-       .required(validationMessage.requiredPassword)
-       .min(6, validationMessage.min6Char)
+     .min(6, validationMessage.min6Char)  
+     .required(validationMessage.requiredPassword)
    });
 
    const onLogin = async ({ email, password }: FormLoginData): Promise<void> => {
      const response = await authentication(email, password);
-     if(response.status === 401){
-       toast.error(`${response.data.message}`, toastConfig);
-       formik.resetForm();
+     if(response.status === 200){
+       history.push('/dashboard');
      }else{
-      toast.success(`Login realizado com sucesso`, toastConfig);
-      history.push('/dashboard');
+      toast.error(`${response.data.message}`, toastConfig);
+      formik.resetForm();
      }
    }
 
-   const formik = useFormik({
+   const formik = useFormik ({
      initialValues: initialValues,
      validationSchema: validations,
      onSubmit: (values: FormLoginData) => {
@@ -59,7 +58,7 @@ export const FormLogin = () => {
      }
    });
 
-  return(
+  return (
     <>
       <ToastContainer />
       <SC.Container> 

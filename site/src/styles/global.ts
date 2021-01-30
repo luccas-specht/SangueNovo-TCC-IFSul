@@ -10,8 +10,8 @@ export const CreateGlobalStyle = createGlobalStyle`
    }
 
  body {
-    background: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.text};
+    background: ${({ theme }) => theme.colors.backgroundPrimary};
+    color: ${({ theme }) => theme.colors.text};
     -webkit-font-smoothing: antialiased;
  }
 
@@ -25,7 +25,7 @@ export const CreateGlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6, strong, li {
    font-weight: 600;
-   color: ${(props) => props.theme.colors.titleColor};
+   color: ${({ theme }) => theme.colors.titleColor};
   }
 
  button, li {

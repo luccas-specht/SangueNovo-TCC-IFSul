@@ -4,9 +4,9 @@ import { FiSun, FiMoon } from 'react-icons/all';
 
 import { useTheme } from '../../../hooks';
 
-import * as SC from './FabIconTheme.style';
+import * as SC from './FabTheme.style';
 
-export const FabIconTheme = () => {
+export const FabTheme = () => {
     const { theme, changeTheme } = useTheme();
 
     return (

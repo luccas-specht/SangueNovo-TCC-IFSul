@@ -1,18 +1,18 @@
 import React from 'react';
 
-import { FabIconTheme } from '../../../components';
+import { FabTheme } from '../../../components';
 
 import { FormLogin } from '../components';
 
 import clouds from '../../../assets/images/clouds.png';
-import navegation from '../../../assets/images/navegation.jpg';
-import fuckingWoman from '../../../assets/images/fucking_woman.jpg';
+import navegation from '../../../assets/images/navegation.png';
+import superHeroWoman from '../../../assets/images/super_hero_woman.png';
 
 import * as SC from './login.style';
 
 export const Login = () => (
   <SC.Container>
-    {/* <FabIconTheme/> */}
+    <FabTheme/>
     <SC.Context>
       <SC.WrapperImg>
         <img src={clouds} alt="nuvens"/>
@@ -20,10 +20,8 @@ export const Login = () => (
       </SC.WrapperImg>
       <SC.AnimationContext> 
         <FormLogin />
+        <SC.ImgRight src={superHeroWoman} alt="navegacao"/>
       </SC.AnimationContext>
-      <SC.ColumnRight>
-        {/* <img src={fuckingWoman} alt="navegacao"/> */}
-      </SC.ColumnRight>
     </SC.Context>
   </SC.Container>
 );
