@@ -1,11 +1,6 @@
-import loginImgLight from '../../ui/assets/images/login-background-light.png';
-import registerImgLight from '../../ui/assets/images/register-background-light.png';
-
-import logoSangueNovoLight from '../../ui/assets/svg/logo-sangue-novo-light.svg';
-
 import { DefaultTheme } from 'styled-components';
 
-const light: DefaultTheme = {
+export const light: DefaultTheme = {
   title: 'light',
   colors: {
     text: '#666360',
@@ -19,9 +14,4 @@ const light: DefaultTheme = {
     colorIconDarkLight: '#666360',
     tabColor: '#232129'
   },
-    logo: logoSangueNovoLight,
-    imageLoginBackground: loginImgLight,
-    imageRegisterBackground: registerImgLight
 };
-
-export { light };

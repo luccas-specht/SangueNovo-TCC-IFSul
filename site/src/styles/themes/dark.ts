@@ -1,11 +1,6 @@
-import loginImgDark from '../../ui/assets/images/login-background-dark.png';
-import registerImgDark from '../../ui/assets/images/register-background-dark.png';
-
-import logoSangueNovoDark from '../../ui/assets/svg/logo-sangue-novo-dark.svg';
-
 import { DefaultTheme } from 'styled-components';
 
-const dark: DefaultTheme = {
+export const dark: DefaultTheme = {
   title: 'dark',
   colors: {
     text: '#666360',
@@ -19,8 +14,4 @@ const dark: DefaultTheme = {
     colorIconDarkLight: '#FF9000',
     tabColor: '#FFF'
   },
-  logo: logoSangueNovoDark,
-  imageLoginBackground: loginImgDark,
-  imageRegisterBackground: registerImgDark
 };
-export { dark };

@@ -1,12 +1,12 @@
 import styled, { keyframes } from 'styled-components';
 
-const Container = styled.div`
+export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
 `;
 
-const Context = styled.div`
+export const Context = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -15,13 +15,8 @@ const Context = styled.div`
   max-width: 800px;
 `;
 
-const ImgBackground = styled.div`
-  flex: 1;
-  background: url(${props => props.theme.imageLoginBackground}) no-repeat center;
-  background-size: cover;
-`;
 
-const appearFromRight = keyframes`
+export const appearFromRight = keyframes`
   from{
     opacity: 0;
     transform: translateX(-50px);
@@ -32,7 +27,7 @@ const appearFromRight = keyframes`
   }
 `;
 
-const AnimationContext = styled.div`
+export const AnimationContext = styled.div`
   padding-top: 20px;
   margin-top: 120px;
   display: flex;
@@ -40,9 +35,3 @@ const AnimationContext = styled.div`
   align-items: center;
   animation: ${appearFromRight} 1.2s;
 `;
-
-export { 
-    Container, 
-    Context, 
-    ImgBackground, 
-    AnimationContext };

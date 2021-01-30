@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FormForgotPassword, IconChangeTheme } from '../components';
+import { FormForgotPassword } from '../components';
 
 import * as SC from './forgotPassword.style';
 
@@ -11,7 +11,6 @@ export const ForgotPassword = () => {
   return(
     <SC.Container>
       <SC.Context>
-        <IconChangeTheme namePage='forgotPassword'/>
         <SC.AnimationContext>
           <img src={theme.logo} 
             alt='Logo Sangue Novo'
@@ -19,7 +18,6 @@ export const ForgotPassword = () => {
           <FormForgotPassword />
         </SC.AnimationContext>
       </SC.Context>
-      <SC.ImgBackground  />
     </SC.Container>
   );
 };

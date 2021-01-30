@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { FormRegister, IconChangeTheme } from '../components';
+import { FormRegister } from '../components';
 
 import * as SC from './register.style';
 
@@ -24,9 +24,7 @@ export const Register = () => {
   
   return(
     <SC.Container>
-      <SC.ImgBackground/>
       <SC.Context>
-      <IconChangeTheme namePage='register'/>
         <SC.AnimationContext>
         <SC.ContextLogoSideBar>
         <img 

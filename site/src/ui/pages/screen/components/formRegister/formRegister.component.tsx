@@ -8,7 +8,6 @@ import { BiIdCard, BiCalendar } from 'react-icons/bi';
 import { validationMessage } from '../../../../../constants';
 
 import { InputText, InputPassword, Button } from '../../../../components';
-import { DonorSpecificInput } from '../donorSpecificInput/donorSpecificInput.component';
 
 import { useRegister } from '../../../../../hooks';
 
@@ -132,7 +131,7 @@ export const FormRegister = ({ isDonator }: FormRegisterProps) => {
                 onChange={formik.handleChange}
                />  
               <SC.ContextInputs>
-                <DonorSpecificInput
+                {/* <DonorSpecificInput
                   icon={<BiCalendar size={20} />}
                   id="birthday"
                   name="birthday"
@@ -151,7 +150,7 @@ export const FormRegister = ({ isDonator }: FormRegisterProps) => {
                 value={formik.values.cpf_cnpf}
                 error={formik.errors.cpf_cnpf}
                 onChange={formik.handleChange}
-              /> 
+              />  */}
             </SC.ContextInputs>
            </>)
           : 

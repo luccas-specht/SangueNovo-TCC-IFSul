@@ -18,13 +18,6 @@ const Context = styled.div`
   margin-top: -50px;
 `;
 
-
-const ImgBackground = styled.div`
-  flex: 1;
-  background: url(${props => props.theme.imageLoginBackground}) no-repeat center;
-  background-size: cover;
-`;
-
 const appearFromRight = keyframes`
   from{
     opacity: 0;
@@ -47,6 +40,5 @@ const AnimationContext = styled.div`
 
 export { 
     Container, 
-    Context, 
-    ImgBackground, 
+    Context,  
     AnimationContext };

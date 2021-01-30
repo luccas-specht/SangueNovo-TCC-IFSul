@@ -12,8 +12,7 @@ export const FabIconTheme = () => {
     return (
         <SC.Container>
             {theme.title === 'light' ? 
-            <FiMoon onClick={changeTheme}/> 
-            : 
+            <FiMoon onClick={changeTheme}/> : 
             <FiSun onClick={changeTheme}/>
             }
         </SC.Container>

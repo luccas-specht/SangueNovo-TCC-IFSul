@@ -15,12 +15,6 @@ const Context = styled.div`
   max-width: 800px;
 `;
 
-const ImgBackground = styled.div`
-  flex: 1;
-  background: url(${props => props.theme.imageRegisterBackground}) no-repeat center;
-  background-size: cover;
-`;
-
 const appearFromRight = keyframes`
   from{
     opacity: 0;
@@ -77,8 +71,7 @@ const ContextLogoSideBar = styled.div`
 
 export { 
     Container, 
-    Context, 
-    ImgBackground, 
+    Context,
     AnimationContext,
     Tab,
     Tabs,

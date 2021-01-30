@@ -14,9 +14,6 @@ declare module 'styled-components' {
       colorIconDarkLight: string;
       tabColor: string;
     },
-    logo: string;
-    imageLoginBackground: string;
-    imageRegisterBackground: string;
   }
 };
 

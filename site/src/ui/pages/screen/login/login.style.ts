@@ -11,10 +11,6 @@ export const Context = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  place-content: center;
-  justify-content: space-evenly;
 `;
 
 
@@ -35,4 +31,22 @@ export const AnimationContext = styled.div`
   align-self: center;
   align-items: center;
   animation: ${appearFromRight} 1.5s;
+`;
+
+export const WrapperImg = styled.div`
+  margin-top: 50px;
+  padding-left: 200px;
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  justify-content: space-between;
+  
+    & :first-child {
+      max-width: 159px; 
+      max-height: 114px; 
+    }
+`;
+
+export const ColumnRight = styled.div`
+
 `;
