@@ -15,7 +15,7 @@ export const Context = styled.div`
 
 export const WrapperImg = styled.div`
   margin-top: 50px;
-  padding-left: 10%;
+  margin-left: 10%;
   display: flex;
   height: 80%;
   flex-direction: column;
@@ -44,7 +44,7 @@ export const AnimationContext = styled.div`
   display: flex;
   align-self: center;
   align-items: center;
-  animation: ${appearFromRight} 2s;
+  animation: ${appearFromRight} 1.2s;
 `;
 
 export const ImgRight = styled.img`

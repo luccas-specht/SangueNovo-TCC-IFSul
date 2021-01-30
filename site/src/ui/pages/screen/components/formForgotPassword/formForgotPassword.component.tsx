@@ -5,6 +5,8 @@ import { FiMail, FiArrowLeft } from 'react-icons/fi';
 import { useRedefinePassword } from '../../../../../hooks'
 import { validationMessage } from '../../../../../constants';
 
+import logo from '../../../../assets/images/logo.png';
+
 import { InputText, Button } from '../../../../components';
 
 import * as Yup from 'yup'
@@ -38,8 +40,7 @@ export const FormForgotPassword = () => {
      if(response.status === 401){
        toast.error(`${response.data.message}`, toastConfig);
        formik.resetForm();
-     }else{
-      toast.success(`Login realizado com sucesso`, toastConfig);
+     } else {
       history.push('/dashboard');
      }
    }
@@ -55,23 +56,26 @@ export const FormForgotPassword = () => {
   return(
     <>
       <ToastContainer />
-      <SC.Form onSubmit={formik.handleSubmit}>
-       <SC.Title>Recuperar senha</SC.Title>
-          <InputText
-            icon={<FiMail size={20} />}
-            id="email"
-            name="email"
-            placeholder='E-mail'
-            value={formik.values.email}
-            error={formik.errors.email}
-            onChange={formik.handleChange}
-          />    
-        <Button type='submit' title='Recuperar' />
-        <SC.BackToSignIn to='sign-in'>
-           <FiArrowLeft />
-           Voltar para o login
-         </SC.BackToSignIn>
-      </SC.Form>
+      <SC.Container> 
+        <img src={logo} alt="logo sangue novo"/>
+        <SC.Form onSubmit={formik.handleSubmit}>
+         <SC.Title>Recuperar senha</SC.Title>
+            <InputText
+              icon={<FiMail size={20} />}
+              id="email"
+              name="email"
+              placeholder='E-mail'
+              value={formik.values.email}
+              error={formik.errors.email}
+              onChange={formik.handleChange}
+            />    
+          <Button type='submit' title='Recuperar' />
+          <SC.BackToSignIn to='sign-in'>
+             <FiArrowLeft />
+             Voltar para o login
+           </SC.BackToSignIn>
+        </SC.Form>
+      </SC.Container> 
     </>
   );
 };
