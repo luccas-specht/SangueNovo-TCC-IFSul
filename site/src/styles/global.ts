@@ -9,15 +9,19 @@ export const CreateGlobalStyle = createGlobalStyle`
       box-sizing: border-box;
    }
 
- body {
-    background: ${({ theme }) => theme.colors.backgroundPrimary};
-    color: ${({ theme }) => theme.colors.text};
-    -webkit-font-smoothing: antialiased;
- }
+  html, body, #root {
+    height: 100%;
 
- html, body, #root {
-    height: 100vh;
+    @media (max-width: 415px) {
+    max-height: 825px;
+    }
   }
+ 
+ body {
+    background-color: ${({ theme }) => theme.colors.backgroundPrimary};
+    color: ${({ theme }) => theme.colors.text};
+    -webkit-font-smoothing: antialiased !important;
+ }
 
  body, input, button, li {
   font: 1rem 'Roboto', sans-serif;

@@ -16,6 +16,17 @@ export const Container = styled.div`
   img {
     margin: 30px 0;
   }
+
+  @media (max-width: 415px) {
+    flex-direction: column;
+    width: 350px; 
+    height: 350px;
+    margin: 50% 0;
+
+    img {
+      margin-top: -30%;
+    }
+  }
 `;
 
 export const Title = styled.h1`
@@ -24,6 +35,10 @@ export const Title = styled.h1`
   line-height: 32px;
   text-align: center;
   font-weight: 400;
+
+  @media (max-width: 415px) {
+    font-size: 25px;
+  }
 `;
 
 export const Form = styled.form`
@@ -43,6 +58,11 @@ export const Form = styled.form`
           color:  ${({ theme }) => shade(0.2,theme.colors.text)};
         }
     }
+
+  @media (max-width: 415px) {
+    width: 325px;
+    margin-top: 10%;
+  }
 `;
 
 export const CreateAccount = styled(Link)`
@@ -60,4 +80,8 @@ export const CreateAccount = styled(Link)`
     svg {
       margin-right: 10px;
     }
+
+  @media (max-width: 415px) {
+    margin: 30% 0;
+  }
 `;

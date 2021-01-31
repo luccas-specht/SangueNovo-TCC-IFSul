@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
 import * as SC from './inputPassword.style';
-interface PropsInputPassword {
+
+interface Props {
     id: string;
     icon: React.ReactNode;
     name: string;
@@ -9,7 +10,7 @@ interface PropsInputPassword {
     error?: any;
     placeholder: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  }
+}
 
 export const InputPassword = ({
     id, 
@@ -19,10 +20,10 @@ export const InputPassword = ({
     error, 
     placeholder, 
     onChange
-}: PropsInputPassword) => {
+}: Props) => {
   const [type, setType] = useState<'text'|'password'>('password');
   
-  return(
+  return (
     <SC.Container >
       {icon}
     <SC.Input
@@ -34,11 +35,9 @@ export const InputPassword = ({
       onChange={onChange}
     />
     {type === 'text' ? 
-      <SC.CloseEye size={20} onClick={() => setType('password')}/>
-       : 
-       <SC.OpenEye size={20} onClick={() => setType('text')}/>
+      <SC.CloseEye onClick={() => setType('password')}/>
+      : <SC.OpenEye onClick={() => setType('text')}/>
      }
-    {error}
    </SC.Container>
   );
 };

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { FiSun, FiMoon } from 'react-icons/all';
-
 import { useTheme } from '../../../hooks';
 
 import * as SC from './FabTheme.style';
@@ -12,8 +10,8 @@ export const FabTheme = () => {
     return (
         <SC.Container>
             {theme.title === 'light' ? 
-            <FiMoon onClick={changeTheme}/> : 
-            <FiSun onClick={changeTheme}/>
+            <SC.StyleFaMoon onClick={changeTheme}/> : 
+            <SC.StyleFiSun onClick={changeTheme}/>
             }
         </SC.Container>
     );

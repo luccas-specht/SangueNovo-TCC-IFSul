@@ -8,7 +8,7 @@ export const Container = styled.div`
   border: 2px solid ${({theme}) => theme.colors.backgroundPrimary};
   padding: 16px;
   width: 100%;
-  color: ${(props) => props.theme.colors.text};
+  color: ${({ theme }) => theme.colors.text};
   display: flex;
   align-items: center;
 
@@ -18,20 +18,24 @@ export const Container = styled.div`
 `;
 
 export const Input = styled.input`
-  color: ${(props) => props.theme.colors.text};
+  color: ${({ theme }) => theme.colors.text};
   flex: 1;
   background: transparent;
   border: 0;
 
   &::placeholder {
-    color: ${(props) => props.theme.colors.text};
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
 export const CloseEye = styled(MdRemoveRedEye)`
+  width: 20px;
+  height: 20px;
   cursor: pointer;
 `;
 
 export const OpenEye = styled(BsFillEyeSlashFill)`
+  width: 20px;
+  height: 20px;
   cursor: pointer;
 `;
