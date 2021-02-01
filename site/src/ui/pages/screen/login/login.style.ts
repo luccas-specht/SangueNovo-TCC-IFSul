@@ -1,12 +1,14 @@
 import styled, { keyframes } from 'styled-components';
 
+import { device } from '../../../../constants/style/responsivenessAvailable';
+
 export const Container = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   
-  @media (max-width: 415px) {
+ @media ${device.mobileL()} {
     flex-direction: column;
     width: 375px; 
   }
@@ -17,7 +19,7 @@ export const Context = styled.div`
   height: 100%;
   display: flex;
 
-  @media (max-width: 415px) {
+  @media ${device.mobileL()} {
     flex-direction: column;
   }
 `;
@@ -35,7 +37,7 @@ export const WrapperImg = styled.div`
       max-height: 120px; 
     }
 
-  @media (max-width: 415px) {
+  @media ${device.mobileL()} {
     opacity: 0;
     margin: 0;
     height: 0;
@@ -61,7 +63,7 @@ export const AnimationContext = styled.div`
   align-items: center;
   animation: ${appearFromRight} 1.2s;
 
-  @media (max-width: 415px) {
+  @media ${device.mobileL()} {
     margin: 0;
   }
 `;
@@ -71,7 +73,7 @@ export const ImgRight = styled.img`
   max-height: 230px;
   align-self: flex-end;
 
-  @media (max-width: 415px) {
+  @media ${device.mobileL()} {
     opacity: 0;
     max-width: 0;
     max-height: 0;

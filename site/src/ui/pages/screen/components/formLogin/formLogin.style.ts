@@ -4,6 +4,8 @@ import { shade } from 'polished';
 
 import { Link } from 'react-router-dom';
 
+import { device } from '../../../../../constants/style/responsivenessAvailable';
+
 export const Container = styled.div`
   height: 500px;
   width: 450px;
@@ -17,11 +19,12 @@ export const Container = styled.div`
     margin: 30px 0;
   }
 
-  @media (max-width: 415px) {
+  @media ${device.mobileL()} {
     flex-direction: column;
     width: 350px; 
     height: 350px;
     margin: 50% 0;
+    /* border: 2px solid blue; */
 
     img {
       margin-top: -30%;
@@ -59,7 +62,7 @@ export const Form = styled.form`
         }
     }
 
-  @media (max-width: 415px) {
+  @media ${device.mobileL()} {
     width: 325px;
     margin-top: 10%;
   }
@@ -81,7 +84,7 @@ export const CreateAccount = styled(Link)`
       margin-right: 10px;
     }
 
-  @media (max-width: 415px) {
+  @media ${device.mobileL()} {
     margin: 30% 0;
   }
 `;

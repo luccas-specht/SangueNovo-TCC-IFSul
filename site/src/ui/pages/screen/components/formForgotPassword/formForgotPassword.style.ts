@@ -4,6 +4,8 @@ import { shade } from 'polished';
 
 import { Link } from 'react-router-dom';
 
+import { device } from '../../../../../constants/style/responsivenessAvailable';
+
 export const Container = styled.div`
   height: 350px;
   width: 450px;
@@ -16,11 +18,26 @@ export const Container = styled.div`
   img {
     margin: 15px 0;
   }
+
+  @media ${device.mobileL()} {
+    width: 350px; 
+    height: 300px;
+    margin-top: 30%;    
+
+    img {
+      margin-top: -30%;    
+    }
+  }
 `;
 
 export const Form = styled.form`
   width: 350px;
   text-align: center;
+
+  @media ${device.mobileL()} {
+    width: 325px;
+    margin-top: 10%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -28,6 +45,11 @@ export const Title = styled.h1`
   font-style: normal;
   line-height: 32px;
   font-weight: 400;
+
+  @media ${device.mobileL()} {
+    margin-top: 5%;
+    font-size: 25px;
+  }
 `;
 
 

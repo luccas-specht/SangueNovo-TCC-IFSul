@@ -18,7 +18,7 @@ export const ForgotPassword = () => (
           <img src={clouds} alt="nuvens"/>
         </SC.LeftImg>
         <SC.AnimationContext>
-          <img src={refreshCard} alt="atualização de senha"/>
+          <SC.AnimationImg src={refreshCard} alt="atualização de senha"/>
           <FormForgotPassword />
         </SC.AnimationContext>
         <SC.RightImg>
