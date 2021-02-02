@@ -14,21 +14,10 @@
 
 const size = {
     mobileL: {
-      max: () => '415px',
-      min: () => '376px'
-    },
-    mobileM: {
-      max: () => '375px',
-      min: () => '321px'
-    },
-    mobileS: {
-      max: () => '320px',
-      min: () => '100px'
-    },
+      max: () => '415px'
+    }
  };
  
 export const device = {
-    mobileL: () => `(max-width: ${size.mobileL.max()})`,
-    mobileM: () => `(max-width: ${size.mobileM.max()})`, 
-    mobileS: () => `(max-width: ${size.mobileS.max()})` 
+    mobileL: () => `(max-width: ${size.mobileL.max()})`
 };

@@ -4,7 +4,18 @@ import { shade } from 'polished';
 
 import { Link } from 'react-router-dom';
 
-const Form = styled.form`
+export const Container = styled.div`
+  height: 500px;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.backgroundSecudary};
+`;
+
+
+export const Form = styled.form`
   width: 424px;
   text-align: center;
   
@@ -13,20 +24,20 @@ const Form = styled.form`
   }
 
   a {
-    color: ${(props) => props.theme.colors.text};
+    color: ${({ theme }) => theme.colors.text};
     display: block;
     margin-top: 24px;
     transition: color 0.3s;
     
     &:hover {
-      color: ${(props) => shade(0.2, props.theme.colors.text)};
+      color: ${({ theme }) => shade(0.2, theme.colors.text)};
     }
   
   }
 `;
 
-const BackToSingIn = styled(Link)`
-  color: ${(props) => props.theme.colors.primary};
+export const BackToSingIn = styled(Link)`
+  color: ${({ theme }) => theme.colors.primary};
   display: block;
   margin-top: 24px;
   transition: color 0.3s;
@@ -34,7 +45,7 @@ const BackToSingIn = styled(Link)`
   align-items: center;
   
   &:hover {
-    color: ${(props) => shade(0.2, props.theme.colors.primary)};
+    color: ${({ theme }) => shade(0.2, theme.colors.primary)};
   }
 
   svg {
@@ -42,14 +53,14 @@ const BackToSingIn = styled(Link)`
   }
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   margin-bottom: 24px;
   font-style: normal;
   line-height: 32px;
   text-align: center;
 `;
 
-const CreateAccount = styled(Link)`
+export const CreateAccount = styled(Link)`
   color: ${(props) => props.theme.colors.primary};
   display: block;
   margin-top: 24px;
@@ -63,10 +74,3 @@ const CreateAccount = styled(Link)`
     margin-right: 16px;
   }
 `;
-
-export { 
-  Form, 
-  Title,
-  CreateAccount, 
-  BackToSingIn
- };

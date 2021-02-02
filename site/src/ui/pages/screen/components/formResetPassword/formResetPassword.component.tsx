@@ -10,7 +10,7 @@ import * as Yup from 'yup'
 import { useRedefinePassword } from '../../../../../hooks'
 
 import { InputPassword, Button } from '../../../../components';
-import { BackToSingIn, Form, Title } from './formResetPassword.style';
+import * as SC from './formResetPassword.style';
 
 import { validationMessage } from '../../../../../constants'
 
@@ -65,33 +65,34 @@ const  FormResetPassword  = () => {
   return (
     <>
       <ToastContainer />
-      <Form onSubmit={formik.handleSubmit}>
-       <Title>Resetar senha</Title> 
-           <InputPassword
-             icon={<FiLock size={20} />}
-             id="password"
-             name="password"
-             placeholder='Senha'
-             error={formik.errors.password}
-             value={formik.values.password}
-             onChange={formik.handleChange}
-          />
+      <SC.Container>
+        <SC.Form onSubmit={formik.handleSubmit}>
+         <SC.Title>Resetar senha</SC.Title> 
+             <InputPassword
+               icon={<FiLock size={20} />}
+               id="password"
+               name="password"
+               placeholder='Senha'
+               error={formik.errors.password}
+               value={formik.values.password}
+               onChange={formik.handleChange}
+            />
 
-          <InputPassword
-             icon={<FiLock size={20} />}
-             id="passwordConfirmation"
-             name="passwordConfirmation"
-             placeholder='Confirmação de senha'
-             error={formik.errors.passwordConfirmation}
-             value={formik.values.passwordConfirmation}
-             onChange={formik.handleChange}
-          />
-
-        <Button type='submit' title='Alterar Senha' />
-        <BackToSingIn to='sign-in'>
-          Cancelar
-        </BackToSingIn>
-      </Form>
+            <InputPassword
+               icon={<FiLock size={20} />}
+               id="passwordConfirmation"
+               name="passwordConfirmation"
+               placeholder='Confirmação de senha'
+               error={formik.errors.passwordConfirmation}
+               value={formik.values.passwordConfirmation}
+               onChange={formik.handleChange}
+            />
+          <Button type='submit' title='Alterar Senha' />
+          <SC.BackToSingIn to='sign-in'>
+            Cancelar
+          </SC.BackToSingIn>
+        </SC.Form>
+      </SC.Container>
     </>
   );
 };
