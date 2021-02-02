@@ -4,10 +4,10 @@ import React, {
   useCallback
 } from 'react';
 
-import { DefaultTheme } from '../styles/styled';
+import { DefaultTheme } from '../ui/styles/styled';
 
-import { dark } from '../styles/themes/dark';
-import { light } from '../styles/themes/light';
+import { dark } from '../ui/styles/themes/dark';
+import { light } from '../ui/styles/themes/light';
 
 interface ThemeContextProps  { 
   children: React.ReactNode
