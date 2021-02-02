@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { FiSun, FaMoon } from 'react-icons/all';
 
+import { device } from '../../../constants/style/responsivenessAvailable';
+
 export const Container = styled.div`
     position: absolute;
     top: 5%;
@@ -12,7 +14,7 @@ export const Container = styled.div`
             cursor: pointer;
         }  
 
-    @media (max-width: 415px) {
+    @media ${device.mobileL()} {
         top: 5%;
         left: 80%;
     }

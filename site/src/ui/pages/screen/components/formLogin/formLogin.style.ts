@@ -39,7 +39,7 @@ export const Title = styled.h1`
   text-align: center;
   font-weight: 400;
 
-  @media (max-width: 415px) {
+  @media ${device.mobileL()} {
     font-size: 25px;
   }
 `;

@@ -37,11 +37,11 @@ export const FormForgotPassword = () => {
 
    const onSendPassword = async ({ email }: FormPassowrdData): Promise<void> => {
      const response = await forgotPassword(email);
-     if(response.status === 401){
-       toast.error(`${response.data.message}`, toastConfig);
-       formik.resetForm();
+     if(response.status === 200){
+       history.push('/dashboard');
      } else {
-      history.push('/dashboard');
+      toast.error(`${response.data.message}`, toastConfig);
+       formik.resetForm();
      }
    }
 
