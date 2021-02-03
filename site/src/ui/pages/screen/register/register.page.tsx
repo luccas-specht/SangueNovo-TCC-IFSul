@@ -1,54 +1,42 @@
 import React, { useState } from 'react';
 
-import { FormRegister } from '../components';
+import { FiArrowLeft } from 'react-icons/fi';
+
+import { FabTheme } from '../../../components';
+import { FormDonorRegister, FormInstitutionRegister } from '../components';
+
+import logo from '../../../assets/images/logo.png';
 
 import * as SC from './register.style';
 
-import { useTheme } from '../../../../hooks';
-
 export const Register = () => {
-  const { theme } = useTheme();
-  
-  const [isDonator, setIsDonator] = useState<boolean>(true);
-  const [isInstitution, setIsInstitution] = useState<boolean>(false);
+  const [tabActive, setTabActive] = useState<boolean>(true);
 
-  const handleChangeTabs = (tabName: 'donator' | 'institution') => {
-    if(tabName === 'donator'){
-      setIsDonator(true);
-      setIsInstitution(false);
-    } else {
-      setIsDonator(false);
-      setIsInstitution(true);
-    }
-  }
-  
-  return(
-    <SC.Container>
-      <SC.Context>
+  return (
+      <SC.Container>
+        <FabTheme/>
+        <SC.Context>
         <SC.AnimationContext>
-        <SC.ContextLogoSideBar>
-        <img 
-          src={theme.logo} 
-          alt='Logo Sangue Novo'
-        />
-          <SC.Tab>
-            <SC.Tabs 
-              isActive={isDonator}
-              onClick={() => handleChangeTabs('donator')}
-            >
-              Sou Doador
-            </SC.Tabs>
-            <SC.Tabs 
-              isActive={isInstitution}
-              onClick={() => handleChangeTabs('institution')}
-            >
-              Sou Instituição
-            </SC.Tabs>
-          </SC.Tab>
-          </SC.ContextLogoSideBar>
-          <FormRegister isDonator={isDonator} />
+          <SC.FormContainer>
+            <img src={logo} alt="logo sangue novo"/>
+            <SC.Title>Faça sua conta</SC.Title>
+            <SC.Ul active={tabActive}>
+              <li onClick={()=> setTabActive(true)}>
+                Sou Doador
+              </li>
+              <li onClick={()=> setTabActive(false)}>
+                Sou Instituição
+              </li>
+            </SC.Ul>
+            {tabActive ? <FormDonorRegister/>
+             : <FormInstitutionRegister/>}
+            <SC.BackToSignIn to='sign-in'>
+               <FiArrowLeft />
+               Voltar para o login
+             </SC.BackToSignIn>
+          </SC.FormContainer>
         </SC.AnimationContext>
-      </SC.Context>
-    </SC.Container>
-  );
+        </SC.Context> 
+      </SC.Container>
+    );
 };

@@ -64,7 +64,7 @@ export const FormLogin = () => {
       <SC.Container> 
         <img src={logo} alt="logo sangue novo"/>
         <SC.Form onSubmit={formik.handleSubmit}>
-         <SC.Title>Faça seu logon</SC.Title>
+         <SC.Title>Faça seu login</SC.Title>
             <InputText
               icon={<FiMail size={20} />}
               id="email"

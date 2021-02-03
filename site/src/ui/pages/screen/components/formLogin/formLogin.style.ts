@@ -16,7 +16,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundSecudary};
 
   img {
-    margin: 30px 0;
+    margin: 25px 0;
   }
 
   @media ${device.mobileL()} {
@@ -24,7 +24,6 @@ export const Container = styled.div`
     width: 350px; 
     height: 350px;
     margin: 50% 0;
-    /* border: 2px solid blue; */
 
     img {
       margin-top: -30%;
