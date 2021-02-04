@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
-import Button from "@material-ui/core/Button";
-
 export const Container = styled.div`
-    
+    /* margin-top: 10px;
+    margin-left: 30px;
+    width: 100%;
+    align-self: center;
+
+    .MuiMobileStepper-root {
+     background: none;
+
+        &:hover {
+            background-color: none;
+        }  
+    } */
 `;
-
-export const ButtonStyle = styled(Button)`
-    height: 24px;
-    width: 23px;
-`;
-
-

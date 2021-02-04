@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import MobileStepper from "@material-ui/core/MobileStepper";
+
+import Button from "@material-ui/core/Button";
 
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/all';
 
@@ -8,20 +10,23 @@ import * as SC from './steps.style';
 
 interface Props {
   steps: number;
-  components: JSX.Element[]
+  onRender(index: number): void;
 }
 
-export const Steps = ({ steps, components }:Props) => {
-  const [activeStep, setActiveStep] = React.useState(1);
-
+export const Steps = ({ steps, onRender }:Props) => {
+  const [activeStep, setActiveStep] = useState<number>(0);
+  console.log('active', activeStep)
+  
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
+    onRender(activeStep);
   };
 
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
+    onRender(activeStep);
   };
-
+  
   return (
       <SC.Container>
         <MobileStepper
@@ -30,16 +35,16 @@ export const Steps = ({ steps, components }:Props) => {
          steps={steps}
          activeStep={activeStep}
          nextButton={
-           <SC.ButtonStyle onClick={handleNext} disabled={activeStep === 1}>
-             Proximo
+           <Button onClick={handleNext} disabled={activeStep === 2}>
+             Próximo
              <IoIosArrowForward />
-           </SC.ButtonStyle>
+           </Button>
          }
          backButton={
-           <SC.ButtonStyle onClick={handleBack} disabled={activeStep === 0}>
+           <Button onClick={handleBack} disabled={activeStep === 1}>
              <IoIosArrowBack />
-             voltar
-           </SC.ButtonStyle>
+             Voltar
+           </Button>
          }
          />
       </SC.Container>

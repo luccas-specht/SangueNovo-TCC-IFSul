@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
@@ -16,10 +16,14 @@ import {
 
 import { validationMessage } from '../../../../../constants';
 
-import { InputText, InputPassword, Button } from '../../../../components';
+import { 
+  InputText, 
+  InputPassword, 
+  Steps,
+  Button
+} from '../../../../components';
 
 import { useRegister } from '../../../../../hooks';
-
 
 import { toastConfig } from '../../../../../configs';
 import { ToastContainer, toast } from 'react-toastify';
@@ -37,6 +41,7 @@ interface FormData {
 }
 
 export const FormDonorRegister = () => {
+  const [renderedStep, setRenderedStep] = useState<number>(1);
   const { registerDonator } = useRegister();
   const { push } = useHistory();
 
@@ -52,18 +57,18 @@ export const FormDonorRegister = () => {
    const validations = Yup.object().shape({
     name: Yup.string()
      .required(validationMessage.requiredName),
+    email: Yup.string()
+     .required(validationMessage.requiredEmail)
+     .email(validationMessage.validEmail),
+    password: Yup.string()
+     .required(validationMessage.requiredPassword)
+     .min(6, validationMessage.min6Char),
     cpf: Yup.string() /*TODO: adicionar validação de cpf e cnpj*/ 
      .required(validationMessage.requiredCPF),
     phone: Yup.string() /*TODO: adicionar validação de cpf telefone*/ 
      .required(validationMessage.requiredCPF),
     birthday: Yup.string() /*TODO: adicionar validação de data aniversãrio*/ 
-     .required(validationMessage.requiredBirthDay),
-    email: Yup.string()
-      .required(validationMessage.requiredEmail)
-      .email(validationMessage.validEmail),
-    password: Yup.string()
-      .required(validationMessage.requiredPassword)
-      .min(6, validationMessage.min6Char)
+     .required(validationMessage.requiredBirthDay)
   });
 
    const onRegister = async ({ 
@@ -92,17 +97,49 @@ export const FormDonorRegister = () => {
      }
    });
 
-  
-  return(
+   console.log('renderedStep', renderedStep)
+  return (
     <>
-        <ToastContainer />
-        <h1>FORME AQUI DOADOR</h1>
-        {/* <SC.Form onSubmit={formik.handleSubmit}>   
-          <SC.BackToSingIn to='sign-in'>
-            <FiArrowLeft />
-            Voltar para o login
-         </SC.BackToSingIn>
-        </SC.Form> */}
+      <ToastContainer />
+      <SC.Form onSubmit={formik.handleSubmit}> 
+      {renderedStep === 1 ? (
+      <>
+        <InputText
+        icon={<FiUser size={20}/>}
+        id="name"
+        name="name"
+        placeholder='Nome'
+        value={formik.values.name}
+        error={formik.errors.name}
+        onChange={formik.handleChange}
+      />      
+      <InputText
+        icon={<FiMail size={20}/>}
+        id="email"
+        name="email"
+        placeholder='E-mail'
+        value={formik.values.email}
+        error={formik.errors.email}
+        onChange={formik.handleChange}
+      />    
+      <InputPassword
+        icon={<FiLock size={20}/>}
+        id="password"
+        name="password"
+        placeholder='Senha'
+        error={formik.errors.password}
+        value={formik.values.password}
+        onChange={formik.handleChange}
+      />
+      <Button disabled title='Entrar' />
+      </>
+      ): null}
+        
+        <Steps 
+          steps={2} 
+          onRender={(index) => setRenderedStep(index)}
+        />
+      </SC.Form>
     </>
   );
 };

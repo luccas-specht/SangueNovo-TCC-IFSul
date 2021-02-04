@@ -27,6 +27,7 @@ export const Context = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  align-self: center;
 
   @media ${device.mobileL()} {
     flex-direction: column;
@@ -87,7 +88,7 @@ export const Ul = styled.ul<TabProps>`
   align-items: center;
 
   li {
-    margin-top: 20px;
+    margin-top: 10px;
     font-style: normal;
     font-size: 16px;
     line-height: 32px;
@@ -115,10 +116,11 @@ export const Ul = styled.ul<TabProps>`
 
 export const BackToSignIn = styled(Link)`
     color: ${({ theme }) => theme.colors.text};
-    display: block;
-    margin-top: 24px;
+    display: flex;
     transition: color 0.3s;
     align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
     
     &:hover {
       color: ${({ theme }) => shade(0.2, theme.colors.text)};
