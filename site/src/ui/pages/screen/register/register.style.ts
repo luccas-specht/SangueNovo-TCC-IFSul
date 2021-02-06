@@ -83,12 +83,12 @@ export const Title = styled.h1`
 export const Ul = styled.ul<TabProps>`
   width: 80%;
   height: 40px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
   li {
-    margin-top: 10px;
     font-style: normal;
     font-size: 16px;
     line-height: 32px;

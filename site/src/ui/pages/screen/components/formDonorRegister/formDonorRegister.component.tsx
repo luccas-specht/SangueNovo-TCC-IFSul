@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { 
-    FiArrowLeft,  
     FiMail, 
     FiLock, 
     FiUser, 
     BiIdCard, 
-    BiCalendar
+    BiCalendar,
+    BiPhone
  } from 'react-icons/all';
 
  import * as Yup from 'yup'
@@ -19,7 +19,7 @@ import { validationMessage } from '../../../../../constants';
 import { 
   InputText, 
   InputPassword, 
-  Steps,
+  Stepper,
   Button
 } from '../../../../components';
 
@@ -97,12 +97,14 @@ export const FormDonorRegister = () => {
      }
    });
 
-   console.log('renderedStep', renderedStep)
   return (
     <>
       <ToastContainer />
-      <SC.Form onSubmit={formik.handleSubmit}> 
-      {renderedStep === 1 ? (
+      <SC.Form 
+        // animantion={renderedStep % 2 === 0}
+        onSubmit={formik.handleSubmit}
+      > 
+      {renderedStep === 0 ? (
       <>
         <InputText
         icon={<FiUser size={20}/>}
@@ -127,17 +129,47 @@ export const FormDonorRegister = () => {
         id="password"
         name="password"
         placeholder='Senha'
-        error={formik.errors.password}
         value={formik.values.password}
+        error={formik.errors.password}
         onChange={formik.handleChange}
       />
       <Button disabled title='Entrar' />
       </>
-      ): null}
-        
-        <Steps 
+      ): (
+        <>
+          <InputText
+            icon={<BiPhone size={20}/>}
+            id="phone"
+            name="phone"
+            placeholder='Telefone'
+            value={formik.values.phone}
+            error={formik.errors.phone}
+            onChange={formik.handleChange}
+          />      
+         <InputText
+           icon={<BiIdCard size={20}/>}
+           id="cpf"
+           name="cpf"
+           placeholder='CPF'
+           value={formik.values.cpf}
+           error={formik.errors.cpf}
+           onChange={formik.handleChange}
+         /> 
+         <InputText
+           icon={<BiCalendar size={20}/>}
+           id="birthday"
+           name="birthday"
+           placeholder='Data de nascimento'
+           value={formik.values.birthday}
+           error={formik.errors.birthday}
+           onChange={formik.handleChange}
+         />  
+         <Button title='Entrar' />
+        </>
+      )}
+        <Stepper 
           steps={2} 
-          onRender={(index) => setRenderedStep(index)}
+          onRender={(index: number) => setRenderedStep(index)}
         />
       </SC.Form>
     </>

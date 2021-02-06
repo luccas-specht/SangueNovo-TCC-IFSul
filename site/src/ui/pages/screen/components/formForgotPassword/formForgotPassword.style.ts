@@ -20,7 +20,7 @@ export const Container = styled.div`
   }
 
   @media ${device.mobileL()} {
-    width: 350px; 
+    width: 325px; 
     height: 300px;
     margin-top: 30%;    
 
@@ -35,7 +35,7 @@ export const Form = styled.form`
   text-align: center;
 
   @media ${device.mobileL()} {
-    width: 325px;
+    width: 300px;
     margin-top: 10%;
   }
 `;
@@ -55,11 +55,17 @@ export const Title = styled.h1`
 
 export const BackToSignIn = styled(Link)`
     color: ${({ theme }) => theme.colors.text};
-    display: block;
-    margin-top: 24px;
-    transition: color 0.3s;
+    display: flex;
     align-items: center;
+    align-self: center;
+    flex-direction: column;
+    transition: color 0.3s;
     
+    div {
+      display: flex;
+      margin-top: 15px;
+    }
+
     &:hover {
       color: ${({ theme }) => shade(0.2, theme.colors.text)};
     }

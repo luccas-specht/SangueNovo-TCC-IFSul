@@ -71,8 +71,10 @@ export const FormForgotPassword = () => {
             />    
           <Button type='submit' title='Recuperar' />
           <SC.BackToSignIn to='sign-in'>
+            <div>
              <FiArrowLeft />
              Voltar para o login
+            </div>
            </SC.BackToSignIn>
         </SC.Form>
       </SC.Container> 

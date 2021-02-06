@@ -19,7 +19,7 @@ export const Register = () => {
         <SC.AnimationContext>
           <SC.FormContainer>
             <img src={logo} alt="logo sangue novo"/>
-            <SC.Title>Faça sua conta</SC.Title>
+            <SC.Title> Faça sua conta </SC.Title>
             <SC.Ul active={tabActive}>
               <li onClick={()=> setTabActive(true)}>
                 Sou Doador

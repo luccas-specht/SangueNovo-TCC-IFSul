@@ -21,7 +21,7 @@ export const Container = styled.div<propsConatiner>`
   }
  
   svg {
-    margin-right: 16px;
+    margin-right: 10px;
   }
 `;
 
