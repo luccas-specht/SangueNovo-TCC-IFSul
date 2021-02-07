@@ -41,7 +41,7 @@ interface FormData {
 }
 
 export const FormDonorRegister = () => {
-  const [renderedStep, setRenderedStep] = useState<number>(1);
+  const [renderedStep, setRenderedStep] = useState<number>(0);
   const { registerDonator } = useRegister();
   const { push } = useHistory();
 
@@ -79,7 +79,7 @@ export const FormDonorRegister = () => {
      email, 
      password
     }: FormData): Promise<void> => {
-     const response = await registerDonator(name, cpf, birthday, email, password)
+     const response = await registerDonator(name, cpf, phone, birthday, email, password);
     
      if(response?.status === 200){
        push('/sign-in');

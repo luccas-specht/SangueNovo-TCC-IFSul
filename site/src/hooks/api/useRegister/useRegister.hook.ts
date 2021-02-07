@@ -5,7 +5,8 @@ const axios = useAxiosApiSangueNovo();
 export const useRegister = () => {
     const registerInstitution = async (
         razaoSocial: string, 
-        cnpj: string, 
+        cnpj: string,
+        phone: string, 
         email: string, 
         password: string ) => {
         try {
@@ -23,8 +24,9 @@ export const useRegister = () => {
 
     const registerDonator = async (
         name: string, 
-        cpf: string, 
-        birthday: Date, 
+        cpf: string,
+        phone: string, 
+        birthday: any, 
         email: string, 
         password: string) => {
         try {

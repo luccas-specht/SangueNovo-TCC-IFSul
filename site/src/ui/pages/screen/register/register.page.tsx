@@ -21,10 +21,10 @@ export const Register = () => {
             <img src={logo} alt="logo sangue novo"/>
             <SC.Title> Faça sua conta </SC.Title>
             <SC.Ul active={tabActive}>
-              <li onClick={()=> setTabActive(true)}>
+              <li onClick={() => setTabActive(true)}>
                 Sou Doador
               </li>
-              <li onClick={()=> setTabActive(false)}>
+              <li onClick={() => setTabActive(false)}>
                 Sou Instituição
               </li>
             </SC.Ul>

@@ -1,63 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
 import { 
-    FiArrowLeft,  
     FiMail, 
     FiLock, 
     FiUser, 
     BiIdCard, 
-    BiCalendar
+    BiPhone
  } from 'react-icons/all';
 
- import * as Yup from 'yup'
- import { useFormik } from "formik";
+ import { toastConfig } from '../../../../../configs';
+ import { validationMessage } from '../../../../../constants';
 
-import { validationMessage } from '../../../../../constants';
-
-import { InputText, InputPassword, Button } from '../../../../components';
+import { 
+  InputText, 
+  InputPassword, 
+  Stepper,
+  Button
+} from '../../../../components';
 
 import { useRegister } from '../../../../../hooks';
 
+import * as Yup from 'yup'
+import { useFormik } from "formik";
 
-import { toastConfig } from '../../../../../configs';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import * as SC from './formInstitutionRegister.style';
 
 interface FormData {
-    name: string;
-    cpf: string;
+    razaoSocial: string;
+    cnpj: string;
     phone: string;
-    birthday: any;
     email: string;
     password: string;
 }
 
 export const FormInstitutionRegister = () => {
-  const { registerDonator } = useRegister();
+  const [renderedStep, setRenderedStep] = useState<number>(0);
+  const { registerInstitution } = useRegister();
   const { push } = useHistory();
 
   const initialValues = {
-     name: '',
-     cpf: '',
+     razaoSocial: '',
+     cnpj: '',
      phone: '',
-     birthday: '',
      email: '',
-     password: '',
+     password: ''
    } as FormData;
 
    const validations = Yup.object().shape({
-    name: Yup.string()
+    razaoSocial: Yup.string()
      .required(validationMessage.requiredName),
-    cpf: Yup.string() /*TODO: adicionar validação de cpf e cnpj*/ 
+    cnpj: Yup.string() /*TODO: adicionar validação de cnpj*/ 
      .required(validationMessage.requiredCPF),
-    phone: Yup.string() /*TODO: adicionar validação de cpf telefone*/ 
+    phone: Yup.string() /*TODO: adicionar validação de telefone*/ 
      .required(validationMessage.requiredCPF),
-    birthday: Yup.string() /*TODO: adicionar validação de data aniversãrio*/ 
-     .required(validationMessage.requiredBirthDay),
     email: Yup.string()
       .required(validationMessage.requiredEmail)
       .email(validationMessage.validEmail),
@@ -67,14 +67,13 @@ export const FormInstitutionRegister = () => {
   });
 
    const onRegister = async ({ 
-     name, 
-     cpf, 
+     razaoSocial,
+     cnpj, 
      phone,
-     birthday, 
      email, 
      password
     }: FormData): Promise<void> => {
-     const response = await registerDonator(name, cpf, birthday, email, password)
+     const response = await registerInstitution(razaoSocial, cnpj, phone, email, password);
     
      if(response?.status === 200){
        push('/sign-in');
@@ -95,14 +94,70 @@ export const FormInstitutionRegister = () => {
   
   return(
     <>
-        <ToastContainer />
-        <h1>FORME AQUI instituição</h1>
-        {/* <SC.Form onSubmit={formik.handleSubmit}>   
-          <SC.BackToSingIn to='sign-in'>
-            <FiArrowLeft />
-            Voltar para o login
-         </SC.BackToSingIn>
-        </SC.Form> */}
+    <ToastContainer />
+    <SC.Form 
+      // animantion={renderedStep % 2 === 0}
+      onSubmit={formik.handleSubmit}
+    > 
+    {renderedStep === 0 ? (
+    <>
+      <InputText
+      icon={<FiUser size={20}/>}
+      id="razaoSocial"
+      name="razaoSocial"
+      placeholder='Razão Social'
+      value={formik.values.razaoSocial}
+      error={formik.errors.razaoSocial}
+      onChange={formik.handleChange}
+    />      
+    <InputText
+      icon={<FiMail size={20}/>}
+      id="email"
+      name="email"
+      placeholder='E-mail'
+      value={formik.values.email}
+      error={formik.errors.email}
+      onChange={formik.handleChange}
+    />    
+    <InputPassword
+      icon={<FiLock size={20}/>}
+      id="password"
+      name="password"
+      placeholder='Senha'
+      value={formik.values.password}
+      error={formik.errors.password}
+      onChange={formik.handleChange}
+    />
+    <Button disabled title='Entrar' />
     </>
+    ): (
+      <>
+        <InputText
+          icon={<BiPhone size={20}/>}
+          id="phone"
+          name="phone"
+          placeholder='Telefone'
+          value={formik.values.phone}
+          error={formik.errors.phone}
+          onChange={formik.handleChange}
+        />      
+       <InputText
+         icon={<BiIdCard size={20}/>}
+         id="cnpj"
+         name="cnpj"
+         placeholder='CNPJ'
+         value={formik.values.cnpj}
+         error={formik.errors.cnpj}
+         onChange={formik.handleChange}
+       /> 
+       <Button title='Entrar' />
+      </>
+    )}
+      <Stepper 
+        steps={2} 
+        onRender={(index: number) => setRenderedStep(index)}
+      />
+    </SC.Form>
+  </>
   );
 };
