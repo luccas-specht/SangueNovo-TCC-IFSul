@@ -70,7 +70,7 @@ export const FormForgotPassword = () => {
               onChange={formik.handleChange}
             />    
           <Button type='submit' title='Recuperar' />
-          <SC.BackToSignIn to='sign-in'>
+          <SC.BackToSignIn to='login'>
             <div>
              <FiArrowLeft />
              Voltar para o login

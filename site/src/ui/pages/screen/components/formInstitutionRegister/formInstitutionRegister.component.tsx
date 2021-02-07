@@ -76,7 +76,7 @@ export const FormInstitutionRegister = () => {
      const response = await registerInstitution(razaoSocial, cnpj, phone, email, password);
     
      if(response?.status === 200){
-       push('/sign-in');
+       push('/login');
      } else {
       formik.resetForm();
       toast.error(`${response.data?.message}`, toastConfig);

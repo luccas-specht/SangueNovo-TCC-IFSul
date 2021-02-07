@@ -88,7 +88,7 @@ const  FormResetPassword  = () => {
                onChange={formik.handleChange}
             />
           <Button type='submit' title='Alterar Senha' />
-          <SC.BackToSingIn to='sign-in'>
+          <SC.BackToSingIn to='login'>
             Cancelar
           </SC.BackToSingIn>
         </SC.Form>

@@ -30,7 +30,7 @@ export const Register = () => {
             </SC.Ul>
             {tabActive ? <FormDonorRegister/>
              : <FormInstitutionRegister/>}
-            <SC.BackToSignIn to='sign-in'>
+            <SC.BackToSignIn to='login'>
                <FiArrowLeft />
                Voltar para o login
              </SC.BackToSignIn>

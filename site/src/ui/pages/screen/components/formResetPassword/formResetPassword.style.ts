@@ -57,6 +57,7 @@ export const Title = styled.h1`
   margin-bottom: 24px;
   font-style: normal;
   line-height: 32px;
+  font-size: 25px;
   text-align: center;
 `;
 

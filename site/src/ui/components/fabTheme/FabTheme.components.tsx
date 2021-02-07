@@ -9,10 +9,14 @@ export const FabTheme = () => {
 
     return (
         <SC.Container>
-            {theme.title === 'light' ? 
-            <SC.StyleFaMoon onClick={changeTheme}/> : 
-            <SC.StyleFiSun onClick={changeTheme}/>
-            }
+            {theme.title === 'light' ? (
+            <button onClick={changeTheme}>
+              <SC.StyledFaMoon />
+            </button>
+            ) : (
+            <button onClick={changeTheme}>
+              <SC.StyledFiSun/>
+            </button>)}
         </SC.Container>
     );
 };

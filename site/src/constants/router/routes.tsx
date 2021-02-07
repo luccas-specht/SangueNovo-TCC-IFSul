@@ -1,18 +1,18 @@
 import { 
-    Dashboard, 
-    Login, 
-    Register, 
-    ForgotPassword,
-    ResetPassword
-   } from '../../ui/pages';
+  Dashboard, 
+  Login, 
+  Register, 
+  ForgotPassword,
+  ResetPassword
+} from '../../ui/pages';
 
 const paths = {
   default: () => '/',
-  login: () => '/sign-in',
-  register: () => '/sign-up',
-  forgotPassword: ()=>'/forgot-password',
-  resetPassowrd: ()=> '/reset-password',
-  dashboard: ()=> '/dashboard'
+  login: () => '/login',
+  register: () => '/cadastro',
+  forgotPassword: () => '/esqueci-minha-senha',
+  resetPassowrd: () => '/resetar-senha',
+  dashboard: () => '/dashboard'
 };
 
 const components = {
@@ -25,8 +25,7 @@ const components = {
 
 export const routes = {
   /*publics here*/
- 
-  default: {
+ default: {
     path: paths.default(),
     component: components.login
   },

@@ -45,10 +45,10 @@ export const Title = styled.h1`
   font-style: normal;
   line-height: 32px;
   font-weight: 400;
+  font-size: 25px;
 
   @media ${device.mobileL()} {
     margin-top: 5%;
-    font-size: 25px;
   }
 `;
 

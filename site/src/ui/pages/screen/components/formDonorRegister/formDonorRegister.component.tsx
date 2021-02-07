@@ -19,6 +19,7 @@ import { validationMessage } from '../../../../../constants';
 import { 
   InputText, 
   InputPassword, 
+  InputDatePicker,
   Stepper,
   Button
 } from '../../../../components';
@@ -30,12 +31,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import * as SC from './formDonorRegister.style';
+import { isJSDocNonNullableType } from 'typescript';
 
 interface FormData {
     name: string;
     cpf: string;
     phone: string;
-    birthday: any;
+    birthday: Date | null;
     email: string;
     password: string;
 }
@@ -49,7 +51,7 @@ export const FormDonorRegister = () => {
      name: '',
      cpf: '',
      phone: '',
-     birthday: '',
+     birthday: new Date("2014-08-18T21:11:54"),
      email: '',
      password: '',
    } as FormData;
@@ -82,7 +84,7 @@ export const FormDonorRegister = () => {
      const response = await registerDonator(name, cpf, phone, birthday, email, password);
     
      if(response?.status === 200){
-       push('/sign-in');
+       push('/login');
      } else {
       formik.resetForm();
       toast.error(`${response.data?.message}`, toastConfig);
@@ -106,7 +108,7 @@ export const FormDonorRegister = () => {
       > 
       {renderedStep === 0 ? (
       <>
-        <InputText
+      <InputText
         icon={<FiUser size={20}/>}
         id="name"
         name="name"
@@ -155,15 +157,7 @@ export const FormDonorRegister = () => {
            error={formik.errors.cpf}
            onChange={formik.handleChange}
          /> 
-         <InputText
-           icon={<BiCalendar size={20}/>}
-           id="birthday"
-           name="birthday"
-           placeholder='Data de nascimento'
-           value={formik.values.birthday}
-           error={formik.errors.birthday}
-           onChange={formik.handleChange}
-         />  
+         {/* <InputDatePicker/>   */}
          <Button title='Entrar' />
         </>
       )}

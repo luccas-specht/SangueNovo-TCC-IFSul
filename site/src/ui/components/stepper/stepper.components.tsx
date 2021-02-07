@@ -4,7 +4,7 @@ import React, {
   useCallback
 } from 'react';
 
-import MobileStepper from "@material-ui/core/MobileStepper";
+import MobileStepper from '@material-ui/core/MobileStepper';
 
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/all';
 
@@ -28,7 +28,7 @@ export const Stepper = ({ steps, onRender }: Props) => {
 
   useEffect(() => {
     onRender(activeStep);
-  }, [activeStep]);
+  }, [activeStep, onRender]);
 
   return (
       <SC.Container>

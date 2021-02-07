@@ -74,10 +74,7 @@ export const Title = styled.h1`
   line-height: 32px;
   text-align: center;
   font-weight: 400;
-
-  @media ${device.mobileL()} {
-    font-size: 25px;
-  }
+  font-size: 25px;
 `;
 
 export const Ul = styled.ul<TabProps>`

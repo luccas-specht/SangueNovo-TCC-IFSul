@@ -84,11 +84,11 @@ export const FormLogin = () => {
                onChange={formik.handleChange}
             />
           <Button type='submit' title='Entrar' />
-          <Link to='forgot-password'> 
+          <Link to='esqueci-minha-senha'> 
             Esqueci a minha senha
           </Link>
         </SC.Form>
-        <SC.CreateAccount to='sign-up'>
+        <SC.CreateAccount to= '/cadastro'>
           <FiLogIn />
           Criar conta
         </SC.CreateAccount>

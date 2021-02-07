@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
+
 import * as SC from './inputPassword.style';
 
 interface Props {
@@ -34,10 +36,15 @@ export const InputPassword = ({
       placeholder={placeholder}
       onChange={onChange}
     />
-    {type === 'text' ? 
-      <SC.CloseEye onClick={() => setType('password')}/>
-      : <SC.OpenEye onClick={() => setType('text')}/>
-     }
+    {type === 'text' ? (
+       <button onClick={() => setType('password')}>
+         <MdRemoveRedEye/>
+       </button>
+    ) : (
+      <button onClick={() => setType('text')}>
+        <BsFillEyeSlashFill/>
+      </button>
+    )}
    </SC.Container>
   );
 };
