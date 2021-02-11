@@ -11,7 +11,11 @@ interface TokenPayLoad {
   exp: number;
   sub: string;
 }
-export function ensureAuthenticated(request: Request, response: Response, next: NextFunction): void {
+export function ensureAuthenticated(
+  request: Request, 
+  response: Response, 
+  next: NextFunction
+): void {
 
   const authHeader = request.headers.authorization
 

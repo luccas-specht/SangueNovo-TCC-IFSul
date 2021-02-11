@@ -27,8 +27,9 @@ export async function ensureDataRequest(
             cpf, 
             birthday, 
             email, 
-            password }, { 
-                abortEarly: false
+            password 
+            }, { 
+            abortEarly: false
             })  
       return next();
 

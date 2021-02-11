@@ -1,8 +1,10 @@
-import { Entity, 
-         Column, 
-         OneToOne, 
-         JoinColumn,
-         PrimaryGeneratedColumn } from 'typeorm';
+import { 
+  Entity, 
+  Column, 
+  OneToOne, 
+  JoinColumn,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 
 import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
 

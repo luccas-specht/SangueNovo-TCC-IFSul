@@ -1,6 +1,10 @@
 import * as Yup from 'yup';
 
-import { Request, Response, NextFunction } from 'express';
+import { 
+    Request, 
+    Response, 
+    NextFunction
+} from 'express';
 
 import { MessageInvalidRequest } from '@constants/messageValidationsRequest';
 import { AppError } from '@shared/errors/appError';
@@ -27,5 +31,4 @@ export async function ensureDataRequest(
     } catch (err) {
          throw new AppError(`${err.errors}`);
     }
-
 };

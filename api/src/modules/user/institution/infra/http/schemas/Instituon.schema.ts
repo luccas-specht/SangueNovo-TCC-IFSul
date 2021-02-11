@@ -11,8 +11,7 @@ const schemaCreateInstituion = Yup.object().shape({
     password: Yup.string().min(6, MessageInvalidRequest.min6Char)
               .required(MessageInvalidRequest.required),
     email: Yup.string().email(MessageInvalidRequest.invalidEmail)
-           .required(MessageInvalidRequest.required),
-   
+           .required(MessageInvalidRequest.required)
 })
 
 export async function ensureDataRequest(
