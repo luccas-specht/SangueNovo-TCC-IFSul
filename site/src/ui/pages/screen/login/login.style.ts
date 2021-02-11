@@ -37,6 +37,10 @@ export const WrapperImg = styled.div`
       max-height: 120px; 
     }
 
+    & :last-child {
+      max-height: 140px;
+    }
+
   @media ${device.mobileL()} {
     opacity: 0;
     margin: 0;
@@ -70,7 +74,7 @@ export const AnimationContext = styled.div`
 
 export const ImgRight = styled.img`
   max-width: 200px; 
-  max-height: 230px;
+  max-height: 200px;
   align-self: flex-end;
 
   @media ${device.mobileL()} {

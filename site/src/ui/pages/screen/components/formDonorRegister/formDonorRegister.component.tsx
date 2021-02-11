@@ -6,10 +6,9 @@ import {
     FiMail, 
     FiLock, 
     FiUser, 
-    BiIdCard, 
-    BiCalendar,
-    BiPhone
- } from 'react-icons/all';
+    BiIdCard,
+    BiPhone 
+} from 'react-icons/all';
 
  import * as Yup from 'yup'
  import { useFormik } from "formik";
@@ -19,7 +18,6 @@ import { validationMessage } from '../../../../../constants';
 import { 
   InputText, 
   InputPassword, 
-  InputDatePicker,
   Stepper,
   Button
 } from '../../../../components';
@@ -31,7 +29,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import * as SC from './formDonorRegister.style';
-import { isJSDocNonNullableType } from 'typescript';
 
 interface FormData {
     name: string;
@@ -103,41 +100,40 @@ export const FormDonorRegister = () => {
     <>
       <ToastContainer />
       <SC.Form 
-        // animantion={renderedStep % 2 === 0}
         onSubmit={formik.handleSubmit}
       > 
       {renderedStep === 0 ? (
-      <>
-      <InputText
-        icon={<FiUser size={20}/>}
-        id="name"
-        name="name"
-        placeholder='Nome'
-        value={formik.values.name}
-        error={formik.errors.name}
-        onChange={formik.handleChange}
-      />      
-      <InputText
-        icon={<FiMail size={20}/>}
-        id="email"
-        name="email"
-        placeholder='E-mail'
-        value={formik.values.email}
-        error={formik.errors.email}
-        onChange={formik.handleChange}
-      />    
-      <InputPassword
-        icon={<FiLock size={20}/>}
-        id="password"
-        name="password"
-        placeholder='Senha'
-        value={formik.values.password}
-        error={formik.errors.password}
-        onChange={formik.handleChange}
-      />
-      <Button disabled title='Entrar' />
-      </>
-      ): (
+        <>
+          <InputText
+            icon={<FiUser size={20}/>}
+            id="name"
+            name="name"
+            placeholder='Nome'
+            value={formik.values.name}
+            error={formik.errors.name}
+            onChange={formik.handleChange}
+          />      
+          <InputText
+            icon={<FiMail size={20}/>}
+            id="email"
+            name="email"
+            placeholder='E-mail'
+            value={formik.values.email}
+            error={formik.errors.email}
+            onChange={formik.handleChange}
+          />    
+          <InputPassword
+            icon={<FiLock size={20}/>}
+            id="password"
+            name="password"
+            placeholder='Senha'
+            value={formik.values.password}
+            error={formik.errors.password}
+            onChange={formik.handleChange}
+          />
+          <Button disabled title='Entrar' />
+        </>
+        ) : (
         <>
           <InputText
             icon={<BiPhone size={20}/>}
@@ -157,7 +153,6 @@ export const FormDonorRegister = () => {
            error={formik.errors.cpf}
            onChange={formik.handleChange}
          /> 
-         {/* <InputDatePicker/>   */}
          <Button title='Entrar' />
         </>
       )}
