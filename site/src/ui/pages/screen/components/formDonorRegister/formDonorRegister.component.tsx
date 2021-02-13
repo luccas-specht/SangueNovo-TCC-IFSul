@@ -34,7 +34,7 @@ interface FormData {
     name: string;
     cpf: string;
     phone: string;
-    birthday: Date | null;
+    birthday: any;
     email: string;
     password: string;
 }

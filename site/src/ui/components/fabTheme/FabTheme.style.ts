@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { FiSun, FaMoon } from 'react-icons/all';
 
-import { device } from '../../../constants/style/responsivenessAvailable';
+import { device } from '../../../constants/responsivenessAvailable';
 
 export const Container = styled.div`
     position: absolute;

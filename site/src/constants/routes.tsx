@@ -4,7 +4,7 @@ import {
   Register, 
   ForgotPassword,
   ResetPassword
-} from '../../ui/pages';
+} from '../ui/pages';
 
 const paths = {
   default: () => '/',

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import { device } from '../../../../constants/style/responsivenessAvailable';
+import { device } from '../../../../constants/responsivenessAvailable';
 
 export const Container = styled.div`
   height: 100%;

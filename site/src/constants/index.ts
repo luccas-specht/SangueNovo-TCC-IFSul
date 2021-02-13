@@ -1,4 +1,5 @@
-export { routes } from './router/routes';
-export { validationMessage } from './validationMessage/validationMessage';
-export { yupValidation } from './yup/yupValidation';
-export { device } from './style/responsivenessAvailable';
+export { routes } from './routes';
+export { validationMessage } from './validationMessage';
+export { yupValidation } from './yupValidation';
+export { device } from './responsivenessAvailable';
+export { MethodAvaible } from './methodAvaible';

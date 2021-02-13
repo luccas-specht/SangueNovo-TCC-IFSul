@@ -1,18 +1,13 @@
-import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
-
-const axios = useAxiosApiSangueNovo();
+import { useRequest } from '../useRequest/useRequest.hook';
 
 export const useAuth = () => {
-    const authentication = async (email: string, password: string) => {
-        try {
-            const response = await axios.post('/auth', {
-                email: email,
-                password: password
-            })
-            return response.data;
-        } catch (error) {
-            return error.response;
-        }
+    const { post } = useRequest('/auth');
+    
+    const authentication = async (email: string, password: string): Promise<any> => {
+        const { data } = await post('', { email: email, password: password })
+        return data;
     }
-    return { authentication }
+    return { 
+        authentication
+    };   
 };

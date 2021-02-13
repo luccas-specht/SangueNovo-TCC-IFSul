@@ -4,7 +4,7 @@ import { shade } from 'polished';
 
 import { Link } from 'react-router-dom';
 
-import { device } from '../../../../../constants/style/responsivenessAvailable';
+import { device } from '../../../../../constants/responsivenessAvailable';
 
 export const Container = styled.div`
   height: 350px;
