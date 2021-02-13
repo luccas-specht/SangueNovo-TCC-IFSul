@@ -17,6 +17,7 @@ interface Request {
   password: string;
   cpf: string, 
   birthday: Date,
+  phone: string;
 }
 
 @injectable()
@@ -32,8 +33,7 @@ export class CreateDonatorService {
     private institutionRepository: IInstitutionRepository,
     ) {} 
   
-  public async execute({ name, cpf, birthday, email, password }: Request): Promise<void> {
-    console.log('data:', name, cpf, birthday, email, password)
+  public async execute({ name, cpf, birthday, email, password, phone }: Request): Promise<void> {
     const emailUsed = await this.userRepository.findByEmail(email)
     
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
@@ -48,7 +48,7 @@ export class CreateDonatorService {
     
     const hasedPassword = await hash(password, 8)
 
-    const user = await this.userRepository.create(email, hasedPassword, true);
+    const user = await this.userRepository.create(email, hasedPassword, phone, true)
 
     const donator = {
       name,
@@ -56,7 +56,7 @@ export class CreateDonatorService {
       birthday,
       tb_user_fk: user
     } as AppDonator
-
-    const a = await this.donatorRepository.save(donator)
+    
+    await this.donatorRepository.save(donator)
   } 
 }

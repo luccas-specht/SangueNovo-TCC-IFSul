@@ -15,6 +15,7 @@ interface RequestCreateInstitutionService {
   email: string;
   password: string;
   cnpj: string, 
+  phone: string
 }
 
 @injectable()
@@ -30,7 +31,7 @@ export class CreateInstitutionService {
     private donatorRepository: IDonatorRepository,
     ) {} 
   
-  public async execute({ razaoSocial, cnpj, email, password }: RequestCreateInstitutionService): Promise<void> {
+  public async execute({ razaoSocial, cnpj, email, phone, password }: RequestCreateInstitutionService): Promise<void> {
     const emailUsed = await this.userRepository.findByEmail(email)
 
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
@@ -45,7 +46,7 @@ export class CreateInstitutionService {
 
     const hasedPassword = await hash(password, 8)
 
-    const user = await this.userRepository.create(email, hasedPassword, true);
+    const user = await this.userRepository.create(email, hasedPassword, phone, true);
 
     const institution = {
       razao_social: razaoSocial,

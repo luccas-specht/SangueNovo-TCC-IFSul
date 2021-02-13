@@ -11,8 +11,8 @@ export class UserRepository implements IUserRepository {
    this.ormRepository = getRepository(AppUser)
   }
 
-  public async create(email: string, password: string, active: boolean): Promise<AppUser> {
-    const user = this.ormRepository.create({ email, password, active});
+  public async create(email: string, password: string, phone: string, active: boolean): Promise<AppUser> {
+    const user = this.ormRepository.create({ email, password, phone, active });
     return this.ormRepository.save(user);
   }
 

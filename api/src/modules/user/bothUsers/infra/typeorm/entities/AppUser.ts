@@ -27,7 +27,7 @@ export class AppUser {
   avatar: string;
 
   @Column('varchar')
-  telefone: string;
+  phone: string;
 
   @Column('boolean')
   active: boolean;
