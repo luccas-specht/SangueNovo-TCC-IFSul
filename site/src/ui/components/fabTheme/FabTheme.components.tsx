@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTheme } from '../../../hooks';
+import { useTheme } from '../../../hook';
 
 import * as SC from './FabTheme.style';
 

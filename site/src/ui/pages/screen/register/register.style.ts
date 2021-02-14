@@ -4,7 +4,7 @@ import { shade } from 'polished';
 
 import { Link } from 'react-router-dom';
 
-import { device } from '../../../../constants/responsivenessAvailable';
+import { device } from '../../../../constant/responsivenessAvailable';
 
 interface TabProps {
   active: boolean;

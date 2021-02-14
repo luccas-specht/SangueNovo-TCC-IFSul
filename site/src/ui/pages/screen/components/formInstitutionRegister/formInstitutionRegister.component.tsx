@@ -10,8 +10,8 @@ import {
     BiPhone
  } from 'react-icons/all';
 
- import { toastConfig } from '../../../../../configs';
- import { validationMessage } from '../../../../../constants';
+ import { toastConfig } from '../../../../../config';
+ import { validationMessage } from '../../../../../constant';
 
 import { 
   InputText, 
@@ -20,7 +20,7 @@ import {
   Button
 } from '../../../../components';
 
-import { useRegister } from '../../../../../hooks';
+import { useRegister } from '../../../../../hook';
 
 import * as Yup from 'yup'
 import { useFormik } from "formik";

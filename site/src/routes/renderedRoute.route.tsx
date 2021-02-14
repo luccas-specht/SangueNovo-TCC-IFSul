@@ -6,9 +6,9 @@ import { ThemeProvider } from 'styled-components';
 
 import { CreateGlobalStyle } from '../ui/styles';
 
-import { useTheme } from '../hooks'
+import { useTheme } from '../hook'
 
-import { routes } from '../constants';
+import { routes } from '../constant';
 
 import { PublicRoute } from './publicRoute.route';
 import { PrivateRoute } from './privateRoute.route';

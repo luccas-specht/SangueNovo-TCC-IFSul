@@ -13,7 +13,7 @@ import {
  import * as Yup from 'yup'
  import { useFormik } from "formik";
 
-import { validationMessage } from '../../../../../constants';
+import { validationMessage } from '../../../../../constant';
 
 import { 
   InputText, 
@@ -22,9 +22,9 @@ import {
   Button
 } from '../../../../components';
 
-import { useRegister } from '../../../../../hooks';
+import { useRegister } from '../../../../../hook';
 
-import { toastConfig } from '../../../../../configs';
+import { toastConfig } from '../../../../../config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

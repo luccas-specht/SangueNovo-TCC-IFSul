@@ -1,12 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 
-import { methodsAvaibles } from '../../../constants'
+import { methodsAvaibles } from '../../../constant'
 import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
 
 export const useRequest = (path: string) => {
     const { request } = useAxiosApiSangueNovo();
 
-    const buildUrl = (url?: string) => url ? `${path}/${url}` : path
+    const buildUrl = (url?: string) => 
+        url ? `${path}/${url}` : path
 
     const buildHeaders = () => ({
         Authorization: `Bearer ${localStorage.getItem('@token')}`
@@ -19,14 +20,12 @@ export const useRequest = (path: string) => {
             url: buildUrl(url),
             headers: buildHeaders()
         } as AxiosRequestConfig;
-
         try {
           return await request(requestConfig);
         } catch (err) {
             return err.response
         }
     }
-
     return {
       get: async (url?: string, data?: any): Promise<any> =>
           callApi(methodsAvaibles.get(), url, data),

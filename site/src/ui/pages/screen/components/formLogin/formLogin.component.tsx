@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
-import { useAuth } from '../../../../../hooks'
-import { validationMessage } from '../../../../../constants';
+import { useAuth, useAuthenticated } from '../../../../../hook'
+import { validationMessage } from '../../../../../constant';
 
 import logo from '../../../../assets/images/logo.png';
 
@@ -12,7 +12,7 @@ import { InputPassword, InputText, Button } from '../../../../components';
 import * as Yup from 'yup'
 import { useFormik } from "formik";
 
-import { toastConfig } from '../../../../../configs';
+import { toastConfig } from '../../../../../config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,6 +25,7 @@ interface FormLoginData {
 export const FormLogin = () => {
   const { push } = useHistory();
   const { authentication } = useAuth();
+  const { authenticatedUser } = useAuthenticated();
 
   const initialValues = {
      email: '',
@@ -42,10 +43,9 @@ export const FormLogin = () => {
 
    const onLogin = async ({ email, password }: FormLoginData): Promise<void> => {
      const { data, status} = await authentication(email, password);
-     console.log('data', data)
-     console.log('status', status)
      if(status === 200){
        push('/dashboard');
+       authenticatedUser({ data, status})
      } else {
       toast.error(`${data.message}`, toastConfig);
       formik.resetForm();

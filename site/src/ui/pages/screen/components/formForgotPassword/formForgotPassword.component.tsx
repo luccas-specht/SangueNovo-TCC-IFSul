@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiMail, FiArrowLeft } from 'react-icons/fi';
 
-import { useRedefinePassword } from '../../../../../hooks'
-import { validationMessage } from '../../../../../constants';
+import { useRedefinePassword } from '../../../../../hook'
+import { validationMessage } from '../../../../../constant';
 
 import logo from '../../../../assets/images/logo.png';
 
@@ -12,7 +12,7 @@ import { InputText, Button } from '../../../../components';
 import * as Yup from 'yup'
 import { useFormik } from "formik";
 
-import { toastConfig } from '../../../../../configs';
+import { toastConfig } from '../../../../../config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

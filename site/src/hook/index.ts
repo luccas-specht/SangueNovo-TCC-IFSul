@@ -5,3 +5,4 @@ export { useRedefinePassword } from './api/useRedefinePassword/useRedefinePasswo
 
 // Hook de Context
 export { useTheme } from './useTheme/useTheme.hook';
+export { useAuthenticated } from './useAuthenticated/useAuthenticated.hook';

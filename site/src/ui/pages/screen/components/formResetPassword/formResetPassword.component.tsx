@@ -7,14 +7,14 @@ import { FiLock } from 'react-icons/fi';
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 
-import { useRedefinePassword } from '../../../../../hooks'
+import { useRedefinePassword } from '../../../../../hook'
 
 import { InputPassword, Button } from '../../../../components';
 import * as SC from './formResetPassword.style';
 
-import { validationMessage } from '../../../../../constants'
+import { validationMessage } from '../../../../../constant'
 
-import { toastConfig } from '../../../../../configs';
+import { toastConfig } from '../../../../../config';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
