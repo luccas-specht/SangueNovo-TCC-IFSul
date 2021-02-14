@@ -1,24 +1,25 @@
+import { AxiosRequestConfig } from 'axios';
+
+import { methodsAvaibles } from '../../../constants'
 import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
-import { MethodAvaible } from '../../../constants';
 
 export const useRequest = (path: string) => {
     const { request } = useAxiosApiSangueNovo();
 
-    const buildUrl = (url?: string) => (
-        url ? `${path}/${url}` : path
-    );
+    const buildUrl = (url?: string) => url ? `${path}/${url}` : path
 
     const buildHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        Authorization: `Bearer ${localStorage.getItem('@token')}`
     });
+    
+    const callApi = async (method: string, url?: string, data?: any) => {
+        const requestConfig = {
+            data: data,
+            method: method,
+            url: buildUrl(url),
+            headers: buildHeaders()
+        } as AxiosRequestConfig;
 
-    const callApi = async ({ url = '', data = null, ...config }) => {
-        const requestConfig = config;
-        
-        requestConfig.url = buildUrl(url);
-        requestConfig.headers = buildHeaders();
-        requestConfig.data = data;
-        
         try {
           return await request(requestConfig);
         } catch (err) {
@@ -27,19 +28,15 @@ export const useRequest = (path: string) => {
     }
 
     return {
-      get: async (url: string, config = {}): Promise<any>  =>
-          callApi({ method: MethodAvaible.get(), url, ...config }),
-
-      delete: async (url: string, config = {}): Promise<any>  =>
-          callApi({ method: MethodAvaible.delete(), url, ...config }),
-
-      put: async (url: string, data: any, config = {}): Promise<any> => 
-          callApi({ method: MethodAvaible.put(), url, data, ...config }),
-
-      patch: async (url: string, data: any, config = {}): Promise<any>  =>
-          callApi({ method: MethodAvaible.patch(), url, data, ...config }),
-
-      post: async (url: string, data: any, config = {}): Promise<any>  =>
-          callApi({ method: MethodAvaible.post(), url, data, ...config }),      
+      get: async (url?: string, data?: any): Promise<any> =>
+          callApi(methodsAvaibles.get(), url, data),
+      delete: async (url?: string, data?: any): Promise<any> =>
+          callApi(methodsAvaibles.delete(), url, data),
+      put: async (url?: string, data?: any): Promise<any> => 
+          callApi(methodsAvaibles.put(), url, data),
+      patch: async (url?: string, data?: any): Promise<any> =>
+          callApi(methodsAvaibles.patch(), url, data),
+      post: async (url?: string, data?: any): Promise<any> =>
+          callApi(methodsAvaibles.post(), url, data),      
     }
 };

@@ -1,14 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
-export const useAxiosApiSangueNovo = (headers?: object): AxiosInstance => (
+export const useAxiosApiSangueNovo = (): AxiosInstance => (
      axios.create({ 
-          baseURL: process.env.REACT_APP_API_URL_SANGUE_NOVO, 
-          headers
-     })
-);
-
-export const useAxiosApiViaCEP = (): AxiosInstance => (
-     axios.create({ 
-          baseURL: process.env.REACT_APP_API_URL_VIA_CEP
+          baseURL: 'http://localhost:3333'
      })
 );

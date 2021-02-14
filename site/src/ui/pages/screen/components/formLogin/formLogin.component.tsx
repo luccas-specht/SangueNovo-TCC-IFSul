@@ -23,7 +23,7 @@ interface FormLoginData {
 }
 
 export const FormLogin = () => {
-  const history = useHistory();
+  const { push } = useHistory();
   const { authentication } = useAuth();
 
   const initialValues = {
@@ -41,11 +41,13 @@ export const FormLogin = () => {
    });
 
    const onLogin = async ({ email, password }: FormLoginData): Promise<void> => {
-     const response = await authentication(email, password);
-     if(response.status === 200){
-       history.push('/dashboard');
-     }else{
-      toast.error(`${response.data.message}`, toastConfig);
+     const { data, status} = await authentication(email, password);
+     console.log('data', data)
+     console.log('status', status)
+     if(status === 200){
+       push('/dashboard');
+     } else {
+      toast.error(`${data.message}`, toastConfig);
       formik.resetForm();
      }
    }

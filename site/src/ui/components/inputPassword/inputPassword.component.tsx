@@ -37,11 +37,11 @@ export const InputPassword = ({
       onChange={onChange}
     />
     {type === 'text' ? (
-       <button onClick={() => setType('password')}>
+       <button type='button' onClick={() => setType('password')}>
          <MdRemoveRedEye/>
        </button>
     ) : (
-      <button onClick={() => setType('text')}>
+      <button type='button' onClick={() => setType('text')}>
         <BsFillEyeSlashFill/>
       </button>
     )}
