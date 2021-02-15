@@ -1,10 +1,26 @@
-import React from 'react';
+import {  Route, Redirect } from 'react-router-dom';
 
-import { Route, RouteProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
 
-export const PublicRoute = ({ component, path }: RouteProps) => {
+import { useAuthenticated } from '../hooks';
+
+import { paths } from '../constants';
+
+type Props = {
+    exact?: boolean;
+    path: string;
+    component?: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
+}
+
+export const PublicRoute = ({ 
+    component, 
+    path, 
+    exact = true
+}: Props) => {
+    const { user } = useAuthenticated();
     
-    return <Route path={path} component={component} />
-};
+    if([paths.login(), paths.default(), paths.register()].includes(path) && !! user?.token) 
+        return <Redirect to={paths.dashboard()}/>
 
-  
+    return <Route exact={exact} path={path} component={component}/>
+}

@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 
-import * as SC from './inputText.style';
-interface PropsInputText {
+import * as S from './inputText.style';
+
+type PropsInputText = {
     id: string;
     icon: React.ReactNode;
     name: string;
@@ -9,42 +10,28 @@ interface PropsInputText {
     error?: any;
     placeholder: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  }
+}
 
 export const InputText = ({
     id, 
     icon,
-    error, 
     name, 
     value, 
     placeholder, 
     onChange
 }: PropsInputText) => {
-  const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [isFilled, setIsFilled] = useState<boolean>(false);
-
-  const handleInputBlur = useCallback(() => {
-    setIsFocus(false);
-    setIsFilled(!!value);
-  }, [value]);
-
+ 
   return(
-    <SC.Container 
-      isFilled={isFilled} 
-      isFocus={isFocus} 
-      isErrored={!!error}
-     >
+    <S.Container >
        {icon}
-        <SC.Input
-          id={id}
-          type='text'
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          onFocus={() => setIsFocus(true)}
-          onBlur={handleInputBlur}
-        />
-    </SC.Container>
+       <S.Input
+         id={id}
+         type='text'
+         name={name}
+         value={value}
+         placeholder={placeholder}
+         onChange={onChange}
+       />
+    </S.Container>
   );
 };

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
 
-import * as SC from './inputPassword.style';
+import * as S from './inputPassword.style';
 
-interface Props {
+type Props = {
     id: string;
     icon: React.ReactNode;
     name: string;
@@ -18,17 +18,24 @@ export const InputPassword = ({
     id, 
     icon, 
     name, 
-    value, 
-    error, 
+    value,
     placeholder, 
     onChange
 }: Props) => {
   const [type, setType] = useState<'text'|'password'>('password');
-  
+
+  const handleChangeType = useCallback(() => {
+    setType(type === 'text' ? 'password' : 'text');
+  }, [type])
+
+  const renderedIcon = useCallback(() => {
+     return type === 'text' ? <MdRemoveRedEye/> : <BsFillEyeSlashFill/>
+  }, [type])
+      
   return (
-    <SC.Container >
+    <S.Container >
       {icon}
-    <SC.Input
+    <S.Input
       id={id}
       type={type}
       name={name}
@@ -36,15 +43,9 @@ export const InputPassword = ({
       placeholder={placeholder}
       onChange={onChange}
     />
-    {type === 'text' ? (
-       <button type='button' onClick={() => setType('password')}>
-         <MdRemoveRedEye/>
-       </button>
-    ) : (
-      <button type='button' onClick={() => setType('text')}>
-        <BsFillEyeSlashFill/>
-      </button>
-    )}
-   </SC.Container>
+    <button type='button' onClick={handleChangeType}>
+      {renderedIcon()}
+    </button>
+   </S.Container>
   );
 };

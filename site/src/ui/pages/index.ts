@@ -1,5 +1,5 @@
-export { Login } from './screen/login/login.page';
-export { Register } from './screen/register/register.page';
-export { Dashboard } from './screen/dashboard/dashboard.page';
-export { ResetPassword } from './screen/resetPassword/resetPassword.page';
-export { ForgotPassword } from './screen/forgotPassword/forgotPassword.screen';
+export { Dashboard } from './screens/dashboard/dashboard.page';
+export { ForgotPassword } from './screens/forgotPassword/forgotPassword.screen';
+export { Login } from './screens/login/login.page';
+export { Register } from './screens/register/register.page';
+export { ResetPassword } from './screens/resetPassword/resetPassword.page';

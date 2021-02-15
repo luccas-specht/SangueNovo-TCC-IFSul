@@ -1,8 +1,8 @@
 import React from 'react';
 
-import * as SC from './inputDatePicker.style';
+import * as S from './inputDatePicker.style';
 
-interface Props {
+type Props = {
     id: string;
     icon: React.ReactNode;
     name: string;
@@ -17,15 +17,13 @@ export const InputDatePicker = ({
     icon, 
     name, 
     value, 
-    error, 
     placeholder, 
     onChange
 }: Props) => {
-  
   return (
-    <SC.Container >
+    <S.Container >
       {icon}
-    <SC.Input
+    <S.Input
       id={id}
       name={name}
       value={value}
@@ -33,6 +31,6 @@ export const InputDatePicker = ({
       placeholder={placeholder}
       onChange={onChange}
     />
-   </SC.Container>
+   </S.Container>
   );
 };

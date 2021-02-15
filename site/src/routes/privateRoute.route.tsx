@@ -1,11 +1,15 @@
-import React from 'react';
+import { 
+    Route, 
+    Redirect, 
+    RouteProps
+} from 'react-router-dom';
 
-import { Route, Redirect, RouteProps } from 'react-router-dom';
+import { useAuthenticated } from '../hooks';
 
 export const PrivateRoute = ({ component, path }: RouteProps) => {
-    const isToken = localStorage.getItem('@SangueNovo:token');
-      
-    if (!isToken) return <Redirect to="/"/>
+    const { user } = useAuthenticated();
+    
+    if (!user?.token) return <Redirect to="/"/>
     
     return <Route path={path} component={component} />
 };

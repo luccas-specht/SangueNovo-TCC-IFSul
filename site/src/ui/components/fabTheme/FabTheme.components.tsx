@@ -1,22 +1,22 @@
 import React from 'react';
 
-import { useTheme } from '../../../hook';
+import { useTheme } from '../../../hooks';
 
-import * as SC from './FabTheme.style';
+import * as S from './FabTheme.style';
 
 export const FabTheme = () => {
     const { theme, changeTheme } = useTheme();
-
     return (
-        <SC.Container>
+        <S.Container>
             {theme.title === 'light' ? (
-            <button onClick={changeTheme}>
-              <SC.StyledFaMoon />
+            <button type='button' onClick={changeTheme}>
+              <S.StyledFaMoon />
             </button>
             ) : (
-            <button onClick={changeTheme}>
-              <SC.StyledFiSun/>
+            <button 
+              type='button' onClick={changeTheme}>
+              <S.StyledFiSun/>
             </button>)}
-        </SC.Container>
+        </S.Container>
     );
 };

@@ -1,15 +1,9 @@
 import styled from 'styled-components';
 
-interface propsConatiner {
-  isFilled: boolean;
-  isFocus: boolean; 
-  isErrored: boolean;
-}
-
-export const Container = styled.div<propsConatiner>`
-  background-color: ${({theme}) => theme.colors.backgroundPrimary};
+export const Container = styled.div`
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   border-radius: 10px;
-  border: 2px solid ${({theme}) => theme.colors.backgroundPrimary};
+  border: 2px solid ${({ theme }) => theme.colors.backgroundPrimary};
   padding: 16px;
   width: 100%;
   color: ${(props) => props.theme.colors.text};

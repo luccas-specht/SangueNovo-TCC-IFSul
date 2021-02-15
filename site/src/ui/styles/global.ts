@@ -13,7 +13,7 @@ export const CreateGlobalStyle = createGlobalStyle`
     height: 100%;
 
     @media (max-width: 415px) {
-    max-height: 825px;
+        max-height: 825px;
     }
   }
  
@@ -24,12 +24,12 @@ export const CreateGlobalStyle = createGlobalStyle`
  }
 
  body, input, button, li {
-  font: 1rem 'Roboto', sans-serif;
+    font: 1rem 'Roboto', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6, strong, li {
-   font-weight: 600;
-   color: ${({ theme }) => theme.colors.titleColor};
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.titleColor};
   }
 
  button, li {

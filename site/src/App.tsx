@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeProvider } from './context/theme.context';
+import { ThemeProvider } from './contexts';
 
 import { RenderRoute } from './routes';
 
