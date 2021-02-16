@@ -3,10 +3,10 @@ import React, {
   useCallback
 } from 'react';
 
-import DatePicker, { registerLocale } from "react-datepicker";
+import DatePicker, { registerLocale } from 'react-datepicker';
 import pt from 'date-fns/locale/pt-BR';
 
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
 import * as S from './inputDatePicker.style';
 
@@ -25,6 +25,7 @@ export const InputDatePicker = ({
     icon, 
     name, 
     value,
+    placeholder,
     onChange
 }: Props) => {
   const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false);
@@ -45,7 +46,9 @@ export const InputDatePicker = ({
         name={name}
         selected={value}
         onChange={date => onChange(date)}
+        placeholderText={placeholder}
         open={isOpenCalendar}
+        onClickOutside={handleOpenCalendar}
         locale='pt'
         dateFormat='dd/MM/yyyy'
         maxDate={new Date()}

@@ -141,7 +141,7 @@ export const FormDonorRegister = () => {
             icon={<BiCalendar size={20}/>}
             id="birthday"
             name="birthday"
-            placeholder='Data de aniverário'
+            placeholder='Data de aniversário'
             value={formik.values.birthday}
             error={formik.errors.birthday}
             onChange={date => formik.setFieldValue('birthday', date)}
@@ -159,7 +159,7 @@ export const FormDonorRegister = () => {
            icon={<BiIdCard size={20}/>}
            id="cpf"
            name="cpf"
-           placeholder='CPF'
+           placeholder='Cpf'
            value={formik.values.cpf}
            error={formik.errors.cpf}
            onChange={formik.handleChange}
