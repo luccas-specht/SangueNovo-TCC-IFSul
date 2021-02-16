@@ -18,7 +18,7 @@ export const Register = () => {
         <S.Context>
         <S.AnimationContext>
           <S.FormContainer>
-            <img src={logo} alt="logo sangue novo"/>
+            <img src={logo} alt='logo sangue novo'/>
             <S.Title> Faça sua conta </S.Title>
             <S.Ul active={tabActive}>
               <li onClick={() => setTabActive(true)}>
@@ -28,8 +28,10 @@ export const Register = () => {
                 Sou Instituição
               </li>
             </S.Ul>
-            {tabActive ? <FormDonorRegister/>
-             : <FormInstitutionRegister/>}
+            <S.AnimantionForm active={tabActive}>
+              {tabActive ? <FormDonorRegister/>
+               : <FormInstitutionRegister/>}
+             </S.AnimantionForm>
             <S.BackToSignIn to='login'>
                <FiArrowLeft />
                Voltar para o login

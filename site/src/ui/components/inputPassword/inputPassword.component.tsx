@@ -18,10 +18,12 @@ export const InputPassword = ({
     id, 
     icon, 
     name, 
+    error,
     value,
     placeholder, 
     onChange
 }: Props) => {
+  console.log('error password', error)
   const [type, setType] = useState<'text'|'password'>('password');
 
   const handleChangeType = useCallback(() => {

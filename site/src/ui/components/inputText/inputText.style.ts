@@ -1,6 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+type ContainerProps = {
+  isErrored: boolean;
+  isFocused: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.colors.backgroundPrimary};
@@ -18,6 +23,16 @@ export const Container = styled.div`
   svg {
     margin-right: 10px;
   }
+
+  ${({ isErrored }) => isErrored &&
+    css`
+      border-color: #C53030;
+  `}
+
+  ${({ isFocused }) => isFocused &&
+    css`
+      border-color: ${({ theme }) => theme.colors.backgroundPrimary};;
+  `}
 `;
 
 export const Input = styled.input`

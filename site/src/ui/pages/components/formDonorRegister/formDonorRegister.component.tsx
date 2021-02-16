@@ -54,7 +54,7 @@ export const FormDonorRegister = () => {
      birthday: new Date(),
      email: '',
      password: '',
-   } as FormData;
+  } as FormData;
 
    const validations = Yup.object().shape({
     name: Yup.string()
@@ -65,9 +65,9 @@ export const FormDonorRegister = () => {
     password: Yup.string()
      .required(validationMessage.requiredPassword)
      .min(6, validationMessage.min6Char),
-    cpf: Yup.string() /*TODO: adicionar validação de cpf e cnpj*/ 
+    cpf: Yup.string() /*TODO: adicionar validação de cpf */ 
      .required(validationMessage.requiredCPF),
-    phone: Yup.string() /*TODO: adicionar validação de cpf telefone*/ 
+    phone: Yup.string() /*TODO: adicionar validação de telefone*/ 
      .required(validationMessage.requiredCPF),
     birthday: Yup.string() /*TODO: adicionar validação de data aniversãrio*/ 
      .required(validationMessage.requiredBirthDay)

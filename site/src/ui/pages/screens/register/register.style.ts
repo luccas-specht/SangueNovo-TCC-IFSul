@@ -37,7 +37,18 @@ export const Context = styled.div`
 export const appearFromRight = keyframes`
   from{
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-125px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const appearFromLeft = keyframes`
+  from{
+    opacity: 0;
+    transform: translateX(125px);
   }
   to{
     opacity: 1;
@@ -109,6 +120,10 @@ export const Ul = styled.ul<TabProps>`
         }
      `}
   }  
+`;
+
+export const AnimantionForm = styled.div<TabProps>`
+  animation: ${({ active }) => active ? appearFromLeft : appearFromRight} 1s;
 `;
 
 export const BackToSignIn = styled(Link)`

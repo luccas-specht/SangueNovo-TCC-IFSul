@@ -13,6 +13,7 @@ export const dark: DefaultTheme = {
         white: '#FFF',
         colorIconDarkLight: '#FF9000',
         tabColor: '#FFF',
+        errorColor: '#C53030',
         disableColor: '#C6C6C6'
     },
 };

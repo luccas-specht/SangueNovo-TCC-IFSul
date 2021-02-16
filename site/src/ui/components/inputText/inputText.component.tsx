@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { 
+  useState, 
+  useCallback
+} from 'react';
+
+import { TooltipAlertError } from '../index';
 
 import * as S from './inputText.style';
 
@@ -16,22 +21,34 @@ export const InputText = ({
     id, 
     icon,
     name, 
+    error,
     value, 
     placeholder, 
     onChange
 }: PropsInputText) => {
- 
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
+  const showError = useCallback(()=> {
+    return !!error && <TooltipAlertError messageError={error}/>
+  }, [error]);
+
   return(
-    <S.Container >
+    <S.Container 
+      isFocused={isFocused} 
+      isErrored={!!error}
+    >
        {icon}
        <S.Input
-         id={id}
          type='text'
+         id={id}
          name={name}
          value={value}
          placeholder={placeholder}
          onChange={onChange}
+         onFocus={() => setIsFocused(true)}
+         onBlur={() => setIsFocused(false)}
        />
+       {showError()}
     </S.Container>
   );
 };

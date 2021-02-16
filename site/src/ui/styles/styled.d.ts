@@ -13,6 +13,7 @@ declare module 'styled-components' {
             white: string;
             colorIconDarkLight: string;
             tabColor: string;
+            errorColor: string;
             disableColor: string;
         },
     }
