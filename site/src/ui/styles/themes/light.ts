@@ -12,6 +12,7 @@ export const light: DefaultTheme = {
         backgroundSecudary: '#fff',
         white: '#fff',
         colorIconDarkLight: '#666360',
-        tabColor: '#232129'
+        tabColor: '#232129',
+        disableColor: '#DDDDDD'
     },
 };

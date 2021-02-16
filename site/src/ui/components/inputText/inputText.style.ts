@@ -9,6 +9,7 @@ export const Container = styled.div`
   color: ${(props) => props.theme.colors.text};
   display: flex;
   align-items: center;
+  max-height: 56px;
 
   & + div {
     margin-top: 8px;

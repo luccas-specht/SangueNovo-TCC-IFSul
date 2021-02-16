@@ -1,4 +1,6 @@
-import {  Route, Redirect } from 'react-router-dom';
+import { ComponentType } from 'react';
+
+import { Route, Redirect } from 'react-router-dom';
 
 import { RouteComponentProps } from 'react-router';
 
@@ -9,7 +11,7 @@ import { paths } from '../constants';
 type Props = {
     exact?: boolean;
     path: string;
-    component?: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
+    component?: ComponentType<RouteComponentProps<any>> | ComponentType<any>;
 }
 
 export const PublicRoute = ({ 

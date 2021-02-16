@@ -7,14 +7,15 @@ import {
     FiLock, 
     FiUser, 
     BiIdCard,
-    BiPhone 
+    BiPhone,
+    BiCalendar
 } from 'react-icons/all';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
- import * as Yup from 'yup'
- import { useFormik } from "formik";
+import * as Yup from 'yup'
+import { useFormik } from "formik";
 
 import { validationMessage } from '../../../../constants';
 
@@ -25,6 +26,7 @@ import { toastConfig } from '../../../../configs';
 import { 
   InputText, 
   InputPassword, 
+  InputDatePicker,
   Stepper,
   Button
 } from '../../../components';
@@ -35,7 +37,7 @@ type FormData = {
     name: string;
     cpf: string;
     phone: string;
-    birthday: any;
+    birthday: Date;
     email: string;
     password: string;
 }
@@ -49,7 +51,7 @@ export const FormDonorRegister = () => {
      name: '',
      cpf: '',
      phone: '',
-     birthday: new Date("2014-08-18T21:11:54"),
+     birthday: new Date(),
      email: '',
      password: '',
    } as FormData;
@@ -79,8 +81,7 @@ export const FormDonorRegister = () => {
      email, 
      password
     }: FormData): Promise<void> => {
-     const response = await registerDonator(name, cpf, phone, birthday, email, password);
-    
+     const response = await registerDonator(name, cpf, birthday, phone, email, password);
      if(response?.status === 200){
        push('/login');
      } else {
@@ -136,6 +137,15 @@ export const FormDonorRegister = () => {
         </>
         ) : (
         <>
+          <InputDatePicker
+            icon={<BiCalendar size={20}/>}
+            id="birthday"
+            name="birthday"
+            placeholder='Data de aniverário'
+            value={formik.values.birthday}
+            error={formik.errors.birthday}
+            onChange={date => formik.setFieldValue('birthday', date)}
+          />
          <InputText
            icon={<BiPhone size={20}/>}
            id="phone"

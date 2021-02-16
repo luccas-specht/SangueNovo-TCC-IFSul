@@ -6,25 +6,25 @@ export const useRegister = () => {
     const registerInstitution = async (
         razaoSocial: string,
         cnpj: string,
-        phone: string, 
+        phone: string,
         email: string,
         password: string
     ): Promise<any> => {
         const { data } = await post('/institution', {
-              razaoSocial: razaoSocial,
-              cnpj: cnpj,
-              phone: phone,
-              email: email,
-              password: password
-          })
-          return data;
+            razaoSocial: razaoSocial,
+            cnpj: cnpj,
+            phone: phone,
+            email: email,
+            password: password
+        })
+        return data;
     };
 
     const registerDonator = async (
         name: string,
         cpf: string,
-        birthday: any, 
-        phone: string, 
+        birthday: Date,
+        phone: string,
         email: string,
         password: string
     ): Promise<any> => {
@@ -36,11 +36,11 @@ export const useRegister = () => {
             email: email,
             password: password
         })
-         return data;
+        return data;
     };
 
-    return { 
-        registerDonator, 
+    return {
+        registerDonator,
         registerInstitution
     };
 };

@@ -24,11 +24,11 @@ export const Button = styled.button<PropsButton>`
   }
 
   ${props => props.disabled && css` 
-    background-color: #DDDDDD;
     cursor: auto;
-
+    background-color: ${({ theme }) => theme.colors.disableColor};
+    
     &:hover {
-      background-color: #DDDDDD;
+      background-color: ${({ theme }) => theme.colors.disableColor};
     }
   `}
 `;

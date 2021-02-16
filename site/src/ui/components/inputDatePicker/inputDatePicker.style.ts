@@ -9,19 +9,27 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.colors.text};
   display: flex;
   align-items: center;
+  max-height: 56px;
 
-  svg {
-    margin-right: 10px;
+  & + div {
+    margin-top: 8px;
+  }
+ 
+  input {
+    border: none;
+    background: none;
+    color: ${({ theme }) => theme.colors.text};
+    flex: 1;
   }
 `;
 
-export const Input = styled.input`
-  color: ${({ theme }) => theme.colors.text};
-  flex: 1;
-  border: 0;
-  background: transparent;
 
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.text};
-  }
+export const Button = styled.button`
+    border: none;
+    background: none;
+
+    svg {
+      margin-right: 10px;
+      color: ${({ theme }) => theme.colors.text};
+    }
 `;
