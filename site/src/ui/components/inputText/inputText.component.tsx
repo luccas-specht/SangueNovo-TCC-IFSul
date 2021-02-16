@@ -29,7 +29,7 @@ export const InputText = ({
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const showError = useCallback(()=> {
-    return !!error && <TooltipAlertError messageError={error}/>
+    return error && <TooltipAlertError messageError={error}/>
   }, [error]);
 
   return(

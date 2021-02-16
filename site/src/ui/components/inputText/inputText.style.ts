@@ -26,12 +26,12 @@ export const Container = styled.div<ContainerProps>`
 
   ${({ isErrored }) => isErrored &&
     css`
-      border-color: #C53030;
+      border-color: ${({ theme }) => theme.colors.errorColor};
   `}
 
   ${({ isFocused }) => isFocused &&
     css`
-      border-color: ${({ theme }) => theme.colors.backgroundPrimary};;
+      border-color: ${({ theme }) => theme.colors.backgroundPrimary};
   `}
 `;
 

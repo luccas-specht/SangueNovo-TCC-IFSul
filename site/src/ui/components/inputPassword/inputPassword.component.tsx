@@ -1,6 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { 
+  useState, 
+  useCallback
+} from 'react';
 
-import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
+import { TooltipAlertError } from '../index';
 
 import * as S from './inputPassword.style';
 
@@ -23,19 +26,27 @@ export const InputPassword = ({
     placeholder, 
     onChange
 }: Props) => {
-  console.log('error password', error)
+  console.log('errorText', error)
   const [type, setType] = useState<'text'|'password'>('password');
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const handleChangeType = useCallback(() => {
     setType(type === 'text' ? 'password' : 'text');
   }, [type])
 
   const renderedIcon = useCallback(() => {
-     return type === 'text' ? <MdRemoveRedEye/> : <BsFillEyeSlashFill/>
+     return type === 'text' ? <S.CloseEye/> : <S.OpenEye/>
   }, [type])
+
+  const showError = useCallback(()=> {
+    return error && <TooltipAlertError messageError={error}/>
+  }, [error]);
       
   return (
-    <S.Container >
+    <S.Container  
+      isFocused={isFocused} 
+      isErrored={!!error} 
+    >
       {icon}
     <S.Input
       id={id}
@@ -44,10 +55,13 @@ export const InputPassword = ({
       value={value}
       placeholder={placeholder}
       onChange={onChange}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
     />
     <button type='button' onClick={handleChangeType}>
       {renderedIcon()}
     </button>
+    {showError()}
    </S.Container>
   );
 };

@@ -1,6 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
+
+type ContainerProps = {
+  isErrored: boolean;
+  isFocused: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.colors.backgroundPrimary};
@@ -10,11 +17,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   max-height: 56px;
-
-  svg {
-    margin-right: 10px;
-    color: ${({ theme }) => theme.colors.text};
-  }
 
   button {
     border: none;
@@ -26,15 +28,35 @@ export const Container = styled.div`
       cursor: pointer;
     }
   }
+
+  ${({ isErrored }) => isErrored &&
+    css`
+      border-color: ${({ theme }) => theme.colors.errorColor};
+  `}
+
+  ${({ isFocused }) => isFocused &&
+    css`
+      border-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  `}
 `;
 
 export const Input = styled.input`
   color: ${({ theme }) => theme.colors.text};
+  margin-left: 10px;
   flex: 1;
   background: transparent;
   border: 0;
-
   &::placeholder {
     color: ${({ theme }) => theme.colors.text};
   }
+`;
+
+export const CloseEye = styled(MdRemoveRedEye)`
+  margin: 3px 10px 0 0;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const OpenEye = styled(BsFillEyeSlashFill)`
+  margin: 3px 10px 0 0;
+  color: ${({ theme }) => theme.colors.text};
 `;
