@@ -11,7 +11,7 @@ import { paths } from '../constants';
 type Props = {
     exact?: boolean;
     path: string;
-    component?: ComponentType<RouteComponentProps<any>> | ComponentType<any>;
+    component: ComponentType<RouteComponentProps<any>> | ComponentType<any>;
 }
 
 export const PublicRoute = ({ 
@@ -21,7 +21,7 @@ export const PublicRoute = ({
 }: Props) => {
     const { user } = useAuthenticated();
     
-    if([paths.login(), paths.default(), paths.register()].includes(path) && !!user?.token) 
+    if([paths.login(), paths.default(), paths.register()].includes(path) && user?.token) 
         return <Redirect to={paths.dashboard()}/>
 
     return <Route exact={exact} path={path} component={component}/>

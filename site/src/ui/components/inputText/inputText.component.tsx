@@ -26,6 +26,7 @@ export const InputText = ({
     placeholder, 
     onChange
 }: PropsInputText) => {
+  console.log('error', error)
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const showError = useCallback(()=> {

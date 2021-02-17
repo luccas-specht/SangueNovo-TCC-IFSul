@@ -31,6 +31,8 @@ import {
   Button
 } from '../../../components';
 
+import { verifyFormikError } from '../../../utils/verifyFormikError';
+
 import * as S from './formDonorRegister.style';
 
 type FormData = {
@@ -112,7 +114,7 @@ export const FormDonorRegister = () => {
             name="name"
             placeholder='Nome'
             value={formik.values.name}
-            error={formik.errors.name}
+            error={verifyFormikError(formik.touched.name, formik.errors.name)}
             onChange={formik.handleChange}
           />      
           <InputText
@@ -121,7 +123,7 @@ export const FormDonorRegister = () => {
             name="email"
             placeholder='E-mail'
             value={formik.values.email}
-            error={formik.errors.email}
+            error={verifyFormikError(formik.touched.email, formik.errors.email)}
             onChange={formik.handleChange}
           />    
           <InputPassword
@@ -130,7 +132,7 @@ export const FormDonorRegister = () => {
             name="password"
             placeholder='Senha'
             value={formik.values.password}
-            error={formik.errors.password}
+            error={verifyFormikError(formik.touched.password, formik.errors.password)}
             onChange={formik.handleChange}
           />
           <Button disabled title='Entrar' />
@@ -143,7 +145,7 @@ export const FormDonorRegister = () => {
             name="birthday"
             placeholder='Data de aniversário'
             value={formik.values.birthday}
-            error={formik.errors.birthday}
+            error={verifyFormikError(formik.touched.birthday, formik.errors.birthday)}
             onChange={date => formik.setFieldValue('birthday', date)}
           />
          <InputText
@@ -152,7 +154,7 @@ export const FormDonorRegister = () => {
            name="phone"
            placeholder='Telefone'
            value={formik.values.phone}
-           error={formik.errors.phone}
+           error={verifyFormikError(formik.touched.phone, formik.errors.phone)}
            onChange={formik.handleChange}
          />      
          <InputText
@@ -161,7 +163,7 @@ export const FormDonorRegister = () => {
            name="cpf"
            placeholder='Cpf'
            value={formik.values.cpf}
-           error={formik.errors.cpf}
+           error={verifyFormikError(formik.touched.cpf, formik.errors.cpf)}
            onChange={formik.handleChange}
          /> 
          <Button title='Entrar' />

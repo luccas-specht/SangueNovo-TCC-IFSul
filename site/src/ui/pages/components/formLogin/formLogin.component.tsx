@@ -5,8 +5,6 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { useAuth, useAuthenticated } from '../../../../hooks'
 import { validationMessage } from '../../../../constants';
 
-import { InputPassword, InputText, Button } from '../../../components';
-
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 
@@ -15,6 +13,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import logo from '../../../assets/images/logo.png';
+
+import { 
+  InputPassword, 
+  InputText, 
+  Button
+} from '../../../components';
+
+import { verifyFormikError } from '../../../utils/verifyFormikError';
 
 import * as S from './formLogin.style';
 interface FormLoginData {
@@ -73,7 +79,7 @@ export const FormLogin = () => {
             name="email"
             placeholder='E-mail'
             value={formik.values.email}
-            error={formik.errors.email}
+            error={verifyFormikError(formik.touched.email, formik.errors.email)}
             onChange={formik.handleChange}
           />    
            <InputPassword
@@ -82,7 +88,7 @@ export const FormLogin = () => {
              name="password"
              placeholder='Senha'
              value={formik.values.password}
-             error={formik.errors.password}
+             error={verifyFormikError(formik.touched.password, formik.errors.password)}
              onChange={formik.handleChange}
           />
           <Button type='submit' title='Entrar'/>

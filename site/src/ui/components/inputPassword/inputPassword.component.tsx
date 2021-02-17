@@ -26,7 +26,6 @@ export const InputPassword = ({
     placeholder, 
     onChange
 }: Props) => {
-  console.log('errorText', error)
   const [type, setType] = useState<'text'|'password'>('password');
   const [isFocused, setIsFocused] = useState<boolean>(false);
 

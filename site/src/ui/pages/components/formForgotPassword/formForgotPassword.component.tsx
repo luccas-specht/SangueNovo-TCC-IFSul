@@ -16,6 +16,8 @@ import { InputText, Button } from '../../../components';
 
 import { toastConfig } from '../../../../configs';
 
+import { verifyFormikError } from '../../../utils/verifyFormikError';
+
 import logo from '../../../assets/images/logo.png';
 
 import * as SC from './formForgotPassword.style';
@@ -69,7 +71,7 @@ export const FormForgotPassword = () => {
               name="email"
               placeholder='E-mail'
               value={formik.values.email}
-              error={formik.errors.email}
+              error={verifyFormikError(formik.touched.email, formik.errors.email)}
               onChange={formik.handleChange}
             />    
           <Button type='submit' title='Recuperar' />

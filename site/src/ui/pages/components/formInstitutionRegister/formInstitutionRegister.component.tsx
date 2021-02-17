@@ -13,6 +13,8 @@ import {
  import { toastConfig } from '../../../../configs';
  import { validationMessage } from '../../../../constants';
 
+ import { useRegister } from '../../../../hooks'
+
 import { 
   InputText, 
   InputPassword, 
@@ -20,7 +22,7 @@ import {
   Button
 } from '../../../components';
 
-import { useRegister } from '../../../../hooks'
+import { verifyFormikError } from '../../../utils/verifyFormikError';
 
 import * as Yup from 'yup'
 import { useFormik } from "formik";
@@ -96,7 +98,6 @@ export const FormInstitutionRegister = () => {
     <>
     <ToastContainer />
     <SC.Form 
-      // animantion={renderedStep % 2 === 0}
       onSubmit={formik.handleSubmit}
     > 
     {renderedStep === 0 ? (
@@ -107,7 +108,7 @@ export const FormInstitutionRegister = () => {
       name="razaoSocial"
       placeholder='Razão Social'
       value={formik.values.razaoSocial}
-      error={formik.errors.razaoSocial}
+      error={verifyFormikError(formik.touched.razaoSocial, formik.errors.razaoSocial)}
       onChange={formik.handleChange}
     />      
     <InputText
@@ -116,7 +117,7 @@ export const FormInstitutionRegister = () => {
       name="email"
       placeholder='E-mail'
       value={formik.values.email}
-      error={formik.errors.email}
+      error={verifyFormikError(formik.touched.email, formik.errors.email)}
       onChange={formik.handleChange}
     />    
     <InputPassword
@@ -125,7 +126,7 @@ export const FormInstitutionRegister = () => {
       name="password"
       placeholder='Senha'
       value={formik.values.password}
-      error={formik.errors.password}
+      error={verifyFormikError(formik.touched.password, formik.errors.password)}
       onChange={formik.handleChange}
     />
     <Button disabled title='Entrar' />
@@ -138,7 +139,7 @@ export const FormInstitutionRegister = () => {
           name="phone"
           placeholder='Telefone'
           value={formik.values.phone}
-          error={formik.errors.phone}
+          error={verifyFormikError(formik.touched.phone, formik.errors.phone)}
           onChange={formik.handleChange}
         />      
        <InputText
@@ -147,7 +148,7 @@ export const FormInstitutionRegister = () => {
          name="cnpj"
          placeholder='CNPJ'
          value={formik.values.cnpj}
-         error={formik.errors.cnpj}
+         error={verifyFormikError(formik.touched.cnpj, formik.errors.cnpj)}
          onChange={formik.handleChange}
        /> 
        <Button title='Entrar' />
