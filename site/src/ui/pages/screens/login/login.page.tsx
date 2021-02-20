@@ -18,7 +18,7 @@ export const Login = () => (
         <img src={clouds} alt="nuvens"/>
         <img src={navegation} alt="navegacao"/>
       </S.WrapperImg>
-      <S.AnimationContext> 
+      <S.AnimationContext>
         <FormLogin />
         <S.ImgRight src={superHeroWoman} alt="navegacao"/>
       </S.AnimationContext>

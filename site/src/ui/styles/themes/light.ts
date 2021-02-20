@@ -9,10 +9,10 @@ export const light: DefaultTheme = {
         primary1: '#3E3B47',
         secundary: '#FF9000',
         backgroundPrimary: '#F2F2F2',
-        backgroundSecudary: '#fff',
-        white: '#fff',
+        backgroundSecudary: '#FFFFFF',
+        white: '#FFFFFF',
         colorIconDarkLight: '#666360',
-        tabColor: '#232129',
+        tabColor: '#3F51B5',
         errorColor: '#C53030',
         disableColor: '#DDDDDD'
     },

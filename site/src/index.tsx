@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <>
-    <AuthProvider> 
+    <AuthProvider>
       <React.StrictMode>
         <App />
       </React.StrictMode>

@@ -16,7 +16,7 @@ import { InputText, Button } from '../../../components';
 
 import { toastConfig } from '../../../../configs';
 
-import { verifyFormikError } from '../../../utils/verifyFormikError';
+import { verifyFormikError } from '../../../utils';
 
 import logo from '../../../assets/images/logo.png';
 
@@ -61,7 +61,7 @@ export const FormForgotPassword = () => {
   return(
     <>
       <ToastContainer />
-      <SC.Container> 
+      <SC.Container>
         <img src={logo} alt="logo sangue novo"/>
         <SC.Form onSubmit={formik.handleSubmit}>
          <SC.Title>Recuperar senha</SC.Title>
@@ -73,7 +73,7 @@ export const FormForgotPassword = () => {
               value={formik.values.email}
               error={verifyFormikError(formik.touched.email, formik.errors.email)}
               onChange={formik.handleChange}
-            />    
+            />
           <Button type='submit' title='Recuperar' />
           <SC.BackToSignIn to='login'>
             <div>
@@ -82,7 +82,7 @@ export const FormForgotPassword = () => {
             </div>
            </SC.BackToSignIn>
         </SC.Form>
-      </SC.Container> 
+      </SC.Container>
     </>
   );
 };

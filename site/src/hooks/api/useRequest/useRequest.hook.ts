@@ -28,15 +28,15 @@ export const useRequest = (path: string) => {
         }
     }
     return {
-        get: async (url?: string, data?: any): Promise<any> =>
+        get: async (url?: string, data?: any) =>
             callApi(methodsAvaibles.get(), url, data),
-        delete: async (url?: string, data?: any): Promise<any> =>
+        delete: async (url?: string, data?: any) =>
             callApi(methodsAvaibles.delete(), url, data),
-        put: async (url?: string, data?: any): Promise<any> =>
+        put: async (url?: string, data?: any) =>
             callApi(methodsAvaibles.put(), url, data),
-        patch: async (url?: string, data?: any): Promise<any> =>
+        patch: async (url?: string, data?: any) =>
             callApi(methodsAvaibles.patch(), url, data),
-        post: async (url?: string, data?: any): Promise<any> =>
+        post: async (url?: string, data?: any) =>
             callApi(methodsAvaibles.post(), url, data),
     }
 };

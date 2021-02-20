@@ -19,7 +19,7 @@ export const Container = styled.div<ContainerProps>`
   & + div {
     margin-top: 8px;
   }
- 
+
   svg {
     margin-right: 10px;
   }

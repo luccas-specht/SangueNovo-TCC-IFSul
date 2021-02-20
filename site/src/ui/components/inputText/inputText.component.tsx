@@ -1,5 +1,5 @@
-import React, { 
-  useState, 
+import React, {
+  useState,
   useCallback
 } from 'react';
 
@@ -18,24 +18,23 @@ type PropsInputText = {
 }
 
 export const InputText = ({
-    id, 
+    id,
     icon,
-    name, 
+    name,
     error,
-    value, 
-    placeholder, 
+    value,
+    placeholder,
     onChange
 }: PropsInputText) => {
-  console.log('error', error)
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const showError = useCallback(()=> {
-    return error && <TooltipAlertError messageError={error}/>
+    return !!error && <TooltipAlertError messageError={error}/>
   }, [error]);
 
   return(
-    <S.Container 
-      isFocused={isFocused} 
+    <S.Container
+      isFocused={isFocused}
       isErrored={!!error}
     >
        {icon}

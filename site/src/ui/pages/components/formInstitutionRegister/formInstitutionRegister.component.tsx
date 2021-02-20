@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-import { 
-    FiMail, 
-    FiLock, 
-    FiUser, 
-    BiIdCard, 
+import {
+    FiMail,
+    FiLock,
+    FiUser,
+    BiIdCard,
     BiPhone
  } from 'react-icons/all';
 
@@ -15,14 +15,14 @@ import {
 
  import { useRegister } from '../../../../hooks'
 
-import { 
-  InputText, 
-  InputPassword, 
+import {
+  InputText,
+  InputPassword,
   Stepper,
   Button
 } from '../../../components';
 
-import { verifyFormikError } from '../../../utils/verifyFormikError';
+import { verifyFormikError } from '../../../utils';
 
 import * as Yup from 'yup'
 import { useFormik } from "formik";
@@ -56,10 +56,10 @@ export const FormInstitutionRegister = () => {
    const validations = Yup.object().shape({
     razaoSocial: Yup.string()
      .required(validationMessage.requiredName),
-    cnpj: Yup.string() /*TODO: adicionar validação de cnpj*/ 
+    cnpj: Yup.string() /*TODO: adicionar validação de cnpj*/
      .required(validationMessage.requiredCPF),
-    phone: Yup.string() /*TODO: adicionar validação de telefone*/ 
-     .required(validationMessage.requiredCPF),
+    phone: Yup.string() /*TODO: adicionar validação de telefone*/
+     .required(validationMessage.requiredPhone),
     email: Yup.string()
       .required(validationMessage.requiredEmail)
       .email(validationMessage.validEmail),
@@ -68,15 +68,15 @@ export const FormInstitutionRegister = () => {
       .min(6, validationMessage.min6Char)
   });
 
-   const onRegister = async ({ 
+   const onRegister = async ({
      razaoSocial,
-     cnpj, 
+     cnpj,
      phone,
-     email, 
+     email,
      password
     }: FormData): Promise<void> => {
      const response = await registerInstitution(razaoSocial, cnpj, phone, email, password);
-    
+
      if(response?.status === 200){
        push('/login');
      } else {
@@ -93,13 +93,13 @@ export const FormInstitutionRegister = () => {
      }
    });
 
-  
+
   return(
     <>
     <ToastContainer />
-    <SC.Form 
+    <SC.Form
       onSubmit={formik.handleSubmit}
-    > 
+    >
     {renderedStep === 0 ? (
     <>
       <InputText
@@ -110,7 +110,7 @@ export const FormInstitutionRegister = () => {
       value={formik.values.razaoSocial}
       error={verifyFormikError(formik.touched.razaoSocial, formik.errors.razaoSocial)}
       onChange={formik.handleChange}
-    />      
+    />
     <InputText
       icon={<FiMail size={20}/>}
       id="email"
@@ -119,7 +119,7 @@ export const FormInstitutionRegister = () => {
       value={formik.values.email}
       error={verifyFormikError(formik.touched.email, formik.errors.email)}
       onChange={formik.handleChange}
-    />    
+    />
     <InputPassword
       icon={<FiLock size={20}/>}
       id="password"
@@ -141,7 +141,7 @@ export const FormInstitutionRegister = () => {
           value={formik.values.phone}
           error={verifyFormikError(formik.touched.phone, formik.errors.phone)}
           onChange={formik.handleChange}
-        />      
+        />
        <InputText
          icon={<BiIdCard size={20}/>}
          id="cnpj"
@@ -150,12 +150,12 @@ export const FormInstitutionRegister = () => {
          value={formik.values.cnpj}
          error={verifyFormikError(formik.touched.cnpj, formik.errors.cnpj)}
          onChange={formik.handleChange}
-       /> 
+       />
        <Button title='Entrar' />
       </>
     )}
-      <Stepper 
-        steps={2} 
+      <Stepper
+        steps={2}
         onRender={(index: number) => setRenderedStep(index)}
       />
     </SC.Form>

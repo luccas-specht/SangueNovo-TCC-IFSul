@@ -1,6 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+type ContainerProps = {
+  isErrored: boolean;
+  isFocused: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.colors.backgroundPrimary};
@@ -14,15 +19,24 @@ export const Container = styled.div`
   & + div {
     margin-top: 8px;
   }
- 
+
   input {
     border: none;
     background: none;
     color: ${({ theme }) => theme.colors.text};
     flex: 1;
   }
-`;
 
+  ${({ isErrored }) => isErrored &&
+    css`
+      border-color: ${({ theme }) => theme.colors.errorColor};
+  `}
+
+  ${({ isFocused }) => isFocused &&
+    css`
+      border-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  `}
+`;
 
 export const Button = styled.button`
     border: none;
@@ -32,4 +46,8 @@ export const Button = styled.button`
       margin-right: 10px;
       color: ${({ theme }) => theme.colors.text};
     }
+`;
+
+export const Content = styled.div`
+    margin-left: 53px;
 `;

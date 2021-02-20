@@ -1,5 +1,5 @@
-import React, { 
-   createContext, 
+import React, {
+   createContext,
    useState
 } from 'react';
 
@@ -8,27 +8,27 @@ type AuthUser = {
     token: string;
 }
 
-type AuthProvider = { 
+type AuthProviderData = {
     children: React.ReactNode
 }
 
-type AuthContext = {
+type AuthContextData = {
     user: AuthUser;
     signOut(): void;
     authenticatedUser(prop: AuthUser): void;
 }
 
-export const AuthContext = createContext<AuthContext>({} as AuthContext);
+export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider = ({ children }: AuthProvider) => {
+export const AuthProvider = ({ children }: AuthProviderData) => {
     const [authUser, setAuthUser] = useState<AuthUser>(() => {
         const token = localStorage.getItem('@access_token');
         const user = localStorage.getItem('@access_user');
- 
-        if(token && user) return { 
+
+        if(token && user) return {
             token, user: JSON.parse(user)
         };
-        
+
         return {} as AuthUser;
      });
 
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: AuthProvider) => {
 
     return(
         <AuthContext.Provider
-         value={{ 
+         value={{
              user: authUser,
              signOut,
              authenticatedUser

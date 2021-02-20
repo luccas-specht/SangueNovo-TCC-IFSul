@@ -14,13 +14,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import logo from '../../../assets/images/logo.png';
 
-import { 
-  InputPassword, 
-  InputText, 
+import {
+  InputPassword,
+  InputText,
   Button
 } from '../../../components';
 
-import { verifyFormikError } from '../../../utils/verifyFormikError';
+import { verifyFormikError } from '../../../utils';
 
 import * as S from './formLogin.style';
 interface FormLoginData {
@@ -40,10 +40,10 @@ export const FormLogin = () => {
 
    const validations = Yup.object().shape({
      email: Yup.string()
-     .email(validationMessage.validEmail) 
+     .email(validationMessage.validEmail)
      .required(validationMessage.requiredEmail),
      password: Yup.string()
-     .min(6, validationMessage.min6Char)  
+     .min(6, validationMessage.min6Char)
      .required(validationMessage.requiredPassword)
    });
 
@@ -69,7 +69,7 @@ export const FormLogin = () => {
   return (
     <>
       <ToastContainer />
-      <S.Container> 
+      <S.Container>
         <img src={logo} alt="logo sangue novo"/>
         <S.Form onSubmit={formik.handleSubmit}>
          <S.Title>Faça seu login</S.Title>
@@ -81,7 +81,7 @@ export const FormLogin = () => {
             value={formik.values.email}
             error={verifyFormikError(formik.touched.email, formik.errors.email)}
             onChange={formik.handleChange}
-          />    
+          />
            <InputPassword
              icon={<FiLock size={20} />}
              id="password"
@@ -93,7 +93,7 @@ export const FormLogin = () => {
           />
           <Button type='submit' title='Entrar'/>
           <Link to='esqueci-minha-senha'>
-            Esqueci a minha senha 
+            Esqueci a minha senha
           </Link>
         </S.Form>
 

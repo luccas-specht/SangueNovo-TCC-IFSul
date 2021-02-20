@@ -19,7 +19,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-type FormResetPassword = {
+type FormResetPasswordData = {
   password: string;
   passwordConfirmation: string;
 }
@@ -32,24 +32,24 @@ export const FormResetPassword  = () => {
 
   const initialValues = {
     password: ''
-  } as FormResetPassword
-  
+  } as FormResetPasswordData
+
   const validations =Yup.object({
     password: Yup.string().min(6, validationMessage.min6Char)
     .required(validationMessage.requiredPassword),
     passwordConfirmation: Yup.string()
-       .oneOf([Yup.ref('password'), undefined], 
+       .oneOf([Yup.ref('password'), undefined],
     validationMessage.requiredPasswordsMustMatch)
   });
 
-  const onReset = async ({ password, passwordConfirmation }: FormResetPassword): Promise<void> => {
+  const onReset = async ({ password, passwordConfirmation }: FormResetPasswordData): Promise<void> => {
     const token = location.search.replace('?token=', '');
 
     if(!token){
       toast.error(messageFedback, toastConfig);
       formik.resetForm();
     }
-    
+
     await resetPassword(password, token);
     history.push('/login');
   }
@@ -57,17 +57,17 @@ export const FormResetPassword  = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validations,
-    onSubmit: (data: FormResetPassword) => {
+    onSubmit: (data: FormResetPasswordData) => {
       onReset(data)
     }
   });
- 
+
   return (
     <>
       <ToastContainer />
       <SC.Container>
         <SC.Form onSubmit={formik.handleSubmit}>
-         <SC.Title>Resetar senha</SC.Title> 
+         <SC.Title>Resetar senha</SC.Title>
              <InputPassword
                icon={<FiLock size={20} />}
                id="password"

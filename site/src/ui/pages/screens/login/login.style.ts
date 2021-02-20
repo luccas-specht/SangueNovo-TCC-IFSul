@@ -7,10 +7,10 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  
+
  @media ${device.mobileL()} {
     flex-direction: column;
-    width: 375px; 
+    width: 375px;
   }
 `;
 
@@ -31,10 +31,11 @@ export const WrapperImg = styled.div`
   height: 80%;
   flex-direction: column;
   justify-content: space-between;
-  
+  visibility: visible;
+
     & :first-child {
-      max-width: 160px; 
-      max-height: 120px; 
+      max-width: 160px;
+      max-height: 120px;
     }
 
     & :last-child {
@@ -46,6 +47,7 @@ export const WrapperImg = styled.div`
     margin: 0;
     height: 0;
     width: 0;
+    visibility: hidden;
   }
 `;
 
@@ -73,7 +75,7 @@ export const AnimationContext = styled.div`
 `;
 
 export const ImgRight = styled.img`
-  max-width: 200px; 
+  max-width: 200px;
   max-height: 200px;
   align-self: flex-end;
 

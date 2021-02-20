@@ -10,9 +10,9 @@ export const dark: DefaultTheme = {
         secundary: '#FF9000',
         backgroundPrimary: '#232129',
         backgroundSecudary: '#312E38',
-        white: '#FFF',
+        white: '#FFFFFF',
         colorIconDarkLight: '#FF9000',
-        tabColor: '#FFF',
+        tabColor: '#3F51B5',
         errorColor: '#C53030',
         disableColor: '#C6C6C6'
     },

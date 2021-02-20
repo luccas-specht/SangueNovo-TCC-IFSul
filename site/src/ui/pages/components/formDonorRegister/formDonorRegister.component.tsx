@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-import { 
-    FiMail, 
-    FiLock, 
-    FiUser, 
+import {
+    FiMail,
+    FiLock,
+    FiUser,
     BiIdCard,
     BiPhone,
     BiCalendar
@@ -23,15 +23,15 @@ import { useRegister } from '../../../../hooks'
 
 import { toastConfig } from '../../../../configs';
 
-import { 
-  InputText, 
-  InputPassword, 
+import {
+  InputText,
+  InputPassword,
   InputDatePicker,
   Stepper,
   Button
 } from '../../../components';
 
-import { verifyFormikError } from '../../../utils/verifyFormikError';
+import { verifyFormikError } from '../../../utils';
 
 import * as S from './formDonorRegister.style';
 
@@ -39,7 +39,7 @@ type FormData = {
     name: string;
     cpf: string;
     phone: string;
-    birthday: Date;
+    birthday: any;
     email: string;
     password: string;
 }
@@ -53,34 +53,35 @@ export const FormDonorRegister = () => {
      name: '',
      cpf: '',
      phone: '',
-     birthday: new Date(),
+     birthday: '',
      email: '',
      password: '',
   } as FormData;
 
-   const validations = Yup.object().shape({
-    name: Yup.string()
-     .required(validationMessage.requiredName),
-    email: Yup.string()
-     .required(validationMessage.requiredEmail)
-     .email(validationMessage.validEmail),
-    password: Yup.string()
-     .required(validationMessage.requiredPassword)
-     .min(6, validationMessage.min6Char),
-    cpf: Yup.string() /*TODO: adicionar validação de cpf */ 
-     .required(validationMessage.requiredCPF),
-    phone: Yup.string() /*TODO: adicionar validação de telefone*/ 
-     .required(validationMessage.requiredCPF),
-    birthday: Yup.string() /*TODO: adicionar validação de data aniversãrio*/ 
-     .required(validationMessage.requiredBirthDay)
+  const validations = Yup.object().shape({
+     name: Yup.string()
+      .min(6, validationMessage.min6Char)
+      .required(validationMessage.requiredName),
+     email: Yup.string()
+      .required(validationMessage.requiredEmail)
+      .email(validationMessage.validEmail),
+     password: Yup.string()
+      .required(validationMessage.requiredPassword)
+      .min(6, validationMessage.min6Char),
+     cpf: Yup.string() /*TODO: adicionar validação de cpf */
+      .required(validationMessage.requiredCPF),
+     phone: Yup.string() /*TODO: adicionar validação de telefone*/
+      .required(validationMessage.requiredPhone),
+     birthday: Yup.mixed() /*TODO: adicionar validação de data aniversãrio*/
+      .required(validationMessage.requiredBirthDay)
   });
 
-   const onRegister = async ({ 
-     name, 
-     cpf, 
+   const onRegister = async ({
+     name,
+     cpf,
      phone,
-     birthday, 
-     email, 
+     birthday,
+     email,
      password
     }: FormData): Promise<void> => {
      const response = await registerDonator(name, cpf, birthday, phone, email, password);
@@ -103,9 +104,9 @@ export const FormDonorRegister = () => {
   return (
     <>
       <ToastContainer />
-      <S.Form 
+      <S.Form
         onSubmit={formik.handleSubmit}
-      > 
+      >
       {renderedStep === 0 ? (
         <>
           <InputText
@@ -116,7 +117,7 @@ export const FormDonorRegister = () => {
             value={formik.values.name}
             error={verifyFormikError(formik.touched.name, formik.errors.name)}
             onChange={formik.handleChange}
-          />      
+          />
           <InputText
             icon={<FiMail size={20}/>}
             id="email"
@@ -125,7 +126,7 @@ export const FormDonorRegister = () => {
             value={formik.values.email}
             error={verifyFormikError(formik.touched.email, formik.errors.email)}
             onChange={formik.handleChange}
-          />    
+          />
           <InputPassword
             icon={<FiLock size={20}/>}
             id="password"
@@ -156,7 +157,7 @@ export const FormDonorRegister = () => {
            value={formik.values.phone}
            error={verifyFormikError(formik.touched.phone, formik.errors.phone)}
            onChange={formik.handleChange}
-         />      
+         />
          <InputText
            icon={<BiIdCard size={20}/>}
            id="cpf"
@@ -165,12 +166,12 @@ export const FormDonorRegister = () => {
            value={formik.values.cpf}
            error={verifyFormikError(formik.touched.cpf, formik.errors.cpf)}
            onChange={formik.handleChange}
-         /> 
+         />
          <Button title='Entrar' />
         </>
       )}
-        <Stepper 
-          steps={2} 
+        <Stepper
+          steps={2}
           onRender={(index: number) => setRenderedStep(index)}
         />
       </S.Form>

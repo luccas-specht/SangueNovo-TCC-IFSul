@@ -15,16 +15,17 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  
+
  @media ${device.mobileL()} {
     flex-direction: column;
-    width: 375px; 
+    width: 375px;
   }
 `;
 
 export const Context = styled.div`
-  width: 100%;
   display: flex;
+  flex: 1;
+  padding-right: 16.5%;
   align-items: center;
   flex-direction: column;
   align-self: center;
@@ -34,7 +35,7 @@ export const Context = styled.div`
   }
 `;
 
-export const appearFromRight = keyframes`
+export const appearFromLeft = keyframes`
   from{
     opacity: 0;
     transform: translateX(-125px);
@@ -45,7 +46,7 @@ export const appearFromRight = keyframes`
   }
 `;
 
-export const appearFromLeft = keyframes`
+export const appearFromRight = keyframes`
   from{
     opacity: 0;
     transform: translateX(125px);
@@ -102,28 +103,28 @@ export const Ul = styled.ul<TabProps>`
     line-height: 32px;
     text-align: center;
     font-weight: 900;
-    
+
 
     ${({ active }) => active ?
     css`
       &:first-child {
-        color: #3F51B5;
+        color: ${({ theme }) => theme.colors.tabColor};
         border-radius: 1px;
-        border-bottom: 2px solid #3F51B5;
+        border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
       }
     `
     : css`
       &:last-child {
-          color: #3F51B5;
+          color: ${({ theme }) => theme.colors.tabColor};
           border-radius: 1px;
-          border-bottom: 2px solid #3F51B5;
+          border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
         }
      `}
-  }  
+  }
 `;
 
 export const AnimantionForm = styled.div<TabProps>`
-  animation: ${({ active }) => active ? appearFromLeft : appearFromRight} 1s;
+  animation: ${({ active }) => active ? appearFromRight : appearFromLeft} 1s;
 `;
 
 export const BackToSignIn = styled(Link)`
@@ -133,7 +134,7 @@ export const BackToSignIn = styled(Link)`
     align-items: center;
     margin-bottom: 20px;
     margin-top: 10px;
-    
+
     &:hover {
       color: ${({ theme }) => shade(0.2, theme.colors.text)};
     }
@@ -141,4 +142,39 @@ export const BackToSignIn = styled(Link)`
     svg {
       margin-right: 5px;
     }
+`;
+
+export const WrapperImg = styled.div`
+  margin-left: 10%;
+  display: flex;
+  height: 85%;
+  padding-top: 50px;
+  align-self: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+  visibility: visible;
+
+    & :first-child {
+      max-width: 160px;
+      max-height: 120px;
+    }
+
+    & :last-child {
+      max-height: 300px;
+      max-width: 320px;
+    }
+`;
+
+export const RigthImg = styled.img`
+  max-width: 200px;
+  max-height: 200px;
+  align-self: flex-end;
+  visibility: visible;
+
+  @media ${device.mobileL()} {
+    opacity: 0;
+    max-width: 0;
+    max-height: 0;
+    visibility: hidden;
+  }
 `;
