@@ -1,7 +1,8 @@
+import { format } from 'date-fns';
 import { useRequest } from '../useRequest/useRequest.hook';
 
 export const useRegister = () => {
-    const { post, errors } = useRequest('');
+    const { post } = useRequest('');
 
     const registerInstitution = async (
         razaoSocial: string,
@@ -10,14 +11,14 @@ export const useRegister = () => {
         email: string,
         password: string
     ): Promise<any> => {
-        const { data } = await post('/institution', {
+        const { data, status } = await post('institution', {
             razaoSocial: razaoSocial,
             cnpj: cnpj,
             phone: phone,
             email: email,
             password: password
         })
-        return data;
+        return { data, status }
     };
 
     const registerDonator = async (
@@ -28,16 +29,15 @@ export const useRegister = () => {
         email: string,
         password: string
     ): Promise<any> => {
-        const response = await post('/donator', {
+        const { data, status } = await post('donator', {
             name: name,
             cpf: cpf,
-            birthday: birthday,
+            birthday: format(birthday, 'MM-dd-yyyy'),
             phone: phone,
             email: email,
             password: password
         })
-        console.log('data do hook:', response)
-        return !!response ? response : errors;
+        return { data, status }
     };
 
     return {

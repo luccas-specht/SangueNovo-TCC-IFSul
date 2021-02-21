@@ -85,14 +85,12 @@ export const FormDonorRegister = () => {
      email,
      password
     }: FormData): Promise<void> => {
-     const response = await registerDonator(name, cpf, birthday, phone, email, password);
-     console.log('data do onRegister', response)
-    //  if(data.status === 200){
-    //    push('/login');
-    //  } else {
-    //   formik.resetForm();
-    //   toast.error(`${data.message}`, toastConfig);
-    //  }
+     const { data, status } = await registerDonator(name, cpf, birthday, phone, email, password);
+     if(status === 200){
+       push('/login');
+     } else {
+      toast.error(`${data.message}`, toastConfig);
+     }
    };
 
    const formik = useFormik({

@@ -48,12 +48,12 @@ export const FormLogin = () => {
    });
 
    const onLogin = async ({ email, password }: FormLoginData): Promise<void> => {
-     const response = await authentication(email, password);
-     if(response.status === 200){
-      authenticatedUser(response.data)
+     const { data, status } = await authentication(email, password);
+     if(status === 200){
+      authenticatedUser(data)
       push('/dashboard');
      } else {
-      toast.error(`${response.data.message}`, toastConfig);
+      toast.error(`${data.message}`, toastConfig);
       formik.resetForm();
      }
    }
