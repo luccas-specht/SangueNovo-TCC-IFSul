@@ -62,14 +62,13 @@ export class AuthenticationService {
      })
 
      const { name, razao_social } = userType
-     const { id, avatar, phone } = user
+     const { id, avatar } = user
     
     return { 
       user: { 
             id, 
             userName: name ?? razao_social,
-            avatar,
-            phone
+            avatar
           }, token 
       }
   }
