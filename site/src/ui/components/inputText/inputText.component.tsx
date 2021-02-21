@@ -12,7 +12,8 @@ type PropsInputText = {
     icon: React.ReactNode;
     name: string;
     value: string;
-    error?: any;
+    error?: string;
+    maxLength?: number;
     placeholder: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -23,6 +24,7 @@ export const InputText = ({
     name,
     error,
     value,
+    maxLength = 50,
     placeholder,
     onChange
 }: PropsInputText) => {
@@ -43,6 +45,7 @@ export const InputText = ({
          id={id}
          name={name}
          value={value}
+         maxLength={maxLength}
          placeholder={placeholder}
          onChange={onChange}
          onFocus={() => setIsFocused(true)}

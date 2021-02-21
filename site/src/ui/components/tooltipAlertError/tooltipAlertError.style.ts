@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Error = styled.div`
+export const Container = styled.div`
    height: 20px;
    color: ${({ theme }) => theme.colors.errorColor};
    cursor: pointer;
@@ -10,7 +10,7 @@ export const Error = styled.div`
     }
 `;
 
-export const Container = styled.div`
+export const Error = styled.div`
    position: relative;
 
      span {

@@ -1,17 +1,33 @@
+import { useState } from 'react';
+
 import { AxiosRequestConfig } from 'axios';
 
 import { methodsAvaibles } from '../../../constants'
 import { useAxiosApiSangueNovo } from '../useAxios/useAxios.hook';
 
 export const useRequest = (path: string) => {
+  const [errors, setErrors] = useState('');
     const { request } = useAxiosApiSangueNovo();
 
     const buildUrl = (url?: string) =>
         url ? `${path}/${url}` : path
 
     const buildHeaders = () => ({
-        Authorization: `Bearer ${localStorage.getItem('@token')}`
-    });
+        Authorization: `Bearer ${localStorage.getItem('@access_token')}`
+    })
+
+    const handleErrors = (e: any) => {
+      if (e.response) {
+        if (e.response.status === 400){
+          setErrors(e.response)
+        } else if (e.response.status === 401) {
+          setErrors(e.response)
+        }
+        return errors
+      } else {
+        throw new Error('generico');
+      }
+    };
 
     const callApi = async (method: string, url?: string, data?: any) => {
         const requestConfig = {
@@ -24,19 +40,22 @@ export const useRequest = (path: string) => {
         try {
             return await request(requestConfig);
         } catch (err) {
-            return err.response
+          handleErrors(err)
         }
     }
     return {
-        get: async (url?: string, data?: any) =>
+        errors,
+        setErrors,
+
+        get: async (url?: string, data?: any): Promise<any> =>
             callApi(methodsAvaibles.get(), url, data),
-        delete: async (url?: string, data?: any) =>
+        delete: async (url?: string, data?: any): Promise<any> =>
             callApi(methodsAvaibles.delete(), url, data),
-        put: async (url?: string, data?: any) =>
+        put: async (url?: string, data?: any): Promise<any> =>
             callApi(methodsAvaibles.put(), url, data),
-        patch: async (url?: string, data?: any) =>
+        patch: async (url?: string, data?: any): Promise<any> =>
             callApi(methodsAvaibles.patch(), url, data),
-        post: async (url?: string, data?: any) =>
+        post: async (url?: string, data?: any): Promise<any> =>
             callApi(methodsAvaibles.post(), url, data),
     }
-};
+}

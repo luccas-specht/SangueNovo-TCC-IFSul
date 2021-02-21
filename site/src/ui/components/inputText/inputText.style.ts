@@ -36,12 +36,12 @@ export const Container = styled.div<ContainerProps>`
 `;
 
 export const Input = styled.input`
-  color: ${(props) => props.theme.colors.text};
+  color: ${({ theme }) => theme.colors.text};
   flex: 1;
   background: transparent;
   border: 0;
 
   &::placeholder {
-    color: ${(props) => props.theme.colors.text};
+    color: ${({ theme }) => theme.colors.text};
   }
 `;

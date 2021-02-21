@@ -11,7 +11,7 @@ import {
  } from 'react-icons/all';
 
  import { toastConfig } from '../../../../configs';
- import { validationMessage } from '../../../../constants';
+ import { validationMessage, masks} from '../../../../constants';
 
  import { useRegister } from '../../../../hooks'
 
@@ -44,6 +44,7 @@ export const FormInstitutionRegister = () => {
   const [renderedStep, setRenderedStep] = useState<number>(0);
   const { registerInstitution } = useRegister();
   const { push } = useHistory();
+  const { cnpjMask, phonePtBrMask } = masks();
 
   const initialValues = {
      razaoSocial: '',
@@ -76,7 +77,7 @@ export const FormInstitutionRegister = () => {
      password
     }: FormData): Promise<void> => {
      const response = await registerInstitution(razaoSocial, cnpj, phone, email, password);
-
+     console.log('response', response)
      if(response?.status === 200){
        push('/login');
      } else {
@@ -138,7 +139,7 @@ export const FormInstitutionRegister = () => {
           id="phone"
           name="phone"
           placeholder='Telefone'
-          value={formik.values.phone}
+          value={phonePtBrMask(formik.values.phone)}
           error={verifyFormikError(formik.touched.phone, formik.errors.phone)}
           onChange={formik.handleChange}
         />
@@ -146,8 +147,9 @@ export const FormInstitutionRegister = () => {
          icon={<BiIdCard size={20}/>}
          id="cnpj"
          name="cnpj"
-         placeholder='CNPJ'
-         value={formik.values.cnpj}
+         placeholder='Cnpj'
+         maxLength={18}
+         value={cnpjMask(formik.values.cnpj)}
          error={verifyFormikError(formik.touched.cnpj, formik.errors.cnpj)}
          onChange={formik.handleChange}
        />

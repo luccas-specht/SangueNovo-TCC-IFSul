@@ -16,7 +16,7 @@ type Props = {
     id: string;
     icon: any;
     name: string;
-    value: Date;
+    value: any;
     error?: any;
     placeholder: string;
     onChange: (e: any) => void

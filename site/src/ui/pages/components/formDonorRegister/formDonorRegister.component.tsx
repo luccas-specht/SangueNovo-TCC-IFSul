@@ -17,7 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import * as Yup from 'yup'
 import { useFormik } from "formik";
 
-import { validationMessage } from '../../../../constants';
+import { validationMessage, masks } from '../../../../constants';
 
 import { useRegister } from '../../../../hooks'
 
@@ -48,6 +48,7 @@ export const FormDonorRegister = () => {
   const [renderedStep, setRenderedStep] = useState<number>(0);
   const { registerDonator } = useRegister();
   const { push } = useHistory();
+  const { cpfMask, phonePtBrMask } = masks();
 
   const initialValues = {
      name: '',
@@ -85,12 +86,13 @@ export const FormDonorRegister = () => {
      password
     }: FormData): Promise<void> => {
      const response = await registerDonator(name, cpf, birthday, phone, email, password);
-     if(response?.status === 200){
-       push('/login');
-     } else {
-      formik.resetForm();
-      toast.error(`${response.data?.message}`, toastConfig);
-     }
+     console.log('data do onRegister', response)
+    //  if(data.status === 200){
+    //    push('/login');
+    //  } else {
+    //   formik.resetForm();
+    //   toast.error(`${data.message}`, toastConfig);
+    //  }
    };
 
    const formik = useFormik({
@@ -100,7 +102,6 @@ export const FormDonorRegister = () => {
       onRegister(values)
      }
    });
-
   return (
     <>
       <ToastContainer />
@@ -154,7 +155,8 @@ export const FormDonorRegister = () => {
            id="phone"
            name="phone"
            placeholder='Telefone'
-           value={formik.values.phone}
+           maxLength={15}
+           value={phonePtBrMask(formik.values.phone)}
            error={verifyFormikError(formik.touched.phone, formik.errors.phone)}
            onChange={formik.handleChange}
          />
@@ -163,7 +165,7 @@ export const FormDonorRegister = () => {
            id="cpf"
            name="cpf"
            placeholder='Cpf'
-           value={formik.values.cpf}
+           value={cpfMask(formik.values.cpf)}
            error={verifyFormikError(formik.touched.cpf, formik.errors.cpf)}
            onChange={formik.handleChange}
          />

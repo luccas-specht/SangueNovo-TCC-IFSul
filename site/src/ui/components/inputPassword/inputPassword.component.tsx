@@ -1,5 +1,5 @@
-import React, { 
-  useState, 
+import React, {
+  useState,
   useCallback
 } from 'react';
 
@@ -12,18 +12,18 @@ type Props = {
     icon: React.ReactNode;
     name: string;
     value: string;
-    error?: any;
+    error?: string;
     placeholder: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputPassword = ({
-    id, 
-    icon, 
-    name, 
+    id,
+    icon,
+    name,
     error,
     value,
-    placeholder, 
+    placeholder,
     onChange
 }: Props) => {
   const [type, setType] = useState<'text'|'password'>('password');
@@ -38,13 +38,13 @@ export const InputPassword = ({
   }, [type])
 
   const showError = useCallback(()=> {
-    return error && <TooltipAlertError messageError={error}/>
+    return !!error && <TooltipAlertError messageError={error}/>
   }, [error]);
-      
+
   return (
-    <S.Container  
-      isFocused={isFocused} 
-      isErrored={!!error} 
+    <S.Container
+      isFocused={isFocused}
+      isErrored={!!error}
     >
       {icon}
     <S.Input

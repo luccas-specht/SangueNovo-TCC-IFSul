@@ -9,10 +9,10 @@ type Props = {
 }
 
 export const TooltipAlertError = ({ messageError }: Props) => (
-    <S.Error>
-        <S.Container>
+    <S.Container>
+        <S.Error>
            <FiAlertCircle size={20}/>
            <span>{messageError}</span>
-        </S.Container>
-    </S.Error>
+        </S.Error>
+    </S.Container>
 );

@@ -1,7 +1,7 @@
 import { useRequest } from '../useRequest/useRequest.hook';
 
 export const useRegister = () => {
-    const { post } = useRequest('/');
+    const { post, errors } = useRequest('');
 
     const registerInstitution = async (
         razaoSocial: string,
@@ -28,7 +28,7 @@ export const useRegister = () => {
         email: string,
         password: string
     ): Promise<any> => {
-        const { data } = await post('/donator', {
+        const response = await post('/donator', {
             name: name,
             cpf: cpf,
             birthday: birthday,
@@ -36,7 +36,8 @@ export const useRegister = () => {
             email: email,
             password: password
         })
-        return data;
+        console.log('data do hook:', response)
+        return !!response ? response : errors;
     };
 
     return {
