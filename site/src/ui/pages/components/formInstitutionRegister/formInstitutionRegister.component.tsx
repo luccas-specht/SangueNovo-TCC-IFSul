@@ -64,19 +64,17 @@ export const FormInstitutionRegister = () => {
     email,
     password,
   }: FormData): Promise<void> => {
-    const response = await registerInstitution(
+    const { data, status } = await registerInstitution(
       razaoSocial,
       cnpj,
       phone,
       email,
       password
     );
-    console.log("response", response);
-    if (response?.status === 200) {
+    if (status === 200) {
       push("/login");
     } else {
-      formik.resetForm();
-      toast.error(`${response.data?.message}`, toastConfig);
+      toast.error(`${data?.message}`, toastConfig);
     }
   };
 
@@ -139,6 +137,7 @@ export const FormInstitutionRegister = () => {
               id="phone"
               name="phone"
               placeholder="Telefone"
+              maxLength={15}
               value={phonePtBrMask(formik.values.phone)}
               error={verifyFormikError(
                 formik.touched.phone,

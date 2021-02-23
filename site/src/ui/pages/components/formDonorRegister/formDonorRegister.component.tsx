@@ -180,6 +180,7 @@ export const FormDonorRegister = () => {
               id="cpf"
               name="cpf"
               placeholder="Cpf"
+              maxLength={14}
               value={cpfMask(formik.values.cpf)}
               error={verifyFormikError(formik.touched.cpf, formik.errors.cpf)}
               onChange={formik.handleChange}
