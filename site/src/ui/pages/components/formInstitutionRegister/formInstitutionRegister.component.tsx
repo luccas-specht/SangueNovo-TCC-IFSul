@@ -1,43 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-import {
-    FiMail,
-    FiLock,
-    FiUser,
-    BiIdCard,
-    BiPhone
- } from 'react-icons/all';
+import { FiMail, FiLock, FiUser, BiIdCard, BiPhone } from "react-icons/all";
 
- import { toastConfig } from '../../../../configs';
- import { validationMessage, masks} from '../../../../constants';
+import { toastConfig } from "../../../../configs";
+import { validationMessage, masks } from "../../../../constants";
 
- import { useRegister } from '../../../../hooks'
+import { useRegister } from "../../../../hooks";
 
-import {
-  InputText,
-  InputPassword,
-  Stepper,
-  Button
-} from '../../../components';
+import { InputText, InputPassword, Stepper, Button } from "../../../components";
 
-import { verifyFormikError } from '../../../utils';
+import { verifyFormikError } from "../../../utils";
 
-import * as Yup from 'yup'
+import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import * as SC from './formInstitutionRegister.style';
+import * as SC from "./formInstitutionRegister.style";
 
 interface FormData {
-    razaoSocial: string;
-    cnpj: string;
-    phone: string;
-    email: string;
-    password: string;
+  razaoSocial: string;
+  cnpj: string;
+  phone: string;
+  email: string;
+  password: string;
 }
 
 export const FormInstitutionRegister = () => {
@@ -47,120 +36,134 @@ export const FormInstitutionRegister = () => {
   const { cnpjMask, phonePtBrMask } = masks();
 
   const initialValues = {
-     razaoSocial: '',
-     cnpj: '',
-     phone: '',
-     email: '',
-     password: ''
-   } as FormData;
+    razaoSocial: "",
+    cnpj: "",
+    phone: "",
+    email: "",
+    password: "",
+  } as FormData;
 
-   const validations = Yup.object().shape({
-    razaoSocial: Yup.string()
-     .required(validationMessage.requiredName),
+  const validations = Yup.object().shape({
+    razaoSocial: Yup.string().required(validationMessage.requiredName),
     cnpj: Yup.string() /*TODO: adicionar validação de cnpj*/
-     .required(validationMessage.requiredCPF),
+      .required(validationMessage.requiredCPF),
     phone: Yup.string() /*TODO: adicionar validação de telefone*/
-     .required(validationMessage.requiredPhone),
+      .required(validationMessage.requiredPhone),
     email: Yup.string()
       .required(validationMessage.requiredEmail)
       .email(validationMessage.validEmail),
     password: Yup.string()
       .required(validationMessage.requiredPassword)
-      .min(6, validationMessage.min6Char)
+      .min(6, validationMessage.min6Char),
   });
 
-   const onRegister = async ({
-     razaoSocial,
-     cnpj,
-     phone,
-     email,
-     password
-    }: FormData): Promise<void> => {
-     const response = await registerInstitution(razaoSocial, cnpj, phone, email, password);
-     console.log('response', response)
-     if(response?.status === 200){
-       push('/login');
-     } else {
+  const onRegister = async ({
+    razaoSocial,
+    cnpj,
+    phone,
+    email,
+    password,
+  }: FormData): Promise<void> => {
+    const response = await registerInstitution(
+      razaoSocial,
+      cnpj,
+      phone,
+      email,
+      password
+    );
+    console.log("response", response);
+    if (response?.status === 200) {
+      push("/login");
+    } else {
       formik.resetForm();
       toast.error(`${response.data?.message}`, toastConfig);
-     }
-   };
+    }
+  };
 
-   const formik = useFormik({
-     initialValues: initialValues,
-     validationSchema: validations,
-     onSubmit: (values: FormData) => {
-      onRegister(values)
-     }
-   });
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: validations,
+    onSubmit: (values: FormData) => {
+      onRegister(values);
+    },
+  });
 
-
-  return(
+  return (
     <>
-    <ToastContainer />
-    <SC.Form
-      onSubmit={formik.handleSubmit}
-    >
-    {renderedStep === 0 ? (
-    <>
-      <InputText
-      icon={<FiUser size={20}/>}
-      id="razaoSocial"
-      name="razaoSocial"
-      placeholder='Razão Social'
-      value={formik.values.razaoSocial}
-      error={verifyFormikError(formik.touched.razaoSocial, formik.errors.razaoSocial)}
-      onChange={formik.handleChange}
-    />
-    <InputText
-      icon={<FiMail size={20}/>}
-      id="email"
-      name="email"
-      placeholder='E-mail'
-      value={formik.values.email}
-      error={verifyFormikError(formik.touched.email, formik.errors.email)}
-      onChange={formik.handleChange}
-    />
-    <InputPassword
-      icon={<FiLock size={20}/>}
-      id="password"
-      name="password"
-      placeholder='Senha'
-      value={formik.values.password}
-      error={verifyFormikError(formik.touched.password, formik.errors.password)}
-      onChange={formik.handleChange}
-    />
-    <Button disabled title='Entrar' />
-    </>
-    ): (
-      <>
-        <InputText
-          icon={<BiPhone size={20}/>}
-          id="phone"
-          name="phone"
-          placeholder='Telefone'
-          value={phonePtBrMask(formik.values.phone)}
-          error={verifyFormikError(formik.touched.phone, formik.errors.phone)}
-          onChange={formik.handleChange}
+      <ToastContainer />
+      <SC.Form onSubmit={formik.handleSubmit}>
+        {renderedStep === 0 ? (
+          <>
+            <InputText
+              icon={<FiUser size={20} />}
+              id="razaoSocial"
+              name="razaoSocial"
+              placeholder="Razão Social"
+              value={formik.values.razaoSocial}
+              error={verifyFormikError(
+                formik.touched.razaoSocial,
+                formik.errors.razaoSocial
+              )}
+              onChange={formik.handleChange}
+            />
+            <InputText
+              icon={<FiMail size={20} />}
+              id="email"
+              name="email"
+              placeholder="E-mail"
+              value={formik.values.email}
+              error={verifyFormikError(
+                formik.touched.email,
+                formik.errors.email
+              )}
+              onChange={formik.handleChange}
+            />
+            <InputPassword
+              icon={<FiLock size={20} />}
+              id="password"
+              name="password"
+              placeholder="Senha"
+              value={formik.values.password}
+              error={verifyFormikError(
+                formik.touched.password,
+                formik.errors.password
+              )}
+              onChange={formik.handleChange}
+            />
+            <Button disabled title="Entrar" />
+          </>
+        ) : (
+          <>
+            <InputText
+              icon={<BiPhone size={20} />}
+              id="phone"
+              name="phone"
+              placeholder="Telefone"
+              value={phonePtBrMask(formik.values.phone)}
+              error={verifyFormikError(
+                formik.touched.phone,
+                formik.errors.phone
+              )}
+              onChange={formik.handleChange}
+            />
+            <InputText
+              icon={<BiIdCard size={20} />}
+              id="cnpj"
+              name="cnpj"
+              placeholder="Cnpj"
+              maxLength={18}
+              value={cnpjMask(formik.values.cnpj)}
+              error={verifyFormikError(formik.touched.cnpj, formik.errors.cnpj)}
+              onChange={formik.handleChange}
+            />
+            <Button title="Entrar" />
+          </>
+        )}
+        <Stepper
+          steps={2}
+          onRender={(index: number) => setRenderedStep(index)}
         />
-       <InputText
-         icon={<BiIdCard size={20}/>}
-         id="cnpj"
-         name="cnpj"
-         placeholder='Cnpj'
-         maxLength={18}
-         value={cnpjMask(formik.values.cnpj)}
-         error={verifyFormikError(formik.touched.cnpj, formik.errors.cnpj)}
-         onChange={formik.handleChange}
-       />
-       <Button title='Entrar' />
-      </>
-    )}
-      <Stepper
-        steps={2}
-        onRender={(index: number) => setRenderedStep(index)}
-      />
-    </SC.Form>
-  </>
+      </SC.Form>
+    </>
   );
 };

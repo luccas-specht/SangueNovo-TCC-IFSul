@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { shade } from 'polished';
+import { shade } from "polished";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   height: 500px;
@@ -14,12 +14,11 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundSecudary};
 `;
 
-
 export const Form = styled.form`
   width: 424px;
   text-align: center;
-  
-  > div{
+
+  > div {
     margin-bottom: 8px;
   }
 
@@ -28,11 +27,10 @@ export const Form = styled.form`
     display: block;
     margin-top: 24px;
     transition: color 0.3s;
-    
+
     &:hover {
       color: ${({ theme }) => shade(0.2, theme.colors.text)};
     }
-  
   }
 `;
 
@@ -43,7 +41,7 @@ export const BackToSingIn = styled(Link)`
   transition: color 0.3s;
   display: flex;
   align-items: center;
-  
+
   &:hover {
     color: ${({ theme }) => shade(0.2, theme.colors.primary)};
   }

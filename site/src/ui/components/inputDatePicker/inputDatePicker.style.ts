@@ -1,9 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 type ContainerProps = {
   isErrored: boolean;
   isFocused: boolean;
-}
+};
 
 export const Container = styled.div<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
@@ -27,27 +27,29 @@ export const Container = styled.div<ContainerProps>`
     flex: 1;
   }
 
-  ${({ isErrored }) => isErrored &&
+  ${({ isErrored }) =>
+    isErrored &&
     css`
       border-color: ${({ theme }) => theme.colors.errorColor};
-  `}
+    `}
 
-  ${({ isFocused }) => isFocused &&
+  ${({ isFocused }) =>
+    isFocused &&
     css`
       border-color: ${({ theme }) => theme.colors.backgroundPrimary};
-  `}
+    `}
 `;
 
 export const Button = styled.button`
-    border: none;
-    background: none;
+  border: none;
+  background: none;
 
-    svg {
-      margin-right: 10px;
-      color: ${({ theme }) => theme.colors.text};
-    }
+  svg {
+    margin-right: 10px;
+    color: ${({ theme }) => theme.colors.text};
+  }
 `;
 
 export const Content = styled.div`
-    margin-left: 53px;
+  margin-left: 53px;
 `;

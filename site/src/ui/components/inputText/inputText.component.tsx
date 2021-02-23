@@ -1,57 +1,51 @@
-import React, {
-  useState,
-  useCallback
-} from 'react';
+import React, { useState, useCallback } from "react";
 
-import { TooltipAlertError } from '../index';
+import { TooltipAlertError } from "../index";
 
-import * as S from './inputText.style';
+import * as S from "./inputText.style";
 
 type PropsInputText = {
-    id: string;
-    icon: React.ReactNode;
-    name: string;
-    value: string;
-    error?: string;
-    maxLength?: number;
-    placeholder: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+  id: string;
+  icon: React.ReactNode;
+  name: string;
+  value: string;
+  error?: string;
+  maxLength?: number;
+  placeholder: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
 export const InputText = ({
-    id,
-    icon,
-    name,
-    error,
-    value,
-    maxLength = 50,
-    placeholder,
-    onChange
+  id,
+  icon,
+  name,
+  error,
+  value,
+  maxLength = 50,
+  placeholder,
+  onChange,
 }: PropsInputText) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const showError = useCallback(()=> {
-    return !!error && <TooltipAlertError messageError={error}/>
+  const showError = useCallback(() => {
+    return !!error && <TooltipAlertError messageError={error} />;
   }, [error]);
 
-  return(
-    <S.Container
-      isFocused={isFocused}
-      isErrored={!!error}
-    >
-       {icon}
-       <S.Input
-         type='text'
-         id={id}
-         name={name}
-         value={value}
-         maxLength={maxLength}
-         placeholder={placeholder}
-         onChange={onChange}
-         onFocus={() => setIsFocused(true)}
-         onBlur={() => setIsFocused(false)}
-       />
-       {showError()}
+  return (
+    <S.Container isFocused={isFocused} isErrored={!!error}>
+      {icon}
+      <S.Input
+        type="text"
+        id={id}
+        name={name}
+        value={value}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        onChange={onChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+      />
+      {showError()}
     </S.Container>
   );
 };

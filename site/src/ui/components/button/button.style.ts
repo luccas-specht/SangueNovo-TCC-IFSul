@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import { shade } from 'polished';
+import { shade } from "polished";
 
 interface PropsButton {
   disabled: boolean;
@@ -23,12 +23,14 @@ export const Button = styled.button<PropsButton>`
     background-color: ${({ theme }) => shade(0.2, theme.colors.primary)};
   }
 
-  ${props => props.disabled && css` 
-    cursor: auto;
-    background-color: ${({ theme }) => theme.colors.disableColor};
-    
-    &:hover {
+  ${(props) =>
+    props.disabled &&
+    css`
+      cursor: auto;
       background-color: ${({ theme }) => theme.colors.disableColor};
-    }
-  `}
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.disableColor};
+      }
+    `}
 `;

@@ -1,6 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-import { device } from '../../../../constants';
+import { device } from "../../../../constants";
 
 export const Container = styled.div`
   height: 100%;
@@ -26,64 +26,64 @@ export const Context = styled.div`
 `;
 
 export const LeftImg = styled.div`
-   margin-left: 10%;
-   display: flex;
-   height: 100%;
-   align-items: flex-start;
+  margin-left: 10%;
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+
+  img {
+    margin-top: 50px;
+    max-width: 160px;
+    max-height: 120px;
+  }
+
+  @media ${device.mobileL()} {
+    display: none;
+    height: 0;
+    margin: 0;
 
     img {
-        margin-top: 50px;
-        max-width: 160px;
-        max-height: 120px;
-      }
-
-    @media ${device.mobileL()} {
-      display: none;
-      height: 0;
-      margin: 0;
-
-      img {
-        margin-top: 0;
-        max-width: 0;
-        max-height: 0;
-      }
+      margin-top: 0;
+      max-width: 0;
+      max-height: 0;
     }
+  }
 `;
 
 export const RightImg = styled.div`
-   display: flex;
-   align-items: flex-end;
-   height: 100%;
-   flex: 1;
-   margin-left: 13%;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  flex: 1;
+  margin-left: 13%;
 
-   @media ${device.mobileL()} {
-     display: none;
-     height: 0;
-     margin: 0;
-     flex: 0;
-   }
+  @media ${device.mobileL()} {
+    display: none;
+    height: 0;
+    margin: 0;
+    flex: 0;
+  }
 `;
 
 export const ContextImg = styled.div`
   width: 100%;
 
-    img {
-        float: right;
-        max-width: 200px;
-        max-height: 130px;
-      }
+  img {
+    float: right;
+    max-width: 200px;
+    max-height: 130px;
+  }
 
   @media ${device.mobileL()} {
     width: 0;
 
     img {
-        opacity: 0;
-        float: none;
-        max-width: 0px;
-        max-height: 0px;
+      opacity: 0;
+      float: none;
+      max-width: 0px;
+      max-height: 0px;
     }
-   }
+  }
 `;
 
 export const AnimationImg = styled.img`
@@ -113,5 +113,5 @@ export const AnimationContext = styled.div`
 
   @media ${device.mobileL()} {
     margin: 0;
-   }
+  }
 `;

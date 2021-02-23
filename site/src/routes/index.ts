@@ -1,1 +1,1 @@
-export { RenderRoute } from './renderedRoute.route';
+export { RenderRoute } from "./renderedRoute.route";

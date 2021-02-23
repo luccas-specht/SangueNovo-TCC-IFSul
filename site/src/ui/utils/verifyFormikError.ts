@@ -1,2 +1,2 @@
 export const verifyFormikError = (touched: any, errors: any) =>
-    !!touched && !!errors ? errors : undefined
+  !!touched && !!errors ? errors : undefined;

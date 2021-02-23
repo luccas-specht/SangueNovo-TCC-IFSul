@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import { MdRemoveRedEye, BsFillEyeSlashFill } from 'react-icons/all';
+import { MdRemoveRedEye, BsFillEyeSlashFill } from "react-icons/all";
 
 type ContainerProps = {
   isErrored: boolean;
   isFocused: boolean;
-}
+};
 
 export const Container = styled.div<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
@@ -29,15 +29,17 @@ export const Container = styled.div<ContainerProps>`
     }
   }
 
-  ${({ isErrored }) => isErrored &&
+  ${({ isErrored }) =>
+    isErrored &&
     css`
       border-color: ${({ theme }) => theme.colors.errorColor};
-  `}
+    `}
 
-  ${({ isFocused }) => isFocused &&
+  ${({ isFocused }) =>
+    isFocused &&
     css`
       border-color: ${({ theme }) => theme.colors.backgroundPrimary};
-  `}
+    `}
 `;
 
 export const Input = styled.input`

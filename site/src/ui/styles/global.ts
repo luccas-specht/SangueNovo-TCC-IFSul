@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const CreateGlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap');
@@ -16,7 +16,7 @@ export const CreateGlobalStyle = createGlobalStyle`
         max-height: 825px;
     }
   }
- 
+
  body {
     background-color: ${({ theme }) => theme.colors.backgroundPrimary};
     color: ${({ theme }) => theme.colors.text};
@@ -42,5 +42,5 @@ export const CreateGlobalStyle = createGlobalStyle`
 
  ul {
     list-style: none;
-  } 
+  }
 `;

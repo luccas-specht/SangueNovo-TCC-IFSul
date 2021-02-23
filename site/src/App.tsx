@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { ThemeProvider } from './contexts';
+import { ThemeProvider } from "./contexts";
 
-import { RenderRoute } from './routes';
+import { RenderRoute } from "./routes";
 
 export const App = () => (
-    <ThemeProvider>
-     <RenderRoute />
-   </ThemeProvider>
+  <ThemeProvider>
+    <RenderRoute />
+  </ThemeProvider>
 );

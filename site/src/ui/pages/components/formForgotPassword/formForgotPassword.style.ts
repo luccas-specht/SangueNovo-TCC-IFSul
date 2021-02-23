@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { shade } from 'polished';
+import { shade } from "polished";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { device } from '../../../../constants/responsivenessAvailable';
+import { device } from "../../../../constants/responsivenessAvailable";
 
 export const Container = styled.div`
   height: 350px;
@@ -20,12 +20,12 @@ export const Container = styled.div`
   }
 
   @media ${device.mobileL()} {
-    width: 325px; 
+    width: 325px;
     height: 300px;
-    margin-top: 30%;    
+    margin-top: 30%;
 
     img {
-      margin-top: -30%;    
+      margin-top: -30%;
     }
   }
 `;
@@ -52,25 +52,24 @@ export const Title = styled.h1`
   }
 `;
 
-
 export const BackToSignIn = styled(Link)`
-    color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.text};
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
+  transition: color 0.3s;
+
+  div {
     display: flex;
-    align-items: center;
-    align-self: center;
-    flex-direction: column;
-    transition: color 0.3s;
-    
-    div {
-      display: flex;
-      margin-top: 15px;
-    }
+    margin-top: 15px;
+  }
 
-    &:hover {
-      color: ${({ theme }) => shade(0.2, theme.colors.text)};
-    }
+  &:hover {
+    color: ${({ theme }) => shade(0.2, theme.colors.text)};
+  }
 
-    svg {
-      margin-right: 5px;
-    }
+  svg {
+    margin-right: 5px;
+  }
 `;

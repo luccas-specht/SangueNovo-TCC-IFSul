@@ -1,9 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 type ContainerProps = {
   isErrored: boolean;
   isFocused: boolean;
-}
+};
 
 export const Container = styled.div<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
@@ -24,15 +24,17 @@ export const Container = styled.div<ContainerProps>`
     margin-right: 10px;
   }
 
-  ${({ isErrored }) => isErrored &&
+  ${({ isErrored }) =>
+    isErrored &&
     css`
       border-color: ${({ theme }) => theme.colors.errorColor};
-  `}
+    `}
 
-  ${({ isFocused }) => isFocused &&
+  ${({ isFocused }) =>
+    isFocused &&
     css`
       border-color: ${({ theme }) => theme.colors.backgroundPrimary};
-  `}
+    `}
 `;
 
 export const Input = styled.input`

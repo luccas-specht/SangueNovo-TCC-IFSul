@@ -1,29 +1,29 @@
-import React from 'react';
+import React from "react";
 
-import { useHistory } from 'react-router-dom';
-import { FiMail, FiArrowLeft } from 'react-icons/fi';
+import { useHistory } from "react-router-dom";
+import { FiMail, FiArrowLeft } from "react-icons/fi";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import * as Yup from 'yup'
+import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { useRedefinePassword } from '../../../../hooks'
-import { validationMessage } from '../../../../constants';
+import { useRedefinePassword } from "../../../../hooks";
+import { validationMessage } from "../../../../constants";
 
-import { InputText, Button } from '../../../components';
+import { InputText, Button } from "../../../components";
 
-import { toastConfig } from '../../../../configs';
+import { toastConfig } from "../../../../configs";
 
-import { verifyFormikError } from '../../../utils';
+import { verifyFormikError } from "../../../utils";
 
-import logo from '../../../assets/images/logo.png';
+import logo from "../../../assets/images/logo.png";
 
-import * as SC from './formForgotPassword.style';
+import * as SC from "./formForgotPassword.style";
 
 interface FormPassowrdData {
-    email: string;
+  email: string;
 }
 
 export const FormForgotPassword = () => {
@@ -31,56 +31,56 @@ export const FormForgotPassword = () => {
   const { forgotPassword } = useRedefinePassword();
 
   const initialValues = {
-     email: '',
-   } as FormPassowrdData
+    email: "",
+  } as FormPassowrdData;
 
-   const validations = Yup.object().shape({
-     email: Yup.string()
-       .required(validationMessage.requiredEmail)
-       .email(validationMessage.validEmail)
-   });
+  const validations = Yup.object().shape({
+    email: Yup.string()
+      .required(validationMessage.requiredEmail)
+      .email(validationMessage.validEmail),
+  });
 
-   const onSendPassword = async ({ email }: FormPassowrdData): Promise<void> => {
-     const response = await forgotPassword(email);
-     if(response.status === 200){
-       history.push('/dashboard');
-     } else {
+  const onSendPassword = async ({ email }: FormPassowrdData): Promise<void> => {
+    const response = await forgotPassword(email);
+    if (response.status === 200) {
+      history.push("/dashboard");
+    } else {
       toast.error(`${response.data.message}`, toastConfig);
-       formik.resetForm();
-     }
-   }
+      formik.resetForm();
+    }
+  };
 
-   const formik = useFormik({
-     initialValues: initialValues,
-     validationSchema: validations,
-     onSubmit: (values: FormPassowrdData) => {
-       onSendPassword(values)
-     }
-   });
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: validations,
+    onSubmit: (values: FormPassowrdData) => {
+      onSendPassword(values);
+    },
+  });
 
-  return(
+  return (
     <>
       <ToastContainer />
       <SC.Container>
-        <img src={logo} alt="logo sangue novo"/>
+        <img src={logo} alt="logo sangue novo" />
         <SC.Form onSubmit={formik.handleSubmit}>
-         <SC.Title>Recuperar senha</SC.Title>
-            <InputText
-              icon={<FiMail size={20} />}
-              id="email"
-              name="email"
-              placeholder='E-mail'
-              value={formik.values.email}
-              error={verifyFormikError(formik.touched.email, formik.errors.email)}
-              onChange={formik.handleChange}
-            />
-          <Button type='submit' title='Recuperar' />
-          <SC.BackToSignIn to='login'>
+          <SC.Title>Recuperar senha</SC.Title>
+          <InputText
+            icon={<FiMail size={20} />}
+            id="email"
+            name="email"
+            placeholder="E-mail"
+            value={formik.values.email}
+            error={verifyFormikError(formik.touched.email, formik.errors.email)}
+            onChange={formik.handleChange}
+          />
+          <Button type="submit" title="Recuperar" />
+          <SC.BackToSignIn to="login">
             <div>
-             <FiArrowLeft />
-             Voltar para o login
+              <FiArrowLeft />
+              Voltar para o login
             </div>
-           </SC.BackToSignIn>
+          </SC.BackToSignIn>
         </SC.Form>
       </SC.Container>
     </>

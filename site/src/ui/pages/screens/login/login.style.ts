@@ -1,6 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-import { device } from '../../../../constants/responsivenessAvailable';
+import { device } from "../../../../constants/responsivenessAvailable";
 
 export const Container = styled.div`
   height: 100%;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
- @media ${device.mobileL()} {
+  @media ${device.mobileL()} {
     flex-direction: column;
     width: 375px;
   }
@@ -33,14 +33,14 @@ export const WrapperImg = styled.div`
   justify-content: space-between;
   visibility: visible;
 
-    & :first-child {
-      max-width: 160px;
-      max-height: 120px;
-    }
+  & :first-child {
+    max-width: 160px;
+    max-height: 120px;
+  }
 
-    & :last-child {
-      max-height: 140px;
-    }
+  & :last-child {
+    max-height: 140px;
+  }
 
   @media ${device.mobileL()} {
     opacity: 0;

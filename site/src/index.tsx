@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { App } from './App';
-import { AuthProvider } from './contexts';
+import { App } from "./App";
+import { AuthProvider } from "./contexts";
 
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <>
@@ -14,7 +14,7 @@ ReactDOM.render(
       </React.StrictMode>
     </AuthProvider>
   </>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 reportWebVitals();

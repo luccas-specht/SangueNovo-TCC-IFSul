@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { shade } from 'polished';
+import { shade } from "polished";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { device } from '../../../../constants/responsivenessAvailable';
+import { device } from "../../../../constants/responsivenessAvailable";
 
 export const Container = styled.div`
   height: 500px;
@@ -21,7 +21,7 @@ export const Container = styled.div`
 
   @media ${device.mobileL()} {
     flex-direction: column;
-    width: 350px; 
+    width: 350px;
     height: 350px;
     margin: 50% 0;
 
@@ -47,16 +47,16 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
 
-    a {
-      color: ${({ theme }) => theme.colors.text};
-      display: block;
-      margin-top: 24px;
-      transition: color 0.3s;
+  a {
+    color: ${({ theme }) => theme.colors.text};
+    display: block;
+    margin-top: 24px;
+    transition: color 0.3s;
 
-        &:hover {
-          color:  ${({ theme }) => shade(0.2, theme.colors.text)};
-        }
+    &:hover {
+      color: ${({ theme }) => shade(0.2, theme.colors.text)};
     }
+  }
 
   @media ${device.mobileL()} {
     width: 325px;
@@ -71,14 +71,14 @@ export const CreateAccount = styled(Link)`
   transition: color 0.3s;
   display: flex;
   align-items: center;
-  
-    &:hover {
-      color: ${(props) => shade(0.2, props.theme.colors.primary)};
-    }
 
-    svg {
-      margin-right: 10px;
-    }
+  &:hover {
+    color: ${(props) => shade(0.2, props.theme.colors.primary)};
+  }
+
+  svg {
+    margin-right: 10px;
+  }
 
   @media ${device.mobileL()} {
     margin: 30% 0;

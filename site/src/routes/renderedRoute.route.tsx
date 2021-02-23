@@ -1,63 +1,63 @@
-import React from 'react';
+import React from "react";
 
-import { Switch, BrowserRouter } from 'react-router-dom';
+import { Switch, BrowserRouter } from "react-router-dom";
 
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from "styled-components";
 
-import { CreateGlobalStyle } from '../ui/styles';
+import { CreateGlobalStyle } from "../ui/styles";
 
-import { useTheme } from '../hooks'
+import { useTheme } from "../hooks";
 
-import { routes } from '../constants';
+import { routes } from "../constants";
 
-import { PublicRoute } from './publicRoute.route';
-import { PrivateRoute } from './privateRoute.route';
+import { PublicRoute } from "./publicRoute.route";
+import { PrivateRoute } from "./privateRoute.route";
 
- export const RenderRoute = () => {
-   const { theme } = useTheme();
-   
-   return(
+export const RenderRoute = () => {
+  const { theme } = useTheme();
+
+  return (
     <ThemeProvider theme={theme}>
-     <BrowserRouter>
-       <Switch>
-         <PublicRoute 
-           exact
-           path={routes.default.path}
-           component={routes.default.component}
+      <BrowserRouter>
+        <Switch>
+          <PublicRoute
+            exact
+            path={routes.default.path}
+            component={routes.default.component}
           />
-         
-         <PublicRoute
-           exact
-           path={routes.login.path}
-           component={routes.login.component}
-         />
-         
-         <PublicRoute 
-           exact
-           path={routes.register.path}
-           component={routes.register.component}
+
+          <PublicRoute
+            exact
+            path={routes.login.path}
+            component={routes.login.component}
           />
-         
-         <PublicRoute 
-           exact
-           path={routes.forgotPassword.path} 
-           component={routes.forgotPassword.component}
-         />
-  
-          <PublicRoute 
-           exact
-           path={routes.resetPassword.path} 
-           component={routes.resetPassword.component}
-         />
-  
-         <PrivateRoute 
-           exact
-           path={routes.dashboard.path}
-           component={routes.dashboard.component}
-         />
-       </Switch >
-       </BrowserRouter>
-       <CreateGlobalStyle/>
-     </ThemeProvider >
+
+          <PublicRoute
+            exact
+            path={routes.register.path}
+            component={routes.register.component}
+          />
+
+          <PublicRoute
+            exact
+            path={routes.forgotPassword.path}
+            component={routes.forgotPassword.component}
+          />
+
+          <PublicRoute
+            exact
+            path={routes.resetPassword.path}
+            component={routes.resetPassword.component}
+          />
+
+          <PrivateRoute
+            exact
+            path={routes.dashboard.path}
+            component={routes.dashboard.component}
+          />
+        </Switch>
+      </BrowserRouter>
+      <CreateGlobalStyle />
+    </ThemeProvider>
   );
-}
+};

@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import { FabTheme } from '../../../components';
+import { FabTheme } from "../../../components";
 
-import { FormResetPassword } from '../../components';
+import { FormResetPassword } from "../../components";
 
-import * as S from './resetPassword.style';
+import * as S from "./resetPassword.style";
 
 export const ResetPassword = () => (
-    <S.Container>
-      <FabTheme/>
-      <S.Context>
-        <S.AnimationContext>
-          <FormResetPassword />
-        </S.AnimationContext>
-      </S.Context>
-    </S.Container>
+  <S.Container>
+    <FabTheme />
+    <S.Context>
+      <S.AnimationContext>
+        <FormResetPassword />
+      </S.AnimationContext>
+    </S.Context>
+  </S.Container>
 );
