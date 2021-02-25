@@ -170,7 +170,7 @@ export const FormDonorRegister = () => {
               icon={<BiIdCard size={20} />}
               id="cpf"
               name="cpf"
-              placeholder="Cpf"
+              placeholder="CPF"
               maxLength={14}
               value={cpfMask(formik.values.cpf)}
               error={formik.touched.cpf && formik.errors.cpf}

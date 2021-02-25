@@ -2,7 +2,14 @@ import React, { useState } from "react";
 
 import { useHistory } from "react-router-dom";
 
-import { FiMail, FiLock, FiUser, BiIdCard, BiPhone } from "react-icons/all";
+import {
+  FiMail,
+  FiLock,
+  FiUser,
+  BiIdCard,
+  BiPhone,
+  BiMap,
+} from "react-icons/all";
 
 import { toastConfig } from "../../../../../configs";
 import { validationMessage, masks } from "../../../../../constants";
@@ -30,10 +37,11 @@ interface FormData {
   phone: string;
   email: string;
   password: string;
+  cep: string;
 }
 
 export const FormInstitutionRegister = () => {
-  const [renderedStep, setRenderedStep] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
   const { registerInstitution } = useRegister();
   const { push } = useHistory();
   const { cnpjMask, phonePtBrMask } = masks();
@@ -44,12 +52,14 @@ export const FormInstitutionRegister = () => {
     phone: "",
     email: "",
     password: "",
+    cep: "",
   } as FormData;
 
   const validations = Yup.object().shape({
     razaoSocial: Yup.string().required(validationMessage.requiredName),
+    cep: Yup.string().required(validationMessage.requiredCEP),
     cnpj: Yup.string() /*TODO: adicionar validação de cnpj*/
-      .required(validationMessage.requiredCPF),
+      .required(validationMessage.requiredCNPJ),
     phone: Yup.string() /*TODO: adicionar validação de telefone*/
       .required(validationMessage.requiredPhone),
     email: Yup.string()
@@ -93,7 +103,7 @@ export const FormInstitutionRegister = () => {
     <>
       <ToastContainer />
       <SC.Form onSubmit={formik.handleSubmit}>
-        {renderedStep === 0 ? (
+        {activeStep === 0 ? (
           <>
             <InputText
               icon={<FiUser size={20} />}
@@ -137,10 +147,20 @@ export const FormInstitutionRegister = () => {
               onChange={formik.handleChange}
             />
             <InputText
+              icon={<BiMap size={20} />}
+              id="cep"
+              name="cep"
+              placeholder="CEP"
+              maxLength={9}
+              value={formik.values.cep}
+              error={formik.touched.cep && formik.errors.cep}
+              onChange={formik.handleChange}
+            />
+            <InputText
               icon={<BiIdCard size={20} />}
               id="cnpj"
               name="cnpj"
-              placeholder="Cnpj"
+              placeholder="CNPJ"
               maxLength={18}
               value={cnpjMask(formik.values.cnpj)}
               error={formik.touched.cnpj && formik.errors.cnpj}
@@ -149,10 +169,11 @@ export const FormInstitutionRegister = () => {
             <Button title="Entrar" />
           </>
         )}
-        {/* <Stepper
+        <Stepper
           steps={2}
-          onRender={(index: number) => setRenderedStep(index)}
-        /> */}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+        />
       </SC.Form>
     </>
   );
