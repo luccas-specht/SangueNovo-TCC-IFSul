@@ -1,14 +1,14 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes, css } from "styled-components";
 
-import { shade } from 'polished';
+import { shade } from "polished";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { device } from '../../../../constants/responsivenessAvailable';
+import { device } from "../../../../constants/responsivenessAvailable";
 
 type TabProps = {
   active: boolean;
-}
+};
 
 export const Container = styled.div`
   height: 100%;
@@ -16,7 +16,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
- @media ${device.mobileL()} {
+  @media ${device.mobileL()} {
     flex-direction: column;
     width: 375px;
   }
@@ -104,44 +104,45 @@ export const Ul = styled.ul<TabProps>`
     text-align: center;
     font-weight: 900;
 
-
-    ${({ active }) => active ?
-    css`
-      &:first-child {
-        color: ${({ theme }) => theme.colors.tabColor};
-        border-radius: 1px;
-        border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
-      }
-    `
-    : css`
-      &:last-child {
-          color: ${({ theme }) => theme.colors.tabColor};
-          border-radius: 1px;
-          border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
-        }
-     `}
+    ${({ active }) =>
+      active
+        ? css`
+            &:first-child {
+              color: ${({ theme }) => theme.colors.tabColor};
+              border-radius: 1px;
+              border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
+            }
+          `
+        : css`
+            &:last-child {
+              color: ${({ theme }) => theme.colors.tabColor};
+              border-radius: 1px;
+              border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
+            }
+          `}
   }
 `;
 
 export const AnimantionForm = styled.div<TabProps>`
-  animation: ${({ active }) => active ? appearFromRight : appearFromLeft} 1s;
+  animation: ${({ active }) => (active ? appearFromRight : appearFromLeft)} 1s;
 `;
 
 export const BackToSignIn = styled(Link)`
-    color: ${({ theme }) => theme.colors.text};
-    display: flex;
-    transition: color 0.3s;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
+  color: ${({ theme }) => theme.colors.text};
+  display: flex;
+  transition: color 0.3s;
+  align-items: center;
+  align-self: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
 
-    &:hover {
-      color: ${({ theme }) => shade(0.2, theme.colors.text)};
-    }
+  &:hover {
+    color: ${({ theme }) => shade(0.2, theme.colors.text)};
+  }
 
-    svg {
-      margin-right: 5px;
-    }
+  svg {
+    margin-right: 5px;
+  }
 `;
 
 export const WrapperImg = styled.div`
@@ -154,15 +155,15 @@ export const WrapperImg = styled.div`
   justify-content: space-between;
   visibility: visible;
 
-    & :first-child {
-      max-width: 160px;
-      max-height: 120px;
-    }
+  & :first-child {
+    max-width: 160px;
+    max-height: 120px;
+  }
 
-    & :last-child {
-      max-height: 300px;
-      max-width: 320px;
-    }
+  & :last-child {
+    max-height: 300px;
+    max-width: 320px;
+  }
 `;
 
 export const RigthImg = styled.img`

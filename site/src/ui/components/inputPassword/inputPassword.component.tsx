@@ -9,7 +9,7 @@ type Props = {
   icon: React.ReactNode;
   name: string;
   value: string;
-  error?: string;
+  error?: string | false;
   placeholder: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };

@@ -16,8 +16,6 @@ import logo from "../../../assets/images/logo.png";
 
 import { InputPassword, InputText, Button } from "../../../components";
 
-import { verifyFormikError } from "../../../utils";
-
 import * as S from "./formLogin.style";
 interface FormLoginData {
   email: string;
@@ -75,7 +73,7 @@ export const FormLogin = () => {
             name="email"
             placeholder="E-mail"
             value={formik.values.email}
-            error={verifyFormikError(formik.touched.email, formik.errors.email)}
+            error={formik.touched.email && formik.errors.email}
             onChange={formik.handleChange}
           />
           <InputPassword
@@ -84,10 +82,7 @@ export const FormLogin = () => {
             name="password"
             placeholder="Senha"
             value={formik.values.password}
-            error={verifyFormikError(
-              formik.touched.password,
-              formik.errors.password
-            )}
+            error={formik.touched.password && formik.errors.password}
             onChange={formik.handleChange}
           />
           <Button type="submit" title="Entrar" />

@@ -11,8 +11,6 @@ import { useRegister } from "../../../../hooks";
 
 import { InputText, InputPassword, Stepper, Button } from "../../../components";
 
-import { verifyFormikError } from "../../../utils";
-
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
@@ -98,10 +96,7 @@ export const FormInstitutionRegister = () => {
               name="razaoSocial"
               placeholder="Razão Social"
               value={formik.values.razaoSocial}
-              error={verifyFormikError(
-                formik.touched.razaoSocial,
-                formik.errors.razaoSocial
-              )}
+              error={formik.touched.razaoSocial && formik.errors.razaoSocial}
               onChange={formik.handleChange}
             />
             <InputText
@@ -110,10 +105,7 @@ export const FormInstitutionRegister = () => {
               name="email"
               placeholder="E-mail"
               value={formik.values.email}
-              error={verifyFormikError(
-                formik.touched.email,
-                formik.errors.email
-              )}
+              error={formik.touched.email && formik.errors.email}
               onChange={formik.handleChange}
             />
             <InputPassword
@@ -122,10 +114,7 @@ export const FormInstitutionRegister = () => {
               name="password"
               placeholder="Senha"
               value={formik.values.password}
-              error={verifyFormikError(
-                formik.touched.password,
-                formik.errors.password
-              )}
+              error={formik.touched.password && formik.errors.password}
               onChange={formik.handleChange}
             />
             <Button disabled title="Entrar" />
@@ -139,10 +128,7 @@ export const FormInstitutionRegister = () => {
               placeholder="Telefone"
               maxLength={15}
               value={phonePtBrMask(formik.values.phone)}
-              error={verifyFormikError(
-                formik.touched.phone,
-                formik.errors.phone
-              )}
+              error={formik.touched.phone && formik.errors.phone}
               onChange={formik.handleChange}
             />
             <InputText
@@ -152,16 +138,16 @@ export const FormInstitutionRegister = () => {
               placeholder="Cnpj"
               maxLength={18}
               value={cnpjMask(formik.values.cnpj)}
-              error={verifyFormikError(formik.touched.cnpj, formik.errors.cnpj)}
+              error={formik.touched.cnpj && formik.errors.cnpj}
               onChange={formik.handleChange}
             />
             <Button title="Entrar" />
           </>
         )}
-        <Stepper
+        {/* <Stepper
           steps={2}
           onRender={(index: number) => setRenderedStep(index)}
-        />
+        /> */}
       </SC.Form>
     </>
   );

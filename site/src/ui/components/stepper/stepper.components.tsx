@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback, SetStateAction } from "react";
 
 import MobileStepper from "@material-ui/core/MobileStepper";
 
@@ -8,23 +8,18 @@ import * as SC from "./stepper.style";
 
 interface Props {
   steps: number;
-  onRender(index: number): void;
+  activeStep: number;
+  setActiveStep: (value: SetStateAction<number>) => void;
 }
 
-export const Stepper = ({ steps, onRender }: Props) => {
-  const [activeStep, setActiveStep] = useState<number>(0);
-
+export const Stepper = ({ steps, activeStep, setActiveStep }: Props) => {
   const handleNext = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  }, []);
+  }, [setActiveStep]);
 
   const handleBack = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  }, []);
-
-  useEffect(() => {
-    onRender(activeStep);
-  }, [activeStep, onRender]);
+  }, [setActiveStep]);
 
   return (
     <SC.Container>

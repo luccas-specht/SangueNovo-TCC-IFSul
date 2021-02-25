@@ -9,7 +9,7 @@ type PropsInputText = {
   icon: React.ReactNode;
   name: string;
   value: string;
-  error?: string;
+  error?: string | false;
   maxLength?: number;
   placeholder: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

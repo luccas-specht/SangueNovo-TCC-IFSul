@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -31,8 +31,6 @@ import {
   Button,
 } from "../../../components";
 
-import { verifyFormikError } from "../../../utils";
-
 import * as S from "./formDonorRegister.style";
 
 type FormData = {
@@ -45,7 +43,7 @@ type FormData = {
 };
 
 export const FormDonorRegister = () => {
-  const [renderedStep, setRenderedStep] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
   const { registerDonator } = useRegister();
   const { push } = useHistory();
   const { cpfMask, phonePtBrMask } = masks();
@@ -107,11 +105,16 @@ export const FormDonorRegister = () => {
       onRegister(values);
     },
   });
+
+  useEffect(() => {
+    setActiveStep(0);
+  }, [formik.errors.name, formik.errors.email, formik.errors.password]);
+
   return (
     <>
       <ToastContainer />
       <S.Form onSubmit={formik.handleSubmit}>
-        {renderedStep === 0 ? (
+        {activeStep === 0 ? (
           <>
             <InputText
               icon={<FiUser size={20} />}
@@ -119,7 +122,7 @@ export const FormDonorRegister = () => {
               name="name"
               placeholder="Nome"
               value={formik.values.name}
-              error={verifyFormikError(formik.touched.name, formik.errors.name)}
+              error={formik.touched.name && formik.errors.name}
               onChange={formik.handleChange}
             />
             <InputText
@@ -128,10 +131,7 @@ export const FormDonorRegister = () => {
               name="email"
               placeholder="E-mail"
               value={formik.values.email}
-              error={verifyFormikError(
-                formik.touched.email,
-                formik.errors.email
-              )}
+              error={formik.touched.email && formik.errors.email}
               onChange={formik.handleChange}
             />
             <InputPassword
@@ -140,10 +140,7 @@ export const FormDonorRegister = () => {
               name="password"
               placeholder="Senha"
               value={formik.values.password}
-              error={verifyFormikError(
-                formik.touched.password,
-                formik.errors.password
-              )}
+              error={formik.touched.password && formik.errors.password}
               onChange={formik.handleChange}
             />
             <Button disabled title="Entrar" />
@@ -156,10 +153,7 @@ export const FormDonorRegister = () => {
               name="birthday"
               placeholder="Data de aniversário"
               value={formik.values.birthday}
-              error={verifyFormikError(
-                formik.touched.birthday,
-                formik.errors.birthday
-              )}
+              error={formik.touched.birthday && formik.errors.birthday}
               onChange={(date) => formik.setFieldValue("birthday", date)}
             />
             <InputText
@@ -169,10 +163,7 @@ export const FormDonorRegister = () => {
               placeholder="Telefone"
               maxLength={15}
               value={phonePtBrMask(formik.values.phone)}
-              error={verifyFormikError(
-                formik.touched.phone,
-                formik.errors.phone
-              )}
+              error={formik.touched.phone && formik.errors.phone}
               onChange={formik.handleChange}
             />
             <InputText
@@ -182,7 +173,7 @@ export const FormDonorRegister = () => {
               placeholder="Cpf"
               maxLength={14}
               value={cpfMask(formik.values.cpf)}
-              error={verifyFormikError(formik.touched.cpf, formik.errors.cpf)}
+              error={formik.touched.cpf && formik.errors.cpf}
               onChange={formik.handleChange}
             />
             <Button title="Entrar" />
@@ -190,7 +181,8 @@ export const FormDonorRegister = () => {
         )}
         <Stepper
           steps={2}
-          onRender={(index: number) => setRenderedStep(index)}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
         />
       </S.Form>
     </>
