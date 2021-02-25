@@ -44,7 +44,7 @@ export const FormInstitutionRegister = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const { registerInstitution } = useRegister();
   const { push } = useHistory();
-  const { cnpjMask, phonePtBrMask } = masks();
+  const { cnpjMask, phoneBrMask, cepMask } = masks();
 
   const initialValues = {
     razaoSocial: "",
@@ -142,7 +142,7 @@ export const FormInstitutionRegister = () => {
               name="phone"
               placeholder="Telefone"
               maxLength={15}
-              value={phonePtBrMask(formik.values.phone)}
+              value={phoneBrMask(formik.values.phone)}
               error={formik.touched.phone && formik.errors.phone}
               onChange={formik.handleChange}
             />
@@ -152,7 +152,7 @@ export const FormInstitutionRegister = () => {
               name="cep"
               placeholder="CEP"
               maxLength={9}
-              value={formik.values.cep}
+              value={cepMask(formik.values.cep)}
               error={formik.touched.cep && formik.errors.cep}
               onChange={formik.handleChange}
             />

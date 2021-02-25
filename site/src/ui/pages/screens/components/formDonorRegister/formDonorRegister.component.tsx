@@ -46,7 +46,7 @@ export const FormDonorRegister = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const { registerDonator } = useRegister();
   const { push } = useHistory();
-  const { cpfMask, phonePtBrMask } = masks();
+  const { cpfMask, phoneBrMask } = masks();
 
   const initialValues = {
     name: "",
@@ -147,11 +147,21 @@ export const FormDonorRegister = () => {
           </>
         ) : (
           <>
+            <InputText
+              icon={<BiIdCard size={20} />}
+              id="cpf"
+              name="cpf"
+              placeholder="CPF"
+              maxLength={14}
+              value={cpfMask(formik.values.cpf)}
+              error={formik.touched.cpf && formik.errors.cpf}
+              onChange={formik.handleChange}
+            />
             <InputDatePicker
               icon={<BiCalendar size={20} />}
               id="birthday"
               name="birthday"
-              placeholder="Data de aniversário"
+              placeholder="Data de nascimento"
               value={formik.values.birthday}
               error={formik.touched.birthday && formik.errors.birthday}
               onChange={(date) => formik.setFieldValue("birthday", date)}
@@ -162,18 +172,8 @@ export const FormDonorRegister = () => {
               name="phone"
               placeholder="Telefone"
               maxLength={15}
-              value={phonePtBrMask(formik.values.phone)}
+              value={phoneBrMask(formik.values.phone)}
               error={formik.touched.phone && formik.errors.phone}
-              onChange={formik.handleChange}
-            />
-            <InputText
-              icon={<BiIdCard size={20} />}
-              id="cpf"
-              name="cpf"
-              placeholder="CPF"
-              maxLength={14}
-              value={cpfMask(formik.values.cpf)}
-              error={formik.touched.cpf && formik.errors.cpf}
               onChange={formik.handleChange}
             />
             <Button title="Entrar" />
