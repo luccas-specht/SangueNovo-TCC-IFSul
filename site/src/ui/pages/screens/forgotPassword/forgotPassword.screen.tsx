@@ -6,7 +6,7 @@ import refreshCard from "../../../assets/images/refresh_card1.png";
 
 import { FabTheme } from "../../../components";
 
-import { FormForgotPassword } from "../../components";
+import { FormForgotPassword } from "../components";
 
 import * as S from "./forgotPassword.style";
 

@@ -17,11 +17,11 @@ import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { validationMessage, masks } from "../../../../constants";
+import { validationMessage, masks } from "../../../../../constants";
 
-import { useRegister } from "../../../../hooks";
+import { useRegister } from "../../../../../hooks";
 
-import { toastConfig } from "../../../../configs";
+import { toastConfig } from "../../../../../configs";
 
 import {
   InputText,
@@ -29,7 +29,7 @@ import {
   InputDatePicker,
   Stepper,
   Button,
-} from "../../../components";
+} from "../../../../components";
 
 import * as S from "./formDonorRegister.style";
 

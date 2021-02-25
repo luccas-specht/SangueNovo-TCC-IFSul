@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-import { device } from "../../../../constants/responsivenessAvailable";
+import { device } from "../../../../constants";
 
 export const Container = styled.div`
   height: 100%;
@@ -9,44 +9,93 @@ export const Container = styled.div`
   align-items: center;
 
   @media ${device.mobileL()} {
-    flex-direction: column;
     width: 375px;
+    align-items: center;
   }
 `;
 
 export const Context = styled.div`
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
+  align-items: center;
 
   @media ${device.mobileL()} {
     flex-direction: column;
   }
 `;
 
-export const WrapperImg = styled.div`
-  margin-top: 50px;
+export const LeftImg = styled.div`
   margin-left: 10%;
   display: flex;
-  height: 80%;
-  flex-direction: column;
-  justify-content: space-between;
+  height: 100%;
+  align-items: flex-start;
   visibility: visible;
 
-  & :first-child {
+  img {
+    margin-top: 50px;
     max-width: 160px;
     max-height: 120px;
   }
 
-  & :last-child {
-    max-height: 140px;
+  @media ${device.mobileL()} {
+    display: none;
+    height: 0;
+    margin: 0;
+    visibility: hidden;
+
+    img {
+      margin-top: 0;
+      max-width: 0;
+      max-height: 0;
+    }
+  }
+`;
+
+export const RightImg = styled.div`
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  flex: 1;
+  margin-left: 13%;
+  visibility: visible;
+
+  @media ${device.mobileL()} {
+    display: none;
+    height: 0;
+    margin: 0;
+    flex: 0;
+    visibility: hidden;
+  }
+`;
+
+export const ContextImg = styled.div`
+  width: 100%;
+  visibility: visible;
+
+  img {
+    float: right;
+    max-width: 200px;
+    max-height: 130px;
   }
 
   @media ${device.mobileL()} {
-    opacity: 0;
-    margin: 0;
-    height: 0;
     width: 0;
+    visibility: hidden;
+
+    img {
+      opacity: 0;
+      float: none;
+      max-width: 0px;
+      max-height: 0px;
+    }
+  }
+`;
+
+export const AnimationImg = styled.img`
+  visibility: visible;
+  @media ${device.mobileL()} {
+    opacity: 0;
     visibility: hidden;
   }
 `;
@@ -63,25 +112,14 @@ export const appearFromRight = keyframes`
 `;
 
 export const AnimationContext = styled.div`
-  margin: 0 14%;
+  margin-left: 17.7%;
   display: flex;
-  align-self: center;
+  flex-direction: column;
   align-items: center;
+  align-self: center;
   animation: ${appearFromRight} 1.2s;
 
   @media ${device.mobileL()} {
     margin: 0;
-  }
-`;
-
-export const ImgRight = styled.img`
-  max-width: 200px;
-  max-height: 200px;
-  align-self: flex-end;
-
-  @media ${device.mobileL()} {
-    opacity: 0;
-    max-width: 0;
-    max-height: 0;
   }
 `;

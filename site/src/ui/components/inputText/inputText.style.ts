@@ -17,7 +17,7 @@ export const Container = styled.div<ContainerProps>`
   max-height: 56px;
 
   & + div {
-    margin-top: 8px;
+    margin-top: 10px;
   }
 
   svg {

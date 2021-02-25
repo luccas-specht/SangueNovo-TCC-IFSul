@@ -19,7 +19,7 @@ export const paths = {
   login: () => "/login",
   register: () => "/cadastro",
   forgotPassword: () => "/esqueci-minha-senha",
-  resetPassowrd: () => "/resetar-senha",
+  resetPassowrd: () => "/redefinir-senha",
   dashboard: () => "/dashboard",
 };
 

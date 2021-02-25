@@ -4,12 +4,17 @@ import { useHistory } from "react-router-dom";
 
 import { FiMail, FiLock, FiUser, BiIdCard, BiPhone } from "react-icons/all";
 
-import { toastConfig } from "../../../../configs";
-import { validationMessage, masks } from "../../../../constants";
+import { toastConfig } from "../../../../../configs";
+import { validationMessage, masks } from "../../../../../constants";
 
-import { useRegister } from "../../../../hooks";
+import { useRegister } from "../../../../../hooks";
 
-import { InputText, InputPassword, Stepper, Button } from "../../../components";
+import {
+  InputText,
+  InputPassword,
+  Stepper,
+  Button,
+} from "../../../../components";
 
 import * as Yup from "yup";
 import { useFormik } from "formik";

@@ -18,6 +18,10 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
   max-height: 56px;
 
+  & + div {
+    margin-top: 10px;
+  }
+
   button {
     border: none;
     background: transparent;
