@@ -14,8 +14,8 @@ interface RequestCreateInstitutionService {
   razaoSocial: string;
   email: string;
   password: string;
-  cnpj: string, 
-  phone: string
+  cnpj: string;
+  phone: string;
 }
 
 @injectable()
@@ -28,32 +28,46 @@ export class CreateInstitutionService {
     private userRepository: IUserRepository,
 
     @inject('DonatorRepository')
-    private donatorRepository: IDonatorRepository,
-    ) {} 
-  
-  public async execute({ razaoSocial, cnpj, email, phone, password }: RequestCreateInstitutionService): Promise<void> {
-    const emailUsed = await this.userRepository.findByEmail(email)
+    private donatorRepository: IDonatorRepository
+  ) {}
 
-    if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400)
-    
-    const cnpjUsed = await this.institutionRepository.findByCnpj(cnpj)
+  public async execute({
+    razaoSocial,
+    cnpj,
+    email,
+    phone,
+    password,
+  }: RequestCreateInstitutionService): Promise<void> {
+    const emailUsed = await this.userRepository.findByEmail(email);
 
-    if (cnpjUsed) throw new AppError(MESSAGEINVALID.cnpjAlreadyExists, 400)
+    if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400);
 
-    const checkIfCnpjIsEqualToCpf = await this.donatorRepository.findByCpf(cnpj)
+    const cnpjUsed = await this.institutionRepository.findByCnpj(cnpj);
 
-    if (checkIfCnpjIsEqualToCpf) throw new AppError(MESSAGEINVALID.cnpjAlreadyExists, 400)
+    if (cnpjUsed) throw new AppError(MESSAGEINVALID.cnpjAlreadyExists, 400);
 
-    const hasedPassword = await hash(password, 8)
+    const checkIfCnpjIsEqualToCpf = await this.donatorRepository.findByCpf(
+      cnpj
+    );
 
-    const user = await this.userRepository.create(email, hasedPassword, phone, true);
+    if (checkIfCnpjIsEqualToCpf)
+      throw new AppError(MESSAGEINVALID.cnpjAlreadyExists, 400);
+
+    const hasedPassword = await hash(password, 8);
+
+    const user = await this.userRepository.create(
+      email,
+      hasedPassword,
+      phone,
+      true
+    );
 
     const institution = {
       razao_social: razaoSocial,
       cnpj,
-      tb_user_fk: user
-    } as AppInstitution
+      tb_user_fk: user,
+    } as AppInstitution;
 
-    await this.institutionRepository.save(institution)
-  } 
+    await this.institutionRepository.save(institution);
+  }
 }

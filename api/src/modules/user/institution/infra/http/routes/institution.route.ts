@@ -7,7 +7,8 @@ export const institutionRouter = Router();
 
 const institutionController = new InstitutionController();
 
-institutionRouter.post('/',
-    ensureDataRequest, 
-    institutionController.createInstitution
+institutionRouter.post(
+  '/',
+  ensureDataRequest,
+  institutionController.createInstitution
 );

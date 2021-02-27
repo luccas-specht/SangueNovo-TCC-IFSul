@@ -24,10 +24,28 @@ import { IMailTemplateProvider } from './providers/MailTemplateProvider/models/I
 import { HandlebarsMailTemplateProvider } from './providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider';
 
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
-container.registerSingleton<IUserTokenRepository>('UserTokenRepository', UserTokenRepository);
-container.registerSingleton<IDonatorRepository>('DonatorRepository', DonatorRepository);
-container.registerSingleton<IInstitutionRepository>('InstitutionRepository', InstitutionRepository);
+container.registerSingleton<IUserTokenRepository>(
+  'UserTokenRepository',
+  UserTokenRepository
+);
+container.registerSingleton<IDonatorRepository>(
+  'DonatorRepository',
+  DonatorRepository
+);
+container.registerSingleton<IInstitutionRepository>(
+  'InstitutionRepository',
+  InstitutionRepository
+);
 
-container.registerSingleton<IStorageProvider>('StorageProvider', DiskStorageProvider);
-container.registerSingleton<IMailTemplateProvider>('MailTemplateProvider', HandlebarsMailTemplateProvider);
-container.registerInstance<IMailProvider>('MailProvider', container.resolve(EtherealMailProvider));
+container.registerSingleton<IStorageProvider>(
+  'StorageProvider',
+  DiskStorageProvider
+);
+container.registerSingleton<IMailTemplateProvider>(
+  'MailTemplateProvider',
+  HandlebarsMailTemplateProvider
+);
+container.registerInstance<IMailProvider>(
+  'MailProvider',
+  container.resolve(EtherealMailProvider)
+);

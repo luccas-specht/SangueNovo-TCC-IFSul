@@ -1,9 +1,9 @@
-import { 
-  Entity, 
-  Column, 
-  OneToOne, 
+import {
+  Entity,
+  Column,
+  OneToOne,
   JoinColumn,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
@@ -16,13 +16,13 @@ export class AppInstitution {
   @Column('varchar')
   razao_social: string;
 
-  @Column({ 
-    unique: true, 
-    type: 'varchar'
- })
+  @Column({
+    unique: true,
+    type: 'varchar',
+  })
   cnpj: string;
 
   @OneToOne(() => AppUser)
-  @JoinColumn({name: 'tb_user_fk'})
+  @JoinColumn({ name: 'tb_user_fk' })
   tb_user_fk: AppUser;
-};
+}

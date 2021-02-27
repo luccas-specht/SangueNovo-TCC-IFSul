@@ -5,30 +5,34 @@ import { SendForgotPasswordEmailService } from '@modules/user/bothUsers/service/
 import { ResetPasswordService } from '@modules/user/bothUsers/service/ResetPassowrdService';
 
 export class ForgotPasswordController {
-    public async sendForgotPasswordEmail(request: Request, response: Response): Promise<Response> {
-        const { email } = request.body;
+  public async sendForgotPasswordEmail(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { email } = request.body;
 
-        const sendForgotPasswordEmailService = container.resolve(
-            SendForgotPasswordEmailService
-        );
-            
-        await sendForgotPasswordEmailService.execute({ email });
-    
-        return response.json().status(204)
-    }
+    const sendForgotPasswordEmailService = container.resolve(
+      SendForgotPasswordEmailService
+    );
 
-    public async resetPassword(request: Request, response: Response): Promise<Response> {
-        const { password, token } = request.body;
-  
-        const resetPassword = container.resolve(
-            ResetPasswordService
-        );
-            
-        await resetPassword.execute({
-          password, 
-          token
-        });
-    
-        return response.json().status(204)
-    }
-};
+    await sendForgotPasswordEmailService.execute({ email });
+
+    return response.json().status(204);
+  }
+
+  public async resetPassword(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { password, token } = request.body;
+
+    const resetPassword = container.resolve(ResetPasswordService);
+
+    await resetPassword.execute({
+      password,
+      token,
+    });
+
+    return response.json().status(204);
+  }
+}

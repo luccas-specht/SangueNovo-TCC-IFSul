@@ -4,18 +4,22 @@ import { container } from 'tsyringe';
 import { CreateInstitutionService } from '@modules/user/institution/service/CreateInstitutionService';
 
 export class InstitutionController {
+  public async createInstitution(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { razaoSocial, cnpj, email, phone, password } = request.body;
 
-    public async createInstitution(request: Request, response: Response): Promise<Response> {
-        const { razaoSocial, cnpj, email, phone, password } = request.body;
-
-        const createInstitutionService = container.resolve(CreateInstitutionService);
-        await createInstitutionService.execute({ 
-            razaoSocial, 
-            cnpj, 
-            email, 
-            phone,
-            password
-        });
-        return response.json().status(200);
-    }
-};
+    const createInstitutionService = container.resolve(
+      CreateInstitutionService
+    );
+    await createInstitutionService.execute({
+      razaoSocial,
+      cnpj,
+      email,
+      phone,
+      password,
+    });
+    return response.json().status(200);
+  }
+}

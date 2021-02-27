@@ -7,7 +7,4 @@ export const donatorRouter = Router();
 
 const donatorController = new DonatorController();
 
-donatorRouter.post('/', 
-    ensureDataRequest, 
-    donatorController.createDonator
-);
+donatorRouter.post('/', ensureDataRequest, donatorController.createDonator);
