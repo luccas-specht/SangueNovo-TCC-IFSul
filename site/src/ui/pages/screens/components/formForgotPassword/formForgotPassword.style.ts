@@ -20,7 +20,7 @@ export const Container = styled.div`
   }
 
   @media ${device.mobileL()} {
-    width: 325px;
+    width: 350px;
     height: 300px;
     margin-top: 30%;
 

@@ -22,6 +22,7 @@ export const Context = styled.div`
 
   @media ${device.mobileL()} {
     flex-direction: column;
+    width: 350px;
   }
 `;
 
@@ -30,22 +31,26 @@ export const LeftImg = styled.div`
   display: flex;
   height: 100%;
   align-items: flex-start;
+  visibility: visible;
 
   img {
     margin-top: 50px;
     max-width: 160px;
     max-height: 120px;
+    visibility: visible;
   }
 
   @media ${device.mobileL()} {
     display: none;
     height: 0;
     margin: 0;
+    visibility: hidden;
 
     img {
       margin-top: 0;
       max-width: 0;
       max-height: 0;
+      visibility: hidden;
     }
   }
 `;
@@ -56,32 +61,38 @@ export const RightImg = styled.div`
   height: 100%;
   flex: 1;
   margin-left: 13%;
+  visibility: visible;
 
   @media ${device.mobileL()} {
     display: none;
     height: 0;
     margin: 0;
     flex: 0;
+    visibility: hidden;
   }
 `;
 
 export const ContextImg = styled.div`
   width: 100%;
+  visibility: visible;
 
   img {
     float: right;
     max-width: 200px;
     max-height: 130px;
+    visibility: visible;
   }
 
   @media ${device.mobileL()} {
     width: 0;
+    visibility: hidden;
 
     img {
       opacity: 0;
       float: none;
       max-width: 0px;
       max-height: 0px;
+      visibility: hidden;
     }
   }
 `;
@@ -113,5 +124,7 @@ export const AnimationContext = styled.div`
 
   @media ${device.mobileL()} {
     margin: 0;
+    margin-left: 23px;
+    width: 100%;
   }
 `;
