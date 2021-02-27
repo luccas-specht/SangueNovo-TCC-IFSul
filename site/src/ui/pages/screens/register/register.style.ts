@@ -4,7 +4,7 @@ import { shade } from "polished";
 
 import { Link } from "react-router-dom";
 
-import { device } from "../../../../constants/responsivenessAvailable";
+import { device } from "../../../../constants";
 
 type TabProps = {
   active: boolean;
@@ -25,20 +25,21 @@ export const Container = styled.div`
 export const Context = styled.div`
   display: flex;
   flex: 1;
-  padding-right: 16.5%;
+  padding-right: 14%;
   align-items: center;
   flex-direction: column;
   align-self: center;
 
   @media ${device.mobileL()} {
     flex-direction: column;
+    padding-right: 0;
   }
 `;
 
 export const appearFromLeft = keyframes`
   from{
     opacity: 0;
-    transform: translateX(-125px);
+    transform: translateX(-100px);
   }
   to{
     opacity: 1;
@@ -49,7 +50,7 @@ export const appearFromLeft = keyframes`
 export const appearFromRight = keyframes`
   from{
     opacity: 0;
-    transform: translateX(125px);
+    transform: translateX(100px);
   }
   to{
     opacity: 1;
@@ -61,7 +62,7 @@ export const AnimationContext = styled.div`
   display: flex;
   align-self: center;
   align-items: center;
-  animation: ${appearFromRight} 1.2s;
+  animation: ${appearFromLeft} 1.2s;
 
   @media ${device.mobileL()} {
     margin: 0;
@@ -79,6 +80,21 @@ export const FormContainer = styled.div`
   img {
     margin: 25px auto;
   }
+
+  @media ${device.mobileL()} {
+    padding-top: 5%;
+    margin-top: 50%;
+    width: 350px;
+
+    img {
+      top: 50px;
+      position: absolute;
+    }
+  }
+`;
+
+export const AnimantionForm = styled.div<TabProps>`
+  animation: ${({ active }) => (active ? appearFromRight : appearFromLeft)} 1s;
 `;
 
 export const Title = styled.h1`
@@ -123,10 +139,6 @@ export const Ul = styled.ul<TabProps>`
   }
 `;
 
-export const AnimantionForm = styled.div<TabProps>`
-  animation: ${({ active }) => (active ? appearFromRight : appearFromLeft)} 1s;
-`;
-
 export const BackToSignIn = styled(Link)`
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -163,6 +175,19 @@ export const WrapperImg = styled.div`
   & :last-child {
     max-height: 300px;
     max-width: 320px;
+  }
+
+  @media ${device.mobileL()} {
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+    height: 0;
+
+    img {
+      margin: 0;
+      visibility: hidden;
+      opacity: 0;
+    }
   }
 `;
 
