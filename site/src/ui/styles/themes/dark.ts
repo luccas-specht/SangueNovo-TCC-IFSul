@@ -7,6 +7,7 @@ export const dark: DefaultTheme = {
     titleColor: "#F4EDE8",
     primary: "#BF0404",
     primary1: "#FF9000",
+    primary2: "#950000",
     secundary: "#FF9000",
     backgroundPrimary: "#232129",
     backgroundSecudary: "#312E38",
@@ -15,5 +16,6 @@ export const dark: DefaultTheme = {
     tabColor: "#3F51B5",
     errorColor: "#C53030",
     disableColor: "#C6C6C6",
+    colorHeader: "#28262E",
   },
 };

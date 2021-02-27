@@ -132,7 +132,7 @@ export const FormInstitutionRegister = () => {
               error={formik.touched.password && formik.errors.password}
               onChange={formik.handleChange}
             />
-            <Button disabled title="Entrar" />
+            <Button disabled title="Cadastrar" />
           </>
         ) : (
           <>
@@ -166,7 +166,7 @@ export const FormInstitutionRegister = () => {
               error={formik.touched.cnpj && formik.errors.cnpj}
               onChange={formik.handleChange}
             />
-            <Button title="Entrar" />
+            <Button title="Cadastrar" />
           </>
         )}
         <Stepper

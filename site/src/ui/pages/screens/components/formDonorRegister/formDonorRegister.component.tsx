@@ -143,7 +143,7 @@ export const FormDonorRegister = () => {
               error={formik.touched.password && formik.errors.password}
               onChange={formik.handleChange}
             />
-            <Button disabled title="Entrar" />
+            <Button disabled title="Cadastrar" />
           </>
         ) : (
           <>
@@ -176,7 +176,7 @@ export const FormDonorRegister = () => {
               error={formik.touched.phone && formik.errors.phone}
               onChange={formik.handleChange}
             />
-            <Button title="Entrar" />
+            <Button title="Cadastrar" />
           </>
         )}
         <Stepper

@@ -44,6 +44,7 @@ export const FormLogin = () => {
   const onLogin = async ({ email, password }: FormLoginData): Promise<void> => {
     const { data, status } = await authentication(email, password);
     if (status === 200) {
+      console.log("data api:", data);
       authenticatedUser(data);
       push("/dashboard");
     } else {

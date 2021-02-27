@@ -21,8 +21,8 @@ export const AuthContext = createContext<AuthContextData>(
 
 export const AuthProvider = ({ children }: AuthProviderData) => {
   const [authUser, setAuthUser] = useState<AuthUser>(() => {
-    const token = localStorage.getItem("@access_token");
-    const user = localStorage.getItem("@access_user");
+    const token = localStorage.getItem("@access_tokenSangueNovo");
+    const user = localStorage.getItem("@access_tokenUser");
 
     if (token && user)
       return {
@@ -34,14 +34,14 @@ export const AuthProvider = ({ children }: AuthProviderData) => {
   });
 
   const authenticatedUser = ({ token, user }: AuthUser): void => {
-    localStorage.setItem("@access_token", token);
-    localStorage.setItem("@access_user", JSON.stringify(user));
+    localStorage.setItem("@access_tokenSangueNovo", token);
+    localStorage.setItem("@access_tokenUser", JSON.stringify(user));
     setAuthUser({ token, user });
   };
 
   const signOut = (): void => {
-    localStorage.removeItem("@access_token");
-    localStorage.removeItem("@access_user");
+    localStorage.removeItem("@access_tokenSangueNovo");
+    localStorage.removeItem("@access_tokenUser");
     setAuthUser({} as AuthUser);
   };
 

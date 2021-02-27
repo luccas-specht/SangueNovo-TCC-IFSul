@@ -7,6 +7,7 @@ declare module "styled-components" {
       titleColor: string;
       primary: string;
       primary1: string;
+      primary2: string;
       secundary: string;
       backgroundPrimary: string;
       backgroundSecudary: string;
@@ -15,6 +16,7 @@ declare module "styled-components" {
       tabColor: string;
       errorColor: string;
       disableColor: string;
+      colorHeader: string;
     };
   }
 }

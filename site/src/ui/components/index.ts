@@ -5,3 +5,4 @@ export { InputPassword } from "./inputPassword/inputPassword.component";
 export { InputText } from "./inputText/inputText.component";
 export { Stepper } from "./stepper/stepper.components";
 export { TooltipAlertError } from "./tooltipAlertError/tooltipAlertError.component";
+export { Header } from "./header/header.component";

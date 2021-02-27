@@ -7,6 +7,7 @@ export const light: DefaultTheme = {
     titleColor: "#666360",
     primary: "#BF0404",
     primary1: "#3E3B47",
+    primary2: "#950000",
     secundary: "#FF9000",
     backgroundPrimary: "#F2F2F2",
     backgroundSecudary: "#FFFFFF",
@@ -15,5 +16,6 @@ export const light: DefaultTheme = {
     tabColor: "#3F51B5",
     errorColor: "#C53030",
     disableColor: "#DDDDDD",
+    colorHeader: "#FFFFFF",
   },
 };

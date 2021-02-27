@@ -3,13 +3,16 @@ import { AxiosRequestConfig } from "axios";
 import { methodsAvaibles } from "../../../constants";
 import { useAxiosApiSangueNovo } from "../useAxios/useAxios.hook";
 
+import { useAuthenticated } from "../..";
+
 export const useRequest = (path: string) => {
   const { request } = useAxiosApiSangueNovo();
+  const { user } = useAuthenticated();
 
   const buildUrl = (url?: string) => (url ? `${path}/${url}` : path);
 
   const buildHeaders = () => ({
-    Authorization: `Bearer ${localStorage.getItem("@access_token")}`,
+    Authorization: `Bearer ${user?.user?.token}`,
   });
 
   const callApi = async (method: string, url?: string, data?: any) => {
