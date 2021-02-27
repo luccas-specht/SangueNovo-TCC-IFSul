@@ -16,6 +16,9 @@ export class AppInstitution {
   @Column('varchar')
   razao_social: string;
 
+  @Column('varchar')
+  cep: string;
+
   @Column({
     unique: true,
     type: 'varchar',

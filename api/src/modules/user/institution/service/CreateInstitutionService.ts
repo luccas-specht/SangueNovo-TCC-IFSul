@@ -16,6 +16,7 @@ interface RequestCreateInstitutionService {
   password: string;
   cnpj: string;
   phone: string;
+  cep: string;
 }
 
 @injectable()
@@ -36,6 +37,7 @@ export class CreateInstitutionService {
     cnpj,
     email,
     phone,
+    cep,
     password,
   }: RequestCreateInstitutionService): Promise<void> {
     const emailUsed = await this.userRepository.findByEmail(email);
@@ -55,16 +57,12 @@ export class CreateInstitutionService {
 
     const hasedPassword = await hash(password, 8);
 
-    const user = await this.userRepository.create(
-      email,
-      hasedPassword,
-      phone,
-      true
-    );
+    const user = await this.userRepository.create(email, hasedPassword, phone);
 
     const institution = {
       razao_social: razaoSocial,
       cnpj,
+      cep,
       tb_user_fk: user,
     } as AppInstitution;
 

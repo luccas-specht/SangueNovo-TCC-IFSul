@@ -12,29 +12,26 @@ export class AppUser {
   id: string;
 
   @Column({
-    type: 'varchar', 
-    unique: true
+    type: 'varchar',
+    unique: true,
   })
   email: string;
 
   @Column('varchar')
   password: string;
 
-  @Column({ 
-    type:'varchar',
-    nullable: true 
-   })
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
   avatar: string;
 
   @Column('varchar')
   phone: string;
 
-  @Column('boolean')
-  active: boolean;
-
   @CreateDateColumn()
   created_at: Date;
-    
+
   @UpdateDateColumn()
   updated_at: Date;
-};
+}

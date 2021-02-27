@@ -17,6 +17,7 @@ const schemaCreateInstituion = Yup.object().shape({
   email: Yup.string()
     .email(MessageInvalidRequest.invalidEmail)
     .required(MessageInvalidRequest.required),
+  cep: Yup.string().required(MessageInvalidRequest.required),
 });
 
 export async function ensureDataRequest(
@@ -24,7 +25,7 @@ export async function ensureDataRequest(
   response: Response,
   next: NextFunction
 ): Promise<void> {
-  const { razaoSocial, cnpj, email, phone, password } = request.body;
+  const { razaoSocial, cnpj, email, phone, password, cep } = request.body;
 
   try {
     await schemaCreateInstituion.validate(
@@ -34,6 +35,7 @@ export async function ensureDataRequest(
         email,
         password,
         phone,
+        cep,
       },
       {
         abortEarly: false,

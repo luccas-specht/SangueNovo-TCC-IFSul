@@ -8,7 +8,7 @@ export class InstitutionController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { razaoSocial, cnpj, email, phone, password } = request.body;
+    const { razaoSocial, cnpj, email, phone, password, cep } = request.body;
 
     const createInstitutionService = container.resolve(
       CreateInstitutionService
@@ -19,6 +19,7 @@ export class InstitutionController {
       email,
       phone,
       password,
+      cep,
     });
     return response.json().status(200);
   }

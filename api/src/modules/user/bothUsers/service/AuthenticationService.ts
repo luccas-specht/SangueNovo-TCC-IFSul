@@ -17,7 +17,7 @@ interface IRequest {
 }
 
 interface IUserResponse {
-  [key: string]: string | number;
+  [key: string]: string | number | boolean;
 }
 
 interface IResponse {
@@ -27,7 +27,6 @@ interface IResponse {
 
 @injectable()
 export class AuthenticationService {
-  
   constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository,
@@ -37,39 +36,43 @@ export class AuthenticationService {
 
     @inject('DonatorRepository')
     private donatorRepository: IDonatorRepository
-    ) {}
+  ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
-    let userType: any
+    let userType: any;
 
-    const user = await this.userRepository.findByEmail(email)
+    const user = await this.userRepository.findByEmail(email);
 
-    if (!user || !user?.active) throw new AppError(MESSAGEINVALID.unathorized, 401)
+    if (!user) throw new AppError(MESSAGEINVALID.unathorized, 401);
 
-    const passwordMatched = await compare(password, user.password)
+    const passwordMatched = await compare(password, user.password);
 
-    if (!passwordMatched) throw new AppError(MESSAGEINVALID.unathorized, 401)
+    if (!passwordMatched) throw new AppError(MESSAGEINVALID.unathorized, 401);
 
-    userType = await this.donatorRepository.findByIdUser(user.id)
-    
-    if(!userType) userType = await this.institutionRepository.findByIdUser(user.id)
-    
-    const { secret, expiresIn } = authConfig.jwt
+    userType = await this.donatorRepository.findByIdUser(user.id);
 
-    const token = sign({}, secret, { 
-        subject: user.id,
-        expiresIn: expiresIn
-     })
+    if (!userType)
+      userType = await this.institutionRepository.findByIdUser(user.id);
 
-     const { name, razao_social } = userType
-     const { id, avatar } = user
-    
-    return { 
-      user: { 
-            id, 
-            userName: name ?? razao_social,
-            avatar
-          }, token 
-      }
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({}, secret, {
+      subject: user.id,
+      expiresIn: expiresIn,
+    });
+
+    const { name, razao_social, phone } = userType;
+    const { id, avatar } = user;
+
+    return {
+      user: {
+        id,
+        userName: name ?? razao_social,
+        avatar,
+        phone,
+        isDonator: name ? true : false,
+      },
+      token,
+    };
   }
 }
