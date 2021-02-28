@@ -13,13 +13,15 @@ interface Props {
 }
 
 export const Stepper = ({ steps, activeStep, setActiveStep }: Props) => {
-  const handleNext = useCallback(() => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  }, [setActiveStep]);
+  const handleBack = useCallback(
+    () => setActiveStep((prevActiveStep) => prevActiveStep - 1),
+    [setActiveStep]
+  );
 
-  const handleBack = useCallback(() => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  }, [setActiveStep]);
+  const handleNext = useCallback(
+    () => setActiveStep((prevActiveStep) => prevActiveStep + 1),
+    [setActiveStep]
+  );
 
   return (
     <SC.Container>

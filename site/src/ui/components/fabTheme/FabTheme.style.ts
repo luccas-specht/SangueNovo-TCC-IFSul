@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { FiSun, FaMoon } from "react-icons/all";
+import { FaMoon, FaSun } from "react-icons/all";
 
 import { device } from "../../../constants/responsivenessAvailable";
 
@@ -25,7 +25,7 @@ export const Container = styled.div`
   }
 `;
 
-export const StyledFiSun = styled(FiSun)`
+export const StyledFaSun = styled(FaSun)`
   width: 23px;
   height: 23px;
 `;

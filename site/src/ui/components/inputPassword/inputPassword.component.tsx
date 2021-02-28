@@ -26,17 +26,24 @@ export const InputPassword = ({
   const [type, setType] = useState<"text" | "password">("password");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const handleChangeType = useCallback(() => {
-    setType(type === "text" ? "password" : "text");
-  }, [type]);
+  const handleChangeType = useCallback(
+    () => setType(type === "text" ? "password" : "text"),
+    [type]
+  );
 
-  const renderedIcon = useCallback(() => {
-    return type === "text" ? <S.CloseEye /> : <S.OpenEye />;
-  }, [type]);
+  const renderedIcon = useCallback(
+    () => (
+      <button type="button" onClick={handleChangeType}>
+        {type === "text" ? <S.CloseEye /> : <S.OpenEye />}
+      </button>
+    ),
+    [type, handleChangeType]
+  );
 
-  const showError = useCallback(() => {
-    return !!error && <TooltipAlertError messageError={error} />;
-  }, [error]);
+  const showError = useCallback(
+    () => !!error && <TooltipAlertError messageError={error} />,
+    [error]
+  );
 
   return (
     <S.Container isFocused={isFocused} isErrored={!!error}>
@@ -51,9 +58,7 @@ export const InputPassword = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      <button type="button" onClick={handleChangeType}>
-        {renderedIcon()}
-      </button>
+      {renderedIcon()}
       {showError()}
     </S.Container>
   );
