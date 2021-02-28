@@ -17,7 +17,7 @@ interface Request {
 
 @injectable()
 export class SendForgotPasswordEmailService {
-  constructor(    
+  constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository,
 
@@ -33,19 +33,24 @@ export class SendForgotPasswordEmailService {
     @inject('DonatorRepository')
     private donatorRepository: IDonatorRepository
   ) {}
-  
+
   public async execute({ email }: Request): Promise<void> {
-     const user = await this.userRepository.findByEmail(email);
-      
-     if(!user) throw new AppError(MESSAGEINVALID.emailNotFound, 400);
+    const user = await this.userRepository.findByEmail(email);
 
-     const { token_id } = await this.userTokenRepository.generate(user.id);
+    if (!user) throw new AppError(MESSAGEINVALID.emailNotFound, 400);
 
-     const userName = await this.findUserAssociated(user.id);
+    const { token_id } = await this.userTokenRepository.generate(user.id);
 
-     const forgotPasswordTemplate = path.resolve(__dirname, '..', 'views', 'forgot_password.hbs');
+    const userName = await this.findUserAssociated(user.id);
 
-     await this.mailProvider.sendMail({
+    const forgotPasswordTemplate = path.resolve(
+      __dirname,
+      '..',
+      'views',
+      'forgot_password.hbs'
+    );
+
+    await this.mailProvider.sendMail({
       to: {
         name: userName,
         email: user.email,
@@ -55,21 +60,22 @@ export class SendForgotPasswordEmailService {
         file: forgotPasswordTemplate,
         variables: {
           name: userName,
-          link: `http://localhost:3000/reset-password?token=${token_id}`,
+          link: `http://localhost:3000/redefinir-senha?token=${token_id}`,
         },
       },
     });
   }
 
   private async findUserAssociated(userId: string): Promise<string> {
-     let userType: any
-     
-     userType = await this.donatorRepository.findByIdUser(userId)
-     
-     if(!userType) userType = await this.institutionRepository.findByIdUser(userId)
-      
-     const { name, razao_social } = userType;
+    let userType: any;
 
-     return name ?? razao_social;
+    userType = await this.donatorRepository.findByIdUser(userId);
+
+    if (!userType)
+      userType = await this.institutionRepository.findByIdUser(userId);
+
+    const { name, razao_social } = userType;
+
+    return name ?? razao_social;
   }
 }

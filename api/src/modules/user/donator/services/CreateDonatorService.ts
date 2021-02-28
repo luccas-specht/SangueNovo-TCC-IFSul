@@ -58,12 +58,7 @@ export class CreateDonatorService {
 
     const hasedPassword = await hash(password, 8);
 
-    const user = await this.userRepository.create(
-      email,
-      hasedPassword,
-      phone,
-      true
-    );
+    const user = await this.userRepository.create(email, hasedPassword, phone);
 
     const donator = {
       name,

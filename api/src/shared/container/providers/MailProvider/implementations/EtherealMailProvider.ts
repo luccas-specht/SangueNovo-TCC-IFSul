@@ -34,7 +34,7 @@ export class EtherealMailProvider implements IMailProvider {
     templateData,
     to,
     from,
-  }: ISendMail): Promise<void> {
+  }: ISendMail): Promise<any> {
     const message = await this.client.sendMail({
       from: {
         name: from?.name || 'Equipe Sangue Novo',
@@ -50,5 +50,7 @@ export class EtherealMailProvider implements IMailProvider {
 
     console.log('Message sent: %s', message.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
+
+    return nodemailer.getTestMessageUrl(message);
   }
 }
