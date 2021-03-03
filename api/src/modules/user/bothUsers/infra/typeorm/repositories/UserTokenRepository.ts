@@ -16,7 +16,9 @@ export class UserTokenRepository implements IUserTokenRepository {
     return this.ormRepository.save(userToken);
   }
 
-  public async findByToken(token: string): Promise<AppUserToken | undefined> {
-    return this.ormRepository.findOne({ where: { token } });
+  public async findByToken(
+    token_id: string
+  ): Promise<AppUserToken | undefined> {
+    return this.ormRepository.findOne({ where: { token_id } });
   }
 }

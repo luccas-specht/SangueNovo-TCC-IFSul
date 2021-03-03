@@ -49,7 +49,7 @@ export class EtherealMailProvider implements IMailProvider {
     });
 
     console.log('Message sent: %s', message.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
+    console.log('Preview URL:', nodemailer.getTestMessageUrl(message));
 
     return nodemailer.getTestMessageUrl(message);
   }

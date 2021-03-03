@@ -34,7 +34,7 @@ export class SendForgotPasswordEmailService {
     private donatorRepository: IDonatorRepository
   ) {}
 
-  public async execute({ email }: Request): Promise<void> {
+  public async execute({ email }: Request): Promise<any> {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) throw new AppError(MESSAGEINVALID.emailNotFound, 400);
@@ -50,7 +50,7 @@ export class SendForgotPasswordEmailService {
       'forgot_password.hbs'
     );
 
-    await this.mailProvider.sendMail({
+    const linkToResetPassword = await this.mailProvider.sendMail({
       to: {
         name: userName,
         email: user.email,
@@ -64,6 +64,8 @@ export class SendForgotPasswordEmailService {
         },
       },
     });
+
+    return linkToResetPassword;
   }
 
   private async findUserAssociated(userId: string): Promise<string> {

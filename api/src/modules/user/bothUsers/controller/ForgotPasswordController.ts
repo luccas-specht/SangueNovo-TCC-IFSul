@@ -15,22 +15,24 @@ export class ForgotPasswordController {
       SendForgotPasswordEmailService
     );
 
-    await sendForgotPasswordEmailService.execute({ email });
+    const linkToResetPassword = await sendForgotPasswordEmailService.execute({
+      email,
+    });
 
-    return response.json().status(204);
+    return response.json({ linkToResetPassword });
   }
 
   public async resetPassword(
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { password, token } = request.body;
+    const { password, token_id } = request.body;
 
     const resetPassword = container.resolve(ResetPasswordService);
 
     await resetPassword.execute({
       password,
-      token,
+      token_id,
     });
 
     return response.json().status(204);

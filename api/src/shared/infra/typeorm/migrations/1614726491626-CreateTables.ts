@@ -1,14 +1,11 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateTables1614466564743 implements MigrationInterface {
-  name = 'CreateTables1614466564743';
+export class CreateTables1614726491626 implements MigrationInterface {
+  name = 'CreateTables1614726491626';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `CREATE TABLE "tb_user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "email" character varying NOT NULL, "password" character varying NOT NULL, "avatar" character varying, "phone" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_ebe445a8233800b2f59004d8ddc" UNIQUE ("email"), CONSTRAINT "PK_1943338f8f00e074a3c5bb48d5e" PRIMARY KEY ("id"))`
-    );
-    await queryRunner.query(
-      `CREATE TABLE "tb_user_token" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "token_id" uuid NOT NULL DEFAULT uuid_generate_v4(), "user_id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_34632f3af5cc77818d0431e64b5" PRIMARY KEY ("id"))`
     );
     await queryRunner.query(
       `CREATE TABLE "tb_donator" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "birthday" date NOT NULL, "cpf" character varying NOT NULL, "tb_user_fk" uuid, CONSTRAINT "UQ_26f72e449e71f9c461d2e921b85" UNIQUE ("cpf"), CONSTRAINT "REL_607cb85b2827dded54474b9010" UNIQUE ("tb_user_fk"), CONSTRAINT "PK_0a69da6ca4a8b4dfcafc2a6510c" PRIMARY KEY ("id"))`
@@ -33,7 +30,6 @@ export class CreateTables1614466564743 implements MigrationInterface {
     );
     await queryRunner.query(`DROP TABLE "tb_institution"`);
     await queryRunner.query(`DROP TABLE "tb_donator"`);
-    await queryRunner.query(`DROP TABLE "tb_user_token"`);
     await queryRunner.query(`DROP TABLE "tb_user"`);
   }
 }
