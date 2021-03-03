@@ -51,13 +51,7 @@ export const FormResetPassword = () => {
     if (!token) {
       toast.error(messageFedback, toastConfig);
     }
-    const { data, status } = await resetPassword(password, token);
-
-    console.log("data", data);
-
-    console.log("statys", status);
-
-    toast.error(data?.message, toastConfig);
+    const { data, status } = await resetPassword(token, password);
 
     if (status === 200 || status === 204) {
       push("/login");
