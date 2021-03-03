@@ -6,3 +6,12 @@ export const toastConfig = {
   draggable: true,
   progress: undefined,
 };
+
+export const toastConfigLink = {
+  autoClose: 35000000000,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};

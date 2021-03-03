@@ -7,9 +7,9 @@ export const validationMessage = {
   requiredName: () => "Por favor, preencha o campo Nome.",
   requiredPhone: () => "Por favor, preencha o campo Telefone.",
   requiredRazaoSocial: () => "Por favor, preencha o campo Razão Social.",
-  requiredCEP: () => 'Por favor, preencha o campo de CEP',
+  requiredCEP: () => "Por favor, preencha o campo de CEP",
   requiredCPF: () => "Por favor, preencha o campo de CPF.",
   requiredCNPJ: () => "Por favor, preencha o campo de CNPJ.",
   requiredBirthDay: () => "Por favor, preencha o campo Data de Aniversário.",
-  requiredPasswordsMustMatch: () => "Confirmação incorreta de senha incorreta.",
+  requiredPasswordsMustMatch: () => "Confirmação de senha incorreta.",
 };

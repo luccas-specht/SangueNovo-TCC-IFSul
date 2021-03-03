@@ -1,1 +1,1 @@
-export { toastConfig } from "./toaster.config";
+export { toastConfig, toastConfigLink } from "./toaster.config";

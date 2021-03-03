@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 
-import { useHistory } from "react-router-dom";
 import { FiMail, FiArrowLeft } from "react-icons/fi";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -14,7 +13,7 @@ import { validationMessage } from "../../../../../constants";
 
 import { InputText, Button } from "../../../../components";
 
-import { toastConfig } from "../../../../../configs";
+import { toastConfig, toastConfigLink } from "../../../../../configs";
 
 import logo from "../../../../assets/images/logo.png";
 
@@ -25,8 +24,9 @@ interface FormPassowrdData {
 }
 
 export const FormForgotPassword = () => {
-  const history = useHistory();
   const { forgotPassword } = useRedefinePassword();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const initialValues = {
     email: "",
@@ -38,21 +38,35 @@ export const FormForgotPassword = () => {
       .email(validationMessage.validEmail),
   });
 
-  const onSendPassword = async ({ email }: FormPassowrdData): Promise<void> => {
-    const response = await forgotPassword(email);
-    if (response.status === 200) {
-      history.push("/dashboard");
+  const handleRedirectEtherealEmail = useCallback(
+    (linkPassword: string) => (
+      <a href={linkPassword}>Clique aqui para redefinir sua senha!</a>
+    ),
+    []
+  );
+
+  const onRecoverPassword = async ({
+    email,
+  }: FormPassowrdData): Promise<void> => {
+    setIsLoading(true);
+    const { data, status } = await forgotPassword(email);
+
+    if (status === 200) {
+      toast.success(
+        handleRedirectEtherealEmail(data?.linkToResetPassword),
+        toastConfigLink
+      );
     } else {
-      toast.error(`${response.data.message}`, toastConfig);
-      formik.resetForm();
+      toast.error(`${data?.message}`, toastConfig);
     }
+    setIsLoading(false);
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validations,
     onSubmit: (values: FormPassowrdData) => {
-      onSendPassword(values);
+      onRecoverPassword(values);
     },
   });
 
@@ -72,7 +86,10 @@ export const FormForgotPassword = () => {
             error={formik.touched.email && formik.errors.email}
             onChange={formik.handleChange}
           />
-          <Button type="submit" title="Recuperar" />
+          <Button
+            type="submit"
+            title={isLoading ? "Carregando..." : "Recuperar"}
+          />
           <SC.BackToSignIn to="login">
             <div>
               <FiArrowLeft />

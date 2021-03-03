@@ -20,10 +20,10 @@ import logo from "../../../../assets/images/logo.png";
 
 import * as SC from "./formResetPassword.style";
 
-interface FormPassowrdData {
+type ResetPasswordData = {
   password: string;
   passwordConfirmation: string;
-}
+};
 
 export const FormResetPassword = () => {
   const { push } = useHistory();
@@ -34,7 +34,7 @@ export const FormResetPassword = () => {
 
   const initialValues = {
     password: "",
-  } as FormPassowrdData;
+  } as ResetPasswordData;
 
   const validations = Yup.object().shape({
     password: Yup.string()
@@ -46,25 +46,23 @@ export const FormResetPassword = () => {
     ),
   });
 
-  const onSendPassword = async ({
+  const onReset = async ({
     password,
-  }: FormPassowrdData): Promise<void> => {
+    passwordConfirmation,
+  }: ResetPasswordData): Promise<void> => {
     const token = search.replace("?token=", "");
-
     if (!token) {
       toast.error(messageFedback, toastConfig);
-      formik.resetForm();
     }
-
-    await resetPassword(password, token);
+    await resetPassword(password, passwordConfirmation, token);
     push("/login");
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validations,
-    onSubmit: (values: FormPassowrdData) => {
-      onSendPassword(values);
+    onSubmit: (values: ResetPasswordData) => {
+      onReset(values);
     },
   });
 

@@ -6,12 +6,14 @@ export const useRegister = () => {
 
   const registerInstitution = async (
     razaoSocial: string,
+    cep: string,
     cnpj: string,
     phone: string,
     email: string,
     password: string
   ): Promise<any> => {
     const { data, status } = await post("institution", {
+      cep: cep,
       razaoSocial: razaoSocial,
       cnpj: cnpj,
       phone: phone,

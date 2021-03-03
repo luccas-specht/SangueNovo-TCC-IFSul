@@ -72,6 +72,7 @@ export const FormInstitutionRegister = () => {
 
   const onRegister = async ({
     razaoSocial,
+    cep,
     cnpj,
     phone,
     email,
@@ -79,6 +80,7 @@ export const FormInstitutionRegister = () => {
   }: FormData): Promise<void> => {
     const { data, status } = await registerInstitution(
       razaoSocial,
+      cep,
       cnpj,
       phone,
       email,

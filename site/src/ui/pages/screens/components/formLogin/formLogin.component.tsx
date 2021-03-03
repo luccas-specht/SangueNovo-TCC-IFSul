@@ -49,7 +49,6 @@ export const FormLogin = () => {
       push("/dashboard");
     } else {
       toast.error(`${data.message}`, toastConfig);
-      formik.resetForm();
     }
   };
 
