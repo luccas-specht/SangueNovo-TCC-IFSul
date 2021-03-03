@@ -78,8 +78,8 @@ export const FormDonorRegister = () => {
   const onRegister = async ({
     name,
     cpf,
-    phone,
     birthday,
+    phone,
     email,
     password,
   }: FormData): Promise<void> => {

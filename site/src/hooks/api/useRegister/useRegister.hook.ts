@@ -13,8 +13,8 @@ export const useRegister = () => {
     password: string
   ): Promise<any> => {
     const { data, status } = await post("institution", {
-      cep: cep,
       razaoSocial: razaoSocial,
+      cep: cep,
       cnpj: cnpj,
       phone: phone,
       email: email,
