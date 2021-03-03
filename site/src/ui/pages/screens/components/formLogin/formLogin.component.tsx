@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FiLogIn, FiMail, FiLock } from "react-icons/fi";
 
@@ -23,6 +23,7 @@ interface FormLoginData {
 }
 
 export const FormLogin = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { push } = useHistory();
   const { authentication } = useAuth();
   const { authenticatedUser } = useAuthenticated();
@@ -42,14 +43,15 @@ export const FormLogin = () => {
   });
 
   const onLogin = async ({ email, password }: FormLoginData): Promise<void> => {
+    setIsLoading(true);
     const { data, status } = await authentication(email, password);
     if (status === 200) {
-      console.log("data api:", data);
       authenticatedUser(data);
       push("/dashboard");
     } else {
       toast.error(`${data.message}`, toastConfig);
     }
+    setIsLoading(false);
   };
 
   const formik = useFormik({
@@ -85,7 +87,7 @@ export const FormLogin = () => {
             error={formik.touched.password && formik.errors.password}
             onChange={formik.handleChange}
           />
-          <Button type="submit" title="Entrar" />
+          <Button type="submit" title={isLoading ? "Entrando..." : "Entrar"} />
           <Link to="esqueci-minha-senha">Esqueci a minha senha</Link>
         </S.Form>
 

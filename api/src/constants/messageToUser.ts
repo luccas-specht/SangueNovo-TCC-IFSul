@@ -8,4 +8,6 @@ export const MESSAGEINVALID = {
   invalidToken: 'Token invalido.',
   userNotExists: 'Usuário não existe.',
   timedOut: 'Tempo da solitação expirou.',
+  newPasswordEqualsOldPassword:
+    'Nova Senha deve ser diferente da senha antiga.',
 };

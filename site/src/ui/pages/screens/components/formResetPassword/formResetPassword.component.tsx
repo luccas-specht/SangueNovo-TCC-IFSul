@@ -46,16 +46,24 @@ export const FormResetPassword = () => {
     ),
   });
 
-  const onReset = async ({
-    password,
-    passwordConfirmation,
-  }: ResetPasswordData): Promise<void> => {
+  const onReset = async ({ password }: ResetPasswordData): Promise<void> => {
     const token = search.replace("?token=", "");
     if (!token) {
       toast.error(messageFedback, toastConfig);
     }
-    await resetPassword(password, passwordConfirmation, token);
-    push("/login");
+    const { data, status } = await resetPassword(password, token);
+
+    console.log("data", data);
+
+    console.log("statys", status);
+
+    toast.error(data?.message, toastConfig);
+
+    if (status === 200 || status === 204) {
+      push("/login");
+    } else {
+      toast.error(data?.message, toastConfig);
+    }
   };
 
   const formik = useFormik({

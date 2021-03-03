@@ -15,10 +15,6 @@ const schemaResetPassowrd = Yup.object().shape({
   password: Yup.string()
     .min(6, MessageInvalidRequest.min6Char)
     .required(MessageInvalidRequest.required),
-  passwordConfirmation: Yup.string().oneOf(
-    [Yup.ref('password'), undefined],
-    MessageInvalidRequest.required
-  ),
   token_id: Yup.string().required(MessageInvalidRequest.required),
 });
 
@@ -47,13 +43,12 @@ export async function ensureResetRequest(
   response: Response,
   next: NextFunction
 ): Promise<void> {
-  const { password, password_confirmation, token_id } = request.body;
+  const { password, token_id } = request.body;
 
   try {
     await schemaResetPassowrd.validate(
       {
         password,
-        password_confirmation,
         token_id,
       },
       {

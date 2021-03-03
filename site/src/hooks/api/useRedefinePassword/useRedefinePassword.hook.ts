@@ -10,13 +10,11 @@ export const useRedefinePassword = () => {
 
   const resetPassword = async (
     token: string,
-    password: string,
-    passwordConfirmation: string
+    password: string
   ): Promise<any> => {
     const { data, status } = await post("reset", {
       token_id: token,
       password: password,
-      password_confirmation: passwordConfirmation,
     });
     return { data, status };
   };
