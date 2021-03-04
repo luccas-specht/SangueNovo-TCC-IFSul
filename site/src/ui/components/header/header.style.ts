@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { FiPower } from "react-icons/fi";
 
-import { FabTheme } from "..";
+import { Link } from "react-router-dom";
 
 type PropsImg = {
   src: string;
@@ -61,21 +61,33 @@ export const WellcomeUser = styled.span`
 
 export const UserName = styled.strong`
   font-weight: 700;
+  font-size: 16px;
+  line-height: 25px;
   color: ${({ theme }) => theme.colors.primary2};
 `;
 
 export const NavBar = styled.ul`
-  margin-left: 150px;
   display: flex;
-  justify-content: space-between;
+  align-self: center;
+  flex: 1;
+  max-height: 45%;
+  justify-content: space-evenly;
   align-items: flex-end;
-  width: 500px;
-  height: 45%;
+  margin-top: 20px;
 
   li {
+    padding-left: 15px;
     font-style: normal;
     font-size: 14px;
-    line-height: 20px;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+
+  svg {
+    color: green;
   }
 `;
 
@@ -92,10 +104,4 @@ export const StyledFiPower = styled(FiPower)`
   background-size: cover;
   color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
-`;
-
-export const StyledFabTheme = styled(FabTheme)`
-  position: relative;
-  top: 0%;
-  left: 0%;
 `;
