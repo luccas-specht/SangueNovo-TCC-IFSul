@@ -8,5 +8,6 @@ export interface IUserRepository {
   ): Promise<AppUser | undefined>;
   save(user: AppUser): Promise<AppUser>;
   findById(id: string): Promise<AppUser | undefined>;
+  findByPhone(phone: string): Promise<AppUser | undefined>;
   findByEmail(email: string): Promise<AppUser | undefined>;
 }

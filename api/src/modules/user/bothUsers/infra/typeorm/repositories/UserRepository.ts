@@ -28,6 +28,10 @@ export class UserRepository implements IUserRepository {
     return this.ormRepository.findOne({ where: { id } });
   }
 
+  public async findByPhone(phone: string): Promise<AppUser | undefined> {
+    return this.ormRepository.findOne({ where: { phone } });
+  }
+
   public async findByEmail(email: string): Promise<AppUser | undefined> {
     return this.ormRepository.findOne({ where: { email } });
   }

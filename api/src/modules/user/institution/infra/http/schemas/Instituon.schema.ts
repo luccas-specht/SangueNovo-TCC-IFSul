@@ -8,16 +8,10 @@ import { AppError } from '@shared/errors/appError';
 const schemaCreateInstituion = Yup.object().shape({
   razaoSocial: Yup.string().required(MessageInvalidRequest.required),
   phone: Yup.string().required(MessageInvalidRequest.required),
-  cnpj: Yup.string().required(
-    MessageInvalidRequest.required
-  ) /*TODO: adicionar validação de cnpj*/,
-  password: Yup.string()
-    .min(6, MessageInvalidRequest.min6Char)
-    .required(MessageInvalidRequest.required),
-  email: Yup.string()
-    .email(MessageInvalidRequest.invalidEmail)
-    .required(MessageInvalidRequest.required),
+  cnpj: Yup.string().required(MessageInvalidRequest.required),
   cep: Yup.string().required(MessageInvalidRequest.required),
+  email: Yup.string().required(MessageInvalidRequest.required),
+  password: Yup.string().required(MessageInvalidRequest.required),
 });
 
 export async function ensureDataRequest(
@@ -31,11 +25,11 @@ export async function ensureDataRequest(
     await schemaCreateInstituion.validate(
       {
         razaoSocial,
+        phone,
         cnpj,
+        cep,
         email,
         password,
-        phone,
-        cep,
       },
       {
         abortEarly: false,

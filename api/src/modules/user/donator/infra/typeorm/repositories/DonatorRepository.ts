@@ -19,10 +19,6 @@ export class DonatorRepository implements IDonatorRepository {
     return await this.ormRepository.findOne({ where: { id } });
   }
 
-  public async findByCpf(cpf: string): Promise<AppDonator | undefined> {
-    return await this.ormRepository.findOne({ where: { cpf } });
-  }
-
   public async findByIdUser(
     tb_user_fk: string
   ): Promise<AppDonator | undefined> {

@@ -26,7 +26,10 @@ export class AppUser {
   })
   avatar: string;
 
-  @Column('varchar')
+  @Column({
+    type: 'varchar',
+    unique: true,
+  })
   phone: string;
 
   @CreateDateColumn()

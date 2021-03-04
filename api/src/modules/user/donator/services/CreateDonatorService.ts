@@ -7,7 +7,6 @@ import { MESSAGEINVALID } from '@constants/messageToUser';
 
 import { IDonatorRepository } from '../IRepository/IDonatorRepository';
 import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
-import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
 
 import { AppDonator } from '@modules/user/donator/infra/typeorm/entities/AppDonator';
 
@@ -25,10 +24,7 @@ export class CreateDonatorService {
     private userRepository: IUserRepository,
 
     @inject('DonatorRepository')
-    private donatorRepository: IDonatorRepository,
-
-    @inject('InstitutionRepository')
-    private institutionRepository: IInstitutionRepository
+    private donatorRepository: IDonatorRepository
   ) {}
 
   public async execute({
@@ -38,8 +34,10 @@ export class CreateDonatorService {
     password,
   }: Request): Promise<void> {
     const emailUsed = await this.userRepository.findByEmail(email);
+    if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists);
 
-    if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400);
+    const phoneUsed = await this.userRepository.findByPhone(phone);
+    if (phoneUsed) throw new AppError(MESSAGEINVALID.phoneAlreadyExists);
 
     const hasedPassword = await hash(password, 8);
 
