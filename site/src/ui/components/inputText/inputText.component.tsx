@@ -27,9 +27,10 @@ export const InputText = ({
 }: PropsInputText) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const showError = useCallback(() => {
-    return !!error && <TooltipAlertError messageError={error} />;
-  }, [error]);
+  const showError = useCallback(
+    () => !!error && <TooltipAlertError messageError={error} />,
+    [error]
+  );
 
   return (
     <S.Container isFocused={isFocused} isErrored={!!error}>

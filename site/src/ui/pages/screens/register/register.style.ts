@@ -126,14 +126,14 @@ export const Ul = styled.ul<TabProps>`
             &:first-child {
               color: ${({ theme }) => theme.colors.tabColor};
               border-radius: 1px;
-              border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
+              border-bottom: 1.5px solid ${({ theme }) => theme.colors.tabColor};
             }
           `
         : css`
             &:last-child {
               color: ${({ theme }) => theme.colors.tabColor};
               border-radius: 1px;
-              border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
+              border-bottom: 1.5px solid ${({ theme }) => theme.colors.tabColor};
             }
           `}
   }
@@ -146,7 +146,7 @@ export const BackToSignIn = styled(Link)`
   align-items: center;
   align-self: center;
   margin-bottom: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
 
   &:hover {
     color: ${({ theme }) => shade(0.2, theme.colors.text)};

@@ -15,8 +15,6 @@ interface Request {
   name: string;
   email: string;
   password: string;
-  cpf: string;
-  birthday: Date;
   phone: string;
 }
 
@@ -35,26 +33,13 @@ export class CreateDonatorService {
 
   public async execute({
     name,
-    cpf,
-    birthday,
+    phone,
     email,
     password,
-    phone,
   }: Request): Promise<void> {
     const emailUsed = await this.userRepository.findByEmail(email);
 
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists, 400);
-
-    const cpfUsed = await this.donatorRepository.findByCpf(cpf);
-
-    if (cpfUsed) throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400);
-
-    const checkIfCpfIsEqualToCnpj = await this.institutionRepository.findByCnpj(
-      cpf
-    );
-
-    if (checkIfCpfIsEqualToCnpj)
-      throw new AppError(MESSAGEINVALID.cpfAlreadyExists, 400);
 
     const hasedPassword = await hash(password, 8);
 
@@ -62,8 +47,6 @@ export class CreateDonatorService {
 
     const donator = {
       name,
-      cpf,
-      birthday,
       tb_user_fk: user,
     } as AppDonator;
 

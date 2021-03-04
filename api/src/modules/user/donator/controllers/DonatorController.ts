@@ -8,16 +8,14 @@ export class DonatorController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { name, cpf, birthday, email, phone, password } = request.body;
+    const { name, email, phone, password } = request.body;
 
     const createDonatorService = container.resolve(CreateDonatorService);
     await createDonatorService.execute({
       name,
-      cpf,
-      birthday,
+      phone,
       email,
       password,
-      phone,
     });
     return response.json().status(200);
   }

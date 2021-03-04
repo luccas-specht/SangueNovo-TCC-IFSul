@@ -34,18 +34,20 @@ export const FormResetPassword = () => {
 
   const initialValues = {
     password: "",
+    passwordConfirmation: "",
   } as ResetPasswordData;
 
   const validations = Yup.object().shape({
     password: Yup.string()
       .min(6, validationMessage.min6Char)
       .required(validationMessage.requiredPassword),
-    passwordConfirmation: Yup.string().oneOf(
-      [Yup.ref("password"), undefined],
-      validationMessage.requiredPasswordsMustMatch
-    ),
+    passwordConfirmation: Yup.string()
+      .required(validationMessage.requiredPasswordConfirmation)
+      .oneOf(
+        [Yup.ref("password")],
+        validationMessage.requiredPasswordsMustMatch
+      ),
   });
-
   const onReset = async ({ password }: ResetPasswordData): Promise<void> => {
     const token = search.replace("?token=", "");
     if (!token) {

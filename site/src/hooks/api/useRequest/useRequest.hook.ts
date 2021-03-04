@@ -5,7 +5,15 @@ import { useAxiosApiSangueNovo } from "../useAxios/useAxios.hook";
 
 import { useAuthenticated } from "../..";
 
-export const useRequest = (path: string) => {
+type Response = {
+  get: (url?: string, data?: any) => Promise<any>;
+  delete: (url?: string, data?: any) => Promise<any>;
+  put: (url?: string, data?: any) => Promise<any>;
+  patch: (url?: string, data?: any) => Promise<any>;
+  post: (url?: string, data?: any) => Promise<any>;
+};
+
+export const useRequest = (path: string): Response => {
   const { request } = useAxiosApiSangueNovo();
   const { user } = useAuthenticated();
 

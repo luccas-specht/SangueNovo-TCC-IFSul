@@ -31,13 +31,15 @@ export const InputDatePicker = ({
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false);
 
-  const handleOpenCalendar = useCallback(() => {
-    setIsOpenCalendar(!isOpenCalendar ?? false);
-  }, [isOpenCalendar]);
+  const handleOpenCalendar = useCallback(
+    () => setIsOpenCalendar(!isOpenCalendar ?? false),
+    [isOpenCalendar]
+  );
 
-  const showError = useCallback(() => {
-    return !!error && <TooltipAlertError messageError={error} />;
-  }, [error]);
+  const showError = useCallback(
+    () => !!error && <TooltipAlertError messageError={error} />,
+    [error]
+  );
 
   registerLocale("pt", pt);
 

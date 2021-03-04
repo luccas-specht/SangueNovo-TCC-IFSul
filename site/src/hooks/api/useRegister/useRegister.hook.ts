@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import { useRequest } from "../useRequest/useRequest.hook";
 
 export const useRegister = () => {
@@ -25,16 +24,13 @@ export const useRegister = () => {
 
   const registerDonator = async (
     name: string,
-    cpf: string,
-    birthday: Date,
     phone: string,
     email: string,
     password: string
   ): Promise<any> => {
     const { data, status } = await post("donator", {
       name: name,
-      cpf: cpf,
-      birthday: format(birthday, "MM-dd-yyyy"),
+      // birthday: format(birthday, "MM-dd-yyyy"),
       phone: phone,
       email: email,
       password: password,

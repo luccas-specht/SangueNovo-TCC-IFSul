@@ -12,7 +12,11 @@ import {
 } from "react-icons/all";
 
 import { toastConfig } from "../../../../../configs";
-import { validationMessage, masks } from "../../../../../constants";
+import {
+  validationMessage,
+  masks,
+  yupValidation,
+} from "../../../../../constants";
 
 import { useRegister } from "../../../../../hooks";
 
@@ -45,6 +49,7 @@ export const FormInstitutionRegister = () => {
   const { registerInstitution } = useRegister();
   const { push } = useHistory();
   const { cnpjMask, phoneBrMask, cepMask } = masks();
+  const { isCnpjValid } = yupValidation;
 
   const initialValues = {
     razaoSocial: "",
@@ -55,11 +60,14 @@ export const FormInstitutionRegister = () => {
     cep: "",
   } as FormData;
 
+  Yup.addMethod<Yup.StringSchema>(Yup.string, "isCnpjValid", isCnpjValid);
+
   const validations = Yup.object().shape({
     razaoSocial: Yup.string().required(validationMessage.requiredName),
     cep: Yup.string().required(validationMessage.requiredCEP),
     cnpj: Yup.string() /*TODO: adicionar validação de cnpj*/
-      .required(validationMessage.requiredCNPJ),
+      .required(validationMessage.requiredCNPJ)
+      .isCnpjValid(validationMessage.validCNPJ),
     phone: Yup.string() /*TODO: adicionar validação de telefone*/
       .required(validationMessage.requiredPhone),
     email: Yup.string()
