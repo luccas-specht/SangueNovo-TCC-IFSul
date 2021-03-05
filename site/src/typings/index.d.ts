@@ -2,7 +2,7 @@ import { StringSchemaConstructor } from "yup";
 
 declare module "yup" {
   interface StringSchema {
-    isCnpjValid(msg?: any): StringSchema;
+    cnpjValid(msg?: any): StringSchema;
   }
 }
 

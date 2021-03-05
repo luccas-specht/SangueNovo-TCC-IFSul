@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import Lottie from "react-lottie";
 
@@ -14,9 +14,16 @@ import * as S from "./pageNotFound.style";
 
 export const PageNotFound = () => {
   const { user } = useAuthenticated();
+
+  const onRedirect = useCallback(
+    () => !user?.token && <Redirect to="login" />,
+    [user?.token]
+  );
+
   return (
     <>
-      {user?.token && <Header />}
+      {onRedirect()}
+      <Header />
       <S.Container>
         <S.Content>
           <S.AnimationWrapper>
@@ -34,10 +41,7 @@ export const PageNotFound = () => {
             <S.StyledText>Esta página não</S.StyledText>
             <S.StyledText>foi encontrada!</S.StyledText>
             <Link to="dashboard">
-              <Button
-                type="button"
-                title={user?.token ? "Voltar para a home" : "Voltar"}
-              />
+              <Button type="button" title="Voltar para a home" />
             </Link>
           </S.InfoWrapper>
         </S.Content>

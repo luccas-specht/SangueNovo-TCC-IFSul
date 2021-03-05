@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 import { useAuthenticated } from "../../../hooks";
 
 import logoImg from "../../assets/images/logo.png";
-import imageDefaultProfile from "../../assets/images/default-user-image.png";
+import imageDefaultProfile from "../../assets/images/default_user_image.png";
 
 import { FabTheme } from "..";
 

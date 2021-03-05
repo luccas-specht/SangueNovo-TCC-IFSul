@@ -1,12 +1,12 @@
 import * as Yup from "yup";
 
-const isCnpjValid = function (this: Yup.StringSchema, msg?: any) {
-  return this.test(`isCnpjValid`, msg, function (value) {
-    let tamanho;
-    let numeros: any;
-    let soma = 0;
+const cnpjValid = function (this: Yup.StringSchema, msg?: any) {
+  return this.test(`cnpjValid`, msg, function (value) {
+    let length;
+    let numbers: any;
+    let sum = 0;
     let pos;
-    let resultado;
+    let result;
 
     const { path, createError } = this;
     const message = msg ?? "CNPJ é inválido.";
@@ -31,33 +31,33 @@ const isCnpjValid = function (this: Yup.StringSchema, msg?: any) {
     )
       return createError({ path, message });
 
-    tamanho = value.length - 2;
-    numeros = value.substring(0, tamanho) as any;
-    const digitos = value.substring(tamanho);
-    soma = 0 as any;
-    pos = tamanho - 7;
-    for (let i = tamanho; i >= 1; i--) {
-      soma += numeros.charAt(tamanho - i) * pos--;
+    length = value.length - 2;
+    numbers = value.substring(0, length) as any;
+    const digitos = value.substring(length);
+    sum = 0 as any;
+    pos = length - 7;
+    for (let i = length; i >= 1; i--) {
+      sum += numbers.charAt(length - i) * pos--;
       if (pos < 2) pos = 9;
     }
-    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
 
-    if (resultado !== Number(digitos.charAt(0)))
+    if (result !== Number(digitos.charAt(0)))
       return createError({ path, message });
 
-    tamanho += 1;
-    numeros = value.substring(0, tamanho);
-    soma = 0;
-    pos = tamanho - 7;
+    length += 1;
+    numbers = value.substring(0, length);
+    sum = 0;
+    pos = length - 7;
 
-    for (let i = tamanho; i >= 1; i--) {
-      soma += numeros.charAt(tamanho - i) * pos--;
+    for (let i = length; i >= 1; i--) {
+      sum += numbers.charAt(length - i) * pos--;
       if (pos < 2) pos = 9;
     }
 
-    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
 
-    if (resultado !== Number(digitos.charAt(1)))
+    if (result !== Number(digitos.charAt(1)))
       return createError({ path, message });
 
     return true;
@@ -65,5 +65,5 @@ const isCnpjValid = function (this: Yup.StringSchema, msg?: any) {
 };
 
 export const yupValidation = {
-  isCnpjValid,
+  cnpjValid,
 };
