@@ -4,6 +4,8 @@ import {
   Register,
   ForgotPassword,
   ResetPassword,
+  CreateCampaign,
+  PageNotFound,
 } from "../ui/pages";
 
 const components = {
@@ -12,6 +14,8 @@ const components = {
   forgotPassword: ForgotPassword,
   dashboard: Dashboard,
   resetPassword: ResetPassword,
+  createCampaign: CreateCampaign,
+  pageNotFound: PageNotFound,
 };
 
 export const paths = {
@@ -21,9 +25,17 @@ export const paths = {
   forgotPassword: () => "/esqueci-minha-senha",
   resetPassowrd: () => "/redefinir-senha",
   dashboard: () => "/dashboard",
+  createCampaign: () => "/criar-campanha",
+  pageNotFound: () => "*",
 };
 
 export const routes = {
+  /*not found*/
+  pageNotFound: {
+    path: paths.pageNotFound(),
+    component: PageNotFound,
+  },
+
   /*publics here*/
   default: {
     path: paths.default(),
@@ -50,5 +62,9 @@ export const routes = {
   dashboard: {
     path: paths.dashboard(),
     component: components.dashboard,
+  },
+  createCampaign: {
+    path: paths.createCampaign(),
+    component: components.createCampaign,
   },
 };

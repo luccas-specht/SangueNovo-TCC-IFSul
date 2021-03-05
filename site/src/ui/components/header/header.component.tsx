@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 import { useAuthenticated } from "../../../hooks";
 
 import logoImg from "../../assets/images/logo.png";
-import imageDefaultProfile from "../../assets/images/avatar_user_default.png";
+import imageDefaultProfile from "../../assets/images/default-user-image.png";
 
 import { FabTheme } from "..";
 
@@ -29,14 +29,14 @@ export const Header = () => {
 
   const navegations = [
     {
-      title: "Listar Campanhas de doação",
+      title: "Listar Campanhas de Doação",
       icon: <GoTasklist size={20} />,
       to: "",
     },
     {
-      title: "Criar Campanha de doação",
+      title: "Criar Campanha de Doação",
       icon: <MdCreate size={20} />,
-      to: "",
+      to: "criar-campanha",
     },
     {
       title: "Minhas Campanhas",

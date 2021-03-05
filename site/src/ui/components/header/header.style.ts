@@ -38,8 +38,8 @@ export const Profile = styled.div`
   line-height: 20px;
 
   img {
-    max-width: 64px;
-    max-height: 64px;
+    max-width: 54px;
+    max-height: 54px;
     border-radius: 50%;
     background-size: cover;
     opacity: 1;
@@ -73,7 +73,7 @@ export const NavBar = styled.ul`
   max-height: 45%;
   justify-content: space-evenly;
   align-items: flex-end;
-  margin-top: 20px;
+  margin-top: 15px;
 
   li {
     padding-left: 15px;
