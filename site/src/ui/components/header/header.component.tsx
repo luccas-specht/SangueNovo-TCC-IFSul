@@ -1,6 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 import { BsCardChecklist, BiNews, BiBookReader } from "react-icons/all";
+
+import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
 
@@ -16,6 +18,7 @@ import * as S from "./header.style";
 export const Header = () => {
   const { push } = useHistory();
   const { user, signOut } = useAuthenticated();
+  const [open, setOpen] = useState<boolean>(false);
 
   const handleSignOut = useCallback(() => {
     signOut();
@@ -24,21 +27,26 @@ export const Header = () => {
 
   const navegations = [
     {
-      title: "Painel Adminstrativo",
-      icon: <BiBookReader size={20} color="green" />,
+      // icon: <BiBookReader size={20} />,
       to: "painel-adminstrativo",
+      title: "Painel Adminstrativo",
     },
     {
-      title: "Listar Campanhas de Doação",
-      icon: <BsCardChecklist size={20} color="green" />,
+      // icon: <BsCardChecklist size={20} />,
       to: "listar-campanhas",
+      title: "Listar Campanhas de Doação",
     },
     {
-      title: "Criar Campanha",
-      icon: <BiNews size={20} color="green" />,
+      // icon: <BiNews size={20} />,
       to: "criar-campanha",
+      title: "Criar Campanha",
     },
   ];
+
+  const renderDivs = useCallback(
+    (number: number) => [...Array(number)].map(() => <div />),
+    []
+  );
 
   return (
     <S.Container>
@@ -53,18 +61,18 @@ export const Header = () => {
           <S.UserName>{user?.user?.userName}</S.UserName>
         </div>
       </S.Profile>
-      <S.NavBar>
-        {navegations.map(({ title, icon, to }) => (
-          <S.StyledLink to={to}>
-            <div>{icon} </div>
-            <li>{title}</li>
-          </S.StyledLink>
-        ))}
-      </S.NavBar>
-      <S.Actions>
-        <S.StyledFiPower onClick={handleSignOut} />
-        <FabTheme />
-      </S.Actions>
+      <div>
+        <S.Burguer open={open} onClick={() => setOpen(!open ?? true)}>
+          {renderDivs(3)}
+        </S.Burguer>
+        <S.Ul open={open}>
+          {navegations.map(({ title, to }) => (
+            <li>
+              <Link to={to}> {title}</Link>
+            </li>
+          ))}
+        </S.Ul>
+      </div>
     </S.Container>
   );
 };
