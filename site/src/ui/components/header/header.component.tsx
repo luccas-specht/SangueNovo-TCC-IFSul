@@ -1,11 +1,6 @@
 import React, { useCallback } from "react";
 
-import {
-  GoTasklist,
-  MdCreate,
-  BsCalendarFill,
-  CgReadme,
-} from "react-icons/all";
+import { BsCardChecklist, BiNews, BiBookReader } from "react-icons/all";
 
 import { useHistory } from "react-router-dom";
 
@@ -29,24 +24,19 @@ export const Header = () => {
 
   const navegations = [
     {
+      title: "Painel Adminstrativo",
+      icon: <BiBookReader size={20} color="green" />,
+      to: "painel-adminstrativo",
+    },
+    {
       title: "Listar Campanhas de Doação",
-      icon: <GoTasklist size={20} />,
-      to: "",
+      icon: <BsCardChecklist size={20} color="green" />,
+      to: "listar-campanhas",
     },
     {
-      title: "Criar Campanha de Doação",
-      icon: <MdCreate size={20} />,
+      title: "Criar Campanha",
+      icon: <BiNews size={20} color="green" />,
       to: "criar-campanha",
-    },
-    {
-      title: "Minhas Campanhas",
-      icon: <CgReadme size={20} />,
-      to: "",
-    },
-    {
-      title: "Meus Agendamentos",
-      icon: <BsCalendarFill size={20} />,
-      to: "",
     },
   ];
 
@@ -66,7 +56,7 @@ export const Header = () => {
       <S.NavBar>
         {navegations.map(({ title, icon, to }) => (
           <S.StyledLink to={to}>
-            {icon}
+            <div>{icon} </div>
             <li>{title}</li>
           </S.StyledLink>
         ))}

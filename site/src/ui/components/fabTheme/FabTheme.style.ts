@@ -6,7 +6,7 @@ import { device } from "../../../constants/responsivenessAvailable";
 
 export const Container = styled.div`
   position: absolute;
-  top: 5%;
+  top: 4.2%;
   left: 90%;
 
   button {

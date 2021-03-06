@@ -11,7 +11,7 @@ type PropsImg = {
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 90px;
+  height: 80px;
   background-color: ${({ theme }) => theme.colors.colorHeader};
   align-items: center;
   padding: 0px 100px;
@@ -70,12 +70,13 @@ export const NavBar = styled.ul`
   display: flex;
   align-self: center;
   flex: 1;
-  max-height: 45%;
-  justify-content: space-evenly;
+  max-width: 50%;
+  justify-content: space-around;
   align-items: flex-end;
-  margin-top: 15px;
+  margin: 22px 0 0 20px;
 
   li {
+    color: #666360;
     padding-left: 15px;
     font-style: normal;
     font-size: 14px;
@@ -85,17 +86,14 @@ export const NavBar = styled.ul`
 export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
-
-  svg {
-    color: green;
-  }
 `;
 
 export const Actions = styled.div`
   display: flex;
-  align-items: center;
-  width: 100px;
-  height: 100%;
+  justify-content: flex-end;
+  flex: 1;
+  max-width: 15%;
+  padding: 22px 0 0 20px;
 `;
 
 export const StyledFiPower = styled(FiPower)`
