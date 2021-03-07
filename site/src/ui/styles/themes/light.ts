@@ -17,5 +17,6 @@ export const light: DefaultTheme = {
     errorColor: "#C53030",
     disableColor: "#DDDDDD",
     colorHeader: "#FFFFFF",
+    colorBurguerMenu: "#f2f2f2",
   },
 };

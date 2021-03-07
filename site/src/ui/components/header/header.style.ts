@@ -111,15 +111,15 @@ export const UserName = styled.strong`
 
 export const Burguer = styled.div<BurbuerProps>`
   @media ${device.mobileL()} {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    z-index: 1;
     width: 25px;
     height: 25px;
     position: fixed;
     top: 32px;
     right: 15px;
-    z-index: 1;
-    display: flex;
-    justify-content: space-around;
-    flex-flow: column nowrap;
     cursor: pointer;
 
     div {
@@ -169,8 +169,8 @@ export const Burguer = styled.div<BurbuerProps>`
 export const Ul = styled.ul<BurbuerProps>`
   display: flex;
   padding-top: 15px;
-  margin-left: 15%;
-  width: 700px;
+  margin-left: 5%;
+  width: 100%;
   justify-content: space-between;
 
   li {
@@ -184,30 +184,30 @@ export const Ul = styled.ul<BurbuerProps>`
   a {
     display: flex;
     align-items: flex-end;
-    color: ${({ theme }) => theme.colors.titleColor};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   @media ${device.mobileL()} {
-    justify-content: space-around;
+    margin-left: 0;
     padding-top: 0;
-    top: 70px;
     right: 0px;
-    width: 0;
+    top: 70px;
+    height: 20%;
+    max-height: 160px;
+    width: 250px;
+    flex-direction: column;
+    justify-content: space-around;
+    position: fixed;
+    list-style: none;
     border-radius: 5px;
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-    list-style: none;
-    display: flex;
-    flex-direction: column;
     background-color: ${({ theme }) => theme.colors.colorHeader};
-    position: fixed;
     transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
-    height: 20%;
-    width: 250px;
     transition: transform 0.3s ease-in-out;
 
     li {
       padding-left: 10px;
-      border-bottom: 1px solid #f2f2f2;
+      border-bottom: 1px solid ${({ theme }) => theme.colors.colorBurguerMenu};
       padding-bottom: 10px;
     }
   }

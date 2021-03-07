@@ -17,6 +17,7 @@ declare module "styled-components" {
       errorColor: string;
       disableColor: string;
       colorHeader: string;
+      colorBurguerMenu: string;
     };
   }
 }

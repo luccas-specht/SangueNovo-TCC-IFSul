@@ -1,6 +1,11 @@
 import React, { useCallback, useState } from "react";
 
-import { BsCardChecklist, BiNews, BiBookReader } from "react-icons/all";
+import {
+  BsCardChecklist,
+  BiNews,
+  BiBookReader,
+  FiPower,
+} from "react-icons/all";
 
 import { Link } from "react-router-dom";
 
@@ -17,9 +22,23 @@ import * as S from "./header.style";
 
 export const Header = () => {
   const [isOpenBurguerMenu, setIsOpenBurguerMenu] = useState<boolean>(false);
-
   const { push } = useHistory();
   const { user, signOut } = useAuthenticated();
+
+  const handleOpenBurgermenu = useCallback(
+    () => setIsOpenBurguerMenu(!isOpenBurguerMenu ?? true),
+    [isOpenBurguerMenu]
+  );
+
+  const handleSignOut = useCallback(() => {
+    signOut();
+    push("/login");
+  }, [signOut, push]);
+
+  const renderDivs = useCallback(
+    (number: number) => [...Array(number)].map(() => <div />),
+    []
+  );
 
   const navegations = [
     {
@@ -37,22 +56,12 @@ export const Header = () => {
       to: "criar-campanha",
       title: "Criar Campanha",
     },
+
+    {
+      icon: <FiPower size={20} onClick={handleSignOut} />,
+      to: "/login",
+    },
   ];
-
-  const handleOpenBurgermenu = useCallback(
-    () => setIsOpenBurguerMenu(!isOpenBurguerMenu ?? true),
-    [isOpenBurguerMenu]
-  );
-
-  const handleSignOut = useCallback(() => {
-    signOut();
-    push("/login");
-  }, [signOut, push]);
-
-  const renderDivs = useCallback(
-    (number: number) => [...Array(number)].map(() => <div />),
-    []
-  );
 
   return (
     <S.Container>
@@ -67,21 +76,20 @@ export const Header = () => {
           <S.UserName>{user?.user?.userName}</S.UserName>
         </div>
       </S.Profile>
-      <div>
-        <S.Burguer open={isOpenBurguerMenu} onClick={handleOpenBurgermenu}>
-          {renderDivs(3)}
-        </S.Burguer>
-        <S.Ul open={isOpenBurguerMenu}>
-          {navegations.map(({ icon, title, to }) => (
-            <li>
-              <Link to={to}>
-                {icon}
-                {title}
-              </Link>
-            </li>
-          ))}
-        </S.Ul>
-      </div>
+      <S.Burguer open={isOpenBurguerMenu} onClick={handleOpenBurgermenu}>
+        {renderDivs(3)}
+      </S.Burguer>
+      <S.Ul open={isOpenBurguerMenu}>
+        {navegations.map(({ icon, title, to }) => (
+          <li>
+            <Link to={to}>
+              {icon}
+              {title}
+            </Link>
+          </li>
+        ))}
+        <FabTheme />
+      </S.Ul>
     </S.Container>
   );
 };
