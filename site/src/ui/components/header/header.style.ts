@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { device } from "../../../constants";
 
@@ -125,48 +125,90 @@ export const Burguer = styled.div<BurbuerProps>`
     div {
       width: 2rem;
       height: 0.25rem;
-      background-color: ${({ open }) => (open ? "red" : "#333")};
+      background-color: ${({ theme }) => theme.colors.tabColor};
       border-radius: 10px;
       transform-origin: 1px;
       transition: all 0.3s linear;
 
       &:nth-child(1) {
-        transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
+        ${({ open }) =>
+          open
+            ? css`
+                transform: translateY(-5px) rotate(45deg);
+              `
+            : css`
+                transform: rotate(0);
+              `}
       }
       &:nth-child(2) {
-        transform: ${({ open }) =>
-          open ? "translateX(100%)" : "translateX(0)"};
-        opacity: ${({ open }) => (open ? 0 : 1)};
+        ${({ open }) =>
+          open
+            ? css`
+                transform: translateX(100%);
+                opacity: 0;
+              `
+            : css`
+                transform: translateX(0);
+                opacity: 1;
+              `}
       }
       &:nth-child(3) {
-        transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
+        ${({ open }) =>
+          open
+            ? css`
+                transform: translateY(-1.5px) rotate(-45deg);
+              `
+            : css`
+                transform: rotate(0);
+              `}
       }
     }
   }
 `;
 
 export const Ul = styled.ul<BurbuerProps>`
+  display: flex;
+  padding-top: 15px;
+  margin-left: 15%;
+  width: 700px;
+  justify-content: space-between;
+
+  li {
+    font-size: 14px;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+
+  a {
+    display: flex;
+    align-items: flex-end;
+    color: ${({ theme }) => theme.colors.titleColor};
+  }
+
   @media ${device.mobileL()} {
+    justify-content: space-around;
+    padding-top: 0;
+    top: 70px;
+    right: 0px;
+    width: 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
     list-style: none;
     display: flex;
-    flex-flow: row nowrap;
-    li {
-      padding: 18px 10px;
-    }
-
-    flex-flow: column nowrap;
-    background-color: #0d2538;
+    flex-direction: column;
+    background-color: ${({ theme }) => theme.colors.colorHeader};
     position: fixed;
     transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
-    top: 0;
-    right: 0;
-    height: 100%;
+    height: 20%;
     width: 250px;
-    padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
 
     li {
-      color: red;
+      padding-left: 10px;
+      border-bottom: 1px solid #f2f2f2;
+      padding-bottom: 10px;
     }
   }
 `;

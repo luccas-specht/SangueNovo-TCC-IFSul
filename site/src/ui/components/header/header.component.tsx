@@ -16,32 +16,38 @@ import { FabTheme } from "..";
 import * as S from "./header.style";
 
 export const Header = () => {
+  const [isOpenBurguerMenu, setIsOpenBurguerMenu] = useState<boolean>(false);
+
   const { push } = useHistory();
   const { user, signOut } = useAuthenticated();
-  const [open, setOpen] = useState<boolean>(false);
+
+  const navegations = [
+    {
+      icon: <BiBookReader size={20} />,
+      to: "painel-adminstrativo",
+      title: "Painel Adminstrativo",
+    },
+    {
+      icon: <BsCardChecklist size={20} />,
+      to: "listar-campanhas",
+      title: "Listar Campanhas de Doação",
+    },
+    {
+      icon: <BiNews size={20} />,
+      to: "criar-campanha",
+      title: "Criar Campanha",
+    },
+  ];
+
+  const handleOpenBurgermenu = useCallback(
+    () => setIsOpenBurguerMenu(!isOpenBurguerMenu ?? true),
+    [isOpenBurguerMenu]
+  );
 
   const handleSignOut = useCallback(() => {
     signOut();
     push("/login");
   }, [signOut, push]);
-
-  const navegations = [
-    {
-      // icon: <BiBookReader size={20} />,
-      to: "painel-adminstrativo",
-      title: "Painel Adminstrativo",
-    },
-    {
-      // icon: <BsCardChecklist size={20} />,
-      to: "listar-campanhas",
-      title: "Listar Campanhas de Doação",
-    },
-    {
-      // icon: <BiNews size={20} />,
-      to: "criar-campanha",
-      title: "Criar Campanha",
-    },
-  ];
 
   const renderDivs = useCallback(
     (number: number) => [...Array(number)].map(() => <div />),
@@ -62,13 +68,16 @@ export const Header = () => {
         </div>
       </S.Profile>
       <div>
-        <S.Burguer open={open} onClick={() => setOpen(!open ?? true)}>
+        <S.Burguer open={isOpenBurguerMenu} onClick={handleOpenBurgermenu}>
           {renderDivs(3)}
         </S.Burguer>
-        <S.Ul open={open}>
-          {navegations.map(({ title, to }) => (
+        <S.Ul open={isOpenBurguerMenu}>
+          {navegations.map(({ icon, title, to }) => (
             <li>
-              <Link to={to}> {title}</Link>
+              <Link to={to}>
+                {icon}
+                {title}
+              </Link>
             </li>
           ))}
         </S.Ul>
