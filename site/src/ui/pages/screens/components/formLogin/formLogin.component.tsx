@@ -46,7 +46,7 @@ export const FormLogin = () => {
     setIsLoading(true);
     const { data, status } = await authentication(email, password);
     if (status === 200) {
-      authenticatedUser(data);
+      await authenticatedUser(data);
       push("/dashboard");
     } else {
       toast.error(`${data.message}`, toastConfig);

@@ -12,27 +12,27 @@ interface TokenPayLoad {
   sub: string;
 }
 export function ensureAuthenticated(
-  request: Request, 
-  response: Response, 
+  request: Request,
+  response: Response,
   next: NextFunction
 ): void {
+  const authHeader = request.headers.authorization;
+  console.log('re', authHeader);
 
-  const authHeader = request.headers.authorization
+  if (!authHeader) throw new AppError(MESSAGEINVALID.missingToken, 401);
 
-  if (!authHeader) throw new AppError(MESSAGEINVALID.missingToken, 401)
-
-  const [, token] = authHeader.split(' ')
+  const [, token] = authHeader.split(' ');
+  console.log('token', token);
 
   try {
-    const decoded = verify(token, authConfig.jwt.secret)
+    const decoded = verify(token, authConfig.jwt.secret);
 
-    const { sub } = decoded as TokenPayLoad
+    const { sub } = decoded as TokenPayLoad;
 
     request.user = {
       id: sub,
     };
-    return next()
-
+    return next();
   } catch {
     throw new AppError(MESSAGEINVALID.invalidToken, 401);
   }

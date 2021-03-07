@@ -1,11 +1,28 @@
+import React, { useState, useEffect } from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 
-import { useAuthenticated } from "../hooks";
+import { usePrivateAccess } from "../hooks";
 
 export const PrivateRoute = ({ component, path }: RouteProps) => {
-  const { user } = useAuthenticated();
+  const [state, setState] = useState("loading");
+  const { tokenIsAuthentication } = usePrivateAccess();
 
-  if (!user.token) return <Redirect to="/" />;
+  useEffect(() => {
+    (async function () {
+      try {
+        const { status } = await tokenIsAuthentication();
+        setState(status === 200 ? "loggedin" : "redirect");
+      } catch {
+        setState("redirect");
+      }
+    })();
+  }, [tokenIsAuthentication]);
 
-  return <Route path={path} component={component} />;
+  if (state === "loading") {
+    return <div>Loading...</div>;
+  } else if (state === "loggedin") {
+    return <Route path={path} component={component} />;
+  }
+
+  return <Redirect to="/login" />;
 };

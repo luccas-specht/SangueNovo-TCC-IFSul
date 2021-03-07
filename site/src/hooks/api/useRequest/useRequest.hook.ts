@@ -20,7 +20,7 @@ export const useRequest = (path: string): Response => {
   const buildUrl = (url?: string) => (url ? `${path}/${url}` : path);
 
   const buildHeaders = () => ({
-    Authorization: `Bearer ${user?.user?.token}`,
+    Authorization: `Bearer ${user?.token}`,
   });
 
   const callApi = async (method: string, url?: string, data?: any) => {
