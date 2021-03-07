@@ -1,28 +1,40 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 
-import { usePrivateAccess } from "../hooks";
+import { usePrivateAccess, useAuthenticated } from "../hooks";
+
+type StatusHttp = 102 | 401 | 200;
 
 export const PrivateRoute = ({ component, path }: RouteProps) => {
-  const [state, setState] = useState("loading");
+  const [status, setStatus] = useState<StatusHttp>(102);
   const { tokenIsAuthentication } = usePrivateAccess();
+  const { signOut } = useAuthenticated();
 
-  useEffect(() => {
-    (async function () {
-      try {
-        const { status } = await tokenIsAuthentication();
-        setState(status === 200 ? "loggedin" : "redirect");
-      } catch {
-        setState("redirect");
-      }
-    })();
+  const logOff = useCallback(() => {
+    signOut();
+    return <Redirect to="/login" />;
+  }, [signOut]);
+
+  const isValidToken = useCallback(async () => {
+    try {
+      const { status } = await tokenIsAuthentication();
+      setStatus(status === 200 ? 200 : 401);
+    } catch {
+      setStatus(401);
+    }
   }, [tokenIsAuthentication]);
 
-  if (state === "loading") {
-    return <div>Loading...</div>;
-  } else if (state === "loggedin") {
-    return <Route path={path} component={component} />;
-  }
+  const renderRoute = useCallback(() => {
+    if (status === 102) return <div>Loading...</div>;
 
-  return <Redirect to="/login" />;
+    if (status === 401) return logOff();
+
+    return <Route path={path} component={component} />;
+  }, [status, logOff, path, component]);
+
+  useEffect(() => {
+    isValidToken();
+  }, [isValidToken]);
+
+  return renderRoute();
 };
