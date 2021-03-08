@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { Link, Redirect } from "react-router-dom";
 
@@ -15,6 +15,12 @@ import * as S from "./pageNotFound.style";
 export const PageNotFound = () => {
   const { user } = useAuthenticated();
 
+  const optionsConfig = {
+    loop: true,
+    autoplay: true,
+    animationData: animation,
+  };
+
   const onRedirect = useCallback(
     () => !user?.token && <Redirect to="login" />,
     [user?.token]
@@ -27,15 +33,7 @@ export const PageNotFound = () => {
       <S.Container>
         <S.Content>
           <S.AnimationWrapper>
-            <Lottie
-              options={{
-                loop: true,
-                autoplay: true,
-                animationData: animation,
-              }}
-              width={600}
-              height={600}
-            />
+            <Lottie options={optionsConfig} isClickToPauseDisabled />
           </S.AnimationWrapper>
           <S.InfoWrapper>
             <S.StyledText>Esta página não</S.StyledText>

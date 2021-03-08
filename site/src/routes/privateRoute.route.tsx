@@ -34,7 +34,7 @@ export const PrivateRoute = ({ component, path }: RouteProps) => {
 
   useEffect(() => {
     isValidToken();
-  }, [isValidToken]);
+  }, []);
 
   return renderRoute();
 };

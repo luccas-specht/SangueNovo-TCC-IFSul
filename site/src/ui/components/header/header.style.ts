@@ -117,9 +117,9 @@ export const Burguer = styled.div<BurbuerProps>`
     z-index: 1;
     width: 25px;
     height: 25px;
-    position: fixed;
     top: 32px;
     right: 15px;
+    position: fixed;
     cursor: pointer;
 
     div {
