@@ -4,7 +4,7 @@ const cnpjValid = function (this: Yup.StringSchema, msg?: any) {
   return this.test(`cnpjValid`, msg, function (value) {
     let length;
     let numbers: any;
-    let sum = 0;
+    let sum = 0 as any;
     let pos;
     let result;
 
@@ -33,16 +33,17 @@ const cnpjValid = function (this: Yup.StringSchema, msg?: any) {
 
     length = value.length - 2;
     numbers = value.substring(0, length) as any;
-    const digitos = value.substring(length);
-    sum = 0 as any;
+    const digits = value.substring(length);
     pos = length - 7;
+
     for (let i = length; i >= 1; i--) {
       sum += numbers.charAt(length - i) * pos--;
       if (pos < 2) pos = 9;
     }
+
     result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
 
-    if (result !== Number(digitos.charAt(0)))
+    if (result !== Number(digits.charAt(0)))
       return createError({ path, message });
 
     length += 1;
@@ -57,13 +58,54 @@ const cnpjValid = function (this: Yup.StringSchema, msg?: any) {
 
     result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
 
-    if (result !== Number(digitos.charAt(1)))
+    if (result !== Number(digits.charAt(1)))
       return createError({ path, message });
 
     return true;
   });
 };
 
+const cepValidation = function (this: Yup.StringSchema, msg?: any) {
+  return this.test(`cnpjValid`, msg, async function (value) {
+    const { path, createError } = this;
+
+    const message = msg ?? "CEP é inválido.";
+    const cepMatches = /^\d{5}\-?\d{3}$/;
+
+    value = value?.replace(/[^\d]+/g, "");
+
+    if (!value) return true;
+
+    if (value.length !== 8) return createError({ path, message });
+
+    if (
+      value === "00000000" ||
+      value === "11111111" ||
+      value === "22222222" ||
+      value === "33333333" ||
+      value === "44444444" ||
+      value === "55555555" ||
+      value === "66666666" ||
+      value === "77777777" ||
+      value === "88888888" ||
+      value === "99999999"
+    )
+      return createError({ path, message });
+
+    const schemaValidationCep = Yup.object().shape({
+      cep: Yup.string().matches(cepMatches, message),
+    });
+
+    try {
+      await schemaValidationCep.validate({ value }, { abortEarly: false });
+      return true;
+    } catch (err) {
+      return createError({ path, message });
+    }
+  });
+};
+
 export const yupValidation = {
   cnpjValid,
+  cepValidation,
 };

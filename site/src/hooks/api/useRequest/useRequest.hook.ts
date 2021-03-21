@@ -2,10 +2,10 @@ import { useCallback } from "react";
 
 import { AxiosRequestConfig } from "axios";
 
-import { methodsAvaibles } from "../../../constants";
-import { useAxiosApiSangueNovo } from "../useAxios/useAxios.hook";
-
+import { MethodsAvaibles } from "../../../constants";
 import { useAuthenticated } from "../..";
+
+import { useAxiosApiSangueNovo } from "../useAxios/useAxios.hook";
 
 type Response = {
   get: (url?: string, data?: any) => Promise<any>;
@@ -48,15 +48,15 @@ export const useRequest = (path: string): Response => {
   );
 
   return {
-    get: async (url?: string, data?: any): Promise<any> =>
-      callApi(methodsAvaibles.get(), url, data),
-    delete: async (url?: string, data?: any): Promise<any> =>
-      callApi(methodsAvaibles.delete(), url, data),
-    put: async (url?: string, data?: any): Promise<any> =>
-      callApi(methodsAvaibles.put(), url, data),
-    patch: async (url?: string, data?: any): Promise<any> =>
-      callApi(methodsAvaibles.patch(), url, data),
-    post: async (url?: string, data?: any): Promise<any> =>
-      callApi(methodsAvaibles.post(), url, data),
+    get: async (url?: string, data?: any) =>
+      callApi(MethodsAvaibles.get, url, data),
+    delete: async (url?: string, data?: any) =>
+      callApi(MethodsAvaibles.delete, url, data),
+    put: async (url?: string, data?: any) =>
+      callApi(MethodsAvaibles.put, url, data),
+    patch: async (url?: string, data?: any) =>
+      callApi(MethodsAvaibles.patch, url, data),
+    post: async (url?: string, data?: any) =>
+      callApi(MethodsAvaibles.post, url, data),
   };
 };

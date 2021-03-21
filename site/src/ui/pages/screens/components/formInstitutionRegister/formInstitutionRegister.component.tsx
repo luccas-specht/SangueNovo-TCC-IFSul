@@ -49,7 +49,7 @@ export const FormInstitutionRegister = () => {
   const { registerInstitution } = useRegister();
   const { push } = useHistory();
   const { cnpjMask, phoneBrMask, cepMask } = masks();
-  const { cnpjValid } = yupValidation;
+  const { cnpjValid, cepValidation } = yupValidation;
 
   const initialValues = {
     razaoSocial: "",
@@ -61,12 +61,12 @@ export const FormInstitutionRegister = () => {
   } as FormData;
 
   Yup.addMethod<Yup.StringSchema>(Yup.string, "cnpjValid", cnpjValid);
+  // Yup.addMethod<Yup.StringSchema>(Yup.string, "cepValidation", cepValidation);
 
   const validations = Yup.object().shape({
     razaoSocial: Yup.string().required(validationMessage.requiredName),
-    cep: Yup.string().required(
-      validationMessage.requiredCEP
-    ) /*TODO: adicionar validação de cep*/,
+    cep: Yup.string().required(validationMessage.requiredCEP),
+    // .cepValid(validationMessage.validCEP),
     cnpj: Yup.string()
       .required(validationMessage.requiredCNPJ)
       .cnpjValid(validationMessage.validCNPJ),

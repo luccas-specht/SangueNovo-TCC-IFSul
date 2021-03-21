@@ -7,8 +7,9 @@ type StatusHttp = 102 | 401 | 200;
 
 export const PrivateRoute = ({ component, path }: RouteProps) => {
   const [status, setStatus] = useState<StatusHttp>(102);
-  const { tokenIsAuthentication } = usePrivateAccess();
+
   const { signOut } = useAuthenticated();
+  const { tokenIsAuthentication } = usePrivateAccess();
 
   const logOff = useCallback(() => {
     signOut();
@@ -18,7 +19,7 @@ export const PrivateRoute = ({ component, path }: RouteProps) => {
   const isValidToken = useCallback(async () => {
     try {
       const { status } = await tokenIsAuthentication();
-      setStatus(status === 200 ? 200 : 401);
+      setStatus(status);
     } catch {
       setStatus(401);
     }

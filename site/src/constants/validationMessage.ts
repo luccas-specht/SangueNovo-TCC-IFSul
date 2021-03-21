@@ -13,6 +13,6 @@ export const validationMessage = {
   requiredCPF: () => "Por favor, preencha o campo de CPF.",
   requiredCNPJ: () => "Por favor, preencha o campo de CNPJ.",
   validCNPJ: () => "Por favor, insira o CNPJ válido.",
-  requiredBirthDay: () => "Por favor, preencha o campo Data de Aniversário.",
+  validCEP: () => "Por favor, insira o CNPJ válido.",
   requiredPasswordsMustMatch: () => "Confirmação de senha incorreta.",
 };

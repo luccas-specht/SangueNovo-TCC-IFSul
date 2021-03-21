@@ -13,7 +13,7 @@ import { routes } from "../constants";
 import { PublicRoute } from "./publicRoute.route";
 import { PrivateRoute } from "./privateRoute.route";
 
-export const RenderRoute = () => {
+export const Router = () => {
   const { theme } = useTheme();
 
   return (
