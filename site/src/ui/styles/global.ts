@@ -32,7 +32,7 @@ export const CreateGlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.titleColor};
   }
 
- button, li {
+ button, li, a {
     cursor: pointer;
   }
 

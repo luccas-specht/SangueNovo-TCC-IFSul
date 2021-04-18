@@ -45,6 +45,11 @@ export const Router = () => {
             path={routes.resetPassword.path}
             component={routes.resetPassword.component}
           />
+          <PublicRoute
+            exact
+            path={routes.editProfile.path}
+            component={routes.editProfile.component}
+          />
           <PrivateRoute
             exact
             path={routes.dashboard.path}

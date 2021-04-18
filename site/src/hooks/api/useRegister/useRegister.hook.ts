@@ -30,7 +30,6 @@ export const useRegister = () => {
   ): Promise<any> => {
     const { data, status } = await post("donator", {
       name: name,
-      // birthday: format(birthday, "MM-dd-yyyy"),
       phone: phone,
       email: email,
       password: password,

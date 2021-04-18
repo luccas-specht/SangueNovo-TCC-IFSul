@@ -26,7 +26,7 @@ export const PrivateRoute = ({ component, path }: RouteProps) => {
   }, [tokenIsAuthentication]);
 
   const renderRoute = useCallback(() => {
-    if (status === 102) return <div>Loading...</div>;
+    if (status === 102) return <div />;
 
     if (status === 401) return logOff();
 

@@ -6,9 +6,25 @@ import {
   ResetPassword,
   CreateCampaign,
   PageNotFound,
+  EditProfile,
 } from "../ui/pages";
 
-const components = {
+type Paths = {
+  [key: string]: () => string;
+};
+
+type Components = {
+  [key: string]: () => JSX.Element;
+};
+
+type Routes = {
+  [key: string]: {
+    path: string;
+    component: () => JSX.Element;
+  };
+};
+
+const components: Components = {
   login: Login,
   register: Register,
   forgotPassword: ForgotPassword,
@@ -16,9 +32,10 @@ const components = {
   resetPassword: ResetPassword,
   createCampaign: CreateCampaign,
   pageNotFound: PageNotFound,
+  editProfile: EditProfile,
 };
 
-export const paths = {
+export const paths: Paths = {
   default: () => "/",
   login: () => "/login",
   register: () => "/cadastro",
@@ -27,9 +44,10 @@ export const paths = {
   dashboard: () => "/dashboard",
   createCampaign: () => "/criar-campanha",
   pageNotFound: () => "*",
+  editProfile: () => "/editar-perfil",
 };
 
-export const routes = {
+export const routes: Routes = {
   /*not found*/
   pageNotFound: {
     path: paths.pageNotFound(),
@@ -56,6 +74,10 @@ export const routes = {
   resetPassword: {
     path: paths.resetPassowrd(),
     component: components.resetPassword,
+  },
+  editProfile: {
+    path: paths.editProfile(),
+    component: components.editProfile,
   },
 
   /*privates here*/
