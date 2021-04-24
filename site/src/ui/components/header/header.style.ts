@@ -17,14 +17,10 @@ export const Container = styled.header`
   background-color: ${({ theme }) => theme.colors.colorHeader};
   align-items: center;
   padding: 0px 100px;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
 
   @media ${device.mobileL()} {
     padding: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
   }
 `;
 

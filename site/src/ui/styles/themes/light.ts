@@ -12,7 +12,7 @@ export const light: DefaultTheme = {
     backgroundPrimary: "#F2F2F2",
     backgroundSecudary: "#FFFFFF",
     white: "#FFFFFF",
-    colorIconDarkLight: "#666360",
+    colorIconDarkLight: "#FF9000",
     tabColor: "#3F51B5",
     errorColor: "#C53030",
     disableColor: "#DDDDDD",

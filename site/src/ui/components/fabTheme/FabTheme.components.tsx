@@ -10,7 +10,7 @@ export const FabTheme = () => {
   const renderedIcon = useCallback(
     () => (
       <button type="button" onClick={changeTheme}>
-        {theme.title === "light" ? <S.StyledFaMoon /> : <S.StyledFaSun />}
+        {theme.title === "light" ? <S.StyledFaSun /> : <S.StyledFaMoon />}
       </button>
     ),
     [changeTheme, theme]

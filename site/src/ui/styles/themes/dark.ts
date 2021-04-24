@@ -12,7 +12,7 @@ export const dark: DefaultTheme = {
     backgroundPrimary: "#232129",
     backgroundSecudary: "#312E38",
     white: "#FFFFFF",
-    colorIconDarkLight: "#FF9000",
+    colorIconDarkLight: "#666360",
     tabColor: "#3F51B5",
     errorColor: "#C53030",
     disableColor: "#C6C6C6",
