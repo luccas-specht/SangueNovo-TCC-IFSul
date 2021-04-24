@@ -166,7 +166,6 @@ export const Ul = styled.ul<BurbuerProps>`
   display: flex;
   padding-top: 15px;
   width: 100%;
-  border: 2px solid red;
   justify-content: space-evenly;
 
   li {

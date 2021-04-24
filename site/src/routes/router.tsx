@@ -50,7 +50,7 @@ export const Router = () => {
             path={routes.editProfile.path}
             component={routes.editProfile.component}
           />
-          <PrivateRoute
+          <PublicRoute
             exact
             path={routes.dashboard.path}
             component={routes.dashboard.component}

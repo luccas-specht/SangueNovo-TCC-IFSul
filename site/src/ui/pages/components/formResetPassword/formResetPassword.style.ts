@@ -4,7 +4,7 @@ import { shade } from "polished";
 
 import { Link } from "react-router-dom";
 
-import { device } from "../../../../../constants";
+import { device } from "../../../../constants";
 
 export const Container = styled.div`
   height: 420px;

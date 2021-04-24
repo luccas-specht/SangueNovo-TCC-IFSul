@@ -3,3 +3,4 @@ export { FormForgotPassword } from "./formForgotPassword/formForgotPassword.comp
 export { FormInstitutionRegister } from "./formInstitutionRegister/formInstitutionRegister.component";
 export { FormLogin } from "./formLogin/formLogin.component";
 export { FormResetPassword } from "./formResetPassword/formResetPassword.component";
+export { FilterCampaings } from "./filterCampaigns/filterCampaigns.components";

@@ -9,7 +9,7 @@ import logo from "../../../assets/images/logo.png";
 
 import { FabTheme } from "../../../components";
 
-import { FormDonorRegister, FormInstitutionRegister } from "../components";
+import { FormDonorRegister, FormInstitutionRegister } from "../../components";
 
 import * as S from "./register.style";
 

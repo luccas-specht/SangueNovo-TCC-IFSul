@@ -8,14 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { useRedefinePassword } from "../../../../../hooks";
-import { validationMessage } from "../../../../../constants";
+import { useRedefinePassword } from "../../../../hooks";
+import { validationMessage } from "../../../../constants";
 
-import { InputText, Button } from "../../../../components";
+import { InputText, Button } from "../../../components";
 
-import { toastConfig, toastConfigLink } from "../../../../../configs";
+import { toastConfig, toastConfigLink } from "../../../../configs";
 
-import logo from "../../../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 
 import * as SC from "./formForgotPassword.style";
 

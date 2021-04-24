@@ -6,7 +6,7 @@ import superHeroWoman from "../../../assets/images/super_hero_woman.png";
 
 import { FabTheme } from "../../../components";
 
-import { FormLogin } from "../components";
+import { FormLogin } from "../../components";
 
 import * as S from "./login.style";
 

@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FiLogIn, FiMail, FiLock } from "react-icons/fi";
 
-import { useAuth, useAuthenticated } from "../../../../../hooks";
-import { validationMessage } from "../../../../../constants";
+import { useAuth, useAuthenticated } from "../../../../hooks";
+import { validationMessage } from "../../../../constants";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { toastConfig } from "../../../../../configs";
+import { toastConfig } from "../../../../configs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import logo from "../../../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 
-import { InputPassword, InputText, Button } from "../../../../components";
+import { InputPassword, InputText, Button } from "../../../components";
 
 import * as S from "./formLogin.style";
 interface FormLoginData {

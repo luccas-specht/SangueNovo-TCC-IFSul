@@ -75,10 +75,6 @@ export const routes: Routes = {
     path: paths.resetPassowrd(),
     component: components.resetPassword,
   },
-  editProfile: {
-    path: paths.editProfile(),
-    component: components.editProfile,
-  },
 
   /*privates here*/
   dashboard: {
@@ -88,5 +84,9 @@ export const routes: Routes = {
   createCampaign: {
     path: paths.createCampaign(),
     component: components.createCampaign,
+  },
+  editProfile: {
+    path: paths.editProfile(),
+    component: components.editProfile,
   },
 };
