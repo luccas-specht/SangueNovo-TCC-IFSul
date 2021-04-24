@@ -165,9 +165,9 @@ export const Burguer = styled.div<BurbuerProps>`
 export const Ul = styled.ul<BurbuerProps>`
   display: flex;
   padding-top: 15px;
-  margin-left: 5%;
   width: 100%;
-  justify-content: space-between;
+  border: 2px solid red;
+  justify-content: space-evenly;
 
   li {
     font-size: 14px;
