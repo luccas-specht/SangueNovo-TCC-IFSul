@@ -1,18 +1,10 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
-import { TooltipAlertError } from "../index";
+import { GeneralInputProps } from "../../../models";
+
+import { TooltipAlertError } from "..";
 
 import * as S from "./inputPassword.style";
-
-type Props = {
-  id: string;
-  icon: React.ReactNode;
-  name: string;
-  value: string;
-  error?: string | false;
-  placeholder: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
 
 export const InputPassword = ({
   id,
@@ -22,7 +14,7 @@ export const InputPassword = ({
   value,
   placeholder,
   onChange,
-}: Props) => {
+}: GeneralInputProps) => {
   const [type, setType] = useState<"text" | "password">("password");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
@@ -34,7 +26,7 @@ export const InputPassword = ({
   const renderedIcon = useCallback(
     () => (
       <button type="button" onClick={handleChangeType}>
-        {type === "text" ? <S.CloseEye /> : <S.OpenEye />}
+        {type === "text" ? <S.OpenEye /> : <S.CloseEye />}
       </button>
     ),
     [type, handleChangeType]

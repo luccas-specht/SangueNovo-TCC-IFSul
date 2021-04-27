@@ -22,6 +22,8 @@ export const Container = styled.div<ContainerProps>`
 
   svg {
     margin-right: 10px;
+    min-height: 20px;
+    min-width: 20px;
   }
 
   ${({ isErrored }) =>

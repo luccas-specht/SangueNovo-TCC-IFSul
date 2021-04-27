@@ -2,18 +2,13 @@ import React, { useState, useCallback } from "react";
 
 import { TooltipAlertError } from "../index";
 
+import { GeneralInputProps } from "../../../models";
+
 import * as S from "./inputText.style";
 
-type PropsInputText = {
-  id: string;
-  icon: React.ReactNode;
-  name: string;
-  value: string;
-  error?: string | false;
+export interface TextInputProps extends GeneralInputProps {
   maxLength?: number;
-  placeholder: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
+}
 
 export const InputText = ({
   id,
@@ -24,7 +19,7 @@ export const InputText = ({
   maxLength = 50,
   placeholder,
   onChange,
-}: PropsInputText) => {
+}: TextInputProps) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const showError = useCallback(
