@@ -60,7 +60,8 @@ export const InputSelectCombo = ({
         fullWidth
         defaultChecked
         disableCloseOnSelect
-        noOptionsText="Sem opções Disponíveis."
+        noOptionsText="Sem opções disponíveis."
+        disablePortal={false}
         id={id}
         options={options}
         multiple={isMultiple}
@@ -77,25 +78,23 @@ export const InputSelectCombo = ({
           </>
         )}
         renderInput={(params: any) => (
-          <>
-            <S.StyledTextField
-              {...params}
-              name={name}
-              placeholder={placeholder}
-              variant="outlined"
-              fullWidth
-              style={{ fontSize: 5 }}
-              InputProps={{
-                ...params.InputProps,
-                startAdornment: (
-                  <InputAdornment position="start">{inputIcon}</InputAdornment>
-                ),
-                endAdornment: isMultiple ? (
-                  <S.ScoreInline>{lengthValues}</S.ScoreInline>
-                ) : null,
-              }}
-            />
-          </>
+          <S.StyledTextField
+            {...params}
+            name={name}
+            placeholder={placeholder}
+            variant="outlined"
+            fullWidth
+            style={{ fontSize: 5 }}
+            InputProps={{
+              ...params.InputProps,
+              startAdornment: (
+                <InputAdornment position="start">{inputIcon}</InputAdornment>
+              ),
+              endAdornment: isMultiple ? (
+                <S.ScoreInline>{lengthValues}</S.ScoreInline>
+              ) : null,
+            }}
+          />
         )}
         renderTags={() => null}
         onChange={(e: any, newValues: any) => handleChange(e, newValues)}

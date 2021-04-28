@@ -5,12 +5,10 @@ export const Container = styled.div`
   height: 100px;
   display: flex;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.backgroundSecudary};
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-
   padding-left: 25px;
-
   justify-content: space-between;
 `;
 

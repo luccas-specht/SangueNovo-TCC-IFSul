@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useMemo,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import { useCallback, useState, useMemo, useLayoutEffect } from "react";
 
 import {
   BsCardChecklist,
@@ -23,8 +17,6 @@ import { useAuthenticated } from "../../../hooks";
 
 import logoImg from "../../assets/images/logo.png";
 import imageDefaultProfile from "../../assets/images/default_user_image.png";
-
-import { FabTheme } from "..";
 
 import * as S from "./header.style";
 

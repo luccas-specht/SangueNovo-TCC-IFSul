@@ -12,9 +12,9 @@ export const typeBloodInitial: ComboValue[] = [
 ];
 
 export const priorityStatusInitial: ComboValue[] = [
-  { title: "Baixa", value: 0 },
-  { title: "Media", value: 1 },
-  { title: "Alta", value: 2 },
+  { title: "Alta", value: 0 },
+  { title: "Média", value: 1 },
+  { title: "Baixa", value: 2 },
 ];
 
 export const distanceInitial: ComboValue[] = [

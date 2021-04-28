@@ -20,6 +20,16 @@ import {
 
 import * as S from "./filterCampaigns.style";
 
+type ValuesToFilter = {
+  titleCampaing: string | null;
+  typeBlood: any[];
+  priorityStatus: any[];
+  institution: any[];
+  distance: any[];
+};
+
+type Id = "typeBlood" | "priorityStatus" | "distance" | "institution";
+
 type Props = {
   setFilter: Dispatch<SetStateAction<any>>;
 };
@@ -35,31 +45,44 @@ export const FilterCampaings = ({ setFilter }: Props) => {
   const [distance, setDistance] = useState<Array<ComboValue>>(distanceInitial);
 
   const [institution, setInstitution] = useState<Array<ComboValue>>([]);
-  const [valuesFilter, setValuesFilter] = useState<any>({});
-  const [structuresIds, setStructuresIds] = useState<number[]>([] as number[]);
+  const [valuesFilter, setValuesFilter] = useState<ValuesToFilter>({
+    titleCampaing: "",
+    typeBlood: [],
+    priorityStatus: [],
+    institution: [],
+    distance: [],
+  });
 
-  const handleChangeTitleCampaing = useCallback((event: any) => {
-    setTitleCampaing(event.target.value);
-  }, []);
+  console.log("valuesFilter", valuesFilter);
 
-  const handleChangeFilterValues = (id: any, values: ComboValue[]) => {
-    if (id === "structure") {
-      const test = values?.map((value) => value.value) as number[];
-      setStructuresIds(test);
-    }
+  const handleChangeTitleCampaing = useCallback(
+    (event) => {
+      setTitleCampaing(event.target.value);
+      setValuesFilter({ ...valuesFilter, titleCampaing: event.target.value });
+    },
+    [valuesFilter]
+  );
 
-    if (values.length) {
-      const ids = values.map((value: ComboValue) => value.value);
-      setValuesFilter({ ...valuesFilter, [id]: ids });
-    }
+  const handleChangeFilterValues = (id: Id, values: ComboValue[]) => {
+    if (id === "typeBlood")
+      setValuesFilter({ ...valuesFilter, typeBlood: values });
+    if (id === "distance")
+      setValuesFilter({ ...valuesFilter, distance: values });
+    if (id === "priorityStatus")
+      setValuesFilter({ ...valuesFilter, priorityStatus: values });
+    if (id === "institution")
+      setValuesFilter({ ...valuesFilter, institution: values });
   };
 
   const handleClear = useCallback(() => {
     setTitleCampaing("");
-    setTypeBlood([]);
-    setPriorityStatus([]);
-    setInstitution([]);
-    setDistance([]);
+    setValuesFilter({
+      titleCampaing: "",
+      typeBlood: [],
+      priorityStatus: [],
+      institution: [],
+      distance: [],
+    });
   }, []);
 
   return (
@@ -79,8 +102,8 @@ export const FilterCampaings = ({ setFilter }: Props) => {
       <S.InputLimit>
         <InputSelectCombo
           isMultiple
-          id="typeBlood"
-          name="typeBlood"
+          id="priorityStatus"
+          name="priorityStatus"
           placeholder="Prioridade"
           values={valuesFilter}
           options={priorityStatus}
@@ -91,8 +114,8 @@ export const FilterCampaings = ({ setFilter }: Props) => {
       <S.InputLimit>
         <InputSelectCombo
           isMultiple
-          id="typeBlood"
-          name="typeBlood"
+          id="distance"
+          name="distance"
           placeholder="Distância"
           values={valuesFilter}
           options={distance}
@@ -103,8 +126,8 @@ export const FilterCampaings = ({ setFilter }: Props) => {
       <S.InputLimit>
         <InputSelectCombo
           isMultiple
-          id="typeBlood"
-          name="typeBlood"
+          id="institution"
+          name="institution"
           placeholder="Instituição"
           values={valuesFilter}
           options={institution}
