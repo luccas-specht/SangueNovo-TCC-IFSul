@@ -25,8 +25,8 @@ export const Fab = styled.button`
   width: 58px;
   height: 58px;
   position: fixed;
-  right: 12%;
-  bottom: 10%;
+  right: 15%;
+  bottom: 15%;
   border: none;
   cursor: pointer;
   display: flex;
