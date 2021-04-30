@@ -28,4 +28,8 @@ export class InstitutionRepository implements IInstitutionRepository {
   ): Promise<AppInstitution | undefined> {
     return await this.ormRepository.findOne({ where: { tb_user_fk } });
   }
+
+  public async findAll(): Promise<any> {
+    return await this.ormRepository.find();
+  }
 }

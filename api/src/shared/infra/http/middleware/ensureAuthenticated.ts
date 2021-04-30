@@ -21,7 +21,6 @@ export function ensureAuthenticated(
   if (!authHeader) throw new AppError(MESSAGEINVALID.missingToken, 401);
 
   const [, token] = authHeader.split(' ');
-  console.log('token', token);
 
   try {
     const decoded = verify(token, authConfig.jwt.secret);

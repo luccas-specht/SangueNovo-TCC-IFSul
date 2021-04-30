@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import { ensureDataRequest } from '../schemas/Instituon.schema';
 import { InstitutionController } from '@modules/user/institution/controller/InstitutionController';
+import { ensureAuthenticated } from '@shared/infra/http/middleware/ensureAuthenticated';
 
 export const institutionRouter = Router();
 
@@ -11,4 +12,10 @@ institutionRouter.post(
   '/',
   ensureDataRequest,
   institutionController.createInstitution
+);
+
+institutionRouter.get(
+  '/list',
+  ensureAuthenticated,
+  institutionController.listInstituions
 );
