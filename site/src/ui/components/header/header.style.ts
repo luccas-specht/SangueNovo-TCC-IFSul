@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 
+import { Link } from "react-router-dom";
+
 import { device } from "../../../constants";
 
 type PropsImg = {
@@ -35,7 +37,7 @@ export const LogoImg = styled.img<PropsImg>`
   }
 `;
 
-export const Profile = styled.div`
+export const Profile = styled(Link)`
   display: flex;
   align-items: center;
   max-width: 245px;
@@ -58,6 +60,7 @@ export const Profile = styled.div`
     flex-direction: column;
     align-items: flex-start;
     margin-left: 16px;
+    width: 100px;
   }
 
   @media ${device.mobileL()} {
@@ -166,7 +169,7 @@ export const Ul = styled.ul<BurbuerProps>`
   display: flex;
   padding-top: 15px;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-around;
 
   li {
     font-size: 14px;

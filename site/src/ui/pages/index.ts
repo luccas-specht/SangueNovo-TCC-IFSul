@@ -1,4 +1,4 @@
-export { Dashboard } from "./screens/dashboard/dashboard.page";
+export { ListFilterCampaings } from "./screens/listFilterCampaings/listFilterCampaings.page";
 export { ForgotPassword } from "./screens/forgotPassword/forgotPassword.screen";
 export { Login } from "./screens/login/login.page";
 export { Register } from "./screens/register/register.page";

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Header, FabButton } from "../../../components";
 
 import { FilterCampaings } from "../../components";
 
-import * as S from "./dashboard.style";
+import * as S from "./listFilterCampaings.style";
 
-export const Dashboard = () => {
+import { useRequestGoogle } from "../../../../hooks";
+
+export const ListFilterCampaings = () => {
   const [listCampaigns, setListCampaigns] = useState([]);
   const [filter, setFilter] = useState();
 
@@ -18,14 +20,7 @@ export const Dashboard = () => {
           <S.Main>
             <FilterCampaings setFilter={setFilter} />
             <S.ContentList>
-              <S.WrapperCampaings>
-                {[...Array(50)].map((index) => (
-                  <div
-                    key={index}
-                    style={{ width: 50, height: 50, border: "2px solid red" }}
-                  />
-                ))}
-              </S.WrapperCampaings>
+              <S.WrapperCampaings></S.WrapperCampaings>
             </S.ContentList>
           </S.Main>
         </S.Content>
