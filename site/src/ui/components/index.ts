@@ -8,3 +8,4 @@ export { Stepper } from "./stepper/stepper.components";
 export { TooltipAlertError } from "./tooltipAlertError/tooltipAlertError.component";
 export { Header } from "./header/header.component";
 export { FabButton } from "./fabButton/fabButton.component";
+export { InputDescription } from "./inputDescription/inputDescription.component";
