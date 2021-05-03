@@ -1,5 +1,5 @@
 import {
-  Dashboard,
+  ListFilterCampaings,
   Login,
   Register,
   ForgotPassword,
@@ -28,7 +28,7 @@ const components: Components = {
   login: Login,
   register: Register,
   forgotPassword: ForgotPassword,
-  dashboard: Dashboard,
+  listFilterCampaings: ListFilterCampaings,
   resetPassword: ResetPassword,
   createCampaign: CreateCampaign,
   pageNotFound: PageNotFound,
@@ -41,7 +41,7 @@ export const paths: Paths = {
   register: () => "/cadastro",
   forgotPassword: () => "/esqueci-minha-senha",
   resetPassowrd: () => "/redefinir-senha",
-  dashboard: () => "/dashboard",
+  listFilterCampaings: () => "/listar-campanhas",
   createCampaign: () => "/criar-campanha",
   pageNotFound: () => "*",
   editProfile: () => "/editar-perfil",
@@ -77,9 +77,9 @@ export const routes: Routes = {
   },
 
   /*privates here*/
-  dashboard: {
-    path: paths.dashboard(),
-    component: components.dashboard,
+  listFilterCampaings: {
+    path: paths.listFilterCampaings(),
+    component: components.listFilterCampaings,
   },
   createCampaign: {
     path: paths.createCampaign(),

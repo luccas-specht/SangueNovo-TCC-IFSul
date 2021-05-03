@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo, useLayoutEffect } from "react";
+import { useCallback, useState, useMemo } from "react";
 
 import {
   BsCardChecklist,
@@ -24,7 +24,6 @@ type Navegation = {
   icon: JSX.Element;
   to: string;
   title?: string;
-  order: number;
 };
 
 export const Header = () => {
@@ -49,65 +48,43 @@ export const Header = () => {
 
   const navegations = useMemo(
     (): Navegation[] => [
+      user?.user.isDonator && {
+        icon: <BiDonateBlood size={20} />,
+        to: "minhas-doações",
+        title: "Minhas Doações",
+      },
       {
-        order: 1,
         icon: <BiBookReader size={20} />,
         to: "minhas-campanhas",
         title: "Minhas Campanhas",
       },
       {
-        order: 2,
         icon: <RiCalendarEventLine size={20} />,
         to: "meus-agendamentos",
         title: "Meus Agendamentos",
       },
       {
-        order: 3,
         icon: <BsCardChecklist size={20} />,
         to: "listar-campanhas",
-        title: "Listar Campanhas de Doação",
+        title: "Listar Campanhas",
       },
       {
-        order: 4,
         icon: <BiNews size={20} />,
         to: "criar-campanha",
         title: "Criar Campanha",
       },
       {
-        order: 5,
         icon: <FiPower size={20} onClick={handleSignOut} />,
         to: "/login",
       },
     ],
-    [handleSignOut]
-  );
-
-  useLayoutEffect(() => {
-    if (!!user?.user?.isDonator) {
-      console.log("user", !!user?.user?.isDonator);
-      navegations.push({
-        order: 0,
-        icon: <BiDonateBlood size={20} />,
-        to: "minhas-doações",
-        title: "Minhas Doações",
-      });
-    }
-  }, [user?.user?.isDonator, navegations]);
-
-  const sortArray = useCallback(
-    (): Navegation[] =>
-      navegations.sort((a, b) => {
-        if (a.order < b.order) return -1;
-        if (a.order > b.order) return 1;
-        return 0;
-      }),
-    [navegations]
+    [handleSignOut, user]
   );
 
   return (
     <S.Container>
       <S.LogoImg src={logoImg} alt="logo sangue novo" />
-      <S.Profile>
+      <S.Profile to="editar-perfil">
         <img
           src={user?.user?.avatar ?? imageDefaultProfile}
           alt="imagem de perfil"
@@ -121,7 +98,7 @@ export const Header = () => {
         {renderDivs(3)}
       </S.Burguer>
       <S.Ul open={isOpenBurguerMenu}>
-        {sortArray().map(({ icon, title, to }) => (
+        {navegations.map(({ icon, title, to }) => (
           <li>
             <Link to={to}>
               {icon}
