@@ -1,11 +1,29 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateTableUsers1614894883990 implements MigrationInterface {
-  name = 'CreateTableUsers1614894883990';
+export class CreateAllTables1619979148802 implements MigrationInterface {
+  name = 'CreateAllTables1619979148802';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
+      `CREATE TYPE "tb_campaign_typeblood_enum" AS ENUM('A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-')`
+    );
+    await queryRunner.query(
+      `CREATE TYPE "tb_campaign_priority_enum" AS ENUM('Alta', 'Média', 'Baixa')`
+    );
+    await queryRunner.query(
+      `CREATE TABLE "tb_campaign" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "title" character varying NOT NULL, "description" character varying NOT NULL, "avatar" character varying, "typeBlood" "tb_campaign_typeblood_enum" NOT NULL DEFAULT 'A+', "priority" "tb_campaign_priority_enum" NOT NULL DEFAULT 'Baixa', "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_db65ab6f801c975e3f6937bb6bb" PRIMARY KEY ("id"))`
+    );
+    await queryRunner.query(
+      `CREATE TABLE "tb_donation" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_8394e1eb4761c2442917a4a876a" PRIMARY KEY ("id"))`
+    );
+    await queryRunner.query(
+      `CREATE TABLE "tb_scheduling" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_da129bb46168f1c5d9329b549a6" PRIMARY KEY ("id"))`
+    );
+    await queryRunner.query(
       `CREATE TABLE "tb_user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "email" character varying NOT NULL, "password" character varying NOT NULL, "avatar" character varying, "phone" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_ebe445a8233800b2f59004d8ddc" UNIQUE ("email"), CONSTRAINT "UQ_f187fcd151cb766f5a466d07990" UNIQUE ("phone"), CONSTRAINT "PK_1943338f8f00e074a3c5bb48d5e" PRIMARY KEY ("id"))`
+    );
+    await queryRunner.query(
+      `CREATE TABLE "tb_user_token" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "token_id" uuid NOT NULL DEFAULT uuid_generate_v4(), "user_id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_34632f3af5cc77818d0431e64b5" PRIMARY KEY ("id"))`
     );
     await queryRunner.query(
       `CREATE TABLE "tb_donator" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "tb_user_fk" uuid, CONSTRAINT "REL_607cb85b2827dded54474b9010" UNIQUE ("tb_user_fk"), CONSTRAINT "PK_0a69da6ca4a8b4dfcafc2a6510c" PRIMARY KEY ("id"))`
@@ -30,6 +48,12 @@ export class CreateTableUsers1614894883990 implements MigrationInterface {
     );
     await queryRunner.query(`DROP TABLE "tb_institution"`);
     await queryRunner.query(`DROP TABLE "tb_donator"`);
+    await queryRunner.query(`DROP TABLE "tb_user_token"`);
     await queryRunner.query(`DROP TABLE "tb_user"`);
+    await queryRunner.query(`DROP TABLE "tb_scheduling"`);
+    await queryRunner.query(`DROP TABLE "tb_donation"`);
+    await queryRunner.query(`DROP TABLE "tb_campaign"`);
+    await queryRunner.query(`DROP TYPE "tb_campaign_priority_enum"`);
+    await queryRunner.query(`DROP TYPE "tb_campaign_typeblood_enum"`);
   }
 }
