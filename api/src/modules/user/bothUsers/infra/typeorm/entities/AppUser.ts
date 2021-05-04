@@ -4,7 +4,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Entity,
+  ManyToOne,
 } from 'typeorm';
+
+import { AppCampaign } from '@modules/campaing/infra/typeorm/entities/AppCampaign';
 
 @Entity('tb_user')
 export class AppUser {
@@ -31,6 +34,9 @@ export class AppUser {
     unique: true,
   })
   phone: string;
+
+  @ManyToOne(() => AppCampaign, (appCampaign) => appCampaign.users)
+  donatiton: AppCampaign;
 
   @CreateDateColumn()
   created_at: Date;
