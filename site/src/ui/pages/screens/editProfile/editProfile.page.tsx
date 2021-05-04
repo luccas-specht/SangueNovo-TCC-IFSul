@@ -72,7 +72,7 @@ export const EditProfile = () => {
     <>
       <ToastContainer />
       <S.Header>
-        <S.Back to="test">
+        <S.Back to="listar-campanhas">
           <FiArrowLeft size={30} />
         </S.Back>
         <FabTheme />

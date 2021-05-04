@@ -23,16 +23,21 @@ export const InputLimit = styled.div`
   }
 `;
 
+export const InputSelectLimit = styled.div`
+  margin-top: 10px;
+  width: 225px;
+  display: flex;
+  height: 100%;
+  align-items: center;
+`;
+
 export const WrapperButton = styled.div`
   display: flex;
   width: 90%;
   height: 100%;
-  padding-top: 22px;
-  flex-direction: column;
 
-  & :first-child {
-    height: 56px;
-  }
+  border: 2px solid red;
+  align-items: center;
 `;
 
 export const StyledButton = styled.button`

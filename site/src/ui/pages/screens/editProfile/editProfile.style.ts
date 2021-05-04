@@ -10,7 +10,7 @@ export const Header = styled.header`
   display: flex;
   width: 100%;
 
-  height: 100px;
+  height: 80px;
   background-color: ${({ theme }) => theme.colors.colorHeader};
   align-items: center;
   padding: 0px 100px;

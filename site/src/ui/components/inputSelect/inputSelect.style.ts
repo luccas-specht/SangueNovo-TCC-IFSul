@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 export const StyledAutocomplete = styled(Autocomplete)`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   position: relative;
-  border-radius: 10px;
+  border-radius: 7px;
   margin-bottom: 10px;
 
   .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
@@ -65,15 +65,20 @@ export const StyledTextField = styled(TextField)`
     color: ${(props) => props.theme.colors.backgroundPrimary};
 
     fieldset {
-      border-color: ${(props) => props.theme.colors.backgroundPrimary};
+      border-color: transparent;
     }
 
     &:hover fieldset {
-      border-color: ${(props) => props.theme.colors.backgroundPrimary};
+      border-color: transparent;
     }
     &.Mui-focused fieldset {
       border-color: ${(props) => props.theme.colors.backgroundPrimary};
       color: ${(props) => props.theme.colors.backgroundPrimary};
     }
   }
+`;
+
+export const Text = styled.text`
+  color: ${(props) => props.theme.colors.text};
+  font-size: 15px;
 `;

@@ -33,7 +33,7 @@ export const ContentList = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.backgroundSecudary};
-  border-top: 2px solid #f2f2f2;
+  border-top: 2px solid ${({ theme }) => theme.colors.backgroundPrimary};
 
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

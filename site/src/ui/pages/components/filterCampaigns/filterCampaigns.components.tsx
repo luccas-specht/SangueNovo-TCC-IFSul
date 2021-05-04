@@ -85,7 +85,7 @@ export const FilterCampaings = ({ setFilter }: Props) => {
 
   return (
     <S.Container>
-      <S.InputLimit>
+      <S.InputSelectLimit>
         <InputSelectCombo
           isMultiple
           id="typeBlood"
@@ -96,8 +96,8 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           inputIcon={<FiDroplet size={20} />}
           onChange={(id, values) => handleChangeFilterValues(id, values)}
         />
-      </S.InputLimit>
-      <S.InputLimit>
+      </S.InputSelectLimit>
+      <S.InputSelectLimit>
         <InputSelectCombo
           isMultiple
           id="priorityStatus"
@@ -108,8 +108,8 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           inputIcon={<FiActivity size={20} />}
           onChange={(id, values) => handleChangeFilterValues(id, values)}
         />
-      </S.InputLimit>
-      <S.InputLimit>
+      </S.InputSelectLimit>
+      <S.InputSelectLimit>
         <InputSelectCombo
           isMultiple
           id="distance"
@@ -120,8 +120,8 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           inputIcon={<FiMapPin size={20} />}
           onChange={(id, values) => handleChangeFilterValues(id, values)}
         />
-      </S.InputLimit>
-      <S.InputLimit>
+      </S.InputSelectLimit>
+      <S.InputSelectLimit>
         <InputSelectCombo
           isMultiple
           id="institution"
@@ -132,7 +132,7 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           inputIcon={<FiHome size={20} />}
           onChange={(id, values) => handleChangeFilterValues(id, values)}
         />
-      </S.InputLimit>
+      </S.InputSelectLimit>
       <S.InputLimit>
         <InputText
           id="title"
@@ -145,8 +145,12 @@ export const FilterCampaings = ({ setFilter }: Props) => {
       </S.InputLimit>
       <S.InputLimit>
         <S.WrapperButton>
-          <Button title="Aplicar" type="submit" />
-          <S.StyledButton onClick={handleClear}>Limpar filtros</S.StyledButton>
+          <div>
+            <Button title="Aplicar" type="submit" />
+            <S.StyledButton onClick={handleClear}>
+              Limpar filtros
+            </S.StyledButton>
+          </div>
         </S.WrapperButton>
       </S.InputLimit>
     </S.Container>

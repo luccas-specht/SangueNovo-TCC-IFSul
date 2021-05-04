@@ -9,8 +9,6 @@ import {
   CheckBoxOutlineBlank,
 } from "@material-ui/icons";
 
-import { ComboValue } from "../../../models";
-
 import * as S from "./inputSelect.style";
 
 type Props = {
@@ -74,7 +72,7 @@ export const InputSelectCombo = ({
               checkedIcon={checkedIcon}
               style={{ color: "#898B8E" }}
             />
-            {option?.title}
+            <S.Text>{option?.title}</S.Text>
           </>
         )}
         renderInput={(params: any) => (
@@ -84,7 +82,6 @@ export const InputSelectCombo = ({
             placeholder={placeholder}
             variant="outlined"
             fullWidth
-            style={{ fontSize: 5 }}
             InputProps={{
               ...params.InputProps,
               startAdornment: (
