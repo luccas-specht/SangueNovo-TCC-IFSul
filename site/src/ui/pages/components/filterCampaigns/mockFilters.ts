@@ -7,7 +7,7 @@ export const typeBloodInitial: ComboValue[] = [
   { title: "Tipo sanguíneo B-", value: 3 },
   { title: "Tipo sanguíneo O+", value: 4 },
   { title: "Tipo sanguíneo O-", value: 5 },
-  { title: "Tipo sanguíneo AB-", value: 6 },
+  { title: "Tipo sanguíneo AB+", value: 6 },
   { title: "Tipo sanguíneo AB-", value: 7 },
 ];
 

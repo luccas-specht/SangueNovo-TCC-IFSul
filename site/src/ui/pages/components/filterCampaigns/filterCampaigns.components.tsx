@@ -53,8 +53,6 @@ export const FilterCampaings = ({ setFilter }: Props) => {
     distance: [],
   });
 
-  console.log("valuesFilter", valuesFilter);
-
   const handleChangeTitleCampaing = useCallback(
     (event) => {
       setTitleCampaing(event.target.value);

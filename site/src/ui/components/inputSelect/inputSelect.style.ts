@@ -7,6 +7,7 @@ export const StyledAutocomplete = styled(Autocomplete)`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   position: relative;
   border-radius: 10px;
+  margin-bottom: 10px;
 
   .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
     padding-left: 0 !important;
