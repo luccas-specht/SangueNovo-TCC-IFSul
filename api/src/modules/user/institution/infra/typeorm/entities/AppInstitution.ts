@@ -4,10 +4,11 @@ import {
   OneToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
-
 import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
-
+import { AppCampaign } from '@modules/campaing/infra/typeorm/entities/AppCampaign';
+import { AppScheduling } from '@modules/scheduling/infra/typeorm/entities/AppScheduling';
 @Entity('tb_institution')
 export class AppInstitution {
   @PrimaryGeneratedColumn('uuid')
@@ -28,4 +29,10 @@ export class AppInstitution {
   @OneToOne(() => AppUser)
   @JoinColumn({ name: 'tb_user_fk' })
   tb_user_fk: AppUser;
+
+  @OneToMany(() => AppCampaign, (appCampaign) => appCampaign.institution)
+  campaigns: AppCampaign[];
+
+  @OneToMany(() => AppScheduling, (appScheduling) => appScheduling.donatiton)
+  schedulings: AppScheduling[];
 }
