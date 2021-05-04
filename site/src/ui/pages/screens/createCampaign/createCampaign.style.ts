@@ -1,5 +1,6 @@
 import { StylesProvider } from "@material-ui/styles";
 import styled from "styled-components";
+import { device } from "../../../../constants";
 
 export const Container = styled.div`
   width: 100vw;
@@ -20,6 +21,13 @@ export const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   display: flex;
   flex-direction: row;
+
+  @media ${device.mobileL()} {
+    flex-direction: column;
+    width: 350px;
+    height: 350px;
+    margin: 50% 0;
+  }
 `;
 
 export const Title = styled.h2`

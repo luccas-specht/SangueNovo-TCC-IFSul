@@ -5,7 +5,7 @@ export const useListInstitution = () => {
 
   const listInstitution = async (): Promise<any> => {
     const response = await get("list");
-    console.log(response);
+    return response;
   };
 
   return {

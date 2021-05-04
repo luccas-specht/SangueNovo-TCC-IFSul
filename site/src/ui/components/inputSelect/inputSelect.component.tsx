@@ -17,7 +17,7 @@ type Props = {
   id: string;
   name: string;
   values?: any;
-  options: ComboValue[];
+  options: any[];
   inputIcon: ReactNode;
   placeholder: string;
   onChange(id: any, value: any): void;

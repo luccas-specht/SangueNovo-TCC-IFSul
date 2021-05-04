@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as SC from "./createCampaign.style";
 import { Header } from "../../../components";
 import { MapContainer, TileLayer } from "react-leaflet";
@@ -28,7 +28,6 @@ import {
 } from "../../../components";
 
 import {
-  distanceInitial,
   priorityStatusInitial,
   typeBloodInitial,
 } from "../../components/filterCampaigns/mockFilters";
@@ -40,7 +39,7 @@ type CreateCampaingn = {
   dateDuration: any;
   blood: string;
   priority: string;
-  institution: string;
+  institution: any[];
   description: string;
 };
 
@@ -61,24 +60,31 @@ export const CreateCampaign = () => {
     dateDuration: "",
     blood: "",
     priority: "",
-    institution: "",
+    institution: [],
     description: "",
   };
 
-  const validations = Yup.object().shape({
-    title: Yup.string().required(validationMessage.required),
-    dateDuration: Yup.string().required(validationMessage.required),
-    blood: Yup.string().required(validationMessage.required),
-    priority: Yup.string().required(validationMessage.required),
-    institution: Yup.string().required(validationMessage.required),
-    description: Yup.string().required(validationMessage.required),
-  });
-
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: validations,
     onSubmit: (values: CreateCampaingn) => {},
   });
+
+  const getInstitution = async () => {
+    const teste: any = [];
+    const { data } = await listInstitution();
+    data?.map((e: any) => {
+      const teste1 = {
+        value: e?.id,
+        title: e?.razao_social,
+      };
+      teste.push(teste1);
+    });
+    formik.setFieldValue("institution", teste);
+  };
+
+  useEffect(() => {
+    getInstitution();
+  }, []);
 
   return (
     <SC.Container>
@@ -135,12 +141,12 @@ export const CreateCampaign = () => {
               ) : (
                 <>
                   <InputSelectCombo
-                    options={[]}
+                    options={formik.values.institution ?? []}
                     inputIcon={<FiHome size={20} />}
                     id="institution"
                     name="institution"
                     placeholder="Instituição da campanha"
-                    values={formik.values.institution}
+                    values={[]}
                     isMultiple={false}
                     onChange={formik.handleChange}
                   />
