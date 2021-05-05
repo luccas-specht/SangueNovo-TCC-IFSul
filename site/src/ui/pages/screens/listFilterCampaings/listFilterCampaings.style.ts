@@ -43,7 +43,7 @@ export const ContentList = styled.div`
 
 export const WrapperCampaings = styled.div`
   margin-top: 7px;
-  width: 70%;
+  width: 65%;
   height: 95%;
 
   overflow-y: scroll;

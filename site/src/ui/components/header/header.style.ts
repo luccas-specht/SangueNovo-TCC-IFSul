@@ -12,6 +12,7 @@ type PropsImg = {
 
 type BurbuerProps = {
   open: boolean;
+  isDonator?: boolean;
 };
 
 export const Container = styled.header`
@@ -90,12 +91,11 @@ export const WellcomeUser = styled.span`
   color: ${({ theme }) => theme.colors.titleColor};
 `;
 
-export const UserName = styled.strong`
+export const UserName = styled.strong<{ isDonator: Boolean }>`
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
-  max-width: 120px;
-
+  max-width: ${({ isDonator }) => (isDonator ? "130px" : "180px")};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -170,9 +170,10 @@ export const Burguer = styled.div<BurbuerProps>`
 export const Ul = styled.ul<BurbuerProps>`
   display: flex;
   padding-top: 15px;
-  padding-left: 20px;
+  padding-left: ${({ isDonator }) => (isDonator ? "20px" : "none")};
   width: 100%;
-  justify-content: space-around;
+  justify-content: ${({ isDonator }) =>
+    isDonator ? "space-around" : "space-between"};
 
   button {
     border: none;

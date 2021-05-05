@@ -20,7 +20,13 @@ export const ListFilterCampaings = () => {
           <S.Main>
             <FilterCampaings setFilter={setFilter} />
             <S.ContentList>
-              <S.WrapperCampaings />
+              <S.WrapperCampaings>
+                {[...Array(50)].map((e) => (
+                  <div
+                    style={{ border: "2px solid blue", width: 50, height: 50 }}
+                  />
+                ))}
+              </S.WrapperCampaings>
             </S.ContentList>
           </S.Main>
         </S.Content>

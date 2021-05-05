@@ -102,13 +102,15 @@ export const Header = () => {
         />
         <div>
           <S.WellcomeUser>Bem vindo,</S.WellcomeUser>
-          <S.UserName>{user?.user?.userName}</S.UserName>
+          <S.UserName isDonator={user?.user?.isDonator}>
+            {user?.user?.userName}
+          </S.UserName>
         </div>
       </S.Profile>
       <S.Burguer open={isOpenBurguerMenu} onClick={handleOpenBurgermenu}>
         {renderDivs(3)}
       </S.Burguer>
-      <S.Ul open={isOpenBurguerMenu}>
+      <S.Ul open={isOpenBurguerMenu} isDonator={user?.user?.isDonator}>
         {navegations.map(({ icon, title, to }) => (
           <li>
             {to ? (
