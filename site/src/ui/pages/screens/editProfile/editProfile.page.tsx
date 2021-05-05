@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import { FiLock, FiUser, BiPhone, FiCamera } from "react-icons/all";
+import { FiLock, FiUser, BiPhone, FiCamera, BiMap } from "react-icons/all";
 
 import { useHistory } from "react-router-dom";
 
 import { FiArrowLeft } from "react-icons/fi";
 
-import { validationMessage } from "../../../../constants";
+import { validationMessage, masks } from "../../../../constants";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -31,29 +31,37 @@ import * as S from "./editProfile.style";
 
 type FormData = {
   avatar: any;
-  name: string;
+  name_razaoSocial: string;
   oldPassword: string;
   newPassword: string;
   phone: string;
+  cep?: string;
 };
 
 export const EditProfile = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { push } = useHistory();
+  const { cepMask } = masks();
   const { user } = useAuthenticated();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const initialValues: FormData = {
     avatar: user?.user?.avatar,
-    name: "",
-    phone: "",
+    name_razaoSocial: user?.user?.userName,
+    phone: user?.user?.phone,
     newPassword: "",
     oldPassword: "",
+  };
+
+  const initialValuesInstitution: FormData = {
+    ...initialValues,
+    cep: user?.user?.cep,
   };
 
   const validations = {};
 
   const onEdit = async ({
-    name,
+    name_razaoSocial,
     phone,
     avatar,
     newPassword,
@@ -63,7 +71,9 @@ export const EditProfile = () => {
   };
 
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: user?.user?.isDonator
+      ? initialValues
+      : initialValuesInstitution,
     onSubmit: (values: FormData) => {
       onEdit(values);
     },
@@ -83,7 +93,7 @@ export const EditProfile = () => {
             <S.Profile>
               <img
                 src={formik.values.avatar ?? imageDefaultProfile}
-                alt={user?.user?.name ?? "imagem de perfil"}
+                alt={user?.user?.userName ?? "imagem de perfil"}
               />
               <label htmlFor="avatar">
                 <FiCamera />
@@ -96,10 +106,13 @@ export const EditProfile = () => {
               <InputText
                 icon={<FiUser size={20} />}
                 id="name"
-                name="name"
-                placeholder="Nome"
-                value={formik.values.name}
-                error={formik.touched.name && formik.errors.name}
+                name="name_razaoSocial"
+                placeholder={user?.user?.isDonator ? "Nome" : "Razão Social"}
+                value={formik.values.name_razaoSocial}
+                error={
+                  formik.touched.name_razaoSocial &&
+                  formik.errors.name_razaoSocial
+                }
                 onChange={formik.handleChange}
               />
               <InputText
@@ -111,6 +124,19 @@ export const EditProfile = () => {
                 error={formik.touched.phone && formik.errors.phone}
                 onChange={formik.handleChange}
               />
+              {!user?.user?.isDonator && (
+                <InputText
+                  icon={<BiMap size={20} />}
+                  id="cep"
+                  name="cep"
+                  placeholder="CEP"
+                  maxLength={9}
+                  value={cepMask(formik?.values?.cep || "")}
+                  error={formik.touched.cep && formik.errors.cep}
+                  onChange={formik.handleChange}
+                />
+              )}
+
               <InputPassword
                 icon={<FiLock size={20} />}
                 id="oldPassword"

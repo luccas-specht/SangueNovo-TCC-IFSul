@@ -38,8 +38,8 @@ export const PageNotFound = () => {
           <S.InfoWrapper>
             <S.StyledText>Esta página não</S.StyledText>
             <S.StyledText>foi encontrada!</S.StyledText>
-            <Link to="dashboard">
-              <Button type="button" title="Voltar para a home" />
+            <Link to="listar-campanhas">
+              <Button type="button" title="Voltar para a página inicial" />
             </Link>
           </S.InfoWrapper>
         </S.Content>

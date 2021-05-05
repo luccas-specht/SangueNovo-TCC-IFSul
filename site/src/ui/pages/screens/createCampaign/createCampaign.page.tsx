@@ -136,7 +136,7 @@ export const CreateCampaign = () => {
                     isMultiple={false}
                     onChange={formik.handleChange}
                   />
-                  <Button disabled title="Criar Campanha" />
+                  <Button disabled title="Criar" />
                 </>
               ) : (
                 <>
@@ -163,7 +163,7 @@ export const CreateCampaign = () => {
                     onChange={formik.handleChange}
                   />
 
-                  <Button title="Cadastrar" />
+                  <Button title="Criar" />
                 </>
               )}
               <Stepper

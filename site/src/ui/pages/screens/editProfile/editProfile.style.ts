@@ -53,7 +53,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  height: 500px;
+  min-height: 500px;
   width: 450px;
   display: flex;
   flex-direction: column;
