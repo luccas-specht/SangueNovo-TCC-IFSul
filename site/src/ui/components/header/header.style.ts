@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { device } from "../../../constants";
 
+import { FaMoon, FaSun } from "react-icons/all";
+
 type PropsImg = {
   src: string;
 };
@@ -42,7 +44,7 @@ export const Profile = styled(Link)`
   align-items: center;
   max-width: 245px;
   height: 100%;
-  margin-left: 5%;
+  margin-left: 3%;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
@@ -92,13 +94,13 @@ export const UserName = styled.strong`
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
-  max-width: 200px;
+  max-width: 120px;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
-  color: ${({ theme }) => theme.colors.primary2};
+  color: ${({ theme }) => theme.colors.primary};
 
   @media ${device.mobileL()} {
     max-width: 120px;
@@ -168,8 +170,14 @@ export const Burguer = styled.div<BurbuerProps>`
 export const Ul = styled.ul<BurbuerProps>`
   display: flex;
   padding-top: 15px;
+  padding-left: 20px;
   width: 100%;
   justify-content: space-around;
+
+  button {
+    border: none;
+    background: transparent;
+  }
 
   li {
     font-size: 14px;
@@ -209,4 +217,16 @@ export const Ul = styled.ul<BurbuerProps>`
       padding-bottom: 10px;
     }
   }
+`;
+
+export const StyledFaSun = styled(FaSun)`
+  width: 23px;
+  height: 23px;
+  color: ${({ theme }) => theme.colors.colorIconDarkLight};
+`;
+
+export const StyledFaMoon = styled(FaMoon)`
+  width: 20px;
+  height: 20px;
+  color: ${({ theme }) => theme.colors.colorIconDarkLight};
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  height: 100px;
+  height: 110px;
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.backgroundSecudary};
@@ -34,9 +34,8 @@ export const InputSelectLimit = styled.div`
 export const WrapperButton = styled.div`
   display: flex;
   width: 90%;
-  height: 100%;
-
-  border: 2px solid red;
+  padding-top: 20px;
+  flex-direction: column;
   align-items: center;
 `;
 

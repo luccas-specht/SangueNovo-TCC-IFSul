@@ -20,7 +20,7 @@ export const ListFilterCampaings = () => {
           <S.Main>
             <FilterCampaings setFilter={setFilter} />
             <S.ContentList>
-              <S.WrapperCampaings></S.WrapperCampaings>
+              <S.WrapperCampaings />
             </S.ContentList>
           </S.Main>
         </S.Content>

@@ -9,11 +9,9 @@ import {
   BiDonateBlood,
 } from "react-icons/all";
 
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
-import { useHistory } from "react-router-dom";
-
-import { useAuthenticated } from "../../../hooks";
+import { useAuthenticated, useTheme } from "../../../hooks";
 
 import logoImg from "../../assets/images/logo.png";
 import imageDefaultProfile from "../../assets/images/default_user_image.png";
@@ -22,13 +20,14 @@ import * as S from "./header.style";
 
 type Navegation = {
   icon: JSX.Element;
-  to: string;
+  to?: string;
   title?: string;
 };
 
 export const Header = () => {
   const [isOpenBurguerMenu, setIsOpenBurguerMenu] = useState<boolean>(false);
   const { push } = useHistory();
+  const { theme, changeTheme } = useTheme();
   const { user, signOut } = useAuthenticated();
 
   const handleOpenBurgermenu = useCallback(
@@ -44,6 +43,15 @@ export const Header = () => {
   const renderDivs = useCallback(
     (number: number) => [...Array(number)].map(() => <div />),
     []
+  );
+
+  const renderedIcon = useCallback(
+    () => (
+      <button type="button" onClick={changeTheme}>
+        {theme.title === "light" ? <S.StyledFaSun /> : <S.StyledFaMoon />}
+      </button>
+    ),
+    [changeTheme, theme]
   );
 
   const navegations = useMemo(
@@ -77,8 +85,11 @@ export const Header = () => {
         icon: <FiPower size={20} onClick={handleSignOut} />,
         to: "/login",
       },
+      {
+        icon: renderedIcon(),
+      },
     ],
-    [handleSignOut, user]
+    [handleSignOut, user, renderedIcon]
   );
 
   return (
@@ -100,13 +111,16 @@ export const Header = () => {
       <S.Ul open={isOpenBurguerMenu}>
         {navegations.map(({ icon, title, to }) => (
           <li>
-            <Link to={to}>
-              {icon}
-              {title}
-            </Link>
+            {to ? (
+              <Link to={to}>
+                {icon}
+                {title}
+              </Link>
+            ) : (
+              icon
+            )}
           </li>
         ))}
-        {/* <FabTheme /> */}
       </S.Ul>
     </S.Container>
   );

@@ -4,10 +4,14 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 import InputAdornment from "@material-ui/core/InputAdornment";
 
+import { makeStyles } from "@material-ui/core/styles";
+
 import {
   CheckBox as CheckBoxIcon,
   CheckBoxOutlineBlank,
 } from "@material-ui/icons";
+
+import { useTheme } from "../../../hooks";
 
 import * as S from "./inputSelect.style";
 
@@ -32,6 +36,36 @@ export const InputSelectCombo = ({
   name,
   isMultiple = false,
 }: Props) => {
+  const { theme } = useTheme();
+
+  const useStyles = makeStyles({
+    listbox: {
+      backgroundColor: `${theme.title === "light" ? "#f2f2f2" : "#232129"}`,
+      padding: "none",
+      maxHeight: "20vh",
+      borderBottom: "none",
+      outline: "none",
+      "&::-webkit-scrollbar": {
+        width: "0.4em",
+      },
+      "&::-webkit-scrollbar-track": {
+        "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: `${theme.title === "light" ? "#666360" : "#f2f2f2"}`,
+        borderRadius: "100px",
+      },
+    },
+    option: {
+      "&:hover, &:focus": {
+        backgroundColor: `${
+          theme.title === "light" ? "rgba(0, 0, 0, 0.04)" : "#f2f2f2"
+        }`,
+      },
+    },
+  });
+
+  const classes = useStyles();
   const icon = <CheckBoxOutlineBlank fontSize="small" />;
   const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
@@ -58,8 +92,6 @@ export const InputSelectCombo = ({
         fullWidth
         defaultChecked
         disableCloseOnSelect
-        noOptionsText="Sem opções disponíveis."
-        disablePortal={false}
         id={id}
         options={options}
         multiple={isMultiple}
@@ -67,9 +99,9 @@ export const InputSelectCombo = ({
         renderOption={(option: any, { selected }) => (
           <>
             <Checkbox
-              checked={selected}
               icon={icon}
               checkedIcon={checkedIcon}
+              checked={selected}
               style={{ color: "#898B8E" }}
             />
             <S.Text>{option?.title}</S.Text>
@@ -78,10 +110,10 @@ export const InputSelectCombo = ({
         renderInput={(params: any) => (
           <S.StyledTextField
             {...params}
+            fullWidth
+            variant="outlined"
             name={name}
             placeholder={placeholder}
-            variant="outlined"
-            fullWidth
             InputProps={{
               ...params.InputProps,
               startAdornment: (
@@ -93,6 +125,9 @@ export const InputSelectCombo = ({
             }}
           />
         )}
+        noOptionsText="Sem opções disponíveis."
+        disablePortal={false}
+        classes={{ listbox: classes.listbox, option: classes.option }}
         renderTags={() => null}
         onChange={(e: any, newValues: any) => handleChange(e, newValues)}
       />

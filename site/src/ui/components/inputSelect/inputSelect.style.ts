@@ -71,6 +71,7 @@ export const StyledTextField = styled(TextField)`
     &:hover fieldset {
       border-color: transparent;
     }
+
     &.Mui-focused fieldset {
       border-color: ${(props) => props.theme.colors.backgroundPrimary};
       color: ${(props) => props.theme.colors.backgroundPrimary};
