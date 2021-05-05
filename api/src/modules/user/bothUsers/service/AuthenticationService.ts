@@ -61,16 +61,16 @@ export class AuthenticationService {
       expiresIn: expiresIn,
     });
 
-    const { name, razao_social, phone, birthday } = userType;
-    const { id, avatar } = user;
+    const { name, razao_social, cep } = userType;
+    const { id, avatar, phone } = user;
 
     return {
       user: {
         id,
-        userName: name ?? razao_social,
         avatar,
         phone,
-        birthday,
+        userName: name ?? razao_social,
+        cep: cep ?? '',
         isDonator: name ? true : false,
       },
       token,

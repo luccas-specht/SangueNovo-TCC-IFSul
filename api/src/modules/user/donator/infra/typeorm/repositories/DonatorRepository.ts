@@ -15,6 +15,10 @@ export class DonatorRepository implements IDonatorRepository {
     return await this.ormRepository.save(donator);
   }
 
+  public async update(donator: AppDonator): Promise<AppDonator> {
+    return await this.ormRepository.save(donator);
+  }
+
   public async findById(id: string): Promise<AppDonator | undefined> {
     return await this.ormRepository.findOne({ where: { id } });
   }

@@ -35,6 +35,7 @@ export class AppUser {
   })
   phone: string;
 
+  // TODO: Validar, se esta errado, pois quem tem doações é o doador não o usuário
   @ManyToOne(() => AppCampaign, (appCampaign) => appCampaign.users)
   donatiton: AppCampaign;
 

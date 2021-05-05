@@ -24,6 +24,10 @@ export class UserRepository implements IUserRepository {
     return this.ormRepository.save(user);
   }
 
+  public async update(user: AppUser): Promise<AppUser> {
+    return this.ormRepository.save(user);
+  }
+
   public async findById(id: string): Promise<AppUser | undefined> {
     return this.ormRepository.findOne({ where: { id } });
   }

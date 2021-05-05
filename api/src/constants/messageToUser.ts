@@ -9,5 +9,5 @@ export const MESSAGEINVALID = {
   userNotExists: 'Usuário não existe.',
   timedOut: 'Tempo da solitação expirou.',
   newPasswordEqualsOldPassword:
-    'Nova Senha deve ser diferente da senha antiga.',
+    'A nova senha deve ser diferente da senha atual.',
 };
