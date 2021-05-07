@@ -11,14 +11,14 @@ export class DonatorController {
   ): Promise<Response> {
     const {
       title,
-      typeBlood,
-      dataAvaible,
-      priority,
-      avatar,
-      idIntitution,
       description,
-      id,
+      dataAvaible,
+      typeBlood,
+      priority,
+      id_user,
+      id_intitution,
     } = request.body;
+    const avatarFileName = request.file.filename;
 
     const createCampaingService = container.resolve(CreateCampaingService);
 

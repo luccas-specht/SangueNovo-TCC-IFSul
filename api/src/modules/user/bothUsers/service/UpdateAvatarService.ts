@@ -23,7 +23,7 @@ export class UpdateUserAvatarService {
     private storageProvider: IStorageProvider
   ) {}
 
-  public async execute({ userId, avatarFileName }: Request): Promise<AppUser> {
+  public async execute({ userId, avatarFileName }: Request): Promise<String> {
     const user = await this.usersRepository.findById(userId);
 
     if (!user) throw new AppError(MESSAGEINVALID.unathorized, 401);
@@ -33,6 +33,8 @@ export class UpdateUserAvatarService {
     const fileName = await this.storageProvider.saveFile(avatarFileName);
     user.avatar = fileName;
 
-    return await this.usersRepository.save(user);
+    await this.usersRepository.save(user);
+
+    return user.avatar;
   }
 }

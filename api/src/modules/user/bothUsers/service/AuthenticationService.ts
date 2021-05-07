@@ -66,12 +66,13 @@ export class AuthenticationService {
 
     return {
       user: {
-        id,
+        userName: name ?? razao_social,
         avatar,
         phone,
-        userName: name ?? razao_social,
         cep: cep ?? '',
-        isDonator: name ? true : false,
+        id: userType.id,
+        userId: id,
+        isDonator: !!name ?? false,
       },
       token,
     };
