@@ -15,6 +15,6 @@ export class UpdateController {
       avatarFileName: request.file.filename,
     });
 
-    return response.json({ avatar: avatar });
+    return response.json(avatar);
   }
 }
