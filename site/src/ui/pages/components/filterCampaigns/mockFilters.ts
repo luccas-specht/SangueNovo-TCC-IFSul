@@ -1,25 +1,25 @@
 import { ComboValue } from "../../../../models";
 
 export const typeBloodInitial: ComboValue[] = [
-  { title: "Tipo sanguíneo A+", value: 0 },
-  { title: "Tipo sanguíneo A-", value: 1 },
-  { title: "Tipo sanguíneo B+", value: 2 },
-  { title: "Tipo sanguíneo B-", value: 3 },
-  { title: "Tipo sanguíneo O+", value: 4 },
-  { title: "Tipo sanguíneo O-", value: 5 },
-  { title: "Tipo sanguíneo AB+", value: 6 },
-  { title: "Tipo sanguíneo AB-", value: 7 },
+  { title: "Tipo sanguíneo A+", value: "A+" },
+  { title: "Tipo sanguíneo A-", value: "A-" },
+  { title: "Tipo sanguíneo B+", value: "B+" },
+  { title: "Tipo sanguíneo B-", value: "B-" },
+  { title: "Tipo sanguíneo O+", value: "O+" },
+  { title: "Tipo sanguíneo O-", value: "O-" },
+  { title: "Tipo sanguíneo AB+", value: "AB+" },
+  { title: "Tipo sanguíneo AB-", value: "AB-" },
 ];
 
 export const priorityStatusInitial: ComboValue[] = [
-  { title: "Alta", value: 0 },
-  { title: "Média", value: 1 },
-  { title: "Baixa", value: 2 },
+  { title: "Baixa", value: "Baixa" },
+  { title: "Média", value: "Média" },
+  { title: "Alta", value: "Alta" },
 ];
 
 export const distanceInitial: ComboValue[] = [
-  { title: "até 5km", value: 25 },
-  { title: "até 10km", value: 25 },
+  { title: "até 5km", value: 5 },
+  { title: "até 10km", value: 10 },
   { title: "até 25km", value: 25 },
   { title: "até 50km", value: 50 },
   { title: "100km ou mais", value: 100 },
