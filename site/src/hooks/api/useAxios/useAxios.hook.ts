@@ -2,10 +2,10 @@ import axios, { AxiosInstance } from "axios";
 
 export const useAxiosApiSangueNovo = (): AxiosInstance =>
   axios.create({
-    baseURL: "http://localhost:3333",
+    baseURL: `${process.env.REACT_APP_BASE_URL_SANGUE_NOVO_API}`,
   });
 
-export const useAxiosApiGoogle = (): AxiosInstance =>
+export const useAxiosApiViaCep = (): AxiosInstance =>
   axios.create({
-    baseURL: "https://www.google.com/maps/place",
+    baseURL: `${process.env.REACT_APP_BASE_URL_VIA_CEP_API}`,
   });
