@@ -6,8 +6,6 @@ import { FilterCampaings } from "../../components";
 
 import * as S from "./listFilterCampaings.style";
 
-import { useRequestGoogle } from "../../../../hooks";
-
 export const ListFilterCampaings = () => {
   const [listCampaigns, setListCampaigns] = useState([]);
   const [filter, setFilter] = useState();
