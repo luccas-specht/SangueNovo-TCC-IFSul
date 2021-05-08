@@ -35,6 +35,7 @@ export const Router = () => {
             path={routes.register.path}
             component={routes.register.component}
           />
+
           <PublicRoute
             exact
             path={routes.forgotPassword.path}
@@ -49,6 +50,11 @@ export const Router = () => {
             exact
             path={routes.editProfile.path}
             component={routes.editProfile.component}
+          />
+          <PrivateRoute
+            exact
+            path={routes.detailsCampaign.path}
+            component={routes.detailsCampaign.component}
           />
           <PrivateRoute
             exact

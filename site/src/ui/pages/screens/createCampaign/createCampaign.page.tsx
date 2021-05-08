@@ -4,7 +4,7 @@ import { Header } from "../../../components";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useHistory } from "react-router-dom";
-import { validationMessage, masks } from "../../../../constants";
+import { validationMessage, masks, paths } from "../../../../constants";
 import * as Yup from "yup";
 import { useListInstitution } from "../../../../hooks";
 import {
@@ -14,6 +14,7 @@ import {
   FiActivity,
   FiHome,
   FiFileText,
+  FiPlus,
 } from "react-icons/all";
 
 import { useFormik } from "formik";
@@ -140,6 +141,12 @@ export const CreateCampaign = () => {
                 </>
               ) : (
                 <>
+                  <SC.Profile>
+                    <label htmlFor="image">
+                      <FiPlus size={30} />
+                      <input type="file" id="image" name="image" />
+                    </label>
+                  </SC.Profile>
                   <InputSelectCombo
                     options={formik.values.institution ?? []}
                     inputIcon={<FiHome size={20} />}
@@ -150,6 +157,7 @@ export const CreateCampaign = () => {
                     isMultiple={false}
                     onChange={formik.handleChange}
                   />
+
                   <InputDescription
                     icon={<FiFileText size={20} />}
                     id="description"
@@ -180,7 +188,9 @@ export const CreateCampaign = () => {
             zoom={15}
             style={{ width: "100%", height: "100%" }}
           >
-            <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <TileLayer
+              url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+            />
           </MapContainer>
         </SC.Map>
       </SC.Content>

@@ -7,6 +7,7 @@ import {
   CreateCampaign,
   PageNotFound,
   EditProfile,
+  DetailsCampaign,
 } from "../ui/pages";
 
 type Paths = {
@@ -33,6 +34,7 @@ const components: Components = {
   createCampaign: CreateCampaign,
   pageNotFound: PageNotFound,
   editProfile: EditProfile,
+  detailsCampaign: DetailsCampaign,
 };
 
 export const paths: Paths = {
@@ -45,6 +47,7 @@ export const paths: Paths = {
   createCampaign: () => "/criar-campanha",
   pageNotFound: () => "*",
   editProfile: () => "/editar-perfil",
+  detailsCampaign: () => "/detalhes-campanha",
 };
 
 export const routes: Routes = {
@@ -88,5 +91,9 @@ export const routes: Routes = {
   editProfile: {
     path: paths.editProfile(),
     component: components.editProfile,
+  },
+  detailsCampaign: {
+    path: paths.detailsCampaign(),
+    component: components.detailsCampaign,
   },
 };

@@ -1,4 +1,3 @@
-import { StylesProvider } from "@material-ui/styles";
 import styled from "styled-components";
 import { device } from "../../../../constants";
 
@@ -33,12 +32,12 @@ export const Content = styled.div`
 export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.text};
   justify-content: center;
-  align-items: center;
+  margin-top: 40px;
   margin-bottom: 20px;
 `;
 
 export const Box = styled.div`
-  height: 550px;
+  height: auto;
   width: 500px;
   align-items: center;
   display: flex;
@@ -51,14 +50,14 @@ export const Box = styled.div`
 export const Form = styled.form`
   margin: 20px auto;
   width: 340px;
-  height: 310px;
+  height: auto;
   align-self: center;
   border-radius: 20px;
 `;
 
 export const FormBox = styled.div`
-  width: 40%;
-  height: 100%;
+  width: 50%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,7 +66,37 @@ export const FormBox = styled.div`
 `;
 
 export const Map = styled.div`
-  width: 60%;
+  width: 50%;
   height: 100%;
   background-color: red;
+`;
+
+export const Profile = styled.div`
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  border-radius: 10px;
+  border: 1px dashed ${({ theme }) => theme.colors.primary};
+  padding: 16px;
+  width: 100%;
+  color: ${(props) => props.theme.colors.text};
+  display: flex;
+  align-items: center;
+  max-height: 56px;
+  margin-bottom: 10px;
+  justify-content: center;
+
+  &:hover {
+    border: 1px dashed green;
+  }
+
+  label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  input {
+    display: none;
+  }
 `;
