@@ -14,7 +14,7 @@ import {
 import { toastConfig } from "../../../../configs";
 import { validationMessage, masks, yupValidation } from "../../../../constants";
 
-import { useRegister } from "../../../../hooks";
+import { useRegister, useViaCep, useGeocode } from "../../../../hooks";
 
 import { InputText, InputPassword, Stepper, Button } from "../../../components";
 
@@ -38,6 +38,8 @@ interface FormData {
 export const FormInstitutionRegister = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const { registerInstitution } = useRegister();
+  const { getAddress } = useViaCep();
+  const { getLatitudeLongitude } = useGeocode();
   const { push } = useHistory();
   const { cnpjMask, phoneBrMask, cepMask } = masks();
   const { cnpjValid, cepValidation } = yupValidation;
@@ -79,13 +81,17 @@ export const FormInstitutionRegister = () => {
     email,
     password,
   }: FormData): Promise<void> => {
+    const response = await getLatitudeLongitude(cep);
+
     const { data, status } = await registerInstitution(
       razaoSocial,
       cep,
       cnpj,
       phone,
       email,
-      password
+      password,
+      response?.lat,
+      response?.lng
     );
     if (status === 200) {
       push("/login");
