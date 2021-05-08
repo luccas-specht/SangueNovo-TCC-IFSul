@@ -56,7 +56,7 @@ export const Header = () => {
 
   const navegations = useMemo(
     (): Navegation[] => [
-      user?.user.isDonator && {
+      user?.user?.isDonator && {
         icon: <BiDonateBlood size={20} />,
         to: "minhas-doações",
         title: "Minhas Doações",
@@ -110,7 +110,7 @@ export const Header = () => {
       <S.Burguer open={isOpenBurguerMenu} onClick={handleOpenBurgermenu}>
         {renderDivs(3)}
       </S.Burguer>
-      <S.Ul open={isOpenBurguerMenu} isDonator={user?.user?.isDonator}>
+      <S.Ul open={isOpenBurguerMenu} isDonator={!!user?.user?.isDonator}>
         {navegations.map(({ icon, title, to }) => (
           <li>
             {to ? (

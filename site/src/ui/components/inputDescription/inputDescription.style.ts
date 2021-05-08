@@ -44,6 +44,7 @@ export const Input = styled.textarea`
   background: transparent;
   border: 0;
   min-height: 145px;
+  max-height: 260px;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.text};
