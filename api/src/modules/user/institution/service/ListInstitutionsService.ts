@@ -11,7 +11,15 @@ export class ListInstitutionsService {
     private institutionRepository: IInstitutionRepository
   ) {}
 
-  public async execute(): Promise<AppInstitution[]> {
-    return await this.institutionRepository.findAll();
+  public async execute(): Promise<{}[]> {
+    const institutions: AppInstitution[] = await this.institutionRepository.findAll();
+    return institutions.length > 0
+      ? institutions.map((institution) => ({
+          instutitonId: institution.id,
+          razao_social: institution.razao_social,
+          latitude: institution.latitude,
+          longitude: institution.longitude,
+        }))
+      : [];
   }
 }
