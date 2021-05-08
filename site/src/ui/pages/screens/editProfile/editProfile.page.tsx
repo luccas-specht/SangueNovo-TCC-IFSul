@@ -2,23 +2,19 @@ import React, { useState } from "react";
 
 import { FiLock, FiUser, BiPhone, FiCamera, BiMap } from "react-icons/all";
 
-import { useHistory } from "react-router-dom";
-
 import { FiArrowLeft } from "react-icons/fi";
-
-import { validationMessage, masks } from "../../../../constants";
-
+import { masks } from "../../../../constants";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 
 import { useAuthenticated } from "../../../../hooks";
 
-import { toastConfig } from "../../../../configs";
-
 import imageDefaultProfile from "../../../assets/images/default_user_image.png";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
+
+import { useViaCep } from "../../../../hooks";
 
 import {
   FabTheme,
@@ -39,7 +35,7 @@ type FormData = {
 };
 
 export const EditProfile = () => {
-  const { push } = useHistory();
+  const { getAddress } = useViaCep();
   const { cepMask } = masks();
   const { user } = useAuthenticated();
 
@@ -78,6 +74,7 @@ export const EditProfile = () => {
       onEdit(values);
     },
   });
+
   return (
     <>
       <ToastContainer />

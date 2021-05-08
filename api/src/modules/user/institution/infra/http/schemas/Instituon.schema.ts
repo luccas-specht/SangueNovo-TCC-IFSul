@@ -12,6 +12,8 @@ const schemaCreateInstituion = Yup.object().shape({
   cep: Yup.string().required(MessageInvalidRequest.required),
   email: Yup.string().required(MessageInvalidRequest.required),
   password: Yup.string().required(MessageInvalidRequest.required),
+  latitude: Yup.string().required(MessageInvalidRequest.required),
+  longitude: Yup.string().required(MessageInvalidRequest.required),
 });
 
 export async function ensureDataRequest(
@@ -19,7 +21,16 @@ export async function ensureDataRequest(
   response: Response,
   next: NextFunction
 ): Promise<void> {
-  const { razaoSocial, cnpj, email, phone, password, cep } = request.body;
+  const {
+    razaoSocial,
+    cnpj,
+    email,
+    phone,
+    password,
+    cep,
+    latitude,
+    longitude,
+  } = request.body;
 
   try {
     await schemaCreateInstituion.validate(
@@ -30,6 +41,8 @@ export async function ensureDataRequest(
         cep,
         email,
         password,
+        latitude,
+        longitude,
       },
       {
         abortEarly: false,

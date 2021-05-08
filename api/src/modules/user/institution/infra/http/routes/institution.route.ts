@@ -19,3 +19,9 @@ institutionRouter.get(
   ensureAuthenticated,
   institutionController.listInstituions
 );
+
+institutionRouter.put(
+  '/profile',
+  ensureAuthenticated,
+  institutionController.updateInstitution
+);

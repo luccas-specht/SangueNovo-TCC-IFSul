@@ -9,7 +9,9 @@ export const useRegister = () => {
     cnpj: string,
     phone: string,
     email: string,
-    password: string
+    password: string,
+    latitude: string,
+    longitude: string
   ): Promise<any> => {
     const { data, status } = await post("institution", {
       razaoSocial: razaoSocial,
@@ -18,6 +20,8 @@ export const useRegister = () => {
       phone: phone,
       email: email,
       password: password,
+      latitude: latitude,
+      longitude: longitude,
     });
     return { data, status };
   };

@@ -7,6 +7,7 @@ export const MESSAGEINVALID = {
   missingToken: 'Token JWT está faltando.',
   invalidToken: 'Token invalido.',
   userNotExists: 'Usuário não existe.',
+  noUpdate: 'Sem atualizações disponíveis',
   timedOut: 'Tempo da solitação expirou.',
   newPasswordEqualsOldPassword:
     'A nova senha deve ser diferente da senha atual.',

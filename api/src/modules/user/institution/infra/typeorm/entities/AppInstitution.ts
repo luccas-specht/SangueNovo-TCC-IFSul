@@ -20,6 +20,12 @@ export class AppInstitution {
   @Column('varchar')
   cep: string;
 
+  @Column('varchar')
+  latitude: string;
+
+  @Column('varchar')
+  longitude: string;
+
   @Column({
     unique: true,
     type: 'varchar',

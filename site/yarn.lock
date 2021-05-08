@@ -1937,6 +1937,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-geocode@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@types/react-geocode/-/react-geocode-0.2.0.tgz#1044bf733382e9d5c9e3c4e84cbbf82c20987e2c"
+  integrity sha512-xypTvo8wQa2z2TJrYLiZYjyZvXbFNrf10a3U45Yzxq9+AARyr7ZZbMzUYejzPTBglI7/zNYnDEW6EdU0el/Hgg==
+
 "@types/react-leaflet@^2.8.1":
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/@types/react-leaflet/-/react-leaflet-2.8.1.tgz#acda592cf1b7dfe20ac81071c21c1e5521fe71a4"
@@ -9470,6 +9475,13 @@ react-fast-compare@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
+react-geocode@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.2.3.tgz#e27fa3f212a2629b2b2bb2a3a325a12b802b2dae"
+  integrity sha512-sIpbgmn1IUzAxO4haOZ6jeeFnMD8ya9PC38yiNrmJ9vPWbvAO2D/2yfCBzZjGZVUm4PRzKAc0KghXfaEnug0TQ==
+  dependencies:
+    regenerator-runtime "^0.13.3"
+
 react-icons@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"
@@ -9749,7 +9761,7 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
-regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7:
+regenerator-runtime@^0.13.3, regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7:
   version "0.13.7"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
   integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==

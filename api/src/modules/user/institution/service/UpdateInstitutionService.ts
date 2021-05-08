@@ -5,36 +5,37 @@ import { AppError } from '@shared/errors/appError';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
 
-import { IDonatorRepository } from '../IRepository/IDonatorRepository';
+import { IInstitutionRepository } from '../IRepository/IInstitutionRepository';
 import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
 
-import { AppDonator } from '@modules/user/donator/infra/typeorm/entities/AppDonator';
-import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
+import { AppInstitution } from '../infra/typeorm/entities/AppInstitution';
 
 interface Request {
-  name?: string;
+  razaoSocial?: string;
   phone?: string;
   password?: string;
+  cep?: string;
   userId: string;
 }
 
 @injectable()
-export class UpdateDonatorService {
+export class UpdateInstitutionService {
   constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository,
 
-    @inject('DonatorRepository')
-    private donatorRepository: IDonatorRepository
+    @inject('InstitutionRepository')
+    private institutionRepository: IInstitutionRepository
   ) {}
 
   public async execute({
-    name,
+    razaoSocial,
     phone,
     password,
+    cep,
     userId,
-  }: Request): Promise<AppDonator> {
-    if (!name && !phone && !password)
+  }: Request): Promise<AppInstitution> {
+    if (!razaoSocial && !phone && !password && !cep)
       throw new AppError(MESSAGEINVALID.noUpdate);
 
     const user = await this.userRepository.findById(userId);
@@ -46,17 +47,20 @@ export class UpdateDonatorService {
     if (phone && (await this.userRepository.findByPhone(phone)))
       throw new AppError(MESSAGEINVALID.phoneAlreadyExists);
 
-    const donator = await this.donatorRepository.findByIdUser(user.id);
-    if (!donator) throw new AppError(MESSAGEINVALID.userNotExists);
+    const institution = await this.institutionRepository.findByIdUser(user.id);
+    if (!institution) throw new AppError(MESSAGEINVALID.userNotExists);
 
     if (password) user.password = await hash(password, 8);
     if (phone) user.phone = phone;
 
     await this.userRepository.save(user);
 
-    if (name) donator.name = name;
-    donator.tb_user_fk = user;
+    if (razaoSocial) institution.razao_social = razaoSocial;
+    if (cep) institution.cep = cep;
+    institution.tb_user_fk = user;
 
-    return donator;
+    await this.institutionRepository.save(institution);
+
+    return institution;
   }
 }
