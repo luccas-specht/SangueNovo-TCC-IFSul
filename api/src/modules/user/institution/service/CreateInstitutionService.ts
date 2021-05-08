@@ -16,6 +16,8 @@ interface RequestCreateInstitutionService {
   cnpj: string;
   phone: string;
   cep: string;
+  latitude: string;
+  longitude: string;
 }
 
 @injectable()
@@ -35,6 +37,8 @@ export class CreateInstitutionService {
     phone,
     cep,
     password,
+    latitude,
+    longitude,
   }: RequestCreateInstitutionService): Promise<void> {
     const emailUsed = await this.userRepository.findByEmail(email);
     if (emailUsed) throw new AppError(MESSAGEINVALID.emailAlreadyExists);
@@ -53,6 +57,8 @@ export class CreateInstitutionService {
       razao_social: razaoSocial,
       cnpj,
       cep,
+      latitude,
+      longitude,
       tb_user_fk: user,
     } as AppInstitution;
 
