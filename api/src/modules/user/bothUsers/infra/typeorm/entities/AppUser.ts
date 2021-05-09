@@ -4,7 +4,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Entity,
-  ManyToOne,
+  OneToMany,
 } from 'typeorm';
 
 import { AppCampaign } from '@modules/campaing/infra/typeorm/entities/AppCampaign';
@@ -35,9 +35,8 @@ export class AppUser {
   })
   phone: string;
 
-  // TODO: Validar, se esta errado, pois quem tem doações é o doador não o usuário
-  @ManyToOne(() => AppCampaign, (appCampaign) => appCampaign.users)
-  donatiton: AppCampaign;
+  @OneToMany(() => AppCampaign, (appCampaign) => appCampaign.user)
+  campaigns: AppCampaign[];
 
   @CreateDateColumn()
   created_at: Date;

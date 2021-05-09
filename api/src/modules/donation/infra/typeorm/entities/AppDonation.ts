@@ -1,3 +1,5 @@
+import { AppCampaign } from '@modules/campaing/infra/typeorm/entities/AppCampaign';
+import { AppDonator } from '@modules/user/donator/infra/typeorm/entities/AppDonator';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -5,24 +7,22 @@ import {
   UpdateDateColumn,
   ManyToOne,
   OneToMany,
+  Column,
 } from 'typeorm';
 
-import { AppCampaign } from '@modules/campaing/infra/typeorm/entities/AppCampaign';
-import { AppDonator } from '@modules/user/donator/infra/typeorm/entities/AppDonator';
-import { AppScheduling } from '@modules/scheduling/infra/typeorm/entities/AppScheduling';
 @Entity('tb_donation')
 export class AppDonation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => AppCampaign, (appCampaign) => appCampaign.donations)
-  campaign: AppCampaign;
+  @Column({ type: 'timestamptz' })
+  appointment_date: Date;
 
   @ManyToOne(() => AppDonator, (appDonator) => appDonator.donations)
   donator: AppDonator;
 
-  @OneToMany(() => AppScheduling, (appScheduling) => appScheduling.donatiton)
-  schedulings: AppScheduling[];
+  @ManyToOne(() => AppCampaign, (appCampaign) => appCampaign.donations)
+  campaign: AppCampaign;
 
   @CreateDateColumn()
   created_at: Date;

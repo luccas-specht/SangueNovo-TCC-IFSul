@@ -4,9 +4,9 @@ import {
   UpdateDateColumn,
   Entity,
   Column,
+  ManyToOne,
   OneToMany,
   OneToOne,
-  JoinColumn,
 } from 'typeorm';
 
 import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
@@ -32,6 +32,12 @@ export class AppCampaign {
   })
   avatar: string;
 
+  @Column({ type: 'timestamptz', default: new Date() })
+  available_date: Date;
+
+  @Column({ type: 'int' })
+  goal: number;
+
   @Column({
     type: 'enum',
     enum: TypeBlood,
@@ -46,18 +52,14 @@ export class AppCampaign {
   })
   priority: Priority;
 
-  @Column({ type: 'timestamptz' })
-  available_date: Date;
-
-  @OneToMany(() => AppDonation, (appDonation) => appDonation)
-  donations: AppDonation[];
-
-  @OneToOne(() => AppInstitution)
-  @JoinColumn()
+  @OneToOne(() => AppInstitution, (appInstitution) => appInstitution.campaign)
   institution: AppInstitution;
 
-  @OneToMany(() => AppUser, (appUser) => appUser)
-  users: AppUser[];
+  @OneToMany(() => AppDonation, (appDonation) => appDonation.campaign)
+  donations: AppCampaign[];
+
+  @ManyToOne(() => AppUser, (appUser) => appUser.campaigns)
+  user: AppUser;
 
   @CreateDateColumn()
   created_at: Date;
