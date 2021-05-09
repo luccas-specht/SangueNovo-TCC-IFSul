@@ -51,8 +51,7 @@ export const InputDatePicker = ({
       <DatePicker
         locale="pt"
         dateFormat="dd/MM/yyyy"
-        maxDate={new Date()}
-        minDate={new Date("01/01/1951")}
+        minDate={new Date()}
         id={id}
         name={name}
         selected={value}

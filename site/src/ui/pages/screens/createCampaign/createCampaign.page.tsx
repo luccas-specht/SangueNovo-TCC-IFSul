@@ -163,7 +163,7 @@ export const CreateCampaign = () => {
                     id="description"
                     name="description"
                     placeholder="Descrição"
-                    maxLength={250}
+                    maxLength={300}
                     value={formik.values.description}
                     error={
                       formik.touched.description && formik.errors.description

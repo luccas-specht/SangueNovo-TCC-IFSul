@@ -18,9 +18,7 @@ export const priorityStatusInitial: ComboValue[] = [
 ];
 
 export const distanceInitial: ComboValue[] = [
-  { title: "até 5km", value: 5 },
-  { title: "até 10km", value: 10 },
-  { title: "até 25km", value: 25 },
+  { title: "até 2km", value: 2 },
+  { title: "até 10km", value: 5 },
   { title: "até 50km", value: 50 },
-  { title: "100km ou mais", value: 100 },
 ];
