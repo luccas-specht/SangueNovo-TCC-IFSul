@@ -15,6 +15,7 @@ import { AppInstitution } from '@modules/user/institution/infra/typeorm/entities
 
 import { TypeBlood } from './EnumTypeBlood';
 import { Priority } from './EnumPriority';
+import { CampaignStatus } from './EnumCampaignStatus';
 @Entity('tb_campaign')
 export class AppCampaign {
   @PrimaryGeneratedColumn('uuid')
@@ -32,8 +33,8 @@ export class AppCampaign {
   })
   avatar: string;
 
-  @Column({ type: 'timestamptz', default: new Date() })
-  available_date: Date;
+  @Column({ type: 'date' })
+  availableDate: Date;
 
   @Column({ type: 'int' })
   goal: number;
@@ -44,6 +45,13 @@ export class AppCampaign {
     default: TypeBlood.TYPE_A_POSITIVE,
   })
   typeBlood: TypeBlood;
+
+  @Column({
+    type: 'enum',
+    enum: CampaignStatus,
+    default: CampaignStatus.REQUESTED,
+  })
+  campaignStatus: CampaignStatus;
 
   @Column({
     type: 'enum',

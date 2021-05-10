@@ -7,6 +7,7 @@ import { authRouter } from '@modules/user/bothUsers/infra/http/routes/Auth.route
 import { passwordRoutes } from '@modules/user/bothUsers/infra/http/routes/Password.route';
 import { privateRoute } from '@modules/user/bothUsers/infra/http/routes/PrivateAccess.route';
 import { profileRouter } from '@modules/user/bothUsers/infra/http/routes/AvatarProfile.route';
+import { campaignRouter } from '@modules/campaing/infra/http/routes/campaign.route';
 
 export const routes = Router();
 
@@ -15,6 +16,9 @@ routes.use('/donator', donatorRouter);
 
 /*Institution routes here: */
 routes.use('/institution', institutionRouter);
+
+/*Institution routes here: */
+routes.use('/campaign', campaignRouter);
 
 /*both users*/
 routes.use('/auth', authRouter);

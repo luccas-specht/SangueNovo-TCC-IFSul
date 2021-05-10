@@ -1,3 +1,4 @@
+import { AppCampaign } from '@modules/campaing/infra/typeorm/entities/AppCampaign';
 import { AppUser } from '../infra/typeorm/entities/AppUser';
 
 export interface IUserRepository {
@@ -7,5 +8,4 @@ export interface IUserRepository {
   findById(id: string): Promise<AppUser | undefined>;
   findByPhone(phone: string): Promise<AppUser | undefined>;
   findByEmail(email: string): Promise<AppUser | undefined>;
-  findAll(): Promise<AppUser[]>;
 }
