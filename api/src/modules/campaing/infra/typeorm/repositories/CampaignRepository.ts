@@ -14,7 +14,20 @@ export class CampaignRepository implements ICampaignRepository {
     return await this.ormRepository.save(campaign);
   }
 
-  public async ListAllCampaigns(): Promise<AppCampaign[]> {
-    return await this.ormRepository.find({ relations: ['user'] });
+  public async ListAllCampaigns(
+    campaignStatus: string
+  ): Promise<AppCampaign[]> {
+    return await this.ormRepository.find({
+      relations: ['institution', 'user', 'donations'],
+      where: { campaignStatus },
+    });
+  }
+
+  public async updateCampaign(campaign: AppCampaign): Promise<AppCampaign> {
+    return await this.ormRepository.save(campaign);
+  }
+
+  public async findById(id: string): Promise<AppCampaign | undefined> {
+    return await this.ormRepository.findOne({ where: { id } });
   }
 }

@@ -29,7 +29,9 @@ export class InstitutionRepository implements IInstitutionRepository {
     return await this.ormRepository.findOne({ where: { tb_user_fk } });
   }
 
-  public async findAll(): Promise<any> {
-    return await this.ormRepository.find();
+  public async findAll(): Promise<AppInstitution[]> {
+    return await this.ormRepository.find({
+      relations: ['campaigns', 'tb_user_fk'],
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { isBefore, isEqual } from 'date-fns';
+import { isBefore, isEqual, parseISO } from 'date-fns';
 
 import { AppError } from '@shared/errors/appError';
 import { MESSAGEINVALID } from '@constants/messageToUser';
@@ -15,7 +15,7 @@ import { TypeBlood } from '../infra/typeorm/entities/EnumTypeBlood';
 interface Request {
   title: string;
   description: string;
-  availableDate: Date;
+  availableDate: string;
   goal: number;
   typeBlood: string;
   priority: string;
@@ -56,18 +56,18 @@ export class CreateCampaignService {
     );
     if (!institution) throw new AppError(MESSAGEINVALID.institutionNotExists);
 
-    if (isBefore(availableDate, Date.now()))
-      throw new AppError(MESSAGEINVALID.invalidDate);
+    // if ((Date.now() parseISO(availableDate)))
+    //   throw new AppError(MESSAGEINVALID.invalidDate);
 
-    if (isEqual(availableDate, Date.now()))
-      throw new AppError(MESSAGEINVALID.limitDate);
+    // if (isEqual(Date.now(), parseISO(availableDate)))
+    //   throw new AppError(MESSAGEINVALID.limitDate);
 
     if (goal <= 0) throw new AppError(MESSAGEINVALID.invalidNumber);
 
     const campaign = {
       title: title,
       description: description,
-      availableDate: availableDate,
+      availableDate: parseISO(availableDate),
       goal: goal,
       typeBlood: typeBlood,
       priority: priority,

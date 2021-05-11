@@ -7,6 +7,10 @@ export const MESSAGEINVALID = {
   missingToken: 'Token JWT está faltando.',
   invalidToken: 'Token invalido.',
   userNotExists: 'Usuário não existe.',
+  campaignNotExists: 'Campanha solicitada não existe.',
+  statusNotChanged:
+    'A Alteração do status da campanha deve ser diferente do atual.',
+  invalidStatus: 'Alteração inválida.',
   donatorNotExists: 'Doador não existe.',
   limitDate: 'Data deve ser diferente da data de hoje.',
   institutionNotExists: 'Instituição não existe.',

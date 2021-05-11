@@ -8,14 +8,18 @@ import { MESSAGEINVALID } from '@constants/messageToUser';
 import { IInstitutionRepository } from '../IRepository/IInstitutionRepository';
 import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
 
-import { AppInstitution } from '../infra/typeorm/entities/AppInstitution';
-
 interface Request {
   razaoSocial?: string;
   phone?: string;
   password?: string;
   cep?: string;
   userId: string;
+}
+interface Response {
+  razao_social: string;
+  cep: string;
+  phone: string;
+  avatar: string;
 }
 
 @injectable()
@@ -34,7 +38,7 @@ export class UpdateInstitutionService {
     password,
     cep,
     userId,
-  }: Request): Promise<AppInstitution> {
+  }: Request): Promise<Response> {
     if (!razaoSocial && !phone && !password && !cep)
       throw new AppError(MESSAGEINVALID.noUpdate);
 
@@ -61,6 +65,11 @@ export class UpdateInstitutionService {
 
     await this.institutionRepository.save(institution);
 
-    return institution;
+    return {
+      razao_social: institution.razao_social,
+      cep: institution.cep,
+      phone: institution.tb_user_fk.phone,
+      avatar: institution.tb_user_fk.avatar,
+    };
   }
 }

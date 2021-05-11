@@ -4,6 +4,7 @@ import {
   OneToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
@@ -36,7 +37,6 @@ export class AppInstitution {
   @JoinColumn({ name: 'tb_user_fk' })
   tb_user_fk: AppUser;
 
-  @OneToOne(() => AppCampaign, (appCampaign) => appCampaign.institution)
-  @JoinColumn()
-  campaign: AppCampaign;
+  @OneToMany(() => AppCampaign, (appCampaign) => appCampaign.institution)
+  campaigns: AppCampaign[];
 }

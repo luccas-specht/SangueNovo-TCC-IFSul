@@ -6,7 +6,6 @@ import {
   Column,
   ManyToOne,
   OneToMany,
-  OneToOne,
 } from 'typeorm';
 
 import { AppUser } from '@modules/user/bothUsers/infra/typeorm/entities/AppUser';
@@ -16,6 +15,7 @@ import { AppInstitution } from '@modules/user/institution/infra/typeorm/entities
 import { TypeBlood } from './EnumTypeBlood';
 import { Priority } from './EnumPriority';
 import { CampaignStatus } from './EnumCampaignStatus';
+
 @Entity('tb_campaign')
 export class AppCampaign {
   @PrimaryGeneratedColumn('uuid')
@@ -60,14 +60,14 @@ export class AppCampaign {
   })
   priority: Priority;
 
-  @OneToOne(() => AppInstitution, (appInstitution) => appInstitution.campaign)
+  @ManyToOne(() => AppInstitution, (appInstitution) => appInstitution.campaigns)
   institution: AppInstitution;
-
-  @OneToMany(() => AppDonation, (appDonation) => appDonation.campaign)
-  donations: AppCampaign[];
 
   @ManyToOne(() => AppUser, (appUser) => appUser.campaigns)
   user: AppUser;
+
+  @OneToMany(() => AppDonation, (appDonation) => appDonation.campaign)
+  donations: AppCampaign[];
 
   @CreateDateColumn()
   created_at: Date;
