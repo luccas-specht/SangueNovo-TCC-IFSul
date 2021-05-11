@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import { CreateInstitutionService } from '../service/CreateInstitutionService';
 import { UpdateInstitutionService } from '../service/UpdateInstitutionService';
-import { UpdateRequestedCampaignService } from '../service/UpdateRequestedCampaign';
+import { UpdateStatusCampaignService } from '../service/UpdateStatusCampaign';
 import { ListInstitutionsService } from '../service/ListInstitutionsService';
 import { ListRequestedCampaignsService } from '../service/ListRequestedCampaignsService';
 
@@ -56,15 +56,15 @@ export class InstitutionController {
     return response.json(institution);
   }
 
-  public async updateRequestCampaign(
+  public async updateStatusCampaign(
     request: Request,
     response: Response
   ): Promise<Response> {
     const { campaign_id, new_status } = request.body;
-    const updateRequestedCampaignService = container.resolve(
-      UpdateRequestedCampaignService
+    const updateStatusCampaignService = container.resolve(
+      UpdateStatusCampaignService
     );
-    await updateRequestedCampaignService.execute({
+    await updateStatusCampaignService.execute({
       campaign_id,
       new_status,
     });

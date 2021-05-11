@@ -56,13 +56,10 @@ export class CreateCampaignService {
     );
     if (!institution) throw new AppError(MESSAGEINVALID.institutionNotExists);
 
-    // if ((Date.now() parseISO(availableDate)))
-    //   throw new AppError(MESSAGEINVALID.invalidDate);
-
-    // if (isEqual(Date.now(), parseISO(availableDate)))
-    //   throw new AppError(MESSAGEINVALID.limitDate);
-
     if (goal <= 0) throw new AppError(MESSAGEINVALID.invalidNumber);
+
+    /*TODO: não pode ser possivel criar uma campanha com data menor que a atual*/
+    /*TODO: não pode ser possivel criar uma campanha data igual a atual*/
 
     const campaign = {
       title: title,

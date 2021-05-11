@@ -35,5 +35,5 @@ institutionRouter.get(
 institutionRouter.patch(
   '/update/campaign',
   ensureAuthenticated,
-  institutionController.updateRequestCampaign
+  institutionController.updateStatusCampaign
 );

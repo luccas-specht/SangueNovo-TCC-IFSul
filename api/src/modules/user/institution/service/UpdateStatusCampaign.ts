@@ -11,7 +11,7 @@ interface Request {
 }
 
 @injectable()
-export class UpdateRequestedCampaignService {
+export class UpdateStatusCampaignService {
   constructor(
     @inject('CampaignRepository')
     private campaignRepository: ICampaignRepository
