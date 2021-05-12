@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 50%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -9,24 +9,27 @@ export const Container = styled.div`
 `;
 
 export const ImageCaipaignBox = styled.div`
-  width: 65%;
+  margin-top: 50px;
+  width: 100%;
   height: 200px;
-  border-radius: 10px;
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
 `;
 
 export const MainInfoBox = styled.div`
   width: 100%;
-  height: auto;
+  height: 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
 `;
 
 export const MoreInfoBox = styled.div`
   width: 100%;
-  height: auto;
+  height: 120px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -35,8 +38,11 @@ export const MoreInfoBox = styled.div`
 
 export const restInfoBox = styled.div`
   width: 100%;
-  height: auto;
+  height: 50%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
   flex-direction: column;
+  margin-bottom: 100px;
 `;

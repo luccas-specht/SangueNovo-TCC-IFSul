@@ -24,3 +24,9 @@ export const distanceInitial: ComboValue[] = [
   { title: "até 50km", value: 50 },
   { title: "100km ou mais", value: 100 },
 ];
+
+export const goalInitial: ComboValue[] = [
+  { title: "5L", value: "5L" },
+  { title: "10L", value: "10L" },
+  { title: "20L", value: "20L" },
+];

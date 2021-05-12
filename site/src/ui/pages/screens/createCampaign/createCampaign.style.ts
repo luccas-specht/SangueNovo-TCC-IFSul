@@ -34,6 +34,7 @@ export const Title = styled.h2`
   justify-content: center;
   margin-top: 40px;
   margin-bottom: 20px;
+  margin-right: 120px;
 `;
 
 export const Box = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import * as SC from "./createCampaign.style";
 import { Header } from "../../../components";
 import { MapContainer, TileLayer } from "react-leaflet";
@@ -15,6 +15,7 @@ import {
   FiHome,
   FiFileText,
   FiPlus,
+  FiPercent,
 } from "react-icons/all";
 
 import { useFormik } from "formik";
@@ -31,22 +32,32 @@ import {
 import {
   priorityStatusInitial,
   typeBloodInitial,
+  goalInitial,
 } from "../../components/filterCampaigns/mockFilters";
 
 import { ComboValue } from "../../../../models/list/comboValue";
+import { isObjectLiteralExpression } from "typescript";
 
-type CreateCampaingn = {
-  title: string;
-  dateDuration: any;
-  blood: string;
-  priority: string;
-  institution: any[];
-  description: string;
+type SelectInputs = {
+  blood: any[];
+  priority: any[];
 };
 
+interface NormalInputs {
+  title: string;
+  dateDuration: string;
+  institution: any[];
+  description: string;
+  goal: string;
+}
+
+type Id = "blood" | "goal" | "priority";
+
 export const CreateCampaign = () => {
+  const { dateMask } = masks();
   const { push } = useHistory();
   const { listInstitution } = useListInstitution();
+
   const [activeStep, setActiveStep] = useState<number>(0);
 
   const [typeBlood, setTypeBlood] = useState<Array<ComboValue>>(
@@ -55,20 +66,46 @@ export const CreateCampaign = () => {
   const [priorityStatus, setPriorityStatus] = useState<Array<ComboValue>>(
     priorityStatusInitial
   );
+  const [goal, setGoalInitial] = useState<Array<ComboValue>>(goalInitial);
 
-  const initialValues: CreateCampaingn = {
+  const [valuesInput, setValuesInput] = useState<SelectInputs>({
+    blood: [],
+    priority: [],
+  });
+
+  const handleChangeFilterValues = (id: Id, values: ComboValue[]) => {
+    if (id === "blood") setValuesInput({ ...valuesInput, blood: values });
+    if (id === "priority") setValuesInput({ ...valuesInput, priority: values });
+  };
+
+  const initialValues = {
     title: "",
     dateDuration: "",
-    blood: "",
-    priority: "",
     institution: [],
+    goal: "",
     description: "",
-  };
+  } as NormalInputs;
 
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: (values: CreateCampaingn) => {},
+    onSubmit: (values: NormalInputs) => {},
   });
+
+  useEffect(() => {
+    console.log("data:", formik.values.dateDuration);
+  }, [formik.values.dateDuration]);
+
+  const initialValue = useCallback(() => {
+    setValuesInput({
+      blood: [],
+      priority: [],
+    });
+  }, []);
+
+  // const onDateChange = (e, setFieldValue) => {
+  //   const domain = e.target.value.replace(/.*@/, "");
+  //   setFieldValue("mail.domain", domain, false);
+  // };
 
   const getInstitution = async () => {
     const teste: any = [];
@@ -103,7 +140,6 @@ export const CreateCampaign = () => {
                     name="title"
                     placeholder="Titulo"
                     value={formik.values.title}
-                    error={formik.touched.title && formik.errors.title}
                     onChange={formik.handleChange}
                   />
                   <InputSelectCombo
@@ -112,19 +148,17 @@ export const CreateCampaign = () => {
                     id="blood"
                     name="blood"
                     placeholder="Tipo de Sangue"
-                    values={formik.values.blood}
+                    values={valuesInput}
                     isMultiple={false}
-                    onChange={formik.handleChange}
+                    onChange={handleChangeFilterValues}
                   />
-                  <InputDatePicker
+                  <InputText
                     icon={<FiCalendar size={20} />}
                     id="dateDuration"
                     name="dateDuration"
-                    placeholder="Data de duração"
-                    value={formik.values.dateDuration}
-                    error={
-                      formik.touched.dateDuration && formik.errors.dateDuration
-                    }
+                    maxLength={10}
+                    placeholder="Data de encerramento da campanha"
+                    value={dateMask(formik.values.dateDuration)}
                     onChange={formik.handleChange}
                   />
                   <InputSelectCombo
@@ -133,22 +167,25 @@ export const CreateCampaign = () => {
                     id="priority"
                     name="priority"
                     placeholder="Prioridade da campanha"
-                    values={formik.values.priority}
+                    values={valuesInput}
                     isMultiple={false}
+                    onChange={handleChangeFilterValues}
+                  />
+                  <InputText
+                    icon={<FiPercent size={20} />}
+                    id="goal"
+                    name="goal"
+                    maxLength={2}
+                    placeholder="Meta em litros da campanha"
+                    value={formik.values.goal}
                     onChange={formik.handleChange}
                   />
                   <Button disabled title="Criar" />
                 </>
               ) : (
                 <>
-                  <SC.Profile>
-                    <label htmlFor="image">
-                      <FiPlus size={30} />
-                      <input type="file" id="image" name="image" />
-                    </label>
-                  </SC.Profile>
                   <InputSelectCombo
-                    options={formik.values.institution ?? []}
+                    options={/*formik.values.institution ??*/ []}
                     inputIcon={<FiHome size={20} />}
                     id="institution"
                     name="institution"
@@ -157,7 +194,12 @@ export const CreateCampaign = () => {
                     isMultiple={false}
                     onChange={formik.handleChange}
                   />
-
+                  <SC.Profile>
+                    <label htmlFor="image">
+                      <FiPlus size={30} />
+                      <input type="file" id="image" name="image" />
+                    </label>
+                  </SC.Profile>
                   <InputDescription
                     icon={<FiFileText size={20} />}
                     id="description"
@@ -165,9 +207,6 @@ export const CreateCampaign = () => {
                     placeholder="Descrição"
                     maxLength={250}
                     value={formik.values.description}
-                    error={
-                      formik.touched.description && formik.errors.description
-                    }
                     onChange={formik.handleChange}
                   />
 
