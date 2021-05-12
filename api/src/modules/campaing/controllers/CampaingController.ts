@@ -57,16 +57,14 @@ export class CampaignController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { bloodTypes, distance, institutionsIds, prioritys, title } =
-      request.body;
+    const { bloodTypes, institutionId, priorities, title } = request.body;
 
     const orderCampaignsService = container.resolve(OrderCampaignsService);
     const campaigns = await orderCampaignsService.execute({
       title,
-      distance,
-      prioritys,
+      institutionId,
+      priorities,
       bloodTypes,
-      institutionsIds,
     });
     return response.json(campaigns).status(200);
   }

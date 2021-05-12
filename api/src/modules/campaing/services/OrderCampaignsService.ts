@@ -2,25 +2,41 @@ import { injectable, inject } from 'tsyringe';
 
 import { AppError } from '@shared/errors/appError';
 import { MESSAGEINVALID } from '@constants/messageToUser';
-import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserRepository';
 import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
 import { AppCampaign } from '../infra/typeorm/entities/AppCampaign';
 import { CampaignStatus } from '../infra/typeorm/entities/EnumCampaignStatus';
 import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
+import { AppInstitution } from '@modules/user/institution/infra/typeorm/entities/AppInstitution';
+import { Priority } from '../infra/typeorm/entities/EnumPriority';
+import { TypeBlood } from '../infra/typeorm/entities/EnumTypeBlood';
 
 type Request = {
   title: string | null;
-  distance: {
-    userPosition: string[];
-    kilometers: string[];
-  };
   bloodTypes: string[];
-  institutionsIds: string[];
-  prioritys: string[];
+  institutionId: string;
+  priorities: string[];
 };
+
+interface ApplyFilter extends Request {
+  campaigns: AppCampaign[];
+}
+
+type ResponseVerifyFilters = Request | false;
 
 @injectable()
 export class OrderCampaignsService {
+  private PRIORITIES_VALIDS = [Priority.HIGH, Priority.MEDIUM, Priority.LESS];
+
+  private BLOOD_TYPES_VALIDS = [
+    TypeBlood.TYPE_AB_NEGATIVE,
+    TypeBlood.TYPE_AB_POSITIVE,
+    TypeBlood.TYPE_A_NEGATIVE,
+    TypeBlood.TYPE_A_POSITIVE,
+    TypeBlood.TYPE_B_NEGATIVE,
+    TypeBlood.TYPE_B_POSITIVE,
+    TypeBlood.TYPE_O_NEGATIVE,
+    TypeBlood.TYPE_O_POSITIVE,
+  ];
   constructor(
     @inject('InstitutionRepository')
     private institutionRepository: IInstitutionRepository,
@@ -31,42 +47,81 @@ export class OrderCampaignsService {
 
   public async execute({
     title,
-    distance,
-    prioritys,
+    priorities,
     bloodTypes,
-    institutionsIds,
+    institutionId,
   }: Request): Promise<any> {
-    const allCampaigns = await this.campaignRepository.ListAllCampaigns(
+    const campaigns = await this.campaignRepository.ListAllCampaigns(
       CampaignStatus.ACTIVE
     );
 
-    return this.verifyFiltersExist({
+    const filters = this.verifyFiltersExist({
       title,
-      distance,
-      prioritys,
+      priorities,
       bloodTypes,
-      institutionsIds,
-    })
-      ? 'tem filtro'
-      : this.mapperCampaigns(allCampaigns);
+      institutionId,
+    });
+
+    return filters
+      ? this.applyFilters({ ...filters, campaigns })
+      : this.mapperCampaigns(campaigns);
   }
 
   private verifyFiltersExist({
     title,
-    distance,
-    prioritys,
+    priorities,
     bloodTypes,
-    institutionsIds,
-  }: Request): boolean {
+    institutionId,
+  }: Request): ResponseVerifyFilters {
+    const filters = {
+      title: '',
+      priorities: [] as any,
+      bloodTypes: [] as any,
+      institutionId: '',
+    };
     if (
       !title &&
-      Object.keys(distance).length === 0 &&
-      prioritys.length === 0 &&
-      bloodTypes.length === 0 &&
-      institutionsIds.length === 0
+      !institutionId &&
+      priorities.length === 0 &&
+      bloodTypes.length === 0
     )
       return false;
-    return true;
+
+    if (title) filters.title = title;
+    this.verifyInstitutionExist(institutionId);
+    filters.institutionId = institutionId;
+    this.verifyPrioritiesIsValid(priorities);
+    filters.priorities = priorities;
+    this.verifyBloodTypesIsValid(bloodTypes);
+    filters.bloodTypes = bloodTypes;
+    return filters;
+  }
+
+  public async verifyInstitutionExist(institutionId: string): Promise<void> {
+    const institution = await this.institutionRepository.findById(
+      institutionId
+    );
+    if (!institution) throw new AppError(MESSAGEINVALID.institutionNotExists);
+  }
+
+  private verifyPrioritiesIsValid(priorities: string[]): void {
+    if (priorities.length > 0) {
+      const hasValues = this.PRIORITIES_VALIDS.filter((priority) =>
+        priorities.includes(priority)
+      );
+      if (hasValues.length === 0)
+        throw new AppError(MESSAGEINVALID.invalidPriority);
+    }
+  }
+
+  private verifyBloodTypesIsValid(bloodTypes: string[]): void {
+    if (bloodTypes.length > 0) {
+      const hasValues = this.BLOOD_TYPES_VALIDS.filter((priority) =>
+        bloodTypes.includes(priority)
+      );
+      if (hasValues.length === 0)
+        throw new AppError(MESSAGEINVALID.invalidTypeBlood);
+    }
   }
 
   private mapperCampaigns(campaigns: AppCampaign[]) {
@@ -89,5 +144,23 @@ export class OrderCampaignsService {
         },
       },
     }));
+  }
+
+  private async applyFilters(filters: ApplyFilter): Promise<AppCampaign[]> {
+    let filteredCampaigns = filters.campaigns;
+
+    if (filters.institutionId) {
+      filteredCampaigns = filteredCampaigns.filter(
+        (e) => e.institution.id === filters.institutionId
+      );
+    }
+
+    if (filters.title) {
+      filteredCampaigns = filteredCampaigns.filter(
+        (e) => e.title === filters.title
+      );
+    }
+
+    return filteredCampaigns;
   }
 }
