@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 
 import { CreateCampaignService } from '@modules/campaing/services/CreateCampaignService';
 import { ListCampaignsByUserIdService } from '@modules/campaing/services/ListCampaignsByUserIdService';
+import { OrderCampaignsService } from '../services/OrderCampaignsService';
 
 export class CampaignController {
   public async createCampaign(
@@ -23,7 +24,7 @@ export class CampaignController {
     // const avatar = request.file.filename;
 
     const createCampaignService = container.resolve(CreateCampaignService);
-    const campaign = await createCampaignService.execute({
+    await createCampaignService.execute({
       title,
       description,
       availableDate,
@@ -34,7 +35,7 @@ export class CampaignController {
       institution_id,
       // avatar,
     });
-    return response.json(campaign).status(200);
+    return response.json().status(200);
   }
 
   public async listCampaign(
@@ -48,6 +49,24 @@ export class CampaignController {
     );
     const campaigns = await listCampaignsByUserIdService.execute({
       user_id,
+    });
+    return response.json(campaigns).status(200);
+  }
+
+  public async orderCampaign(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { bloodTypes, distance, institutionsIds, prioritys, title } =
+      request.body;
+
+    const orderCampaignsService = container.resolve(OrderCampaignsService);
+    const campaigns = await orderCampaignsService.execute({
+      title,
+      distance,
+      prioritys,
+      bloodTypes,
+      institutionsIds,
     });
     return response.json(campaigns).status(200);
   }

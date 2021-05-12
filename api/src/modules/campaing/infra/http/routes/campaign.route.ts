@@ -10,3 +10,4 @@ campaignRouter.use(ensureAuthenticated);
 
 campaignRouter.post('/', campaignController.createCampaign);
 campaignRouter.get('/list', campaignController.listCampaign);
+campaignRouter.get('/order', campaignController.orderCampaign);

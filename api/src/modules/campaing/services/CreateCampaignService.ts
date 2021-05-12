@@ -17,8 +17,8 @@ interface Request {
   description: string;
   availableDate: string;
   goal: number;
-  typeBlood: string;
-  priority: string;
+  typeBlood: any;
+  priority: any;
   user_id: string;
   institution_id: string;
   // avatar: any;
@@ -47,7 +47,7 @@ export class CreateCampaignService {
     // avatar,
     user_id,
     institution_id,
-  }: Request): Promise<any> {
+  }: Request): Promise<void> {
     const user = await this.userRepository.findById(user_id);
     if (!user) throw new AppError(MESSAGEINVALID.userNotExists);
 
@@ -57,6 +57,23 @@ export class CreateCampaignService {
     if (!institution) throw new AppError(MESSAGEINVALID.institutionNotExists);
 
     if (goal <= 0) throw new AppError(MESSAGEINVALID.invalidNumber);
+
+    if (![Priority.HIGH, Priority.LESS, Priority.MEDIUM].includes(priority))
+      throw new AppError(MESSAGEINVALID.invalidPriority);
+
+    if (
+      ![
+        TypeBlood.TYPE_AB_NEGATIVE,
+        TypeBlood.TYPE_AB_POSITIVE,
+        TypeBlood.TYPE_A_NEGATIVE,
+        TypeBlood.TYPE_A_POSITIVE,
+        TypeBlood.TYPE_B_NEGATIVE,
+        TypeBlood.TYPE_B_POSITIVE,
+        TypeBlood.TYPE_O_NEGATIVE,
+        TypeBlood.TYPE_O_POSITIVE,
+      ].includes(typeBlood)
+    )
+      throw new AppError(MESSAGEINVALID.invalidTypeBlood);
 
     /*TODO: não pode ser possivel criar uma campanha com data menor que a atual*/
     /*TODO: não pode ser possivel criar uma campanha data igual a atual*/
@@ -73,6 +90,6 @@ export class CreateCampaignService {
       institution: institution,
     } as AppCampaign;
 
-    return await this.campaignRepository.save(campaign);
+    await this.campaignRepository.save(campaign);
   }
 }

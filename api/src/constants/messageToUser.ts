@@ -11,6 +11,8 @@ export const MESSAGEINVALID = {
   statusNotChanged:
     'A Alteração do status da campanha deve ser diferente do atual.',
   invalidStatus: 'Alteração inválida.',
+  invalidPriority: 'Prioridade inválida.',
+  invalidTypeBlood: 'Tipo de sangue não existe.',
   donatorNotExists: 'Doador não existe.',
   limitDate: 'Data deve ser diferente da data de hoje.',
   institutionNotExists: 'Instituição não existe.',
