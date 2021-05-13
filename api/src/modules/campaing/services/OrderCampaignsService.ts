@@ -71,7 +71,7 @@ export class OrderCampaignsService {
       avatar: campaign.avatar,
       goal: campaign.goal,
       availableDate: campaign.availableDate,
-      typeBlood: campaign.typeBlood,
+      bloodType: campaign.typeBlood,
       campaignStatus: campaign.campaignStatus,
       priority: campaign.priority,
       institution: {
