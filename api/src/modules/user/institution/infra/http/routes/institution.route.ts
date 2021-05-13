@@ -14,14 +14,26 @@ institutionRouter.post(
   institutionController.createInstitution
 );
 
+institutionRouter.put(
+  '/profile',
+  ensureAuthenticated,
+  institutionController.updateInstitution
+);
+
 institutionRouter.get(
   '/list',
   ensureAuthenticated,
   institutionController.listInstituions
 );
 
-institutionRouter.put(
-  '/profile',
+institutionRouter.get(
+  '/list/campaigns',
   ensureAuthenticated,
-  institutionController.updateInstitution
+  institutionController.listRequestedCampaigns
+);
+
+institutionRouter.patch(
+  '/update/campaign',
+  ensureAuthenticated,
+  institutionController.updateStatusCampaign
 );

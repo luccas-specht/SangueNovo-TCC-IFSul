@@ -13,6 +13,9 @@ import { DonatorRepository } from '@modules/user/donator/infra/typeorm/repositor
 import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
 import { InstitutionRepository } from '@modules/user/institution/infra/typeorm/repositories/InstitutionRepository';
 
+import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
+import { CampaignRepository } from '@modules/campaing/infra/typeorm/repositories/CampaignRepository';
+
 /*Providers*/
 import { IStorageProvider } from './providers/StorageProvider/models/IStorageProvider';
 import { DiskStorageProvider } from './providers/StorageProvider/implementations/DiskStorageProvider';
@@ -23,6 +26,7 @@ import { EtherealMailProvider } from './providers/MailProvider/implementations/E
 import { IMailTemplateProvider } from './providers/MailTemplateProvider/models/IMailTemplateProvider';
 import { HandlebarsMailTemplateProvider } from './providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider';
 
+/*Repositories*/
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 container.registerSingleton<IUserTokenRepository>(
   'UserTokenRepository',
@@ -37,6 +41,12 @@ container.registerSingleton<IInstitutionRepository>(
   InstitutionRepository
 );
 
+container.registerSingleton<ICampaignRepository>(
+  'CampaignRepository',
+  CampaignRepository
+);
+
+/*Providers*/
 container.registerSingleton<IStorageProvider>(
   'StorageProvider',
   DiskStorageProvider

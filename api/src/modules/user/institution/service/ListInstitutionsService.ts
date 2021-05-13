@@ -1,9 +1,14 @@
 import { injectable, inject } from 'tsyringe';
 
 import { IInstitutionRepository } from '../IRepository/IInstitutionRepository';
-
 import { AppInstitution } from '../infra/typeorm/entities/AppInstitution';
 
+interface Response {
+  instutitonId: string;
+  razao_social: string;
+  latitude: string;
+  longitude: string;
+}
 @injectable()
 export class ListInstitutionsService {
   constructor(
@@ -11,7 +16,7 @@ export class ListInstitutionsService {
     private institutionRepository: IInstitutionRepository
   ) {}
 
-  public async execute(): Promise<{}[]> {
+  public async execute(): Promise<Response[]> {
     const institutions: AppInstitution[] = await this.institutionRepository.findAll();
     return institutions.length > 0
       ? institutions.map((institution) => ({

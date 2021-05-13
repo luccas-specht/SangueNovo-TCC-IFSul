@@ -22,6 +22,6 @@ export class AppDonator {
   @JoinColumn({ name: 'tb_user_fk' })
   tb_user_fk: AppUser;
 
-  @OneToMany(() => AppDonation, (appDonation) => appDonation.schedulings)
+  @OneToMany(() => AppDonation, (appDonation) => appDonation.donator)
   donations: AppDonation[];
 }
