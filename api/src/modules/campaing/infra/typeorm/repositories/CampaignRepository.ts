@@ -2,6 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 
 import { AppCampaign } from '../entities/AppCampaign';
 import { ICampaignRepository } from '../../../IRepository/ICampaingRepository';
+import { CampaignStatus } from '../entities/EnumCampaignStatus';
 
 export class CampaignRepository implements ICampaignRepository {
   private ormRepository: Repository<AppCampaign>;
@@ -29,5 +30,17 @@ export class CampaignRepository implements ICampaignRepository {
 
   public async findById(id: string): Promise<AppCampaign | undefined> {
     return await this.ormRepository.findOne({ where: { id } });
+  }
+
+  public async findByInstitutionId(
+    institutionId: string
+  ): Promise<AppCampaign[]> {
+    return await this.ormRepository.find({
+      relations: ['institution', 'user', 'donations'],
+      where: {
+        institution: institutionId,
+        campaignStatus: CampaignStatus.ACTIVE,
+      },
+    });
   }
 }
