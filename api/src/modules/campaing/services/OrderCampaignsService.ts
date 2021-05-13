@@ -138,7 +138,7 @@ export class OrderCampaignsService {
     }
   }
 
-  private addToCampaignFiltered(filter: any, campaigns: any) {
+  private addToCampaignFiltered(filter: any, campaigns: AppCampaign[]) {
     if (filter || filter?.length > 0) {
       if (campaigns?.length > 0) this.campaignsFiltered.push(...campaigns);
     }
