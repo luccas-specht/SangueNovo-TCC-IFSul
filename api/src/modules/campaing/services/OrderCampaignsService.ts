@@ -31,6 +31,8 @@ export class OrderCampaignsService {
     TypeBlood.TYPE_O_POSITIVE,
   ];
 
+  private campaignsFiltered: AppCampaign[] = [];
+
   constructor(
     @inject('InstitutionRepository')
     private institutionRepository: IInstitutionRepository,
@@ -98,17 +100,25 @@ export class OrderCampaignsService {
     )
       return false;
 
-    if (title) filters.title = title;
+    filters.title = title;
     await this.verifyInstitutionExist(institutionId);
     filters.institutionId = institutionId;
-    this.verifyPrioritiesIsValid(priorities);
+    this.verifyArrayElementsAreValid(
+      priorities,
+      this.PRIORITIES,
+      MESSAGEINVALID.invalidPriority
+    );
     filters.priorities = priorities;
-    this.verifyBloodTypesIsValid(bloodTypes);
+    this.verifyArrayElementsAreValid(
+      bloodTypes,
+      this.BLOOD_TYPES,
+      MESSAGEINVALID.invalidTypeBlood
+    );
     filters.bloodTypes = bloodTypes;
     return filters;
   }
 
-  public async verifyInstitutionExist(institutionId: string | null) {
+  private async verifyInstitutionExist(institutionId: string | null) {
     if (institutionId) {
       const institution = await this.institutionRepository.findById(
         institutionId
@@ -117,23 +127,20 @@ export class OrderCampaignsService {
     }
   }
 
-  private verifyPrioritiesIsValid(priorities: string[]): void {
-    if (priorities.length > 0) {
-      const hasValues = this.PRIORITIES.filter((priority) =>
-        priorities.includes(priority)
-      );
-      if (hasValues.length === 0)
-        throw new AppError(MESSAGEINVALID.invalidPriority);
+  private verifyArrayElementsAreValid(
+    array: string[],
+    arrayToCompare: Array<any>,
+    errorMessage: string
+  ) {
+    if (array.length > 0) {
+      const hasValues = arrayToCompare.filter((value) => array.includes(value));
+      if (hasValues.length === 0) throw new AppError(errorMessage);
     }
   }
 
-  private verifyBloodTypesIsValid(bloodTypes: string[]): void {
-    if (bloodTypes.length > 0) {
-      const hasValues = this.BLOOD_TYPES.filter((priority) =>
-        bloodTypes.includes(priority)
-      );
-      if (hasValues.length === 0)
-        throw new AppError(MESSAGEINVALID.invalidTypeBlood);
+  private addToCampaignFiltered(filter: any, campaigns: any) {
+    if (filter || filter?.length > 0) {
+      if (campaigns?.length > 0) this.campaignsFiltered.push(...campaigns);
     }
   }
 
@@ -141,41 +148,33 @@ export class OrderCampaignsService {
     filters: Request,
     campaigns: AppCampaign[]
   ): Promise<any> {
-    const campaignsFiltered: AppCampaign[] = [];
-
-    if (filters.institutionId) {
-      const campaignsFilteredByInstitutionId = campaigns.filter(
+    this.addToCampaignFiltered(
+      filters.institutionId,
+      campaigns.filter(
         (campaign) => campaign.institution.id === filters.institutionId
-      );
-      if (campaignsFilteredByInstitutionId.length > 0)
-        campaignsFiltered.push(...campaignsFilteredByInstitutionId);
-    }
+      )
+    );
 
-    if (filters.title) {
-      const campaignsFilteredByTitle = campaigns.filter(
-        (campaign) => campaign.title === filters.title
-      );
-      if (campaignsFilteredByTitle.length > 0)
-        campaignsFiltered.push(...campaignsFilteredByTitle);
-    }
+    this.addToCampaignFiltered(
+      filters.title,
+      campaigns.filter((campaign) => campaign.title === filters.title)
+    );
 
-    if (filters.priorities.length > 0) {
-      const campaignsFilteredByPriorities = campaigns.filter((campaign) =>
+    this.addToCampaignFiltered(
+      filters.priorities,
+      campaigns.filter((campaign) =>
         filters.priorities.includes(campaign.priority)
-      );
-      if (campaignsFilteredByPriorities.length > 0)
-        campaignsFiltered.push(...campaignsFilteredByPriorities);
-    }
+      )
+    );
 
-    if (filters.bloodTypes.length > 0) {
-      const campaignsFilteredByBloodTypes = campaigns.filter((campaign) =>
+    this.addToCampaignFiltered(
+      filters.bloodTypes,
+      campaigns.filter((campaign) =>
         filters.bloodTypes.includes(campaign.typeBlood)
-      );
-      if (campaignsFilteredByBloodTypes.length > 0)
-        campaignsFiltered.push(...campaignsFilteredByBloodTypes);
-    }
+      )
+    );
 
-    const uniqueValues = [...new Set(campaignsFiltered)] as AppCampaign[];
+    const uniqueValues = [...new Set(this.campaignsFiltered)] as AppCampaign[];
     return this.mapperCampaigns(uniqueValues);
   }
 }
