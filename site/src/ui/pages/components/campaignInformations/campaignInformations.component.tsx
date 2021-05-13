@@ -1,6 +1,7 @@
 import React from "react";
 import * as SC from "./campaignInformations.style";
 import { Button } from "../../../components/index";
+import Image from "../../../assets/images/unnamed.jpg";
 
 export const CampaignInfo = () => {
   return (

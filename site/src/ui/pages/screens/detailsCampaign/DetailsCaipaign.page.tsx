@@ -6,9 +6,9 @@ import { MapContainer, TileLayer } from "react-leaflet";
 
 export const DetailsCampaign = () => {
   return (
-    <>
+    <SC.Container>
       <Header />
-      <SC.Container>
+      <SC.Content>
         <SC.ContentCampaign>
           <CampaignInfo />
         </SC.ContentCampaign>
@@ -23,7 +23,7 @@ export const DetailsCampaign = () => {
             />
           </MapContainer>
         </SC.ContentMap>
-      </SC.Container>
-    </>
+      </SC.Content>
+    </SC.Container>
   );
 };
