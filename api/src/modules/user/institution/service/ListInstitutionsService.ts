@@ -4,10 +4,12 @@ import { IInstitutionRepository } from '../IRepository/IInstitutionRepository';
 import { AppInstitution } from '../infra/typeorm/entities/AppInstitution';
 
 interface Response {
-  instutitonId: string;
-  razao_social: string;
-  latitude: string;
-  longitude: string;
+  id: string;
+  title: string;
+  address: {
+    latitude: string;
+    longitude: string;
+  };
 }
 @injectable()
 export class ListInstitutionsService {
@@ -17,13 +19,20 @@ export class ListInstitutionsService {
   ) {}
 
   public async execute(): Promise<Response[]> {
-    const institutions: AppInstitution[] = await this.institutionRepository.findAll();
+    const institutions: AppInstitution[] =
+      await this.institutionRepository.findAll();
+    return this.mapperInstitutions(institutions);
+  }
+
+  private mapperInstitutions(institutions: AppInstitution[]) {
     return institutions.length > 0
       ? institutions.map((institution) => ({
-          instutitonId: institution.id,
-          razao_social: institution.razao_social,
-          latitude: institution.latitude,
-          longitude: institution.longitude,
+          id: institution.id,
+          title: institution.razao_social,
+          address: {
+            latitude: institution.latitude,
+            longitude: institution.longitude,
+          },
         }))
       : [];
   }

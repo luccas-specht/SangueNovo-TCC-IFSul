@@ -16,8 +16,8 @@ interface RequestCreateInstitutionService {
   cnpj: string;
   phone: string;
   cep: string;
-  latitude: string;
-  longitude: string;
+  latitude: number;
+  longitude: number;
 }
 
 @injectable()

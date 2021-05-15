@@ -21,11 +21,11 @@ export class AppInstitution {
   @Column('varchar')
   cep: string;
 
-  @Column('varchar')
-  latitude: string;
+  @Column('float')
+  latitude: number;
 
-  @Column('varchar')
-  longitude: string;
+  @Column('float')
+  longitude: number;
 
   @Column({
     unique: true,
