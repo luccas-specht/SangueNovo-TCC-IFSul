@@ -6,22 +6,22 @@ export const useCampaign = () => {
   const registerCampaign = async (
     title: string,
     description: string,
-    availableDate: Date,
-    priority: string,
-    typeBlood: string,
+    availableDate: any,
+    priority: any,
+    bloodType: any,
     goal: string,
-    user_id: string,
-    institution_id: string
+    userId: any,
+    institutionId: any
   ): Promise<any> => {
     const { data, status } = await post("campaign", {
       title: title,
       description: description,
-      availableDate: availableDate,
+      availableDate: new Date(availableDate),
       priority: priority,
-      typeBlood: typeBlood,
+      typeBlood: bloodType,
       goal: parseFloat(goal),
-      user_id: user_id,
-      institution_id: institution_id,
+      user_id: userId,
+      institution_id: institutionId,
     });
     return { data, status };
   };

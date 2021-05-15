@@ -20,8 +20,8 @@ export const useRegister = () => {
       phone: phone,
       email: email,
       password: password,
-      latitude: latitude,
-      longitude: longitude,
+      latitude: parseFloat(latitude),
+      longitude: parseFloat(longitude),
     });
     return { data, status };
   };
