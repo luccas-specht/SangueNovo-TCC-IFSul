@@ -6,25 +6,14 @@ import {
   useEffect,
 } from "react";
 
-import {
-  FiDroplet,
-  FiActivity,
-  BiSearch,
-  FiHome,
-  FiMapPin,
-} from "react-icons/all";
+import { FiDroplet, FiActivity, BiSearch, FiHome } from "react-icons/all";
 
 import { ComboValue } from "../../../../models";
 
 import { InputText, InputSelectCombo, Button } from "../../../components";
 
+import { bloodType, priorityCampaign } from "../../../../constants";
 import { useListInstitution } from "../../../../hooks";
-
-import {
-  distanceInitial,
-  priorityStatusInitial,
-  typeBloodInitial,
-} from "./mockFilters";
 
 import * as S from "./filterCampaigns.style";
 
@@ -33,7 +22,6 @@ type ValuesToFilter = {
   typeBlood: any[];
   priorityStatus: any[];
   institution: any[];
-  distance: any[];
 };
 
 type Id = "typeBlood" | "priorityStatus" | "distance" | "institution";
@@ -45,13 +33,6 @@ type Props = {
 export const FilterCampaings = ({ setFilter }: Props) => {
   const { listInstitution } = useListInstitution();
   const [titleCampaing, setTitleCampaing] = useState<string>("");
-  const [typeBlood, setTypeBlood] = useState<Array<ComboValue>>(
-    typeBloodInitial
-  );
-  const [priorityStatus, setPriorityStatus] = useState<Array<ComboValue>>(
-    priorityStatusInitial
-  );
-  const [distance, setDistance] = useState<Array<ComboValue>>(distanceInitial);
 
   const [institution, setInstitution] = useState<Array<ComboValue>>([]);
   const [valuesFilter, setValuesFilter] = useState<ValuesToFilter>({
@@ -59,7 +40,6 @@ export const FilterCampaings = ({ setFilter }: Props) => {
     typeBlood: [],
     priorityStatus: [],
     institution: [],
-    distance: [],
   });
 
   const getInstitution = async () => {
@@ -90,8 +70,6 @@ export const FilterCampaings = ({ setFilter }: Props) => {
   const handleChangeFilterValues = (id: Id, values: ComboValue[]) => {
     if (id === "typeBlood")
       setValuesFilter({ ...valuesFilter, typeBlood: values });
-    if (id === "distance")
-      setValuesFilter({ ...valuesFilter, distance: values });
     if (id === "priorityStatus")
       setValuesFilter({ ...valuesFilter, priorityStatus: values });
     if (id === "institution")
@@ -105,20 +83,19 @@ export const FilterCampaings = ({ setFilter }: Props) => {
       typeBlood: [],
       priorityStatus: [],
       institution: [],
-      distance: [],
     });
   }, []);
 
   return (
     <S.Container>
-      <S.InputSelectLimit>
+      {/* <S.InputSelectLimit>
         <InputSelectCombo
           isMultiple
           id="typeBlood"
           name="typeBlood"
           placeholder="Tipo de sangue"
           values={valuesFilter}
-          options={typeBlood}
+          options={bloodType}
           inputIcon={<FiDroplet size={20} />}
           onChange={(id, values) => handleChangeFilterValues(id, values)}
         />
@@ -130,20 +107,8 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           name="priorityStatus"
           placeholder="Prioridade"
           values={valuesFilter}
-          options={priorityStatus}
+          options={priorityCampaign}
           inputIcon={<FiActivity size={20} />}
-          onChange={(id, values) => handleChangeFilterValues(id, values)}
-        />
-      </S.InputSelectLimit>
-      <S.InputSelectLimit>
-        <InputSelectCombo
-          isMultiple
-          id="distance"
-          name="distance"
-          placeholder="Distância (km)"
-          values={valuesFilter}
-          options={distance}
-          inputIcon={<FiMapPin size={20} />}
           onChange={(id, values) => handleChangeFilterValues(id, values)}
         />
       </S.InputSelectLimit>
@@ -174,7 +139,7 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           <Button title="Aplicar" type="submit" />
           <S.StyledButton onClick={handleClear}>Limpar filtros</S.StyledButton>
         </S.WrapperButton>
-      </S.InputLimit>
+      </S.InputLimit> */}
     </S.Container>
   );
 };

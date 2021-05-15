@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useCallback, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import Checkbox from "@material-ui/core/Checkbox";
 
@@ -22,7 +22,7 @@ type Props = {
   options: any[];
   inputIcon: ReactNode;
   placeholder: string;
-  onChange(id: any, value: any): void;
+  onChange(id: any, newValues: any): void;
   isMultiple?: boolean;
 };
 
@@ -71,20 +71,14 @@ export const InputSelectCombo = ({
 
   const [lengthValues, setLengthValues] = useState<number>(0);
 
-  const handleChange = useCallback(
-    (e: any, newValues: any) => {
-      setLengthValues(newValues.length);
-      onChange(id, newValues);
-    },
-    [id, onChange]
-  );
+  const handleChange = (e: any, newValues: any) => {
+    setLengthValues(newValues.length);
+    onChange(id, newValues);
+  };
 
   useEffect(() => {
-    if (!values) {
-      setLengthValues(0);
-      onChange(id, []);
-    }
-  }, [values, id, onChange]);
+    if (!values) setLengthValues(0);
+  }, [values]);
 
   return (
     <>
@@ -92,6 +86,9 @@ export const InputSelectCombo = ({
         fullWidth
         defaultChecked
         disableCloseOnSelect
+        defaultValue={options?.map((opt: any) =>
+          values?.includes((val: any) => val.value === opt.value)
+        )}
         id={id}
         options={options}
         multiple={isMultiple}
@@ -119,9 +116,9 @@ export const InputSelectCombo = ({
               startAdornment: (
                 <InputAdornment position="start">{inputIcon}</InputAdornment>
               ),
-              endAdornment: isMultiple ? (
+              endAdornment: isMultiple && (
                 <S.ScoreInline>{lengthValues}</S.ScoreInline>
-              ) : null,
+              ),
             }}
           />
         )}
@@ -129,7 +126,9 @@ export const InputSelectCombo = ({
         disablePortal={false}
         classes={{ listbox: classes.listbox, option: classes.option }}
         renderTags={() => null}
-        onChange={(e: any, newValues: any) => handleChange(e, newValues)}
+        onChange={(e, newValues) => {
+          handleChange(e, newValues);
+        }}
       />
     </>
   );

@@ -1,12 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
-import * as SC from "./createCampaign.style";
-import { Header } from "../../../components";
-import { MapContainer, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import { useHistory } from "react-router-dom";
-import { validationMessage, masks, paths } from "../../../../constants";
-import * as Yup from "yup";
-import { useListInstitution } from "../../../../hooks";
+import { useCallback, useEffect, useState } from "react";
+
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import L from "leaflet";
+
 import {
   FiEdit2,
   FiDroplet,
@@ -18,188 +14,176 @@ import {
   FiPercent,
 } from "react-icons/all";
 
+import "leaflet/dist/leaflet.css";
+
 import { useFormik } from "formik";
 
 import {
+  Header,
   InputText,
-  InputDatePicker,
   InputSelectCombo,
   Stepper,
   Button,
   InputDescription,
 } from "../../../components";
 
-import {
-  priorityStatusInitial,
-  typeBloodInitial,
-  goalInitial,
-} from "../../components/filterCampaigns/mockFilters";
+import { masks, bloodType, priorityCampaign } from "../../../../constants";
 
-import { ComboValue } from "../../../../models/list/comboValue";
-import { isObjectLiteralExpression } from "typescript";
+import { useListInstitution } from "../../../../hooks";
 
-type SelectInputs = {
-  blood: any[];
-  priority: any[];
+import mapMarker from "../../../assets/svgs/map_marker.svg";
+
+import * as S from "./createCampaign.style";
+
+type ComboValue = {
+  title: string;
+  value: string;
 };
 
-interface NormalInputs {
+type FormCreateCampaign = {
   title: string;
-  dateDuration: string;
-  institution: any[];
   description: string;
+  avaibleDate: string;
   goal: string;
-}
-
-type Id = "blood" | "goal" | "priority";
+  priority: ComboValue;
+  bloodType: ComboValue;
+  institution: {};
+};
 
 export const CreateCampaign = () => {
+  const happyMapIcon = L.icon({
+    iconUrl: mapMarker,
+    iconSize: [58, 68],
+    iconAnchor: [29, 68],
+    popupAnchor: [170, 2],
+  });
+
   const { dateMask } = masks();
-  const { push } = useHistory();
   const { listInstitution } = useListInstitution();
 
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [institutions, setInstitutions] = useState<[{}]>([{}]);
 
-  const [typeBlood, setTypeBlood] = useState<Array<ComboValue>>(
-    typeBloodInitial
-  );
-  const [priorityStatus, setPriorityStatus] = useState<Array<ComboValue>>(
-    priorityStatusInitial
-  );
-  const [goal, setGoalInitial] = useState<Array<ComboValue>>(goalInitial);
-
-  const [valuesInput, setValuesInput] = useState<SelectInputs>({
-    blood: [],
-    priority: [],
-  });
-
-  const handleChangeFilterValues = (id: Id, values: ComboValue[]) => {
-    if (id === "blood") setValuesInput({ ...valuesInput, blood: values });
-    if (id === "priority") setValuesInput({ ...valuesInput, priority: values });
-  };
-
-  const initialValues = {
+  const initialValues: FormCreateCampaign = {
     title: "",
-    dateDuration: "",
-    institution: [],
-    goal: "",
     description: "",
-  } as NormalInputs;
+    avaibleDate: "",
+    goal: "",
+    priority: {
+      title: "",
+      value: "",
+    },
+    bloodType: {
+      title: "",
+      value: "",
+    },
+    institution: {
+      title: "",
+      value: "",
+      address: {
+        latitude: "",
+        longitude: "",
+      },
+    },
+  };
 
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: (values: NormalInputs) => {},
+    onSubmit: () => {},
   });
 
-  useEffect(() => {
-    console.log("data:", formik.values.dateDuration);
-  }, [formik.values.dateDuration]);
-
-  const initialValue = useCallback(() => {
-    setValuesInput({
-      blood: [],
-      priority: [],
-    });
+  const getAllInstitutions = useCallback(async () => {
+    const { data } = await listInstitution();
+    setInstitutions(data);
   }, []);
 
-  // const onDateChange = (e, setFieldValue) => {
-  //   const domain = e.target.value.replace(/.*@/, "");
-  //   setFieldValue("mail.domain", domain, false);
-  // };
+  useEffect(() => {
+    getAllInstitutions();
+  }, []);
 
-  const getInstitution = async () => {
-    const teste: any = [];
-    const { data } = await listInstitution();
-    data?.map((e: any) => {
-      const teste1 = {
-        value: e?.id,
-        title: e?.razao_social,
-      };
-      teste.push(teste1);
-    });
-    formik.setFieldValue("institution", teste);
+  const handleChangeValues = (id: string, value: any) => {
+    formik.setFieldValue(id, value);
   };
 
-  useEffect(() => {
-    getInstitution();
-  }, []);
-
   return (
-    <SC.Container>
+    <S.Container>
       <Header />
-      <SC.Content>
-        <SC.FormBox>
-          <SC.Box>
-            <SC.Title>Crie sua campanha</SC.Title>
-            <SC.Form onSubmit={formik.handleSubmit}>
+      <S.Content>
+        <S.FormBox>
+          <S.Box>
+            <S.Title>Cadastre sua campanha</S.Title>
+            <S.Form onSubmit={formik.handleSubmit}>
               {activeStep === 0 ? (
                 <>
                   <InputText
-                    icon={<FiEdit2 size={20} />}
                     id="title"
                     name="title"
                     placeholder="Titulo"
+                    icon={<FiEdit2 size={20} />}
                     value={formik.values.title}
                     onChange={formik.handleChange}
                   />
                   <InputSelectCombo
-                    options={typeBlood}
-                    inputIcon={<FiDroplet size={20} />}
-                    id="blood"
-                    name="blood"
-                    placeholder="Tipo de Sangue"
-                    values={valuesInput}
-                    isMultiple={false}
-                    onChange={handleChangeFilterValues}
-                  />
-                  <InputText
-                    icon={<FiCalendar size={20} />}
-                    id="dateDuration"
-                    name="dateDuration"
-                    maxLength={10}
-                    placeholder="Data de encerramento da campanha"
-                    value={dateMask(formik.values.dateDuration)}
-                    onChange={formik.handleChange}
-                  />
-                  <InputSelectCombo
-                    options={priorityStatus}
-                    inputIcon={<FiActivity size={20} />}
                     id="priority"
                     name="priority"
-                    placeholder="Prioridade da campanha"
-                    values={valuesInput}
-                    isMultiple={false}
-                    onChange={handleChangeFilterValues}
+                    placeholder="Prioridade"
+                    inputIcon={<FiActivity size={20} />}
+                    options={priorityCampaign}
+                    values={[formik.values.priority]}
+                    onChange={(id, newValues) => {
+                      handleChangeValues(id, newValues);
+                    }}
                   />
+                  {/* <InputSelectCombo
+                    id="bloodType"
+                    name="bloodType"
+                    placeholder="Tipo de Sangue"
+                    options={bloodType}
+                    inputIcon={<FiDroplet size={20} />}
+                    onChange={(id, newValues) => {
+                      handleChangeValues(id, newValues);
+                    }}
+                  />
+                  <InputSelectCombo
+                    id="institution"
+                    name="institution"
+                    placeholder="Instituição Responsável"
+                    options={institutions}
+                    inputIcon={<FiHome size={20} />}
+                    values={[formik.values.institution]}
+                    onChange={(id, newValues) => {
+                      handleChangeValues("institution", newValues);
+                    }}
+                  /> */}
                   <InputText
-                    icon={<FiPercent size={20} />}
-                    id="goal"
-                    name="goal"
-                    maxLength={2}
-                    placeholder="Meta em litros da campanha"
-                    value={formik.values.goal}
+                    icon={<FiCalendar size={20} />}
+                    id="avaibleDate"
+                    name="avaibleDate"
+                    placeholder="Data de encerramento"
+                    maxLength={10}
+                    value={dateMask(formik.values.avaibleDate)}
                     onChange={formik.handleChange}
                   />
                   <Button disabled title="Criar" />
                 </>
               ) : (
                 <>
-                  <InputSelectCombo
-                    options={/*formik.values.institution ??*/ []}
-                    inputIcon={<FiHome size={20} />}
-                    id="institution"
-                    name="institution"
-                    placeholder="Instituição da campanha"
-                    values={[]}
-                    isMultiple={false}
-                    onChange={formik.handleChange}
-                  />
-                  <SC.Profile>
+                  <S.Profile>
                     <label htmlFor="image">
                       <FiPlus size={30} />
                       <input type="file" id="image" name="image" />
                     </label>
-                  </SC.Profile>
+                  </S.Profile>
+
+                  <InputText
+                    icon={<FiPercent size={20} />}
+                    id="goal"
+                    name="goal"
+                    maxLength={2}
+                    placeholder="Meta da campanha (L)"
+                    value={formik.values.goal}
+                    onChange={formik.handleChange}
+                  />
                   <InputDescription
                     icon={<FiFileText size={20} />}
                     id="description"
@@ -209,8 +193,7 @@ export const CreateCampaign = () => {
                     value={formik.values.description}
                     onChange={formik.handleChange}
                   />
-
-                  <Button title="Criar" />
+                  <Button title="Cadastrar" />
                 </>
               )}
               <Stepper
@@ -218,21 +201,27 @@ export const CreateCampaign = () => {
                 activeStep={activeStep}
                 setActiveStep={setActiveStep}
               />
-            </SC.Form>
-          </SC.Box>
-        </SC.FormBox>
-        <SC.Map>
+            </S.Form>
+          </S.Box>
+        </S.FormBox>
+        <S.Map>
           <MapContainer
             center={[-29.8002396, -51.1271811]}
-            zoom={15}
+            zoom={17}
             style={{ width: "100%", height: "100%" }}
+            minZoom={7}
           >
+            <Marker
+              interactive={false}
+              icon={happyMapIcon}
+              position={[-29.8002396, -51.1271811]}
+            />
             <TileLayer
               url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
             />
           </MapContainer>
-        </SC.Map>
-      </SC.Content>
-    </SC.Container>
+        </S.Map>
+      </S.Content>
+    </S.Container>
   );
 };

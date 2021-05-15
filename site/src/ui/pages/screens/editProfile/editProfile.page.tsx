@@ -21,6 +21,7 @@ import {
   InputPassword,
   InputText,
   Button,
+  FabButton,
 } from "../../../components";
 
 import * as S from "./editProfile.style";
@@ -162,6 +163,7 @@ export const EditProfile = () => {
           </S.Form>
         </S.Wrapper>
       </S.Content>
+      <FabButton url="criar-campanha" />
     </>
   );
 };

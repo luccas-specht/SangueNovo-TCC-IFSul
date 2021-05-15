@@ -29,12 +29,11 @@ export const Content = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.text`
   color: ${({ theme }) => theme.colors.text};
-  justify-content: center;
   margin-top: 40px;
-  margin-bottom: 20px;
-  margin-right: 120px;
+  align-self: center;
+  font-size: 20px;
 `;
 
 export const Box = styled.div`
