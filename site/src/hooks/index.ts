@@ -6,7 +6,6 @@ export { usePrivateAccess } from "./api/usePrivateAccess/usePrivateAccess.hook";
 export { useListInstitution } from "./api/useListInstituition/useListIntitution.hook";
 export { useCampaign } from "./api/useCampaign/useCampaign.hook";
 export { useGeocode } from "./api/useExternalApi/useGeocode/useGeocode.hook";
-export { useViaCep } from "./api/useExternalApi/useViaCep/useViaCep";
 
 // Context Hook
 export { useTheme } from "./useTheme/useTheme.hook";

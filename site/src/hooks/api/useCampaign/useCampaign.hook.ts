@@ -1,7 +1,7 @@
 import { useRequest } from "../useRequest/useRequest.hook";
 
 export const useCampaign = () => {
-  const { post } = useRequest("");
+  const { post, get } = useRequest("/campaign");
 
   const registerCampaign = async (
     title: string,
@@ -13,7 +13,7 @@ export const useCampaign = () => {
     userId: any,
     institutionId: any
   ): Promise<any> => {
-    const { data, status } = await post("campaign", {
+    const { data, status } = await post("", {
       title: title,
       description: description,
       availableDate: new Date(availableDate),
@@ -26,7 +26,13 @@ export const useCampaign = () => {
     return { data, status };
   };
 
+  const listCampaignsByUserId = async (user_id: string): Promise<any> => {
+    const { data, status } = await get(`list/${user_id}`);
+    return { data, status };
+  };
+
   return {
     registerCampaign,
+    listCampaignsByUserId,
   };
 };

@@ -8,6 +8,7 @@ import {
   PageNotFound,
   EditProfile,
   DetailsCampaign,
+  ListMyCampaigns,
 } from "../ui/pages";
 
 type Paths = {
@@ -25,18 +26,6 @@ type Routes = {
   };
 };
 
-const components: Components = {
-  login: Login,
-  register: Register,
-  forgotPassword: ForgotPassword,
-  listFilterCampaings: ListFilterCampaings,
-  resetPassword: ResetPassword,
-  createCampaign: CreateCampaign,
-  pageNotFound: PageNotFound,
-  editProfile: EditProfile,
-  detailsCampaign: DetailsCampaign,
-};
-
 export const paths: Paths = {
   default: () => "/",
   login: () => "/login",
@@ -48,9 +37,23 @@ export const paths: Paths = {
   pageNotFound: () => "*",
   editProfile: () => "/editar-perfil",
   detailsCampaign: () => "/detalhes-campanha",
+  listMyCampaigns: () => "/minhas-campanhas",
 };
 
-export const routes: Routes = {
+const components: Components = {
+  login: Login,
+  register: Register,
+  forgotPassword: ForgotPassword,
+  listFilterCampaings: ListFilterCampaings,
+  resetPassword: ResetPassword,
+  createCampaign: CreateCampaign,
+  pageNotFound: PageNotFound,
+  editProfile: EditProfile,
+  detailsCampaign: DetailsCampaign,
+  listMyCampaigns: ListMyCampaigns,
+};
+
+export const ROUTES: Routes = {
   /*not found*/
   pageNotFound: {
     path: paths.pageNotFound(),
@@ -95,5 +98,9 @@ export const routes: Routes = {
   detailsCampaign: {
     path: paths.detailsCampaign(),
     component: components.detailsCampaign,
+  },
+  listMyCampaigns: {
+    path: paths.listMyCampaigns(),
+    component: components.listMyCampaigns,
   },
 };

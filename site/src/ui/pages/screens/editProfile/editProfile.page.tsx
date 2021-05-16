@@ -14,8 +14,6 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import { useViaCep } from "../../../../hooks";
-
 import {
   FabTheme,
   InputPassword,
@@ -36,7 +34,6 @@ type FormData = {
 };
 
 export const EditProfile = () => {
-  const { getAddress } = useViaCep();
   const { cepMask } = masks();
   const { user } = useAuthenticated();
 

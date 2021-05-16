@@ -8,7 +8,7 @@ import { CreateGlobalStyle } from "../ui/styles";
 
 import { useTheme } from "../hooks";
 
-import { routes } from "../constants";
+import { ROUTES } from "../constants";
 
 import { PublicRoute } from "./publicRoute.route";
 import { PrivateRoute } from "./privateRoute.route";
@@ -22,53 +22,58 @@ export const Router = () => {
         <Switch>
           <PublicRoute
             exact
-            path={routes.default.path}
-            component={routes.default.component}
+            path={ROUTES.default.path}
+            component={ROUTES.default.component}
           />
           <PublicRoute
             exact
-            path={routes.login.path}
-            component={routes.login.component}
+            path={ROUTES.login.path}
+            component={ROUTES.login.component}
           />
           <PublicRoute
             exact
-            path={routes.register.path}
-            component={routes.register.component}
+            path={ROUTES.register.path}
+            component={ROUTES.register.component}
           />
 
           <PublicRoute
             exact
-            path={routes.forgotPassword.path}
-            component={routes.forgotPassword.component}
+            path={ROUTES.forgotPassword.path}
+            component={ROUTES.forgotPassword.component}
           />
           <PublicRoute
             exact
-            path={routes.resetPassword.path}
-            component={routes.resetPassword.component}
+            path={ROUTES.resetPassword.path}
+            component={ROUTES.resetPassword.component}
           />
           <PrivateRoute
             exact
-            path={routes.editProfile.path}
-            component={routes.editProfile.component}
+            path={ROUTES.editProfile.path}
+            component={ROUTES.editProfile.component}
           />
           <PrivateRoute
             exact
-            path={routes.detailsCampaign.path}
-            component={routes.detailsCampaign.component}
+            path={ROUTES.detailsCampaign.path}
+            component={ROUTES.detailsCampaign.component}
           />
           <PrivateRoute
             exact
-            path={routes.listFilterCampaings.path}
-            component={routes.listFilterCampaings.component}
+            path={ROUTES.listFilterCampaings.path}
+            component={ROUTES.listFilterCampaings.component}
           />
           <PrivateRoute
             exact
-            path={routes.createCampaign.path}
-            component={routes.createCampaign.component}
+            path={ROUTES.createCampaign.path}
+            component={ROUTES.createCampaign.component}
+          />
+          <PrivateRoute
+            exact
+            path={ROUTES.listMyCampaigns.path}
+            component={ROUTES.listMyCampaigns.component}
           />
           <Route
-            path={routes.pageNotFound.path}
-            component={routes.pageNotFound.component}
+            path={ROUTES.pageNotFound.path}
+            component={ROUTES.pageNotFound.component}
           />
         </Switch>
       </BrowserRouter>

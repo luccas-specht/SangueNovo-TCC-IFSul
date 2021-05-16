@@ -26,7 +26,7 @@ export const FormLogin = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { push } = useHistory();
   const { authentication } = useAuth();
-  const { authenticatedUser } = useAuthenticated();
+  const { authenticatedUser, lastAuthenticatedTime } = useAuthenticated();
 
   const initialValues = {
     email: "",
@@ -47,6 +47,7 @@ export const FormLogin = () => {
     const { data, status } = await authentication(email, password);
     if (status === 200) {
       await authenticatedUser(data);
+      await lastAuthenticatedTime(new Date());
       push("/listar-campanhas");
     } else {
       toast.error(`${data.message}`, toastConfig);
