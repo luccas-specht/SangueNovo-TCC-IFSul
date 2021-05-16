@@ -55,7 +55,7 @@ export const WrapperCampaings = styled.div`
   }
 
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
 
   &::-webkit-scrollbar-thumb {

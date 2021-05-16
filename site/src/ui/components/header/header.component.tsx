@@ -58,7 +58,7 @@ export const Header = () => {
     (): Navegation[] => [
       user?.user?.isDonator && {
         icon: <BiDonateBlood size={20} />,
-        to: "minhas-doaçoes",
+        to: "minhas-doacoes",
         title: "Minhas Doações",
       },
       {
