@@ -10,7 +10,7 @@ export const MESSAGEINVALID = {
   campaignNotExists: 'Campanha solicitada não existe.',
   statusNotChanged:
     'A Alteração do status da campanha deve ser diferente do atual.',
-  invalidStatus: 'Alteração inválida.',
+  invalidStatus: 'Status invalido.',
   invalidPriority: 'Prioridade inválida.',
   invalidTypeBlood: 'Tipo de sangue não existe.',
   donatorNotExists: 'Doador não existe.',
@@ -23,4 +23,6 @@ export const MESSAGEINVALID = {
   timedOut: 'Tempo da solitação expirou.',
   newPasswordEqualsOldPassword:
     'A nova senha deve ser diferente da senha atual.',
+  institutionNotMatchWithCampaign:
+    'A instituição não está atrelada a campanha.',
 };

@@ -42,7 +42,7 @@ export class CampaignController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { user_id } = request.body;
+    const { user_id } = request.params;
 
     const listCampaignsByUserIdService = container.resolve(
       ListCampaignsByUserIdService
