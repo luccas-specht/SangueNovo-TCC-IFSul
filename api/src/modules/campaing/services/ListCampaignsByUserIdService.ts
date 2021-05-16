@@ -26,8 +26,8 @@ interface Response {
     id: string;
     razao_social: string;
     address: {
-      latitude: string;
-      longitude: string;
+      latitude: number;
+      longitude: number;
     };
   };
 }
@@ -43,6 +43,7 @@ export class ListCampaignsByUserIdService {
   ) {}
 
   public async execute({ user_id }: Request): Promise<Response[]> {
+    console.log('user', user_id);
     const user = await this.userRepository.findById(user_id);
     if (!user) throw new AppError(MESSAGEINVALID.userNotExists);
 

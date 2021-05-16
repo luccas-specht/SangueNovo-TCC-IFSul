@@ -1,5 +1,3 @@
-import { useCallback } from "react";
-
 import { AxiosRequestConfig } from "axios";
 
 import { MethodsAvaibles } from "../../../constants";
@@ -19,44 +17,39 @@ export const useRequest = (path: string): Response => {
   const { request } = useAxiosApiSangueNovo();
   const { user } = useAuthenticated();
 
-  const buildUrl = useCallback(
-    (url?: string) => (url ? `${path}/${url}` : path),
-    [path]
-  );
+  const buildUrl = (url?: string) => (url ? `${path}/${url}` : path);
 
-  const buildHeaders = useCallback(() => {
-    return {
-      Authorization: `Bearer ${user?.token}`,
+  const buildHeaders = () => ({
+    Authorization: `Bearer ${user?.token}`,
+  });
+
+  const callApi = async (method: MethodsAvaibles, url?: string, data?: any) => {
+    const requestConfig: AxiosRequestConfig = {
+      data: data,
+      method: method,
+      url: buildUrl(url),
+      headers: buildHeaders(),
     };
-  }, [user?.token]);
-
-  const callApi = useCallback(
-    async (method: string, url?: string, data?: any) => {
-      const requestConfig = {
-        data: data,
-        method: method,
-        url: buildUrl(url),
-        headers: buildHeaders(),
-      } as AxiosRequestConfig;
-      try {
-        return await request(requestConfig);
-      } catch (err) {
-        return err.response;
-      }
-    },
-    [buildUrl, buildHeaders, request]
-  );
+    console.log("request", requestConfig);
+    try {
+      const res = await request(requestConfig);
+      console.log("res", res);
+      return res;
+    } catch (err) {
+      return err.response;
+    }
+  };
 
   return {
     get: async (url?: string, data?: any) =>
-      callApi(MethodsAvaibles.get, url, data),
+      await callApi(MethodsAvaibles.get, url, data),
     delete: async (url?: string, data?: any) =>
-      callApi(MethodsAvaibles.delete, url, data),
+      await callApi(MethodsAvaibles.delete, url, data),
     put: async (url?: string, data?: any) =>
-      callApi(MethodsAvaibles.put, url, data),
+      await callApi(MethodsAvaibles.put, url, data),
     patch: async (url?: string, data?: any) =>
-      callApi(MethodsAvaibles.patch, url, data),
+      await callApi(MethodsAvaibles.patch, url, data),
     post: async (url?: string, data?: any) =>
-      callApi(MethodsAvaibles.post, url, data),
+      await callApi(MethodsAvaibles.post, url, data),
   };
 };

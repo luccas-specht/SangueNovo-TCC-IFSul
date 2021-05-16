@@ -60,11 +60,12 @@ export class InstitutionController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { campaign_id, new_status } = request.body;
+    const { institution_id, campaign_id, new_status } = request.body;
     const updateStatusCampaignService = container.resolve(
       UpdateStatusCampaignService
     );
     await updateStatusCampaignService.execute({
+      institution_id,
       campaign_id,
       new_status,
     });
