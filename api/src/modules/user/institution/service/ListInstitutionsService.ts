@@ -7,8 +7,8 @@ interface Response {
   id: string;
   title: string;
   address: {
-    latitude: string;
-    longitude: string;
+    latitude: number;
+    longitude: number;
   };
 }
 @injectable()
