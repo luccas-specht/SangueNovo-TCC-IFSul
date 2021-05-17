@@ -17,7 +17,7 @@ import {
 import { InputText, InputSelectCombo, Button } from "../../../components";
 
 import { bloodType, priorityCampaign, distance } from "../../../../constants";
-import { useListInstitution } from "../../../../hooks";
+import { useInstitution } from "../../../../hooks";
 
 import * as S from "./filterCampaigns.style";
 
@@ -33,7 +33,7 @@ type Props = {
 };
 
 export const FilterCampaings = ({ setFilter }: Props) => {
-  const { listInstitution } = useListInstitution();
+  const { listInstitution } = useInstitution();
   const [institutions, setInstitutions] = useState([]);
 
   const [valuesFilter, setValuesFilter] = useState<ValuesToFilter>({

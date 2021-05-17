@@ -33,7 +33,7 @@ import { toastConfig } from "../../../../configs";
 import { masks, bloodType, priorityCampaign } from "../../../../constants";
 
 import {
-  useListInstitution,
+  useInstitution,
   useCampaign,
   useAuthenticated,
 } from "../../../../hooks";
@@ -74,7 +74,7 @@ export const CreateCampaign = () => {
 
   const { dateMask } = masks();
   const { push } = useHistory();
-  const { listInstitution } = useListInstitution();
+  const { listInstitution } = useInstitution();
   const { registerCampaign } = useCampaign();
   const { user } = useAuthenticated();
 
@@ -174,8 +174,8 @@ export const CreateCampaign = () => {
   return (
     <>
       <ToastContainer />
+      <Header />
       <S.Container>
-        <Header />
         <S.Content>
           <S.FormBox>
             <S.Box>
