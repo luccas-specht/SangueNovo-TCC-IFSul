@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FiLock, FiUser, BiPhone, FiCamera, BiMap } from "react-icons/all";
 
@@ -6,7 +6,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { masks } from "../../../../constants";
 import { useFormik } from "formik";
 
-import { useAuthenticated } from "../../../../hooks";
+import { useAuthenticated, useUserProfile } from "../../../../hooks";
 
 import imageDefaultProfile from "../../../assets/images/default_user_image.png";
 
@@ -34,13 +34,14 @@ type FormData = {
 };
 
 export const EditProfile = () => {
+  const { getUserAvatar } = useUserProfile();
   const { cepMask } = masks();
   const { user } = useAuthenticated();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const initialValues: FormData = {
-    avatar: user?.user?.avatar,
+    avatar: "",
     name_razaoSocial: user?.user?.userName,
     phone: user?.user?.phone,
     newPassword: "",
@@ -87,7 +88,7 @@ export const EditProfile = () => {
           <S.Form onSubmit={formik.handleSubmit}>
             <S.Profile>
               <img
-                src={formik.values.avatar ?? imageDefaultProfile}
+                src={imageDefaultProfile}
                 alt={user?.user?.userName ?? "imagem de perfil"}
               />
               <label htmlFor="avatar">

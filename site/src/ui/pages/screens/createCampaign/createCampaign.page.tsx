@@ -33,7 +33,7 @@ import { toastConfig } from "../../../../configs";
 import { masks, bloodType, priorityCampaign } from "../../../../constants";
 
 import {
-  useListInstitution,
+  useInstitution,
   useCampaign,
   useAuthenticated,
 } from "../../../../hooks";
@@ -74,7 +74,7 @@ export const CreateCampaign = () => {
 
   const { dateMask } = masks();
   const { push } = useHistory();
-  const { listInstitution } = useListInstitution();
+  const { listInstitution } = useInstitution();
   const { registerCampaign } = useCampaign();
   const { user } = useAuthenticated();
 
@@ -174,12 +174,12 @@ export const CreateCampaign = () => {
   return (
     <>
       <ToastContainer />
+      <Header />
       <S.Container>
-        <Header />
         <S.Content>
           <S.FormBox>
             <S.Box>
-              <S.Title>Cadastre sua campanha</S.Title>
+              <S.Title>Crie sua campanha de doação</S.Title>
               <S.Form onSubmit={formik.handleSubmit}>
                 {activeStep === 0 ? (
                   <>
@@ -208,6 +208,7 @@ export const CreateCampaign = () => {
                       placeholder="Tipo de Sangue"
                       options={bloodType}
                       inputIcon={<FiDroplet size={20} />}
+                      values={[formik.values.bloodType]}
                       onChange={(id, newValues) => {
                         handleChangeValues(id, newValues);
                       }}
@@ -232,7 +233,7 @@ export const CreateCampaign = () => {
                       value={dateMask(formik.values.availableDate)}
                       onChange={formik.handleChange}
                     />
-                    <Button disabled title="Cadastrar" />
+                    <Button disabled title="Criar" />
                   </>
                 ) : (
                   <>
@@ -261,7 +262,7 @@ export const CreateCampaign = () => {
                       value={formik.values.description}
                       onChange={formik.handleChange}
                     />
-                    <Button title="Cadastrar" />
+                    <Button title="Criar" />
                   </>
                 )}
                 <Stepper

@@ -154,26 +154,22 @@ export class OrderCampaignsService {
         (campaign) => campaign.institution.id === filters.institutionId
       )
     );
-
     this.addToCampaignFiltered(
       filters.title,
       campaigns.filter((campaign) => campaign.title === filters.title)
     );
-
     this.addToCampaignFiltered(
       filters.priorities,
       campaigns.filter((campaign) =>
         filters.priorities.includes(campaign.priority)
       )
     );
-
     this.addToCampaignFiltered(
       filters.bloodTypes,
       campaigns.filter((campaign) =>
         filters.bloodTypes.includes(campaign.typeBlood)
       )
     );
-
     const uniqueValues = [...new Set(this.campaignsFiltered)] as AppCampaign[];
     return this.mapperCampaigns(uniqueValues);
   }

@@ -58,7 +58,7 @@ export const Header = () => {
     (): Navegation[] => [
       user?.user?.isDonator && {
         icon: <BiDonateBlood size={20} />,
-        to: "minhas-doaçoes",
+        to: "minhas-doacoes",
         title: "Minhas Doações",
       },
       {
@@ -96,10 +96,7 @@ export const Header = () => {
     <S.Container>
       <S.LogoImg src={logoImg} alt="logo sangue novo" />
       <S.Profile to="editar-perfil">
-        <img
-          src={user?.user?.avatar ?? imageDefaultProfile}
-          alt="imagem de perfil"
-        />
+        <img src={imageDefaultProfile} alt="imagem de perfil" />
         <div>
           <S.WellcomeUser>Bem vindo,</S.WellcomeUser>
           <S.UserName isDonator={user?.user?.isDonator}>

@@ -17,7 +17,7 @@ type Props = {
 export const PublicRoute = ({ component, path, exact = true }: Props) => {
   const { user } = useAuthenticated();
 
-  if (user?.token) return <Redirect to={paths.listFilterCampaings()} />;
+  if (user?.token) return <Redirect to={paths.orderCampaings()} />;
 
   return <Route exact={exact} path={path} component={component} />;
 };

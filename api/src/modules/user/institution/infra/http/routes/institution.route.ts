@@ -27,7 +27,7 @@ institutionRouter.get(
 );
 
 institutionRouter.get(
-  '/list/campaigns',
+  '/list/campaigns/:institution_id',
   ensureAuthenticated,
   institutionController.listRequestedCampaigns
 );

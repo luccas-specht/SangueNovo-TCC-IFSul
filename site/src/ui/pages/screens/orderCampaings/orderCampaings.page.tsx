@@ -4,9 +4,9 @@ import { Header, FabButton } from "../../../components";
 
 import { FilterCampaings } from "../../components";
 
-import * as S from "./listFilterCampaings.style";
+import * as S from "./orderCampaings.style";
 
-export const ListFilterCampaings = () => {
+export const OrderCampaings = () => {
   const [listCampaigns, setListCampaigns] = useState([]);
   const [filter, setFilter] = useState();
 

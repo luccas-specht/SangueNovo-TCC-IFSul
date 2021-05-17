@@ -1,5 +1,5 @@
 import {
-  ListFilterCampaings,
+  OrderCampaings,
   Login,
   Register,
   ForgotPassword,
@@ -32,7 +32,7 @@ export const paths: Paths = {
   register: () => "/cadastro",
   forgotPassword: () => "/esqueci-minha-senha",
   resetPassowrd: () => "/redefinir-senha",
-  listFilterCampaings: () => "/listar-campanhas",
+  orderCampaings: () => "/listar-campanhas",
   createCampaign: () => "/criar-campanha",
   pageNotFound: () => "*",
   editProfile: () => "/editar-perfil",
@@ -44,7 +44,7 @@ const components: Components = {
   login: Login,
   register: Register,
   forgotPassword: ForgotPassword,
-  listFilterCampaings: ListFilterCampaings,
+  orderCampaings: OrderCampaings,
   resetPassword: ResetPassword,
   createCampaign: CreateCampaign,
   pageNotFound: PageNotFound,
@@ -83,9 +83,9 @@ export const ROUTES: Routes = {
   },
 
   /*privates here*/
-  listFilterCampaings: {
-    path: paths.listFilterCampaings(),
-    component: components.listFilterCampaings,
+  orderCampaings: {
+    path: paths.orderCampaings(),
+    component: components.orderCampaings,
   },
   createCampaign: {
     path: paths.createCampaign(),

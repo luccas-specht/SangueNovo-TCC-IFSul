@@ -85,7 +85,7 @@ export class InstitutionController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { institution_id } = request.body;
+    const { institution_id } = request.params;
     const listRequestedCampaignsService = container.resolve(
       ListRequestedCampaignsService
     );

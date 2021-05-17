@@ -30,10 +30,8 @@ export const useRequest = (path: string): Response => {
       url: buildUrl(url),
       headers: buildHeaders(),
     };
-    console.log("request", requestConfig);
     try {
       const res = await request(requestConfig);
-      console.log("res", res);
       return res;
     } catch (err) {
       return err.response;

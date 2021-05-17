@@ -2,16 +2,12 @@ import styled from "styled-components";
 import { device } from "../../../../constants";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 90%;
+  margin-top: 10px;
   background-color: ${({ theme }) => theme.colors.backgroundSecudary};
   display: flex;
   flex-direction: column;
-`;
-
-export const Header = styled.div`
-  width: 100%;
-  height: auto;
 `;
 
 export const Content = styled.div`
@@ -66,9 +62,7 @@ export const FormBox = styled.div`
 `;
 
 export const Map = styled.div`
-  width: 50%;
-  height: 100%;
-  background-color: red;
+  flex: 1;
 `;
 
 export const Profile = styled.div`

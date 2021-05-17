@@ -72,7 +72,7 @@ export const InputSelectCombo = ({
   const [lengthValues, setLengthValues] = useState<number>(0);
 
   const handleChange = (e: any, newValues: any) => {
-    setLengthValues(newValues.length);
+    setLengthValues(newValues?.length);
     onChange(id, newValues);
   };
 
@@ -86,9 +86,6 @@ export const InputSelectCombo = ({
         fullWidth
         defaultChecked
         disableCloseOnSelect
-        defaultValue={options?.map((opt: any) =>
-          values?.includes((val: any) => val.value === opt.value)
-        )}
         id={id}
         options={options}
         multiple={isMultiple}
