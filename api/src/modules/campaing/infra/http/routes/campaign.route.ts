@@ -9,5 +9,5 @@ const campaignController = new CampaignController();
 campaignRouter.use(ensureAuthenticated);
 
 campaignRouter.post('/', campaignController.createCampaign);
+campaignRouter.get('/list/order', campaignController.orderCampaign);
 campaignRouter.get('/list/:user_id', campaignController.listCampaign);
-campaignRouter.get('/order', campaignController.orderCampaign);

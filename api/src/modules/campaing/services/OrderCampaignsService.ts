@@ -93,10 +93,11 @@ export class OrderCampaignsService {
   }: Request) {
     const filters = {} as any;
     if (
-      !title &&
-      !institutionId &&
-      priorities.length === 0 &&
-      bloodTypes.length === 0
+      (!title &&
+        !institutionId &&
+        priorities?.length === 0 &&
+        bloodTypes?.length === 0) ||
+      (!priorities && !bloodTypes)
     )
       return false;
 
@@ -132,7 +133,7 @@ export class OrderCampaignsService {
     arrayToCompare: Array<any>,
     errorMessage: string
   ) {
-    if (array.length > 0) {
+    if (array?.length > 0) {
       const hasValues = arrayToCompare.filter((value) => array.includes(value));
       if (hasValues.length === 0) throw new AppError(errorMessage);
     }
@@ -161,13 +162,13 @@ export class OrderCampaignsService {
     this.addToCampaignFiltered(
       filters.priorities,
       campaigns.filter((campaign) =>
-        filters.priorities.includes(campaign.priority)
+        filters.priorities?.includes(campaign.priority)
       )
     );
     this.addToCampaignFiltered(
       filters.bloodTypes,
       campaigns.filter((campaign) =>
-        filters.bloodTypes.includes(campaign.typeBlood)
+        filters.bloodTypes?.includes(campaign.typeBlood)
       )
     );
     const uniqueValues = [...new Set(this.campaignsFiltered)] as AppCampaign[];

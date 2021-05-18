@@ -19,9 +19,8 @@ interface Response {
   goal: number;
   availableDate: Date;
   typeBlood: string;
-  campaignStatus: string;
   priority: string;
-  creatorUser: string;
+  creatorUserId: string;
   institution: {
     id: string;
     razao_social: string;
@@ -51,9 +50,12 @@ export class ListCampaignsByUserIdService {
       CampaignStatus.ACTIVE
     );
 
-    return campaigns.length > 0
-      ? this.filterByUserId(this.mapperCampaigns(campaigns), user_id)
-      : [];
+    return campaigns.length > 0 ? this.filterByUserId(campaigns, user_id) : [];
+  }
+
+  private filterByUserId(list: AppCampaign[], userId: string): Response[] {
+    const filteredList = list.filter((campaign) => campaign.user.id === userId);
+    return this.mapperCampaigns(filteredList);
   }
 
   private mapperCampaigns(list: AppCampaign[]): Response[] {
@@ -65,9 +67,8 @@ export class ListCampaignsByUserIdService {
       goal: campaign.goal,
       availableDate: campaign.availableDate,
       typeBlood: campaign.typeBlood,
-      campaignStatus: campaign.campaignStatus,
       priority: campaign.priority,
-      creatorUser: campaign.user.id,
+      creatorUserId: campaign.user.id,
       institution: {
         id: campaign.institution.id,
         razao_social: campaign.institution.razao_social,
@@ -77,9 +78,5 @@ export class ListCampaignsByUserIdService {
         },
       },
     }));
-  }
-
-  private filterByUserId(list: Response[], userId: string): Response[] {
-    return list.filter((campaign) => campaign.creatorUser === userId);
   }
 }
