@@ -6,7 +6,7 @@ export const useCampaign = () => {
   const registerCampaign = async (
     title: string,
     description: string,
-    availableDate: any,
+    availableDate: string,
     priority: any,
     bloodType: any,
     goal: string,
@@ -26,6 +26,11 @@ export const useCampaign = () => {
     return { data, status };
   };
 
+  const listAndFilterCampaigns = async (): Promise<any> => {
+    const res = await get(`list/order`);
+    return res;
+  };
+
   const listCampaignsByUserId = async (user_id: string): Promise<any> => {
     const { data, status } = await get(`list/${user_id}`);
     return { data, status };
@@ -34,5 +39,6 @@ export const useCampaign = () => {
   return {
     registerCampaign,
     listCampaignsByUserId,
+    listAndFilterCampaigns,
   };
 };

@@ -6,7 +6,7 @@ import { RouteComponentProps } from "react-router";
 
 import { useAuthenticated } from "../hooks";
 
-import { paths } from "../constants";
+import { PATHS } from "../constants";
 
 type Props = {
   exact?: boolean;
@@ -17,7 +17,7 @@ type Props = {
 export const PublicRoute = ({ component, path, exact = true }: Props) => {
   const { user } = useAuthenticated();
 
-  if (user?.token) return <Redirect to={paths.orderCampaings()} />;
+  if (user?.token) return <Redirect to={PATHS.orderCampaigns()} />;
 
   return <Route exact={exact} path={path} component={component} />;
 };

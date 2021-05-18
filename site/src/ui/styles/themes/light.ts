@@ -18,5 +18,7 @@ export const light: DefaultTheme = {
     disableColor: "#DDDDDD",
     colorHeader: "#FFFFFF",
     colorBurguerMenu: "#f2f2f2",
+    backgroundCampaignCard: "#FFFFFF",
+    titleColorCampaignCard: "#333333",
   },
 };

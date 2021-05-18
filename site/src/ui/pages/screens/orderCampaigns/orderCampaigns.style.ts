@@ -32,19 +32,20 @@ export const ContentList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.backgroundSecudary};
-  border-top: 2px solid ${({ theme }) => theme.colors.backgroundPrimary};
-
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.3);
 `;
 
 export const WrapperCampaings = styled.div`
   margin-top: 7px;
   width: 65%;
   height: 95%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   overflow-y: scroll;
 

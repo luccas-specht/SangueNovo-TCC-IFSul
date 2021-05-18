@@ -18,6 +18,8 @@ declare module "styled-components" {
       disableColor: string;
       colorHeader: string;
       colorBurguerMenu: string;
+      backgroundCampaignCard: string;
+      titleColorCampaignCard: string;
     };
   }
 }

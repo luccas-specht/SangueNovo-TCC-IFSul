@@ -221,8 +221,8 @@ export const Ul = styled.ul<BurbuerProps>`
 `;
 
 export const StyledFaSun = styled(FaSun)`
-  width: 23px;
-  height: 23px;
+  width: 20px;
+  height: 20px;
   color: ${({ theme }) => theme.colors.colorIconDarkLight};
 `;
 

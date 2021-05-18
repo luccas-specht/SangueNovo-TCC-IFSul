@@ -1,0 +1,207 @@
+import styled, { css } from "styled-components";
+
+interface ContentProps {
+  color: string;
+  high: boolean;
+}
+
+interface CardContainerProps {
+  isShowButton: boolean;
+}
+
+export const CardContainer = styled.main<CardContainerProps>`
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.backgroundCampaignCard};
+  margin-top: 10px;
+  transition: 1s;
+
+  &:hover {
+    box-sizing: border-box;
+    box-shadow: 0px -2px 8px rgba(150, 150, 150, 0.25);
+  }
+
+  ${({ isShowButton }) =>
+    isShowButton
+      ? css`
+          height: 300px;
+        `
+      : css`
+          height: 200px;
+        `}
+`;
+
+export const Content = styled.div`
+  padding: 21px;
+  display: flex;
+  height: 100%;
+`;
+
+export const Left = styled.aside`
+  height: 100%;
+  max-height: 158px;
+  max-width: 180px;
+  img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+`;
+
+export const Right = styled.aside`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  padding-left: 21px;
+`;
+
+export const Title = styled.h1`
+  max-width: 290px;
+  min-height: 60px;
+  align-self: flex-start;
+  margin-top: -4.5px;
+
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 35px;
+  font-style: normal;
+  color: ${({ theme }) => theme.colors.titleColorCampaignCard};
+`;
+
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const WrapperContent = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const CampaignDetails = styled.div`
+  width: 200px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+`;
+
+export const Date = styled.strong`
+  font-size: 18px;
+  line-height: 20px;
+  font-style: normal;
+  color: ${({ theme }) => theme.colors.titleColorCampaignCard};
+`;
+
+export const ContentPriority = styled.div<ContentProps>`
+  color: ${({ color }) => color};
+
+  width: 100%;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 26px;
+
+  span {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: space-between;
+    height: 100%;
+    align-self: flex-end;
+
+    svg {
+      visibility: ${({ high }) => (high ? "visible" : "hidden")};
+      opacity: ${({ high }) => (high ? "1" : "0")};
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+`;
+
+export const BloodType = styled.text`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 26px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const Footer = styled.footer`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 13px;
+
+  button {
+    max-width: 500px;
+  }
+`;
+
+export const StyledButtonIcon = styled.button<{ isShowButton: boolean }>`
+  border: none;
+  background: none;
+  color: none;
+  padding-top: 10px;
+
+  svg {
+    ${({ isShowButton }) =>
+      isShowButton
+        ? css`
+            transform: rotate(180deg);
+          `
+        : css`
+            transform: rotate(0deg);
+          `}
+    cursor: pointer;
+    color: #c4c4c4;
+  }
+`;
+
+export const Progress = styled.div`
+  background-color: #c4c4c4;
+  border-radius: 10px;
+  position: relative;
+  height: 20px;
+  width: 440px;
+  align-self: flex-start;
+`;
+
+export const ProgressDone = styled.div`
+  background: linear-gradient(to left, #f9af42, #f9af42);
+  border-radius: 10px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease 0.3s;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+`;

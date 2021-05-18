@@ -7,4 +7,4 @@ export { PageNotFound } from "./screens/pageNotFound/pageNotFound.page";
 export { EditProfile } from "./screens/editProfile/editProfile.page";
 export { DetailsCampaign } from "./screens/detailsCampaign/DetailsCaipaign.page";
 export { ListMyCampaigns } from "./screens/listMyCampaigns/listMyCampaigns.page";
-export { OrderCampaings } from "./screens/orderCampaings/orderCampaings.page";
+export { OrderCampaigns } from "./screens/orderCampaigns/orderCampaigns.page";

@@ -1,5 +1,5 @@
 import {
-  OrderCampaings,
+  OrderCampaigns,
   Login,
   Register,
   ForgotPassword,
@@ -26,13 +26,13 @@ type Routes = {
   };
 };
 
-export const paths: Paths = {
+export const PATHS: Paths = {
   default: () => "/",
   login: () => "/login",
   register: () => "/cadastro",
   forgotPassword: () => "/esqueci-minha-senha",
   resetPassowrd: () => "/redefinir-senha",
-  orderCampaings: () => "/listar-campanhas",
+  orderCampaigns: () => "/listar-campanhas",
   createCampaign: () => "/criar-campanha",
   pageNotFound: () => "*",
   editProfile: () => "/editar-perfil",
@@ -40,11 +40,11 @@ export const paths: Paths = {
   listMyCampaigns: () => "/minhas-campanhas",
 };
 
-const components: Components = {
+const COMPONENTS: Components = {
   login: Login,
   register: Register,
   forgotPassword: ForgotPassword,
-  orderCampaings: OrderCampaings,
+  orderCampaigns: OrderCampaigns,
   resetPassword: ResetPassword,
   createCampaign: CreateCampaign,
   pageNotFound: PageNotFound,
@@ -56,51 +56,51 @@ const components: Components = {
 export const ROUTES: Routes = {
   /*not found*/
   pageNotFound: {
-    path: paths.pageNotFound(),
+    path: PATHS.pageNotFound(),
     component: PageNotFound,
   },
 
   /*publics here*/
   default: {
-    path: paths.default(),
-    component: components.login,
+    path: PATHS.default(),
+    component: COMPONENTS.login,
   },
   login: {
-    path: paths.login(),
-    component: components.login,
+    path: PATHS.login(),
+    component: COMPONENTS.login,
   },
   register: {
-    path: paths.register(),
-    component: components.register,
+    path: PATHS.register(),
+    component: COMPONENTS.register,
   },
   forgotPassword: {
-    path: paths.forgotPassword(),
-    component: components.forgotPassword,
+    path: PATHS.forgotPassword(),
+    component: COMPONENTS.forgotPassword,
   },
   resetPassword: {
-    path: paths.resetPassowrd(),
-    component: components.resetPassword,
+    path: PATHS.resetPassowrd(),
+    component: COMPONENTS.resetPassword,
   },
 
   /*privates here*/
-  orderCampaings: {
-    path: paths.orderCampaings(),
-    component: components.orderCampaings,
+  orderCampaigns: {
+    path: PATHS.orderCampaigns(),
+    component: COMPONENTS.orderCampaigns,
   },
   createCampaign: {
-    path: paths.createCampaign(),
-    component: components.createCampaign,
+    path: PATHS.createCampaign(),
+    component: COMPONENTS.createCampaign,
   },
   editProfile: {
-    path: paths.editProfile(),
-    component: components.editProfile,
+    path: PATHS.editProfile(),
+    component: COMPONENTS.editProfile,
   },
   detailsCampaign: {
-    path: paths.detailsCampaign(),
-    component: components.detailsCampaign,
+    path: PATHS.detailsCampaign(),
+    component: COMPONENTS.detailsCampaign,
   },
   listMyCampaigns: {
-    path: paths.listMyCampaigns(),
-    component: components.listMyCampaigns,
+    path: PATHS.listMyCampaigns(),
+    component: COMPONENTS.listMyCampaigns,
   },
 };

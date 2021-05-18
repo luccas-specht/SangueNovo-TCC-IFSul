@@ -18,5 +18,7 @@ export const dark: DefaultTheme = {
     disableColor: "#C6C6C6",
     colorHeader: "#28262E",
     colorBurguerMenu: "#666360",
+    backgroundCampaignCard: "#312E38;",
+    titleColorCampaignCard: "#FFFFFF",
   },
 };

@@ -58,8 +58,8 @@ export const Router = () => {
           />
           <PrivateRoute
             exact
-            path={ROUTES.orderCampaings.path}
-            component={ROUTES.orderCampaings.component}
+            path={ROUTES.orderCampaigns.path}
+            component={ROUTES.orderCampaigns.component}
           />
           <PrivateRoute
             exact

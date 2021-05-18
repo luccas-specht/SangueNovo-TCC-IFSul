@@ -54,7 +54,7 @@ export const ListMyCampaigns = () => {
   );
 
   const renderCampaigns = useCallback(() => {
-    return userCampaigns.length > 0 ? (
+    return userCampaigns.length === 0 ? (
       <S.Main>
         <S.ContentList>{!user.user.isDonator && renderTab()}</S.ContentList>
       </S.Main>

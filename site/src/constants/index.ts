@@ -1,6 +1,6 @@
 export { device } from "./responsivenessAvailable";
 export { validationMessage } from "./validationMessage";
-export { ROUTES, paths } from "./routes";
+export { ROUTES, PATHS } from "./routes";
 export { yupValidation } from "./yupValidations";
 export { bloodType } from "./bloodTypes";
 export { priorityCampaign } from "./priorityCampaign";
