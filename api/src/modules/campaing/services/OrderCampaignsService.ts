@@ -63,17 +63,20 @@ export class OrderCampaignsService {
       : this.mapperCampaigns(campaigns);
   }
 
-  private mapperCampaigns(campaigns: AppCampaign[]) {
-    return campaigns.map((campaign) => ({
+  private mapperCampaigns(list: AppCampaign[]): any[] {
+    return list.map((campaign) => ({
       id: campaign.id,
       title: campaign.title,
       description: campaign.description,
       avatar: campaign.avatar,
-      goal: campaign.goal,
+      currentGoal: this.calculatePercentage(
+        campaign.goal,
+        campaign.donations.length
+      ),
       availableDate: campaign.availableDate,
       bloodType: campaign.typeBlood,
-      campaignStatus: campaign.campaignStatus,
       priority: campaign.priority,
+      creatorUserId: campaign.user.id,
       institution: {
         id: campaign.institution.id,
         razao_social: campaign.institution.razao_social,
@@ -83,6 +86,16 @@ export class OrderCampaignsService {
         },
       },
     }));
+  }
+
+  private calculatePercentage(inicialGoal: number, actualDonations: number) {
+    if (actualDonations) {
+      actualDonations = actualDonations * 50;
+      const result = actualDonations / inicialGoal;
+      return result.toPrecision(4);
+    } else {
+      return '0';
+    }
   }
 
   private async verifyFiltersExist({
