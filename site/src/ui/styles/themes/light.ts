@@ -20,5 +20,6 @@ export const light: DefaultTheme = {
     colorBurguerMenu: "#f2f2f2",
     backgroundCampaignCard: "#FFFFFF",
     titleColorCampaignCard: "#333333",
+    colorProgressBar: "#F9AF42",
   },
 };

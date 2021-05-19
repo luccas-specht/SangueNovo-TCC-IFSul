@@ -11,7 +11,7 @@ interface CardContainerProps {
 
 export const CardContainer = styled.main<CardContainerProps>`
   width: 100%;
-  max-width: 800px;
+  max-width: 850px;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.backgroundCampaignCard};
   margin-top: 10px;
@@ -62,13 +62,13 @@ export const Right = styled.aside`
 `;
 
 export const Title = styled.h1`
-  max-width: 290px;
   min-height: 60px;
   align-self: flex-start;
-  margin-top: -4.5px;
+  margin-top: -7px;
 
+  font-family: "Paytone One", sans-serif;
   font-size: 30px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 35px;
   font-style: normal;
   color: ${({ theme }) => theme.colors.titleColorCampaignCard};
@@ -105,9 +105,11 @@ export const CampaignDetails = styled.div`
 `;
 
 export const Date = styled.strong`
+  font-family: "Paytone One", sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-size: 18px;
   line-height: 20px;
-  font-style: normal;
   color: ${({ theme }) => theme.colors.titleColorCampaignCard};
 `;
 
@@ -178,17 +180,36 @@ export const StyledButtonIcon = styled.button<{ isShowButton: boolean }>`
   }
 `;
 
+export const ContentProgress = styled.div`
+  height: 20px;
+  width: 90%;
+  position: relative;
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+`;
+
 export const Progress = styled.div`
   background-color: #c4c4c4;
   border-radius: 10px;
-  position: relative;
-  height: 20px;
-  width: 440px;
+  height: 100%;
+  width: 100%;
+  max-width: 450px;
   align-self: flex-start;
+
+  span {
+    color: #c4c4c4;
+    font-style: normal;
+    line-height: 25px;
+  }
 `;
 
 export const ProgressDone = styled.div`
-  background: linear-gradient(to left, #f9af42, #f9af42);
+  background: linear-gradient(
+    to left,
+    ${({ theme }) => theme.colors.colorProgressBar},
+    ${({ theme }) => theme.colors.colorProgressBar}
+  );
   border-radius: 10px;
   max-width: 100%;
   display: flex;
@@ -203,5 +224,16 @@ export const ProgressDone = styled.div`
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const StyledCurrentGoal = styled.text`
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  color: ${({ theme }) => theme.colors.colorProgressBar};
+  font-family: "Paytone One", sans-serif;
+  font-size: 36px;
+  line-height: 44px;
+  align-items: center;
 `;

@@ -13,7 +13,7 @@ type Props = {
   id: string;
   title: string;
   avatar: string | null;
-  goal: string;
+  currentGoal: string;
   availableDate: string;
   bloodType: string;
   priority: string;
@@ -23,7 +23,7 @@ export const CampaignCard = ({
   id,
   title,
   avatar,
-  goal,
+  currentGoal,
   availableDate,
   bloodType,
   priority,
@@ -47,7 +47,7 @@ export const CampaignCard = ({
       <S.ContentPriority color={colors[priority]} high={priority === "Alta"}>
         <span>
           Urgência: {priority}
-          {priority === "Alta" ? <IoMdAlert size={22} /> : false}
+          {priority === "Alta" && <IoMdAlert size={22} />}
         </span>
       </S.ContentPriority>
     );
@@ -57,17 +57,23 @@ export const CampaignCard = ({
     setTimeout(() => {
       const newStyle = {
         opacity: 1,
-        width: `${30}%`,
+        width: `${currentGoal}%`,
       };
       setStyle(newStyle);
-    }, 500);
+    }, 1000);
 
     return (
-      <S.Progress>
-        <S.ProgressDone style={style}>{30}</S.ProgressDone>
-      </S.Progress>
+      <S.ContentProgress>
+        <S.Progress>
+          <S.ProgressDone style={style}>
+            {currentGoal !== "0" && currentGoal}
+          </S.ProgressDone>
+          <span>Porcentagem de doação da campanha</span>
+        </S.Progress>
+        <S.StyledCurrentGoal>{currentGoal}%</S.StyledCurrentGoal>
+      </S.ContentProgress>
     );
-  }, [style]);
+  }, [style, currentGoal]);
 
   return (
     <S.CardContainer isShowButton={showButton}>

@@ -27,8 +27,8 @@ export const useCampaign = () => {
   };
 
   const listAndFilterCampaigns = async (): Promise<any> => {
-    const res = await get(`list/order`);
-    return res;
+    const { data, status } = await get(`list/order`);
+    return { data, status };
   };
 
   const listCampaignsByUserId = async (user_id: string): Promise<any> => {

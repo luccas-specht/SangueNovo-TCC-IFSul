@@ -11,14 +11,14 @@ export const OrderCampaigns = () => {
   const { listAndFilterCampaigns } = useCampaign();
 
   const [campaigns, setCampaigns] = useState([]);
-  const [filter, setFilter] = useState();
+  const [filter, setFilter] = useState(null);
 
   useEffect(() => {
-    const ListAll = async () => {
-      const { data, status } = await listAndFilterCampaigns();
-      if (status === 200) setCampaigns(data);
+    const fetchCampaigns = async () => {
+      const e = await listAndFilterCampaigns();
+      if (e.status === 200) setCampaigns(e.data);
     };
-    ListAll();
+    fetchCampaigns();
   }, []);
 
   return (
@@ -30,15 +30,15 @@ export const OrderCampaigns = () => {
             <FilterCampaings setFilter={setFilter} />
             <S.ContentList>
               <S.WrapperCampaings>
-                {campaigns.map((campaign: any, key) => (
+                {campaigns.map((campaign: any) => (
                   <CampaignCard
-                    key={key}
+                    key={campaign.id}
                     id={campaign?.id}
-                    goal={campaign?.goal}
                     title={campaign?.title}
                     avatar={campaign?.avatar}
                     priority={campaign?.priority}
                     bloodType={campaign?.bloodType}
+                    currentGoal={campaign?.currentGoal}
                     availableDate={campaign?.availableDate}
                   />
                 ))}

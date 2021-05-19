@@ -20,6 +20,7 @@ declare module "styled-components" {
       colorBurguerMenu: string;
       backgroundCampaignCard: string;
       titleColorCampaignCard: string;
+      colorProgressBar: string;
     };
   }
 }

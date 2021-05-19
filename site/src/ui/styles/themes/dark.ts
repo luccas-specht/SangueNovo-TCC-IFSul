@@ -20,5 +20,6 @@ export const dark: DefaultTheme = {
     colorBurguerMenu: "#666360",
     backgroundCampaignCard: "#312E38;",
     titleColorCampaignCard: "#FFFFFF",
+    colorProgressBar: "#42AEFF",
   },
 };

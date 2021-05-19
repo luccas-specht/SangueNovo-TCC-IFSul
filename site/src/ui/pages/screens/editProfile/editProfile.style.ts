@@ -115,13 +115,9 @@ export const EditWrapper = styled.div`
 
   h1 {
     margin-bottom: 20px;
-
     align-self: flex-start;
-    font-family: "Roboto Slab";
-
     font-style: normal;
     font-weight: 500;
-
     font-size: 20px;
     line-height: 26px;
   }

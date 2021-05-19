@@ -9,6 +9,8 @@ import {
   EditProfile,
   DetailsCampaign,
   ListMyCampaigns,
+  MyAppointments,
+  MyDonations,
 } from "../ui/pages";
 
 type Paths = {
@@ -38,6 +40,8 @@ export const PATHS: Paths = {
   editProfile: () => "/editar-perfil",
   detailsCampaign: () => "/detalhes-campanha",
   listMyCampaigns: () => "/minhas-campanhas",
+  myAppointments: () => "/meus-agendamentos",
+  MyDonations: () => "/minhas-doacoes",
 };
 
 const COMPONENTS: Components = {
@@ -51,6 +55,8 @@ const COMPONENTS: Components = {
   editProfile: EditProfile,
   detailsCampaign: DetailsCampaign,
   listMyCampaigns: ListMyCampaigns,
+  myAppointments: MyAppointments,
+  myDonations: MyDonations,
 };
 
 export const ROUTES: Routes = {
@@ -102,5 +108,13 @@ export const ROUTES: Routes = {
   listMyCampaigns: {
     path: PATHS.listMyCampaigns(),
     component: COMPONENTS.listMyCampaigns,
+  },
+  myAppointments: {
+    path: PATHS.myAppointments(),
+    component: COMPONENTS.myAppointments,
+  },
+  myDonations: {
+    path: PATHS.MyDonations(),
+    component: COMPONENTS.myDonations,
   },
 };

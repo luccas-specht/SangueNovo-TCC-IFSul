@@ -71,6 +71,16 @@ export const Router = () => {
             path={ROUTES.listMyCampaigns.path}
             component={ROUTES.listMyCampaigns.component}
           />
+          <PrivateRoute
+            exact
+            path={ROUTES.myAppointments.path}
+            component={ROUTES.myAppointments.component}
+          />
+          <PrivateRoute
+            exact
+            path={ROUTES.myDonations.path}
+            component={ROUTES.myDonations.component}
+          />
           <Route
             path={ROUTES.pageNotFound.path}
             component={ROUTES.pageNotFound.component}
