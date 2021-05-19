@@ -31,7 +31,6 @@ export const CampaignCard = ({
   onClick,
 }: Props) => {
   const [showButton, setShowButton] = useState(false);
-  const [style, setStyle] = useState({});
 
   const dateFormat = useCallback(
     (date: any) => format(new Date(date), "dd/MM/yyyy"),
@@ -55,27 +54,25 @@ export const CampaignCard = ({
     );
   }, [priority]);
 
-  const renderProgress = useCallback(() => {
-    setTimeout(() => {
-      const newStyle = {
-        opacity: 1,
-        width: `${currentGoal}%`,
-      };
-      setStyle(newStyle);
-    }, 1000);
-
-    return (
+  const renderProgress = useCallback(
+    () => (
       <S.ContentProgress>
         <S.Progress>
-          <S.ProgressDone style={style}>
+          <S.ProgressDone
+            style={{
+              opacity: 1,
+              width: `${currentGoal}%`,
+            }}
+          >
             {currentGoal !== "0" && currentGoal}
           </S.ProgressDone>
           <span>Porcentagem de doação da campanha</span>
         </S.Progress>
         <S.StyledCurrentGoal>{currentGoal}%</S.StyledCurrentGoal>
       </S.ContentProgress>
-    );
-  }, [style, currentGoal]);
+    ),
+    [currentGoal]
+  );
 
   return (
     <S.CardContainer isShowButton={showButton}>

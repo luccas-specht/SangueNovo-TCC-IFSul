@@ -233,7 +233,7 @@ export const CreateCampaign = () => {
                       value={dateMask(formik.values.availableDate)}
                       onChange={formik.handleChange}
                     />
-                    <Button disabled title="Criar" />
+                    <Button disabled title="Criar" type="button" />
                   </>
                 ) : (
                   <>
@@ -262,7 +262,7 @@ export const CreateCampaign = () => {
                       value={formik.values.description}
                       onChange={formik.handleChange}
                     />
-                    <Button title="Criar" />
+                    <Button title="Criar" type="submit" />
                   </>
                 )}
                 <Stepper

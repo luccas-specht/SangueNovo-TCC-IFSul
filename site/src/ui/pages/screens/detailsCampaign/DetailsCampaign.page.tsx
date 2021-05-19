@@ -12,7 +12,7 @@ import { useCampaign } from "../../../../hooks";
 import { Header, FabButton, Button } from "../../../components";
 
 import mapMarker from "../../../assets/svgs/map_marker.svg";
-import defaultCampaignImage from "../../../assets/images/default_campaign_image.png";
+import defaultCampaignImage from "../../../assets/images/default_campaign_image_details.png";
 
 import * as S from "./DetailsCampaign.style";
 
@@ -22,6 +22,7 @@ export const DetailsCampaign = () => {
 
   const [isShowModal, setIsShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const [campaign, setCampaign] = useState({
     id: "",
     title: "",
@@ -48,6 +49,28 @@ export const DetailsCampaign = () => {
     popupAnchor: [170, 2],
   });
 
+  useEffect(() => {
+    setIsLoading(true);
+    const getCampaign = async () => {
+      const { data, status } = await getCampaignById(campaign_id);
+      if (status === 200) {
+        setCampaign({
+          id: data?.id,
+          title: data?.title,
+          avatar: data?.avatar,
+          priority: data?.priority,
+          bloodType: data?.bloodType,
+          currentGoal: data?.currentGoal,
+          description: data?.description,
+          availableDate: data?.availableDate,
+          institution: data?.institution,
+        });
+      }
+      setIsLoading(false);
+    };
+    getCampaign();
+  }, []);
+
   const dateFormat = useCallback(
     () => format(new Date(campaign.availableDate), "dd/MM/yyyy"),
     [campaign.availableDate]
@@ -73,27 +96,25 @@ export const DetailsCampaign = () => {
     );
   }, [campaign.priority]);
 
-  useEffect(() => {
-    setIsLoading(true);
-    const getCampaign = async () => {
-      const { data, status } = await getCampaignById(campaign_id);
-      if (status === 200) {
-        setCampaign({
-          id: data?.id,
-          title: data?.title,
-          avatar: data?.avatar,
-          priority: data?.priority,
-          bloodType: data?.bloodType,
-          currentGoal: data?.currentGoal,
-          description: data?.description,
-          availableDate: data?.availableDate,
-          institution: data?.institution,
-        });
-      }
-      setIsLoading(false);
-    };
-    getCampaign();
-  }, []);
+  const renderProgress = useCallback(
+    () => (
+      <S.ContentProgress>
+        <S.Progress>
+          <S.ProgressDone
+            style={{
+              opacity: 1,
+              width: `${campaign.currentGoal}%`,
+            }}
+          >
+            {campaign.currentGoal !== "0" && campaign.currentGoal}
+          </S.ProgressDone>
+          <span>Porcentagem de doação para campanha</span>
+        </S.Progress>
+        <S.StyledCurrentGoal>{campaign.currentGoal}%</S.StyledCurrentGoal>
+      </S.ContentProgress>
+    ),
+    [campaign.currentGoal]
+  );
 
   return (
     <>
@@ -126,7 +147,8 @@ export const DetailsCampaign = () => {
             <S.Description>
               <strong>{campaign.description}</strong>
             </S.Description>
-            <Button title="Quero Doar" />
+            {renderProgress()}
+            <Button title="Quero Doar" type="button" />
           </S.Details>
         </S.Content>
         <S.Map>

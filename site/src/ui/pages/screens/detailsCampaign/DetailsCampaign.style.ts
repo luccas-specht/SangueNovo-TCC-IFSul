@@ -23,8 +23,7 @@ export const Content = styled.div`
 export const Details = styled.main`
   width: 60%;
   margin-top: 50px;
-  /* max-width: 600px; */
-  height: 100%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,9 +36,9 @@ export const Details = styled.main`
     height: 125px;
     width: 500px;
     border-radius: 10px;
-    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    object-fit: cover;
   }
 
   button {
@@ -66,14 +65,13 @@ export const Agroup = styled.div`
 `;
 
 export const Description = styled.div`
-  width: 80%;
-  height: 180px;
-  max-height: 180px;
+  width: 70%;
+  height: 100px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-top: 10px;
-  border: 2px solid red;
+  white-space: normal;
+  text-align: center;
+  overflow: hidden;
 
   strong {
     font-style: normal;
@@ -113,9 +111,9 @@ export const BloodType = styled.div`
 `;
 
 export const SubTitle = styled.span`
-  font-family: "Paytone One", sans-serif;
   font-style: normal;
   font-size: 18px;
+  font-weight: 400;
   line-height: 30px;
   color: ${({ theme }) => theme.colors.text};
 `;
@@ -160,4 +158,61 @@ export const ContentPriority = styled.div<ContentProps>`
       cursor: pointer;
     }
   }
+`;
+
+export const ContentProgress = styled.div`
+  height: 18px;
+  width: 80%;
+  position: relative;
+  display: flex;
+  align-self: center;
+  align-items: center;
+`;
+
+export const Progress = styled.div`
+  background-color: #c4c4c4;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  max-width: 450px;
+  align-self: flex-start;
+
+  span {
+    color: #c4c4c4;
+    font-style: normal;
+    line-height: 25px;
+  }
+`;
+
+export const ProgressDone = styled.div`
+  background: linear-gradient(
+    to left,
+    ${({ theme }) => theme.colors.colorProgressBar},
+    ${({ theme }) => theme.colors.colorProgressBar}
+  );
+  border-radius: 10px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease 0.3s;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const StyledCurrentGoal = styled.text`
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  color: ${({ theme }) => theme.colors.colorProgressBar};
+  font-family: "Paytone One", sans-serif;
+  font-size: 30px;
+  align-items: center;
 `;

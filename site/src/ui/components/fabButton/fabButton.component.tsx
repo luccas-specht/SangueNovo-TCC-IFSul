@@ -6,9 +6,9 @@ type Props = {
   url?: string;
 };
 
-export const FabButton = ({ url = "criar-campanha" }: Props) => (
+export const FabButton = ({ url = "/criar-campanha" }: Props) => (
   <S.Container to={url}>
-    <S.Fab>
+    <S.Fab type="button">
       <S.StyledAddIcon />
     </S.Fab>
   </S.Container>

@@ -47,8 +47,10 @@ export const Left = styled.aside`
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    object-position: center;
   }
 `;
 
