@@ -31,7 +31,7 @@ export class CampaignRepository implements ICampaignRepository {
   public async findById(id: string): Promise<AppCampaign | undefined> {
     return await this.ormRepository.findOne({
       relations: ['institution', 'user', 'donations'],
-      where: { id },
+      where: { id: id },
     });
   }
 

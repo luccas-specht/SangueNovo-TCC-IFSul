@@ -5,6 +5,7 @@ import { container } from 'tsyringe';
 import { CreateCampaignService } from '@modules/campaing/services/CreateCampaignService';
 import { ListCampaignsByUserIdService } from '@modules/campaing/services/ListCampaignsByUserIdService';
 import { OrderCampaignsService } from '../services/OrderCampaignsService';
+import { FindByCampaignIdService } from '../services/FindByCampaignIdService';
 
 export class CampaignController {
   public async createCampaign(
@@ -65,6 +66,20 @@ export class CampaignController {
       institutionId,
       priorities,
       bloodTypes,
+    });
+    return response.json(campaigns).status(200);
+  }
+
+  public async findByCampaignId(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { campaign_id } = request.params;
+    console.log('para', campaign_id);
+
+    const findCampaignsByIdServide = container.resolve(FindByCampaignIdService);
+    const campaigns = await findCampaignsByIdServide.execute({
+      campaign_id,
     });
     return response.json(campaigns).status(200);
   }
