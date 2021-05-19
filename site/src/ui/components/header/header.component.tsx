@@ -58,27 +58,27 @@ export const Header = () => {
     (): Navegation[] => [
       user?.user?.isDonator && {
         icon: <BiDonateBlood size={20} />,
-        to: "minhas-doacoes",
+        to: "/minhas-doacoes",
         title: "Minhas Doações",
       },
       {
         icon: <RiCalendarEventLine size={20} />,
-        to: "meus-agendamentos",
+        to: "/meus-agendamentos",
         title: "Meus Agendamentos",
       },
       {
         icon: <BiBookReader size={20} />,
-        to: "minhas-campanhas",
+        to: "/minhas-campanhas",
         title: "Minhas Campanhas",
       },
       {
         icon: <BsCardChecklist size={20} />,
-        to: "listar-campanhas",
+        to: "/listar-campanhas",
         title: "Listar Campanhas",
       },
       {
         icon: <BiNews size={20} />,
-        to: "criar-campanha",
+        to: "/criar-campanha",
         title: "Criar Campanha",
       },
       {

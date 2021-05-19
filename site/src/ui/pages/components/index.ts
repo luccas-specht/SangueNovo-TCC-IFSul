@@ -4,5 +4,4 @@ export { FormInstitutionRegister } from "./formInstitutionRegister/formInstituti
 export { FormLogin } from "./formLogin/formLogin.component";
 export { FormResetPassword } from "./formResetPassword/formResetPassword.component";
 export { FilterCampaings } from "./filterCampaigns/filterCampaigns.components";
-export { CampaignInfo } from "./campaignInformations/campaignInformations.component";
 export { WaitingAnimation } from "./waitingAnimation/waitingAnimation.component";

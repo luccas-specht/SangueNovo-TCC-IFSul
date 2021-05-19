@@ -11,6 +11,8 @@ export const Container = styled(Link)`
   position: relative;
   align-items: center;
   cursor: pointer;
+  z-index: 10;
+  position: absolute;
 
   &:focus,
   &:hover,

@@ -124,10 +124,9 @@ export const ContentPriority = styled.div<ContentProps>`
 
   span {
     display: flex;
-    align-items: center;
-    align-self: flex-end;
-    justify-content: space-between;
     height: 100%;
+    align-items: center;
+    justify-content: space-between;
     align-self: flex-end;
 
     svg {

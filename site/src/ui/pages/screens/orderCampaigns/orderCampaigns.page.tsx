@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import { useCampaign } from "../../../../hooks";
 
 import { Header, FabButton, CampaignCard } from "../../../components";
@@ -8,6 +9,7 @@ import { FilterCampaings } from "../../components";
 import * as S from "./orderCampaigns.style";
 
 export const OrderCampaigns = () => {
+  const { push } = useHistory();
   const { listAndFilterCampaigns } = useCampaign();
 
   const [campaigns, setCampaigns] = useState([]);
@@ -40,6 +42,7 @@ export const OrderCampaigns = () => {
                     bloodType={campaign?.bloodType}
                     currentGoal={campaign?.currentGoal}
                     availableDate={campaign?.availableDate}
+                    onClick={() => push(`/detalhes-campanha/${campaign.id}`)}
                   />
                 ))}
               </S.WrapperCampaings>

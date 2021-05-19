@@ -36,9 +36,15 @@ export const useCampaign = () => {
     return { data, status };
   };
 
+  const getCampaignById = async (campaign_id: string): Promise<any> => {
+    const { data, status } = await get(`${campaign_id}`);
+    return { data, status };
+  };
+
   return {
     registerCampaign,
     listCampaignsByUserId,
     listAndFilterCampaigns,
+    getCampaignById,
   };
 };

@@ -5,7 +5,7 @@ export { ResetPassword } from "./screens/resetPassword/resetPassword.page";
 export { CreateCampaign } from "./screens/createCampaign/createCampaign.page";
 export { PageNotFound } from "./screens/pageNotFound/pageNotFound.page";
 export { EditProfile } from "./screens/editProfile/editProfile.page";
-export { DetailsCampaign } from "./screens/detailsCampaign/DetailsCaipaign.page";
+export { DetailsCampaign } from "./screens/detailsCampaign/DetailsCampaign.page";
 export { ListMyCampaigns } from "./screens/listMyCampaigns/listMyCampaigns.page";
 export { OrderCampaigns } from "./screens/orderCampaigns/orderCampaigns.page";
 export { MyAppointments } from "./screens/myAppoitments/myAppointments.page";
