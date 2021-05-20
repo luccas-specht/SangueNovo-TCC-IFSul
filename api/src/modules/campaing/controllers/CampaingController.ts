@@ -58,14 +58,14 @@ export class CampaignController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { bloodTypes, institutionId, priorities, title } = request.body;
+    const { title, bloodType, institutionId, priority } = request.query;
 
     const orderCampaignsService = container.resolve(OrderCampaignsService);
     const campaigns = await orderCampaignsService.execute({
       title,
       institutionId,
-      priorities,
-      bloodTypes,
+      priority,
+      bloodType,
     });
     return response.json(campaigns).status(200);
   }
@@ -75,7 +75,6 @@ export class CampaignController {
     response: Response
   ): Promise<Response> {
     const { campaign_id } = request.params;
-    console.log('para', campaign_id);
 
     const findCampaignsByIdServide = container.resolve(FindByCampaignIdService);
     const campaigns = await findCampaignsByIdServide.execute({

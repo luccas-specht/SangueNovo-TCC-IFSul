@@ -8,12 +8,13 @@ import { CampaignStatus } from '../infra/typeorm/entities/EnumCampaignStatus';
 import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
 import { Priority } from '../infra/typeorm/entities/EnumPriority';
 import { TypeBlood } from '../infra/typeorm/entities/EnumTypeBlood';
+import { isUuid } from 'uuidv4';
 
 type Request = {
-  title: string | null;
-  bloodTypes: string[];
-  institutionId: string | null;
-  priorities: string[];
+  title: any;
+  bloodType: any;
+  institutionId: any;
+  priority: any;
 };
 
 @injectable()
@@ -43,18 +44,23 @@ export class OrderCampaignsService {
 
   public async execute({
     title,
-    priorities,
-    bloodTypes,
+    priority,
+    bloodType,
     institutionId,
   }: Request): Promise<any> {
+    console.log('title', title);
+    console.log('priority', priority);
+    console.log('bloodType', bloodType);
+    console.log('institutionId', institutionId);
+
     const campaigns = await this.campaignRepository.ListAllCampaigns(
       CampaignStatus.ACTIVE
     );
 
     const filters = await this.verifyFiltersExist({
       title,
-      priorities,
-      bloodTypes,
+      priority,
+      bloodType,
       institutionId,
     });
 
@@ -100,40 +106,43 @@ export class OrderCampaignsService {
 
   private async verifyFiltersExist({
     title,
-    priorities,
-    bloodTypes,
+    priority,
+    bloodType,
     institutionId,
   }: Request) {
-    const filters = {} as any;
-    if (
-      (!title &&
-        !institutionId &&
-        priorities?.length === 0 &&
-        bloodTypes?.length === 0) ||
-      (!priorities && !bloodTypes)
-    )
-      return false;
+    const filters = {
+      title: '',
+      institutionId: '',
+      priority: '',
+      bloodType: '',
+    };
+
+    if (!title && !institutionId && !priority && !bloodType) return false;
 
     filters.title = title;
     await this.verifyInstitutionExist(institutionId);
     filters.institutionId = institutionId;
     this.verifyArrayElementsAreValid(
-      priorities,
+      priority,
       this.PRIORITIES,
       MESSAGEINVALID.invalidPriority
     );
-    filters.priorities = priorities;
+    filters.priority = priority;
+
     this.verifyArrayElementsAreValid(
-      bloodTypes,
+      bloodType,
       this.BLOOD_TYPES,
       MESSAGEINVALID.invalidTypeBlood
     );
-    filters.bloodTypes = bloodTypes;
+    filters.bloodType = bloodType;
     return filters;
   }
 
   private async verifyInstitutionExist(institutionId: string | null) {
     if (institutionId) {
+      if (!isUuid(institutionId))
+        throw new AppError(MESSAGEINVALID.institutionNotExists);
+
       const institution = await this.institutionRepository.findById(
         institutionId
       );
@@ -142,19 +151,13 @@ export class OrderCampaignsService {
   }
 
   private verifyArrayElementsAreValid(
-    array: string[],
-    arrayToCompare: Array<any>,
+    value: string | null,
+    arrayToCompare: string[],
     errorMessage: string
   ) {
-    if (array?.length > 0) {
-      const hasValues = arrayToCompare.filter((value) => array.includes(value));
+    if (value) {
+      const hasValues = arrayToCompare.filter((e) => e === value);
       if (hasValues.length === 0) throw new AppError(errorMessage);
-    }
-  }
-
-  private addToCampaignFiltered(filter: any, campaigns: AppCampaign[]) {
-    if (filter || filter?.length > 0) {
-      if (campaigns?.length > 0) this.campaignsFiltered.push(...campaigns);
     }
   }
 
@@ -162,28 +165,37 @@ export class OrderCampaignsService {
     filters: Request,
     campaigns: AppCampaign[]
   ): Promise<any> {
-    this.addToCampaignFiltered(
-      filters.institutionId,
-      campaigns.filter(
+    if (filters.institutionId) {
+      const campaignsFil = campaigns.filter(
         (campaign) => campaign.institution.id === filters.institutionId
-      )
-    );
-    this.addToCampaignFiltered(
-      filters.title,
-      campaigns.filter((campaign) => campaign.title === filters.title)
-    );
-    this.addToCampaignFiltered(
-      filters.priorities,
-      campaigns.filter((campaign) =>
-        filters.priorities?.includes(campaign.priority)
-      )
-    );
-    this.addToCampaignFiltered(
-      filters.bloodTypes,
-      campaigns.filter((campaign) =>
-        filters.bloodTypes?.includes(campaign.typeBlood)
-      )
-    );
+      );
+      if (campaignsFil?.length > 0)
+        this.campaignsFiltered.push(...campaignsFil);
+    }
+
+    if (filters.title) {
+      const campaignsFil = campaigns.filter(
+        (campaign) => campaign.title === filters.title
+      );
+      if (campaignsFil?.length > 0)
+        this.campaignsFiltered.push(...campaignsFil);
+    }
+
+    if (filters.bloodType) {
+      const campaignsFil = campaigns.filter(
+        (campaign) => campaign.typeBlood === filters.bloodType
+      );
+      if (campaignsFil?.length > 0)
+        this.campaignsFiltered.push(...campaignsFil);
+    }
+
+    if (filters.priority) {
+      const campaignsFil = campaigns.filter(
+        (campaign) => campaign.priority === filters.priority
+      );
+      if (campaignsFil?.length > 0)
+        this.campaignsFiltered.push(...campaignsFil);
+    }
     const uniqueValues = [...new Set(this.campaignsFiltered)] as AppCampaign[];
     return this.mapperCampaigns(uniqueValues);
   }
