@@ -48,11 +48,6 @@ export class OrderCampaignsService {
     bloodType,
     institutionId,
   }: Request): Promise<any> {
-    console.log('title', title);
-    console.log('priority', priority);
-    console.log('bloodType', bloodType);
-    console.log('institutionId', institutionId);
-
     const campaigns = await this.campaignRepository.ListAllCampaigns(
       CampaignStatus.ACTIVE
     );
