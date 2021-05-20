@@ -13,15 +13,15 @@ export const OrderCampaigns = () => {
   const { listAndFilterCampaigns } = useCampaign();
 
   const [campaigns, setCampaigns] = useState([]);
-  const [filter, setFilter] = useState(null);
+  const [filter, setFilter] = useState(undefined);
 
   useEffect(() => {
     const fetchCampaigns = async () => {
-      const e = await listAndFilterCampaigns();
+      const e = await listAndFilterCampaigns(filter);
       if (e.status === 200) setCampaigns(e.data);
     };
     fetchCampaigns();
-  }, []);
+  }, [filter]);
 
   return (
     <>

@@ -16,7 +16,7 @@ import {
 
 import { InputText, InputSelectCombo, Button } from "../../../components";
 
-import { bloodType, priorityCampaign, distance } from "../../../../constants";
+import { BLOOD_TYPE, DISTANCE, PRIORITY_CAMPAIGN } from "../../../../constants";
 import { useInstitution } from "../../../../hooks";
 
 import * as S from "./filterCampaigns.style";
@@ -24,8 +24,8 @@ import * as S from "./filterCampaigns.style";
 type ValuesToFilter = {
   title: string;
   institution: any;
-  priorities: (string | number)[];
-  bloodTypes: (string | number)[];
+  priority: string;
+  bloodType: string;
 };
 
 type Props = {
@@ -34,13 +34,14 @@ type Props = {
 
 export const FilterCampaings = ({ setFilter }: Props) => {
   const { listInstitution } = useInstitution();
-  const [institutions, setInstitutions] = useState([]);
 
+  const [query, setQuery] = useState("");
+  const [institutions, setInstitutions] = useState([]);
   const [valuesFilter, setValuesFilter] = useState<ValuesToFilter>({
     title: "",
-    institution: [],
-    bloodTypes: [],
-    priorities: [],
+    institution: "",
+    bloodType: "",
+    priority: "",
   });
 
   const getAllInstitutions = useCallback(async () => {
@@ -63,26 +64,50 @@ export const FilterCampaings = ({ setFilter }: Props) => {
   const handleClear = useCallback(() => {
     setValuesFilter({
       title: "",
-      institution: [],
-      priorities: [],
-      bloodTypes: [],
+      institution: "",
+      bloodType: "",
+      priority: "",
     });
+    setFilter(undefined);
   }, []);
 
   const handleChangeValues = (id: string, newValues: any) => {
     if (id === "bloodTypes") {
-      setValuesFilter({ ...valuesFilter, bloodTypes: newValues });
+      setValuesFilter({ ...valuesFilter, bloodType: newValues?.value });
     }
     if (id === "priorities") {
-      setValuesFilter({ ...valuesFilter, priorities: newValues });
+      setValuesFilter({ ...valuesFilter, priority: newValues?.value });
     }
     if (id === "institution") {
-      setValuesFilter({ ...valuesFilter, institution: newValues });
+      setValuesFilter({ ...valuesFilter, institution: newValues?.value });
     }
     if (id === "title") {
       setValuesFilter({ ...valuesFilter, title: newValues });
     }
   };
+
+  const buildQuery = useCallback(() => {
+    let query = "";
+    if (!!valuesFilter.title) {
+      query = query + `&title=${valuesFilter.title}`;
+    }
+    if (!!valuesFilter.institution) {
+      query = query + `&institutionId=${valuesFilter.institution}`;
+    }
+    if (!!valuesFilter.bloodType) {
+      query = query + `&bloodType=${valuesFilter.bloodType}`;
+    }
+    if (!!valuesFilter.priority) {
+      query = query + `&priority=${valuesFilter.priority}`;
+    }
+    setQuery(query);
+  }, [valuesFilter]);
+
+  useEffect(() => {
+    buildQuery();
+  }, [valuesFilter]);
+
+  const handleApplyFilters = () => setFilter(query);
 
   return (
     <S.Container>
@@ -91,8 +116,8 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           id="bloodTypes"
           name="bloodTypes"
           placeholder="Tipo de sangue"
-          values={[valuesFilter.bloodTypes]}
-          options={bloodType}
+          values={[valuesFilter.bloodType]}
+          options={BLOOD_TYPE}
           inputIcon={<FiDroplet size={20} color="#BF0404" />}
           onChange={(id, newValues) => {
             handleChangeValues(id, newValues);
@@ -103,9 +128,9 @@ export const FilterCampaings = ({ setFilter }: Props) => {
         <InputSelectCombo
           id="priorities"
           name="priorities"
-          placeholder="Prioridade"
-          values={[valuesFilter.priorities]}
-          options={priorityCampaign}
+          placeholder="Urgência"
+          values={[valuesFilter.priority]}
+          options={PRIORITY_CAMPAIGN}
           inputIcon={<FiActivity size={20} color="#42aeff" />}
           onChange={(id, newValues) => {
             handleChangeValues(id, newValues);
@@ -118,7 +143,7 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           name="distance"
           placeholder="Distância (Km)"
           values={[]}
-          options={distance}
+          options={DISTANCE}
           inputIcon={<BiMap size={20} color="#F9AF42" />}
           onChange={() => {}}
         />
@@ -150,8 +175,10 @@ export const FilterCampaings = ({ setFilter }: Props) => {
       </S.InputLimit>
       <S.InputLimit>
         <S.WrapperButton>
-          <Button title="Aplicar" type="submit" />
-          <S.StyledButton onClick={handleClear}>Limpar filtros</S.StyledButton>
+          <Button title="Aplicar" type="submit" onClick={handleApplyFilters} />
+          <S.StyledButton onClick={handleClear} type="reset">
+            Limpar filtros
+          </S.StyledButton>
         </S.WrapperButton>
       </S.InputLimit>
     </S.Container>

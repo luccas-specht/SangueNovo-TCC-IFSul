@@ -19,7 +19,7 @@ export const ThemeContext = createContext<ThemeContextData>(
 );
 
 export const ThemeProvider = ({ children }: ThemeContextProps) => {
-  const [theme, setTheme] = useState<DefaultTheme>(dark);
+  const [theme, setTheme] = useState<DefaultTheme>(light);
 
   const changeTheme = useCallback(
     () => setTheme(theme.title === "dark" ? light : dark),

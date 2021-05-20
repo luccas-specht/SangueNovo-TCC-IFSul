@@ -26,13 +26,10 @@ export const useCampaign = () => {
     return { data, status };
   };
 
-  const listAndFilterCampaigns = async (): Promise<any> => {
-    const { data, status } = await get(`list/order`, {
-      bloodTypes: ["A+"],
-      institutionId: "",
-      priorities: ["Alta"],
-      title: "",
-    });
+  const listAndFilterCampaigns = async (query?: string): Promise<any> => {
+    const newQuery = query ? query.replace("&", "") : "";
+
+    const { data, status } = await get(`list/order?${newQuery}`);
     return { data, status };
   };
 

@@ -1,4 +1,4 @@
-export const distance = [
+export const DISTANCE = [
   { title: "Entre 0 e 5km", value: "5" },
   { title: "Entre 5km e 15km", value: "15" },
   { title: "Entre 15km e 30km", value: "30" },

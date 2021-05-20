@@ -30,7 +30,7 @@ import {
 } from "../../../components";
 
 import { toastConfig } from "../../../../configs";
-import { masks, bloodType, priorityCampaign } from "../../../../constants";
+import { masks, BLOOD_TYPE, PRIORITY_CAMPAIGN } from "../../../../constants";
 
 import {
   useInstitution,
@@ -194,9 +194,9 @@ export const CreateCampaign = () => {
                     <InputSelectCombo
                       id="priority"
                       name="priority"
-                      placeholder="Prioridade"
+                      placeholder="Urgência"
                       inputIcon={<FiActivity size={20} />}
-                      options={priorityCampaign}
+                      options={PRIORITY_CAMPAIGN}
                       values={[formik.values.priority]}
                       onChange={(id, newValues) => {
                         handleChangeValues(id, newValues);
@@ -206,7 +206,7 @@ export const CreateCampaign = () => {
                       id="bloodType"
                       name="bloodType"
                       placeholder="Tipo de Sangue"
-                      options={bloodType}
+                      options={BLOOD_TYPE}
                       inputIcon={<FiDroplet size={20} />}
                       values={[formik.values.bloodType]}
                       onChange={(id, newValues) => {

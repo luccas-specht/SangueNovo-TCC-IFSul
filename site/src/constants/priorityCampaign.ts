@@ -1,5 +1,5 @@
-export const priorityCampaign = [
+export const PRIORITY_CAMPAIGN = [
   { title: "Baixa", value: "Baixa" },
-  { title: "Média", value: "Média" },
+  { title: "Média", value: "Media" },
   { title: "Alta", value: "Alta" },
 ];

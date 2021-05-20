@@ -281,7 +281,7 @@ export const StyledCheckBox = styled.div`
 
 export const WrapperTerms = styled.div`
   width: 100%;
-  max-height: 280px;
+  max-height: 265px;
   align-self: center;
   margin-top: 10px;
 
