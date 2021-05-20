@@ -88,13 +88,12 @@ export const FilterCampaings = ({ setFilter }: Props) => {
     <S.Container>
       <S.InputSelectLimit>
         <InputSelectCombo
-          isMultiple
           id="bloodTypes"
           name="bloodTypes"
           placeholder="Tipo de sangue"
           values={[valuesFilter.bloodTypes]}
           options={bloodType}
-          inputIcon={<FiDroplet size={20} />}
+          inputIcon={<FiDroplet size={20} color="#BF0404" />}
           onChange={(id, newValues) => {
             handleChangeValues(id, newValues);
           }}
@@ -102,13 +101,12 @@ export const FilterCampaings = ({ setFilter }: Props) => {
       </S.InputSelectLimit>
       <S.InputSelectLimit>
         <InputSelectCombo
-          isMultiple
           id="priorities"
           name="priorities"
           placeholder="Prioridade"
           values={[valuesFilter.priorities]}
           options={priorityCampaign}
-          inputIcon={<FiActivity size={20} />}
+          inputIcon={<FiActivity size={20} color="#42aeff" />}
           onChange={(id, newValues) => {
             handleChangeValues(id, newValues);
           }}
@@ -116,13 +114,12 @@ export const FilterCampaings = ({ setFilter }: Props) => {
       </S.InputSelectLimit>
       <S.InputSelectLimit>
         <InputSelectCombo
-          isMultiple
           id="distance"
           name="distance"
           placeholder="Distância (Km)"
           values={[]}
           options={distance}
-          inputIcon={<BiMap size={20} />}
+          inputIcon={<BiMap size={20} color="#F9AF42" />}
           onChange={() => {}}
         />
       </S.InputSelectLimit>
@@ -133,7 +130,7 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           placeholder="Instituição"
           values={[valuesFilter.institution]}
           options={institutions}
-          inputIcon={<FiHome size={20} />}
+          inputIcon={<FiHome size={20} color="#3F51B5" />}
           onChange={(id, newValues) => {
             handleChangeValues(id, newValues);
           }}

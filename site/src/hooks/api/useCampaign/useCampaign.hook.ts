@@ -27,7 +27,12 @@ export const useCampaign = () => {
   };
 
   const listAndFilterCampaigns = async (): Promise<any> => {
-    const { data, status } = await get(`list/order`);
+    const { data, status } = await get(`list/order`, {
+      bloodTypes: ["A+"],
+      institutionId: "",
+      priorities: ["Alta"],
+      title: "",
+    });
     return { data, status };
   };
 
