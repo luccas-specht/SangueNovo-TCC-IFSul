@@ -10,3 +10,4 @@ export { Header } from "./header/header.component";
 export { FabButton } from "./fabButton/fabButton.component";
 export { InputDescription } from "./inputDescription/inputDescription.component";
 export { CampaignCard } from "./campaignCard/campaignCard.component";
+export { LocationMarker } from "./locationMaker/locationMarker.component";

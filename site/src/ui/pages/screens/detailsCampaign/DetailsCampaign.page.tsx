@@ -1,12 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMapEvents,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { IoMdAlert, FiArrowRight } from "react-icons/all";
 
 import { format } from "date-fns";
@@ -15,7 +9,7 @@ import L from "leaflet";
 
 import { useAuthenticated, useCampaign } from "../../../../hooks";
 
-import { Header, FabButton, Button } from "../../../components";
+import { Header, FabButton, Button, LocationMarker } from "../../../components";
 
 import mapMarker from "../../../assets/svgs/map_marker.svg";
 import defaultCampaignImage from "../../../assets/images/default_campaign_image_details.png";
@@ -158,21 +152,21 @@ export const DetailsCampaign = () => {
 
         <S.Map>
           <MapContainer
-            center={{ lat: 51.505, lng: -0.09 }}
-            zoom={13}
-            scrollWheelZoom={false}
+            center={{ lat: -23.5999896, lng: -46.7160137 }}
+            zoom={11}
             style={{ width: "100%", height: "100%" }}
           >
             <TileLayer
               url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
             />
 
+            <LocationMarker />
             <Marker
               icon={happyMapIcon}
-              position={[
-                campaign.institution.address.latitude,
-                campaign.institution.address.longitude,
-              ]}
+              position={{
+                lat: campaign.institution.address.latitude,
+                lng: campaign.institution.address.longitude,
+              }}
             >
               <Popup
                 closeButton={false}

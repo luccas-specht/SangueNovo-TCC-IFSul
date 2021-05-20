@@ -132,7 +132,6 @@ export const Map = styled.div`
     color: #0089a5;
     font-size: 18px;
     font-weight: bold;
-    margin: 8px 12px;
 
     display: flex;
     justify-content: space-between;
