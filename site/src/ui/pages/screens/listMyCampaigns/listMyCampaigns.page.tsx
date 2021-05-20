@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 
 import { toastConfig } from "../../../../configs";
 import { useCampaign, useAuthenticated } from "../../../../hooks";
 
-import { Header, FabButton } from "../../../components";
+import { Header, FabButton, CampaignCard } from "../../../components";
 
 import { WaitingAnimation } from "../../components";
 
@@ -13,6 +14,7 @@ import * as S from "./listMyCampaigns.style";
 export const ListMyCampaigns = () => {
   const { listCampaignsByUserId } = useCampaign();
   const { user } = useAuthenticated();
+  const { push } = useHistory();
 
   const [userCampaigns, setUserCampaigns] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -47,7 +49,25 @@ export const ListMyCampaigns = () => {
   const renderCampaigns = useCallback(() => {
     return userCampaigns.length > 0 ? (
       <S.Main>
-        <S.ContentList>{!user.user.isDonator && renderTab()}</S.ContentList>
+        <S.ContentList>
+          {!user.user.isDonator && renderTab()}
+          <S.WrapperCampaings>
+            {userCampaigns.map((campaign: any) => (
+              <CampaignCard
+                key={campaign.id}
+                id={campaign?.id}
+                title={campaign?.title}
+                avatar={campaign?.avatar}
+                priority={campaign?.priority}
+                bloodType={campaign?.bloodType}
+                currentGoal={campaign?.currentGoal}
+                availableDate={campaign?.availableDate}
+                buttonName="Visualizar campanha"
+                onClick={() => push(`/detalhes-campanha/${campaign.id}`)}
+              />
+            ))}
+          </S.WrapperCampaings>
+        </S.ContentList>
       </S.Main>
     ) : (
       <WaitingAnimation
@@ -55,7 +75,7 @@ export const ListMyCampaigns = () => {
         aprovar ou crie uma campanha de doação."
       />
     );
-  }, [userCampaigns, user.user.isDonator, renderTab]);
+  }, [userCampaigns, user.user.isDonator, renderTab, push]);
 
   return (
     <>

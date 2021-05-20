@@ -9,4 +9,4 @@ export { TooltipAlertError } from "./tooltipAlertError/tooltipAlertError.compone
 export { Header } from "./header/header.component";
 export { FabButton } from "./fabButton/fabButton.component";
 export { InputDescription } from "./inputDescription/inputDescription.component";
-export { CampaignCard } from "./CampaignCard/campaignCard.component";
+export { CampaignCard } from "./campaignCard/campaignCard.component";

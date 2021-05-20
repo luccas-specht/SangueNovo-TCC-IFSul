@@ -18,6 +18,7 @@ type Props = {
   bloodType: string;
   priority: string;
   onClick: () => void;
+  buttonName?: string;
 };
 
 export const CampaignCard = ({
@@ -29,6 +30,7 @@ export const CampaignCard = ({
   bloodType,
   priority,
   onClick,
+  buttonName = "Quero doar",
 }: Props) => {
   const [showButton, setShowButton] = useState(false);
 
@@ -102,7 +104,7 @@ export const CampaignCard = ({
             >
               <IoIosArrowDown size={23} />
             </S.StyledButtonIcon>
-            {showButton && <Button title="Quero Doar" onClick={onClick} />}
+            {showButton && <Button title={buttonName} onClick={onClick} />}
           </S.Footer>
         </S.Right>
       </S.Content>

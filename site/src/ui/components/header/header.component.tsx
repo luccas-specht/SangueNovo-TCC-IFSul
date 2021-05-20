@@ -95,11 +95,11 @@ export const Header = () => {
   return (
     <S.Container>
       <S.LogoImg src={logoImg} alt="logo sangue novo" />
-      <S.Profile to="editar-perfil">
+      <S.Profile to="/editar-perfil">
         <img src={imageDefaultProfile} alt="imagem de perfil" />
         <div>
           <S.WellcomeUser>Bem vindo,</S.WellcomeUser>
-          <S.UserName isDonator={user?.user?.isDonator}>
+          <S.UserName isDonator={!!user?.user?.isDonator}>
             {user?.user?.userName}
           </S.UserName>
         </div>

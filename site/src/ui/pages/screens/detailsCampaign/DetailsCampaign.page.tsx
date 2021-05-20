@@ -1,13 +1,19 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import { IoMdAlert } from "react-icons/all";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
+import { IoMdAlert, FiArrowRight } from "react-icons/all";
 
 import { format } from "date-fns";
 
 import L from "leaflet";
 
-import { useCampaign } from "../../../../hooks";
+import { useAuthenticated, useCampaign } from "../../../../hooks";
 
 import { Header, FabButton, Button } from "../../../components";
 
@@ -19,9 +25,7 @@ import * as S from "./DetailsCampaign.style";
 export const DetailsCampaign = () => {
   const { campaign_id } = useParams<{ campaign_id: string }>();
   const { getCampaignById } = useCampaign();
-
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { user } = useAuthenticated();
 
   const [campaign, setCampaign] = useState({
     id: "",
@@ -46,11 +50,10 @@ export const DetailsCampaign = () => {
     iconUrl: mapMarker,
     iconSize: [58, 68],
     iconAnchor: [29, 68],
-    popupAnchor: [170, 2],
+    popupAnchor: [170, 0],
   });
 
   useEffect(() => {
-    setIsLoading(true);
     const getCampaign = async () => {
       const { data, status } = await getCampaignById(campaign_id);
       if (status === 200) {
@@ -66,7 +69,6 @@ export const DetailsCampaign = () => {
           institution: data?.institution,
         });
       }
-      setIsLoading(false);
     };
     getCampaign();
   }, []);
@@ -148,24 +150,46 @@ export const DetailsCampaign = () => {
               <strong>{campaign.description}</strong>
             </S.Description>
             {renderProgress()}
-            <Button title="Quero Doar" type="button" />
+            {user?.user?.isDonator && (
+              <Button title="Quero Doar" type="button" />
+            )}
           </S.Details>
         </S.Content>
+
         <S.Map>
           <MapContainer
-            center={[-29.7499565, -51.1049697]}
-            zoom={17}
+            center={{ lat: 51.505, lng: -0.09 }}
+            zoom={13}
+            scrollWheelZoom={false}
             style={{ width: "100%", height: "100%" }}
-            minZoom={7}
           >
-            <Marker
-              title={"merlin"}
-              icon={happyMapIcon}
-              position={[-29.7499565, -51.1049697]}
-            />
             <TileLayer
               url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
             />
+
+            <Marker
+              icon={happyMapIcon}
+              position={[
+                campaign.institution.address.latitude,
+                campaign.institution.address.longitude,
+              ]}
+            >
+              <Popup
+                closeButton={false}
+                minWidth={200}
+                maxHeight={240}
+                className="map-popup"
+              >
+                Visualizar rotas
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${campaign.institution.address.latitude}, ${campaign.institution.address.longitude} `}
+                >
+                  <FiArrowRight size={20} color="#FFF" />
+                </a>
+              </Popup>
+            </Marker>
           </MapContainer>
         </S.Map>
       </S.Container>
