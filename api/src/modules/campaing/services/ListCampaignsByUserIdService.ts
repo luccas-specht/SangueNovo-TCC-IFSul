@@ -6,6 +6,8 @@ import { IUserRepository } from '@modules/user/bothUsers/IRepository/IUserReposi
 import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
 import { AppCampaign } from '../infra/typeorm/entities/AppCampaign';
 import { CampaignStatus } from '../infra/typeorm/entities/EnumCampaignStatus';
+import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
+import { AppInstitution } from '@modules/user/institution/infra/typeorm/entities/AppInstitution';
 
 interface Request {
   user_id: string;
@@ -16,9 +18,9 @@ interface Response {
   title: string;
   description: string;
   avatar: string | null;
-  goal: number;
+  currentGoal: string;
   availableDate: Date;
-  typeBlood: string;
+  bloodType: string;
   priority: string;
   creatorUserId: string;
   institution: {
@@ -38,27 +40,42 @@ export class ListCampaignsByUserIdService {
     private userRepository: IUserRepository,
 
     @inject('CampaignRepository')
-    private campaignRepository: ICampaignRepository
+    private campaignRepository: ICampaignRepository,
+
+    @inject('InstitutionRepository')
+    private institutionRepository: IInstitutionRepository
   ) {}
 
-  public async execute({ user_id }: Request): Promise<any[]> {
-    console.log('user', user_id);
+  public async execute({ user_id }: Request): Promise<Response[]> {
     const user = await this.userRepository.findById(user_id);
     if (!user) throw new AppError(MESSAGEINVALID.userNotExists);
+
+    const institution = await this.institutionRepository.findByIdUser(user.id);
 
     const campaigns = await this.campaignRepository.ListAllCampaigns(
       CampaignStatus.ACTIVE
     );
 
-    return campaigns.length > 0 ? this.filterByUserId(campaigns, user_id) : [];
+    return campaigns.length > 0
+      ? this.filterByUserId(campaigns, user_id, institution)
+      : [];
   }
 
-  private filterByUserId(list: AppCampaign[], userId: string): any[] {
-    const filteredList = list.filter((campaign) => campaign.user.id === userId);
+  private filterByUserId(
+    list: AppCampaign[],
+    user_id: string,
+    institution?: AppInstitution
+  ): Response[] {
+    const filteredList = list.filter((campaign) =>
+      !!institution
+        ? campaign.user.id === user_id ||
+          campaign.institution.id === institution.id
+        : campaign.user.id === user_id
+    );
     return this.mapperCampaigns(filteredList);
   }
 
-  private mapperCampaigns(list: AppCampaign[]): any[] {
+  private mapperCampaigns(list: AppCampaign[]): Response[] {
     return list.map((campaign) => ({
       id: campaign.id,
       title: campaign.title,
