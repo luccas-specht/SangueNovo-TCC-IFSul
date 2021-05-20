@@ -8,8 +8,15 @@ import { format } from "date-fns";
 import L from "leaflet";
 
 import { useAuthenticated, useCampaign } from "../../../../hooks";
+import { REQUIREMENTS_DONATING_BLOOD } from "../../../../constants";
 
-import { Header, FabButton, Button, LocationMarker } from "../../../components";
+import {
+  Header,
+  FabButton,
+  Button,
+  LocationMarker,
+  GenericModal,
+} from "../../../components";
 
 import mapMarker from "../../../assets/svgs/map_marker.svg";
 import defaultCampaignImage from "../../../assets/images/default_campaign_image_details.png";
@@ -21,6 +28,8 @@ export const DetailsCampaign = () => {
   const { getCampaignById } = useCampaign();
   const { user } = useAuthenticated();
 
+  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [campaign, setCampaign] = useState({
     id: "",
     title: "",
@@ -112,6 +121,52 @@ export const DetailsCampaign = () => {
     [campaign.currentGoal]
   );
 
+  const renderMap = useCallback(
+    () => (
+      <S.Map>
+        <MapContainer
+          center={{ lat: -23.5999896, lng: -46.7160137 }}
+          zoom={11}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <TileLayer
+            url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+          />
+
+          <LocationMarker />
+          <Marker
+            icon={happyMapIcon}
+            position={{
+              lat: campaign.institution.address.latitude,
+              lng: campaign.institution.address.longitude,
+            }}
+          >
+            <Popup
+              closeButton={false}
+              minWidth={200}
+              maxHeight={240}
+              className="map-popup"
+            >
+              Visualizar rotas
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://www.google.com/maps/dir/?api=1&destination=${campaign.institution.address.latitude}, ${campaign.institution.address.longitude} `}
+              >
+                <FiArrowRight size={20} color="#FFF" />
+              </a>
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </S.Map>
+    ),
+    [
+      happyMapIcon,
+      campaign.institution.address.latitude,
+      campaign.institution.address.longitude,
+    ]
+  );
+
   return (
     <>
       <Header />
@@ -145,49 +200,46 @@ export const DetailsCampaign = () => {
             </S.Description>
             {renderProgress()}
             {user?.user?.isDonator && (
-              <Button title="Quero Doar" type="button" />
+              <Button
+                title="Quero Doar"
+                type="button"
+                onClick={() => setIsOpen(true)}
+              />
             )}
           </S.Details>
         </S.Content>
-
-        <S.Map>
-          <MapContainer
-            center={{ lat: -23.5999896, lng: -46.7160137 }}
-            zoom={11}
-            style={{ width: "100%", height: "100%" }}
-          >
-            <TileLayer
-              url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
-            />
-
-            <LocationMarker />
-            <Marker
-              icon={happyMapIcon}
-              position={{
-                lat: campaign.institution.address.latitude,
-                lng: campaign.institution.address.longitude,
-              }}
-            >
-              <Popup
-                closeButton={false}
-                minWidth={200}
-                maxHeight={240}
-                className="map-popup"
-              >
-                Visualizar rotas
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${campaign.institution.address.latitude}, ${campaign.institution.address.longitude} `}
-                >
-                  <FiArrowRight size={20} color="#FFF" />
-                </a>
-              </Popup>
-            </Marker>
-          </MapContainer>
-        </S.Map>
+        {renderMap()}
       </S.Container>
       <FabButton />
+
+      <GenericModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <S.ConatinerInsideModal>
+          <S.ModalTitle>
+            <span> Requisitos para realizar a doação</span>
+          </S.ModalTitle>
+          <S.WrapperTerms>
+            {REQUIREMENTS_DONATING_BLOOD.map((element) => (
+              <S.ContentTerms>
+                <ul>
+                  {element.title}
+                  {element.requirements.map((element) => (
+                    <li>{element}</li>
+                  ))}
+                </ul>
+              </S.ContentTerms>
+            ))}
+          </S.WrapperTerms>
+          <S.StyledCheckBox>
+            <input
+              type="checkbox"
+              defaultChecked={isChecked}
+              onChange={() => setIsChecked(!isChecked)}
+            />
+            Eu li e estou ciente sobre os requisitos para realizar a doação de
+            sangue
+          </S.StyledCheckBox>
+        </S.ConatinerInsideModal>
+      </GenericModal>
     </>
   );
 };

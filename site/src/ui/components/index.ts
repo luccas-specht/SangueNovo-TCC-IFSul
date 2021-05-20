@@ -11,3 +11,4 @@ export { FabButton } from "./fabButton/fabButton.component";
 export { InputDescription } from "./inputDescription/inputDescription.component";
 export { CampaignCard } from "./campaignCard/campaignCard.component";
 export { LocationMarker } from "./locationMaker/locationMarker.component";
+export { GenericModal } from "./genericModal/genericModal.component";

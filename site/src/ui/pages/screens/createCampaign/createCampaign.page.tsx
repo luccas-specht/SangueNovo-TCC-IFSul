@@ -132,7 +132,7 @@ export const CreateCampaign = () => {
     );
 
     if (status === 200) {
-      push("minhas-campanhas");
+      push("/listar-campanhas");
     } else {
       toast.error(`${data?.message}`, toastConfig);
     }

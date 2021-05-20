@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { shade } from "polished";
+
 interface ContentProps {
   color: string;
   high: boolean;
@@ -247,4 +249,106 @@ export const StyledCurrentGoal = styled.text`
   font-family: "Paytone One", sans-serif;
   font-size: 30px;
   align-items: center;
+`;
+
+export const ConatinerInsideModal = styled.div`
+  width: 100%;
+  height: 380px;
+  max-height: 380px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StyledCheckBox = styled.div`
+  width: 100%;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+
+  color: #666360;
+
+  font-size: 15px;
+  line-height: 18px;
+
+  input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+`;
+
+export const WrapperTerms = styled.div`
+  width: 100%;
+  max-height: 280px;
+  align-self: center;
+  margin-top: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.5);
+
+  &::-webkit-scrollbar-track {
+    border: transparent;
+    padding: 2px 0;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px ${({ theme }) => theme.colors.text};
+    background-color: ${({ theme }) => shade(-0.6, theme.colors.text)};
+  }
+`;
+
+export const ContentTerms = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  padding-top: 10px;
+  color: #666360;
+
+  ul {
+    font-family: "Paytone One", sans-serif;
+    font-size: 18px;
+    line-height: 20px;
+    list-style: circle;
+  }
+
+  ul :last-child {
+    margin-bottom: 15px;
+  }
+
+  li {
+    color: #666360;
+    max-width: 550px;
+    text-align: left;
+    margin-top: 5px;
+    font-size: 15px;
+    line-height: 18px;
+  }
+`;
+
+export const ModalTitle = styled.div`
+  display: flex;
+  align-items: flex-start;
+  span {
+    font-family: "Paytone One", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #333333;
+  }
 `;
