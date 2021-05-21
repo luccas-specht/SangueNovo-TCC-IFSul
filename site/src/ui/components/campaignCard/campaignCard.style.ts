@@ -92,7 +92,7 @@ export const WrapperContent = styled.div`
 `;
 
 export const CampaignDetails = styled.div`
-  width: 200px;
+  width: 270px;
   height: 100%;
   display: flex;
   align-items: flex-end;

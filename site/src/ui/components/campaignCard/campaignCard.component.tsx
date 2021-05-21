@@ -42,7 +42,7 @@ export const CampaignCard = ({
   const renderPriority = useCallback(() => {
     const colors = {
       Alta: "#BF0404;",
-      Média: "#FF9000 ",
+      Media: "#FF9000 ",
       Baixa: "#6DBA73",
     } as any;
 

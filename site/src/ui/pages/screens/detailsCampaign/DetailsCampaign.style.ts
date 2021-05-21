@@ -154,6 +154,7 @@ export const Title = styled.h1`
   font-weight: 400;
   line-height: 35px;
   font-style: normal;
+  text-align: center;
   color: ${({ theme }) => theme.colors.titleColorCampaignCard};
 `;
 
