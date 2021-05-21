@@ -67,22 +67,13 @@ export const Agroup = styled.div`
 `;
 
 export const Description = styled.div`
-  width: 70%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  white-space: normal;
-  text-align: center;
-  overflow: hidden;
+  max-width: 400px;
+  font-size: 17px;
+  line-height: 23px;
 
-  strong {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 23px;
-    font-weight: 400px;
-    color: ${({ theme }) => theme.colors.text};
-  }
+  font-style: normal;
+  text-align: left;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const Date = styled.div`

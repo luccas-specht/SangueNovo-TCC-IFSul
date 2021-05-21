@@ -195,9 +195,7 @@ export const DetailsCampaign = () => {
                 </div>
               </S.Agroup>
             </S.MainInformation>
-            <S.Description>
-              <strong>{campaign.description}</strong>
-            </S.Description>
+            <S.Description>{campaign.description}</S.Description>
             {renderProgress()}
             {user?.user?.isDonator && (
               <Button
@@ -236,7 +234,7 @@ export const DetailsCampaign = () => {
               onChange={() => setIsChecked(!isChecked)}
             />
             Eu li e estou ciente sobre os requisitos para realizar a doação de
-            sangue
+            sangue.
           </S.StyledCheckBox>
         </S.ConatinerInsideModal>
       </GenericModal>

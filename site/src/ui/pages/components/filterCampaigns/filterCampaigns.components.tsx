@@ -16,7 +16,11 @@ import {
 
 import { InputText, InputSelectCombo, Button } from "../../../components";
 
-import { BLOOD_TYPE, DISTANCE, PRIORITY_CAMPAIGN } from "../../../../constants";
+import {
+  BLOOD_TYPE_TO_FILTER,
+  DISTANCE,
+  PRIORITY_CAMPAIGN,
+} from "../../../../constants";
 import { useInstitution } from "../../../../hooks";
 
 import * as S from "./filterCampaigns.style";
@@ -117,7 +121,7 @@ export const FilterCampaings = ({ setFilter }: Props) => {
           name="bloodTypes"
           placeholder="Tipo de sangue"
           values={[valuesFilter.bloodType]}
-          options={BLOOD_TYPE}
+          options={BLOOD_TYPE_TO_FILTER}
           inputIcon={<FiDroplet size={20} color="#BF0404" />}
           onChange={(id, newValues) => {
             handleChangeValues(id, newValues);
