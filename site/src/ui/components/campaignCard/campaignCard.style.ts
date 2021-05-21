@@ -69,7 +69,7 @@ export const Title = styled.h1`
   margin-top: -7px;
 
   font-family: "Paytone One", sans-serif;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
   line-height: 35px;
   font-style: normal;

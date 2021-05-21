@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { toastConfig } from "../../../../configs";
 import { useCampaign, useAuthenticated } from "../../../../hooks";
 
-import { Header, FabButton, CampaignCard } from "../../../components";
+import { Header, FabButton, CampaignCard, Loader } from "../../../components";
 
 import { WaitingAnimation } from "../../components";
 
@@ -75,13 +75,13 @@ export const ListMyCampaigns = () => {
         aprovar ou crie uma campanha de doação."
       />
     );
-  }, [userCampaigns, user.user.isDonator, renderTab, push]);
+  }, [userCampaigns, user?.user?.isDonator, renderTab, push]);
 
   return (
     <>
       <ToastContainer />
       <Header />
-      <S.Container>{isLoading ? <div /> : renderCampaigns()}</S.Container>
+      <S.Container>{isLoading ? <Loader /> : renderCampaigns()}</S.Container>
       <FabButton />
     </>
   );

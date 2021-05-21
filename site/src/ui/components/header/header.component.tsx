@@ -108,15 +108,15 @@ export const Header = () => {
         {renderDivs(3)}
       </S.Burguer>
       <S.Ul open={isOpenBurguerMenu} isDonator={!!user?.user?.isDonator}>
-        {navegations.map(({ icon, title, to }) => (
+        {navegations?.map((navegation) => (
           <li>
-            {to ? (
-              <Link to={to}>
-                {icon}
-                {title}
+            {navegation?.to ? (
+              <Link to={navegation?.to}>
+                {navegation?.icon}
+                {navegation?.title}
               </Link>
             ) : (
-              icon
+              navegation?.icon
             )}
           </li>
         ))}
