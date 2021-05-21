@@ -75,8 +75,12 @@ export class CreateCampaignService {
     )
       throw new AppError(MESSAGEINVALID.invalidTypeBlood);
 
+    if (!title) throw new AppError(MESSAGEINVALID.campaignTitleNotExist);
+
+    if (!description)
+      throw new AppError(MESSAGEINVALID.campaignDescriptionNotExist);
+
     /*TODO: não pode ser possivel criar uma campanha com data menor que a atual*/
-    /*TODO: não pode ser possivel criar uma campanha data igual a atual*/
 
     const campaign = {
       title: title,

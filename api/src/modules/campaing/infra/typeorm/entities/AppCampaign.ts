@@ -33,10 +33,10 @@ export class AppCampaign {
   })
   avatar: string;
 
-  @Column({ type: 'date' })
+  @Column('date')
   availableDate: Date;
 
-  @Column({ type: 'int' })
+  @Column('float')
   goal: number;
 
   @Column({

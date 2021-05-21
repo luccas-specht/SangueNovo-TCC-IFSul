@@ -25,4 +25,6 @@ export const MESSAGEINVALID = {
     'A nova senha deve ser diferente da senha atual.',
   institutionNotMatchWithCampaign:
     'A instituição não está atrelada a campanha.',
+  campaignTitleNotExist: 'Campanha deve ter uma descrição.',
+  campaignDescriptionNotExist: 'Campanha deve ter uma descrição.',
 };
