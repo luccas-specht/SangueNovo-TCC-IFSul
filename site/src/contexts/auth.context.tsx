@@ -11,10 +11,8 @@ type AuthProviderData = {
 
 type AuthContextData = {
   user: AuthUser;
-  authLastAuthenticatedTime: any;
   signOut(): void;
   authenticatedUser(prop: AuthUser): void;
-  lastAuthenticatedTime(date: any): void;
 };
 
 export const AuthContext = createContext<AuthContextData>(
@@ -33,24 +31,10 @@ export const AuthProvider = ({ children }: AuthProviderData) => {
     return {} as AuthUser;
   });
 
-  const [authLastAuthenticatedTime, setAuthLastAuthenticatedTime] = useState(
-    () => {
-      const lastTimeAuthenticated = localStorage.getItem(
-        "@access_lastTimeAuthenticated"
-      );
-      return lastTimeAuthenticated ?? null;
-    }
-  );
-
   const authenticatedUser = ({ token, user }: AuthUser): void => {
     localStorage.setItem("@access_tokenSangueNovo", token);
     localStorage.setItem("@access_tokenUser", JSON.stringify(user));
     setAuthUser({ token, user });
-  };
-
-  const lastAuthenticatedTime = (date: any): void => {
-    localStorage.setItem("@access_lastTimeAuthenticated", date);
-    setAuthLastAuthenticatedTime(date);
   };
 
   const signOut = (): void => {
@@ -64,10 +48,8 @@ export const AuthProvider = ({ children }: AuthProviderData) => {
     <AuthContext.Provider
       value={{
         user: authUser,
-        authLastAuthenticatedTime,
         signOut,
         authenticatedUser,
-        lastAuthenticatedTime,
       }}
     >
       {children}
