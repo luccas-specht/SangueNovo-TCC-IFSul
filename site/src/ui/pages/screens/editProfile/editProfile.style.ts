@@ -4,23 +4,6 @@ import { shade } from "polished";
 
 import { Link } from "react-router-dom";
 
-import { device } from "../../../../constants";
-
-export const Header = styled.header`
-  display: flex;
-  width: 100%;
-
-  height: 80px;
-  background-color: ${({ theme }) => theme.colors.colorHeader};
-  align-items: center;
-  padding: 0px 100px;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-
-  @media ${device.mobileL()} {
-    padding: 0px 30px;
-  }
-`;
-
 export const Back = styled(Link)`
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -40,7 +23,7 @@ export const Back = styled(Link)`
 
 export const Content = styled.div`
   width: 100%;
-  height: 80%;
+  height: 90%;
   display: flex;
   align-items: center;
 `;
@@ -59,6 +42,7 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 30px;
+  transition: 1s;
 
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.backgroundSecudary};

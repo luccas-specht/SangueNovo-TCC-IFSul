@@ -15,6 +15,7 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
   max-height: 56px;
+  transition: 1s;
 
   & + div {
     margin-top: 10px;

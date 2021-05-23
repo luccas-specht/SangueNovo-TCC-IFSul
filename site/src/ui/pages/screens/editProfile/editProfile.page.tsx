@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { FiLock, FiUser, BiPhone, FiCamera, BiMap } from "react-icons/all";
 
-import { FiArrowLeft } from "react-icons/fi";
 import { masks } from "../../../../constants";
 import { useFormik } from "formik";
 
@@ -15,11 +14,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
-  FabTheme,
   InputPassword,
   InputText,
   Button,
   FabButton,
+  Header,
 } from "../../../components";
 
 import * as S from "./editProfile.style";
@@ -76,13 +75,8 @@ export const EditProfile = () => {
 
   return (
     <>
+      <Header />
       <ToastContainer />
-      <S.Header>
-        <S.Back to="listar-campanhas">
-          <FiArrowLeft size={30} />
-        </S.Back>
-        <FabTheme />
-      </S.Header>
       <S.Content>
         <S.Wrapper>
           <S.Form onSubmit={formik.handleSubmit}>

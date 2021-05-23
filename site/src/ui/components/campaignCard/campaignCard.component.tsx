@@ -40,14 +40,14 @@ export const CampaignCard = ({
   );
 
   const renderPriority = useCallback(() => {
-    const colors = {
+    const COLORS = {
       Alta: "#BF0404;",
       Media: "#FF9000 ",
       Baixa: "#6DBA73",
     } as any;
 
     return (
-      <S.ContentPriority color={colors[priority]} high={priority === "Alta"}>
+      <S.ContentPriority color={COLORS[priority]} high={priority === "Alta"}>
         <span>
           Urgência: {priority}
           {priority === "Alta" && <IoMdAlert size={22} />}

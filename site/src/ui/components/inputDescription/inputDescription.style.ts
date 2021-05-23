@@ -14,6 +14,7 @@ export const Container = styled.div<ContainerProps>`
   color: ${(props) => props.theme.colors.text};
   display: flex;
   height: auto;
+  transition: 1s;
 
   & + div {
     margin-top: 10px;

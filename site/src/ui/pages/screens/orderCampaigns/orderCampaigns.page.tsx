@@ -42,7 +42,7 @@ export const OrderCampaigns = () => {
                 <S.WrapperCampaings>
                   {campaigns.map((campaign: any) => (
                     <CampaignCard
-                      key={campaign.id}
+                      key={campaign?.id}
                       id={campaign?.id}
                       title={campaign?.title}
                       avatar={campaign?.avatar}
@@ -50,12 +50,18 @@ export const OrderCampaigns = () => {
                       bloodType={campaign?.bloodType}
                       currentGoal={campaign?.currentGoal}
                       availableDate={campaign?.availableDate}
-                      onClick={() => push(`/detalhes-campanha/${campaign.id}`)}
+                      onClick={() => push(`/detalhes-campanha/${campaign?.id}`)}
                     />
                   ))}
                 </S.WrapperCampaings>
               ) : (
-                <WaitingAnimation message="Não há nenhuma campanha de doação com essas características." />
+                <WaitingAnimation
+                  message={
+                    filter
+                      ? "Não há campanhas de doações com essas características, tente filtrar por outras características."
+                      : "Sem campanhas de doações disponíveis, crie sua campanha ou procure por alguma em específico!"
+                  }
+                />
               )}
             </S.ContentList>
           </S.Main>

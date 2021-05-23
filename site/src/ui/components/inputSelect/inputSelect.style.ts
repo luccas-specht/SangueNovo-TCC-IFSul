@@ -8,6 +8,7 @@ export const StyledAutocomplete = styled(Autocomplete)`
   position: relative;
   border-radius: 7px;
   margin-bottom: 10px;
+  transition: 1s;
 
   .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
     padding-left: 0 !important;

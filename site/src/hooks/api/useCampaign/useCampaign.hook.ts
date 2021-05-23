@@ -43,10 +43,18 @@ export const useCampaign = () => {
     return { data, status };
   };
 
+  const listCampaignsByCampaignStatus = async (
+    campaign_status: string
+  ): Promise<any> => {
+    const { data, status } = await get(`/list/status/${campaign_status}`);
+    return { data, status };
+  };
+
   return {
     registerCampaign,
     listCampaignsByUserId,
     listAndFilterCampaigns,
     getCampaignById,
+    listCampaignsByCampaignStatus,
   };
 };

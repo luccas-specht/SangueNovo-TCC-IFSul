@@ -23,6 +23,7 @@ export const Container = styled.header`
   align-items: center;
   padding: 0px 100px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+  transition: 1s;
 
   @media ${device.mobileL()} {
     padding: 0;

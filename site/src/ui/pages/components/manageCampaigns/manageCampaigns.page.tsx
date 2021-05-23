@@ -13,9 +13,9 @@ import { Header, FabButton, CampaignCard, Loader } from "../../../components";
 
 import { WaitingAnimation } from "../../components";
 
-import * as S from "./listMyCampaigns.style";
+import * as S from "./manageCampaigns.style";
 
-export const ListMyCampaigns = () => {
+export const MangeCampaigns = () => {
   const { listCampaignsByUserId } = useCampaign();
   const { listRequestedCampaigns } = useInstitution();
 
