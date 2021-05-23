@@ -11,7 +11,7 @@ campaignRouter.use(ensureAuthenticated);
 campaignRouter.post('/', campaignController.createCampaign);
 campaignRouter.get('/list/order', campaignController.orderCampaign);
 campaignRouter.get(
-  '/list/status/:status',
+  '/list/status/:institution_id/:status',
   campaignController.listCampaignsByStatus
 );
 campaignRouter.get('/list/:user_id', campaignController.listCampaign);

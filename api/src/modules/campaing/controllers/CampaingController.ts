@@ -88,12 +88,15 @@ export class CampaignController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { status } = request.params;
+    const { institution_id, status } = request.params;
 
     const listCampaignsByStatusService = container.resolve(
       ListCampaignsByStatusService
     );
-    const campaigns = await listCampaignsByStatusService.execute({ status });
+    const campaigns = await listCampaignsByStatusService.execute({
+      status,
+      institution_id,
+    });
     return response.json(campaigns).status(200);
   }
 }
