@@ -3,5 +3,7 @@ export { FormForgotPassword } from "./formForgotPassword/formForgotPassword.comp
 export { FormInstitutionRegister } from "./formInstitutionRegister/formInstitutionRegister.component";
 export { FormLogin } from "./formLogin/formLogin.component";
 export { FormResetPassword } from "./formResetPassword/formResetPassword.component";
-export { FilterCampaings } from "./filterCampaigns/filterCampaigns.components";
+export { FilterCampaings } from "./filterCampaigns/filterCampaigns.component";
 export { WaitingAnimation } from "./waitingAnimation/waitingAnimation.component";
+export { ManageCampaigns } from "./manageCampaigns/manageCampaigns.component";
+export { DonatorCampaigns } from "./donatorCampaigns/donatorCampaigns.component";

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { shade } from "polished";
 
 export const Container = styled.div`
@@ -17,53 +17,9 @@ export const Main = styled.main`
   flex-direction: column;
 `;
 
-export const Ul = styled.ul<{ active: boolean }>`
-  padding-top: 50px;
-  width: 30%;
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  li {
-    font-size: 25px;
-    font-weight: 900;
-    line-height: 25px;
-  }
-
-  button {
-    background: none;
-    border: none;
-    color: none;
-
-    font-style: normal;
-    font-size: 16px;
-    line-height: 25px;
-    text-align: center;
-    font-weight: 900;
-
-    ${({ active }) =>
-      active
-        ? css`
-            &:first-child {
-              color: ${({ theme }) => theme.colors.tabColor};
-              border-radius: 2px;
-              border-bottom: 2.5px solid ${({ theme }) => theme.colors.tabColor};
-            }
-          `
-        : css`
-            &:last-child {
-              color: ${({ theme }) => theme.colors.tabColor};
-              border-radius: 2px;
-              border-bottom: 2.5px solid ${({ theme }) => theme.colors.tabColor};
-            }
-          `}
-  }
-`;
-
 export const ContentList = styled.div`
   height: 100%;
-  width: 60%;
+  width: 50%;
   max-width: 1500px;
   max-height: 720px;
   display: flex;

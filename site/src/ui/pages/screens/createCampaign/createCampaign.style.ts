@@ -15,7 +15,6 @@ export const Content = styled.div`
   height: 100%;
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   display: flex;
-  flex-direction: row;
 
   @media ${device.mobileL()} {
     flex-direction: column;
@@ -41,6 +40,7 @@ export const Box = styled.div`
   flex-direction: column;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.backgroundSecudary};
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.3);
 `;
 
 export const Form = styled.form`

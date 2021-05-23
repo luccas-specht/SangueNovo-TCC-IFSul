@@ -3,28 +3,22 @@ import { useHistory } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 
 import { toastConfig } from "../../../../configs";
-import {
-  useCampaign,
-  useAuthenticated,
-  useInstitution,
-} from "../../../../hooks";
+import { useCampaign, useAuthenticated } from "../../../../hooks";
 
 import { Header, FabButton, CampaignCard, Loader } from "../../../components";
 
 import { WaitingAnimation } from "../../components";
 
-import * as S from "./manageCampaigns.style";
+import * as S from "./donatorCampaigns.style";
 
-export const MangeCampaigns = () => {
+export const DonatorCampaigns = () => {
   const { listCampaignsByUserId } = useCampaign();
-  const { listRequestedCampaigns } = useInstitution();
 
   const { user } = useAuthenticated();
   const { push } = useHistory();
 
   const [userCampaigns, setUserCampaigns] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [tabActive, setTabActive] = useState<boolean>(true);
 
   useEffect(() => {
     const handleListCampaign = async () => {
@@ -38,25 +32,10 @@ export const MangeCampaigns = () => {
     handleListCampaign();
   }, []);
 
-  const renderTab = useCallback(
-    () => (
-      <S.Ul active={tabActive}>
-        <button onClick={() => setTabActive(true)}>
-          <li>Ativas</li>
-        </button>
-        <button onClick={() => setTabActive(false)}>
-          <li>Solicitadas</li>
-        </button>
-      </S.Ul>
-    ),
-    [tabActive]
-  );
-
   const renderCampaigns = useCallback(() => {
     return userCampaigns.length > 0 ? (
       <S.Main>
         <S.ContentList>
-          {!user.user.isDonator && renderTab()}
           <S.WrapperCampaings>
             {userCampaigns.map((campaign: any) => (
               <CampaignCard
@@ -76,19 +55,19 @@ export const MangeCampaigns = () => {
         </S.ContentList>
       </S.Main>
     ) : (
-      <WaitingAnimation
-        message="Sem campanhas ativas no momento, espere a instituição responsável
+      <S.WrapperAnimation>
+        <WaitingAnimation
+          message="Sem campanhas ativas no momento, espere a instituição responsável
         aprovar ou crie uma campanha de doação."
-      />
+        />
+      </S.WrapperAnimation>
     );
-  }, [userCampaigns, user?.user?.isDonator, renderTab, push]);
+  }, [userCampaigns, push]);
 
   return (
     <>
       <ToastContainer />
-      <Header />
       <S.Container>{isLoading ? <Loader /> : renderCampaigns()}</S.Container>
-      <FabButton />
     </>
   );
 };

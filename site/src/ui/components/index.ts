@@ -13,3 +13,4 @@ export { CampaignCard } from "./campaignCard/campaignCard.component";
 export { LocationMarker } from "./locationMaker/locationMarker.component";
 export { GenericModal } from "./genericModal/genericModal.component";
 export { Loader } from "./loader/loader.component";
+export { CampaignRequestedCard } from "./campaignRequestedCard/campaignRequestedCard.component";
