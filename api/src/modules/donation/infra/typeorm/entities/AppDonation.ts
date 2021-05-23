@@ -6,16 +6,16 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  OneToMany,
   Column,
 } from 'typeorm';
+import { DonationStatus } from './EnumDonationStatus';
 
 @Entity('tb_donation')
 export class AppDonation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'date' })
   appointment_date: Date;
 
   @ManyToOne(() => AppDonator, (appDonator) => appDonator.donations)
@@ -23,6 +23,13 @@ export class AppDonation {
 
   @ManyToOne(() => AppCampaign, (appCampaign) => appCampaign.donations)
   campaign: AppCampaign;
+
+  @Column({
+    type: 'enum',
+    enum: DonationStatus,
+    default: DonationStatus.REQUESTED,
+  })
+  donationStatus: DonationStatus;
 
   @CreateDateColumn()
   created_at: Date;

@@ -6,6 +6,7 @@ import { CreateCampaignService } from '@modules/campaing/services/CreateCampaign
 import { ListCampaignsByUserIdService } from '@modules/campaing/services/ListCampaignsByUserIdService';
 import { OrderCampaignsService } from '../services/OrderCampaignsService';
 import { FindByCampaignIdService } from '../services/FindByCampaignIdService';
+import { ListCampaignsByStatusService } from '../services/ListCampaignsByStatusService';
 
 export class CampaignController {
   public async createCampaign(
@@ -80,6 +81,19 @@ export class CampaignController {
     const campaigns = await findCampaignsByIdServide.execute({
       campaign_id,
     });
+    return response.json(campaigns).status(200);
+  }
+
+  public async listCampaignsByStatus(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { status } = request.params;
+
+    const listCampaignsByStatusService = container.resolve(
+      ListCampaignsByStatusService
+    );
+    const campaigns = await listCampaignsByStatusService.execute({ status });
     return response.json(campaigns).status(200);
   }
 }

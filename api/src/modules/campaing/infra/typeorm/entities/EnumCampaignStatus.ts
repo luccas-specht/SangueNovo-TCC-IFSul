@@ -1,6 +1,6 @@
 export enum CampaignStatus {
   ACTIVE = 'Ativo',
   REQUESTED = 'Solicitado',
-  FINISHED = 'Concluído',
+  FINISHED = 'Finalizado',
   REFUSED = 'Recusado',
 }
