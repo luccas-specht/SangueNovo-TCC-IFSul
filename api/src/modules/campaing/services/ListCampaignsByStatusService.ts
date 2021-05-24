@@ -61,7 +61,7 @@ export class ListCampaignsByStatusService {
         campaign.donations.length
       ),
       priority: campaign.priority,
-      typeBlood: campaign.typeBlood,
+      bloodType: campaign.typeBlood,
       description: campaign.description,
       availableDate: campaign.availableDate,
       campaignStatus: campaign.campaignStatus,
