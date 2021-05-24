@@ -10,17 +10,15 @@ interface CardContainerProps {
 }
 
 export const CardContainer = styled.main<CardContainerProps>`
+  box-sizing: border-box;
   width: 100%;
   max-width: 850px;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.backgroundCampaignCard};
   margin-top: 10px;
+  box-shadow: 2px 2px 10px
+    ${({ theme }) => theme.colors.colorBoxShadowCampaignCard};
   transition: 1s;
-
-  &:hover {
-    box-sizing: border-box;
-    box-shadow: 0px -2px 8px rgba(150, 150, 150, 0.25);
-  }
 
   ${({ isShowButton }) =>
     isShowButton
@@ -157,7 +155,7 @@ export const Footer = styled.footer`
   padding-top: 13px;
 
   button {
-    max-width: 500px;
+    width: 100%;
   }
 `;
 
@@ -165,7 +163,7 @@ export const StyledButtonIcon = styled.button<{ isShowButton: boolean }>`
   border: none;
   background: none;
   color: none;
-  padding-top: 10px;
+  padding-top: 15px;
 
   svg {
     ${({ isShowButton }) =>

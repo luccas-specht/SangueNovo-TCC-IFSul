@@ -7,3 +7,5 @@ export { FilterCampaings } from "./filterCampaigns/filterCampaigns.component";
 export { WaitingAnimation } from "./waitingAnimation/waitingAnimation.component";
 export { ManageCampaigns } from "./manageCampaigns/manageCampaigns.component";
 export { DonatorCampaigns } from "./donatorCampaigns/donatorCampaigns.component";
+export { ManageAppointments } from "./manageAppointments/manageAppointments.component";
+export { DonatorAppointments } from "./donatorAppointments/donatorAppointments.component";

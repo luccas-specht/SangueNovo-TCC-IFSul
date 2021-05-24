@@ -21,5 +21,6 @@ export const dark: DefaultTheme = {
     backgroundCampaignCard: "#312E38;",
     titleColorCampaignCard: "#FFFFFF",
     colorProgressBar: "#42AEFF",
+    colorBoxShadowCampaignCard: "#28262e",
   },
 };

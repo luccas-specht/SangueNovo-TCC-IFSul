@@ -21,6 +21,7 @@ declare module "styled-components" {
       backgroundCampaignCard: string;
       titleColorCampaignCard: string;
       colorProgressBar: string;
+      colorBoxShadowCampaignCard: string;
     };
   }
 }

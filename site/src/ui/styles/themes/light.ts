@@ -21,5 +21,6 @@ export const light: DefaultTheme = {
     backgroundCampaignCard: "#FFFFFF",
     titleColorCampaignCard: "#333333",
     colorProgressBar: "#F9AF42",
+    colorBoxShadowCampaignCard: "rgba(150, 150, 150, 0.35)",
   },
 };
