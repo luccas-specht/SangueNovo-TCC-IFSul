@@ -28,7 +28,7 @@ export const ManageCampaigns = () => {
     const handleListCampaign = async () => {
       setIsLoading(true);
       const { data, status } = await listCampaignsByCampaignStatus(
-        user.user.id,
+        user?.user?.id,
         tabActive ? "Ativo" : "Solicitado"
       );
       status === 200
@@ -37,7 +37,7 @@ export const ManageCampaigns = () => {
       setIsLoading(false);
     };
     handleListCampaign();
-  }, [tabActive]);
+  }, [tabActive, user, user?.user?.id]);
 
   const renderTab = useCallback(
     () => (
@@ -82,6 +82,7 @@ export const ManageCampaigns = () => {
                     avatar={campaign?.avatar}
                     priority={campaign?.priority}
                     bloodType={campaign?.bloodType}
+                    description={campaign?.description}
                     availableDate={campaign?.availableDate}
                   />
                 )

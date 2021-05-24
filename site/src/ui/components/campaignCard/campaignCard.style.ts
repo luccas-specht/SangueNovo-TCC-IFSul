@@ -171,9 +171,11 @@ export const StyledButtonIcon = styled.button<{ isShowButton: boolean }>`
     ${({ isShowButton }) =>
       isShowButton
         ? css`
+            transition: 1s;
             transform: rotate(180deg);
           `
         : css`
+            transition: 1s;
             transform: rotate(0deg);
           `}
     cursor: pointer;

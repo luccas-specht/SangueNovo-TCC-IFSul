@@ -1,7 +1,7 @@
 import { useRequest } from "../useRequest/useRequest.hook";
 
 export const useInstitution = () => {
-  const { put, get } = useRequest("/institution");
+  const { put, get, patch } = useRequest("/institution");
 
   const listInstitution = async (): Promise<any> => {
     const { data, status } = await get("list");
@@ -32,9 +32,23 @@ export const useInstitution = () => {
     return { data, status };
   };
 
+  const updateStatusCampaign = async (
+    institutionId: string,
+    campaignId: string,
+    newStatus: string
+  ): Promise<any> => {
+    const { data, status } = await patch("update/campaign", {
+      institution_id: institutionId,
+      campaign_id: campaignId,
+      new_status: newStatus,
+    });
+    return { data, status };
+  };
+
   return {
     listInstitution,
     listRequestedCampaigns,
     updateInstitutionProfile,
+    updateStatusCampaign,
   };
 };

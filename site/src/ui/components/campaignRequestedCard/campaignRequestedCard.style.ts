@@ -28,7 +28,7 @@ export const CardContainer = styled.main<CardContainerProps>`
           height: 300px;
         `
       : css`
-          height: 200px;
+          height: 210px;
         `}
 `;
 
@@ -64,21 +64,35 @@ export const Right = styled.aside`
 `;
 
 export const Title = styled.h1`
-  min-height: 60px;
   align-self: flex-start;
-  margin-top: -7px;
+  margin-top: -12px;
 
   font-family: "Paytone One", sans-serif;
   font-size: 28px;
   font-weight: 400;
-  line-height: 35px;
+
   font-style: normal;
   color: ${({ theme }) => theme.colors.titleColorCampaignCard};
 `;
 
+export const Description = styled.div`
+  font-style: normal;
+  margin-top: 10px;
+
+  font-weight: 600;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 23px;
+  width: 100%;
+  max-width: 800px;
+  text-align: start;
+
+  color: ${({ theme }) => theme.colors.titleColor};
+`;
+
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -141,11 +155,14 @@ export const ContentPriority = styled.div<ContentProps>`
 `;
 
 export const BloodType = styled.text`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 26px;
-  color: ${({ theme }) => theme.colors.text};
+  font-size: 15px;
+  span {
+    color: #bf0404;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 26px;
+  }
 `;
 
 export const Footer = styled.footer`
@@ -165,15 +182,20 @@ export const StyledButtonIcon = styled.button<{ isShowButton: boolean }>`
   border: none;
   background: none;
   color: none;
-  padding-top: 10px;
+  padding-top: 7%;
+  height: 100%;
 
   svg {
+    max-width: 23px;
+    max-height: 23px;
     ${({ isShowButton }) =>
       isShowButton
         ? css`
+            transition: 1s;
             transform: rotate(180deg);
           `
         : css`
+            transition: 1s;
             transform: rotate(0deg);
           `}
     cursor: pointer;
@@ -181,60 +203,21 @@ export const StyledButtonIcon = styled.button<{ isShowButton: boolean }>`
   }
 `;
 
-export const ContentProgress = styled.div`
-  height: 20px;
-  width: 90%;
-  position: relative;
+export const WrapperButtons = styled.div`
   display: flex;
-  align-self: flex-start;
-  align-items: center;
-`;
-
-export const Progress = styled.div`
-  background-color: #c4c4c4;
-  border-radius: 10px;
-  height: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
   width: 100%;
-  max-width: 450px;
-  align-self: flex-start;
-
-  span {
-    color: #c4c4c4;
-    font-style: normal;
-    line-height: 25px;
-  }
-`;
-
-export const ProgressDone = styled.div`
-  background: linear-gradient(
-    to left,
-    ${({ theme }) => theme.colors.colorProgressBar},
-    ${({ theme }) => theme.colors.colorProgressBar}
-  );
-  border-radius: 10px;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
-  width: 0;
-  opacity: 0;
-  transition: 1s ease 0.3s;
-
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-  color: ${({ theme }) => theme.colors.white};
 `;
 
-export const StyledCurrentGoal = styled.text`
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-  color: ${({ theme }) => theme.colors.colorProgressBar};
-  font-family: "Paytone One", sans-serif;
-  font-size: 36px;
-  line-height: 44px;
-  align-items: center;
+export const StyledButton = styled.button<{ color: string }>`
+  width: 45%;
+  height: 56px;
+  border: none;
+  border-radius: 10px;
+  background-color: ${({ color }) => color};
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: 500;
+  font-size: 18px;
 `;
