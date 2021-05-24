@@ -10,6 +10,7 @@ import { toastConfig } from "../../../configs";
 import defaultCampaignImage from "../../assets/images/default_campaign_image.png";
 
 import * as S from "./campaignRequestedCard.style";
+import { useHistory } from "react-router";
 
 type Props = {
   id: string;
@@ -33,6 +34,7 @@ export const CampaignRequestedCard = ({
   const [showButtons, setShowButtons] = useState(false);
   const { updateStatusCampaign } = useInstitution();
   const { user } = useAuthenticated();
+  const { push } = useHistory();
 
   const dateFormat = useCallback(
     (date: any) => format(new Date(date), "dd/MM/yyyy"),
@@ -64,12 +66,12 @@ export const CampaignRequestedCard = ({
         campaignStatus
       );
       if (status === 200) {
-        console.log("atualizar o pai");
+        push("/listar-campanhas");
       } else {
         toast.error(`${data?.message}`, toastConfig);
       }
     },
-    [id, user?.user?.id, updateStatusCampaign]
+    [id, user?.user?.id, updateStatusCampaign, push]
   );
 
   const renderButtons = useCallback(
