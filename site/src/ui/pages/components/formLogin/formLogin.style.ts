@@ -14,6 +14,9 @@ export const Container = styled.div`
   align-items: center;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.backgroundSecudary};
+  box-shadow: 2px 2px 10px
+    ${({ theme }) => theme.colors.colorBoxShadowCampaignCard};
+  transition: 1s;
 
   img {
     margin: 25px 0;

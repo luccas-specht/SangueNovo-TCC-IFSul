@@ -17,7 +17,7 @@ export const Modal = styled.div`
 export const Container = styled.div`
   background-color: #fff;
   color: #000;
-  width: 40%;
+  width: 35%;
   height: 45%;
   border-radius: 20px;
 `;
@@ -52,7 +52,5 @@ export const CloseButton = styled.button`
 `;
 
 export const Content = styled.div`
-  /* padding: 2% 7%; */
-
-  padding: 10px 7% 2% 7%;
+  padding: 10px 5% 2% 5%;
 `;

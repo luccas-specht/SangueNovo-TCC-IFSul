@@ -72,7 +72,7 @@ export const Description = styled.div`
   line-height: 23px;
 
   font-style: normal;
-  text-align: left;
+  text-align: justify;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -315,11 +315,10 @@ export const ContentTerms = styled.div`
     font-family: "Paytone One", sans-serif;
     font-size: 18px;
     line-height: 20px;
-    list-style: circle;
-  }
 
-  ul :last-child {
-    margin-bottom: 15px;
+    strong {
+      font-weight: normal;
+    }
   }
 
   li {
@@ -335,6 +334,7 @@ export const ContentTerms = styled.div`
 export const ModalTitle = styled.div`
   display: flex;
   align-items: flex-start;
+
   span {
     font-family: "Paytone One", sans-serif;
     font-style: normal;
@@ -342,5 +342,19 @@ export const ModalTitle = styled.div`
     font-size: 20px;
     line-height: 20px;
     color: #333333;
+  }
+`;
+
+export const WrapperButtons = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 60px;
+
+  button {
+    margin-top: 0;
+    min-height: 56px;
+    max-width: 50%;
   }
 `;

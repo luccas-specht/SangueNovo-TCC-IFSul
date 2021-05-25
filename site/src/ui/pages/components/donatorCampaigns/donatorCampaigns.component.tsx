@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { toastConfig } from "../../../../configs";
 import { useCampaign, useAuthenticated } from "../../../../hooks";
 
-import { Header, FabButton, CampaignCard, Loader } from "../../../components";
+import { CampaignCard, Loader } from "../../../components";
 
 import { WaitingAnimation } from "../../components";
 
@@ -55,12 +55,10 @@ export const DonatorCampaigns = () => {
         </S.ContentList>
       </S.Main>
     ) : (
-      <S.WrapperAnimation>
-        <WaitingAnimation
-          message="Sem campanhas ativas no momento, espere a instituição responsável
+      <WaitingAnimation
+        message="Sem campanhas ativas no momento, espere a instituição responsável
         aprovar ou crie uma campanha de doação."
-        />
-      </S.WrapperAnimation>
+      />
     );
   }, [userCampaigns, push]);
 

@@ -59,9 +59,3 @@ export const WrapperCampaings = styled.div`
     background-color: ${({ theme }) => shade(-0.6, theme.colors.text)};
   }
 `;
-
-export const WrapperAnimation = styled.div`
-  width: 100%;
-  height: 10%;
-  margin-top: -10%;
-`;

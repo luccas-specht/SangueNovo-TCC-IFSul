@@ -167,6 +167,48 @@ export const DetailsCampaign = () => {
     ]
   );
 
+  const renderModal = useCallback(
+    () => (
+      <GenericModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <S.ConatinerInsideModal>
+          <S.ModalTitle>
+            <span> Requisitos para realizar a doação</span>
+          </S.ModalTitle>
+          <S.WrapperTerms>
+            {REQUIREMENTS_DONATING_BLOOD.map((element) => (
+              <S.ContentTerms>
+                <ul>
+                  <strong>{element.title}</strong>
+                  {element.requirements.map((element) => (
+                    <li>{element}</li>
+                  ))}
+                </ul>
+              </S.ContentTerms>
+            ))}
+          </S.WrapperTerms>
+          <S.StyledCheckBox>
+            <input
+              type="checkbox"
+              defaultChecked={isChecked}
+              onChange={() => setIsChecked(!isChecked)}
+            />
+            Eu li e estou ciente sobre os requisitos para realizar a doação de
+            sangue.
+          </S.StyledCheckBox>
+          <S.WrapperButtons>
+            <Button
+              title="Agendar Horário"
+              type="button"
+              disabled
+              onClick={() => setIsOpen(true)}
+            />
+          </S.WrapperButtons>
+        </S.ConatinerInsideModal>
+      </GenericModal>
+    ),
+    [isOpen, isChecked]
+  );
+
   return (
     <>
       <Header />
@@ -199,7 +241,7 @@ export const DetailsCampaign = () => {
             {renderProgress()}
             {user?.user?.isDonator && (
               <Button
-                title="Quero Doar"
+                title="Agendar Horário"
                 type="button"
                 onClick={() => setIsOpen(true)}
               />
@@ -209,35 +251,7 @@ export const DetailsCampaign = () => {
         {renderMap()}
       </S.Container>
       <FabButton />
-
-      <GenericModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <S.ConatinerInsideModal>
-          <S.ModalTitle>
-            <span> Requisitos para realizar a doação</span>
-          </S.ModalTitle>
-          <S.WrapperTerms>
-            {REQUIREMENTS_DONATING_BLOOD.map((element) => (
-              <S.ContentTerms>
-                <ul>
-                  {element.title}
-                  {element.requirements.map((element) => (
-                    <li>{element}</li>
-                  ))}
-                </ul>
-              </S.ContentTerms>
-            ))}
-          </S.WrapperTerms>
-          <S.StyledCheckBox>
-            <input
-              type="checkbox"
-              defaultChecked={isChecked}
-              onChange={() => setIsChecked(!isChecked)}
-            />
-            Eu li e estou ciente sobre os requisitos para realizar a doação de
-            sangue.
-          </S.StyledCheckBox>
-        </S.ConatinerInsideModal>
-      </GenericModal>
+      {renderModal()}
     </>
   );
 };

@@ -21,7 +21,6 @@ export const REQUIREMENTS_DONATING_BLOOD = [
       "Situações nas quais há maior risco de adquirir doenças sexualmente transmissíveis: aguardar 12 meses.",
       "Extração dentária (verificar uso de medicação) ou tratamento de canal (verificar medicação): por 7 dias.",
       "Cirurgia odontológica com anestesia geral: por 4 semanas.",
-      "Herpes labial ou genital: apto após desaparecimento total das lesões.",
     ],
   },
   {
@@ -38,8 +37,8 @@ export const REQUIREMENTS_DONATING_BLOOD = [
   {
     title: "Respeitar os intervalos para doação",
     requirements: [
-      "Homens - 60 dias (máximo de 04 doações nos últimos 12 meses).",
-      "Mulheres - 90 dias (máximo de 03 doações nos últimos 12 meses).",
+      "Homens - 60 dias (máximo de 04 doações nos últimos 12 meses)",
+      "Mulheres - 90 dias (máximo de 03 doações nos últimos 12 meses)",
     ],
   },
 ];
