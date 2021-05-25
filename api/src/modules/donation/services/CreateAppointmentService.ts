@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { isBefore, isEqual, parseISO, startOfHour, getHours } from 'date-fns';
+import { isBefore, parseISO, startOfHour, getHours } from 'date-fns';
 
 import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
 import { AppError } from '@shared/errors/appError';
