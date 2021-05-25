@@ -8,6 +8,7 @@ import { passwordRoutes } from '@modules/user/bothUsers/infra/http/routes/Passwo
 import { privateRoute } from '@modules/user/bothUsers/infra/http/routes/PrivateAccess.route';
 import { profileRouter } from '@modules/user/bothUsers/infra/http/routes/AvatarProfile.route';
 import { campaignRouter } from '@modules/campaing/infra/http/routes/campaign.route';
+import { donationRouter } from '@modules/donation/infra/http/routes/donation.route';
 
 export const routes = Router();
 
@@ -19,6 +20,9 @@ routes.use('/institution', institutionRouter);
 
 /*Institution routes here: */
 routes.use('/campaign', campaignRouter);
+
+/*Donation routes here*/
+routes.use('/donation', donationRouter);
 
 /*both users*/
 routes.use('/auth', authRouter);

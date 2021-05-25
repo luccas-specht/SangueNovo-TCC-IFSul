@@ -1,15 +1,12 @@
 import { injectable, inject } from 'tsyringe';
-
 import { isAfter, addHours } from 'date-fns';
-
 import { hash, compare } from 'bcryptjs';
 
 import { AppError } from '@shared/errors/appError';
+import { MESSAGEINVALID } from '@constants/messageToUser';
 
 import { IUserRepository } from '../IRepository/IUserRepository';
 import { IUserTokenRepository } from '../IRepository/IUserTokenRepository';
-
-import { MESSAGEINVALID } from '@constants/messageToUser';
 
 interface Request {
   token_id: string;
@@ -28,11 +25,9 @@ export class ResetPasswordService {
 
   public async execute({ token_id, password }: Request): Promise<void> {
     const userToken = await this.userTokenRepository.findByToken(token_id);
-
     if (!userToken) throw new AppError(MESSAGEINVALID.missingToken);
 
     const user = await this.userRepository.findById(userToken?.user_id);
-
     if (!user) throw new AppError(MESSAGEINVALID.userNotExists);
 
     if (await compare(password, user.password))
@@ -45,7 +40,6 @@ export class ResetPasswordService {
       throw new AppError(MESSAGEINVALID.timedOut);
 
     const hasedPassword = await hash(password, 8);
-
     user.password = hasedPassword;
 
     await this.userRepository.save(user);

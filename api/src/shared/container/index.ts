@@ -16,6 +16,9 @@ import { InstitutionRepository } from '@modules/user/institution/infra/typeorm/r
 import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
 import { CampaignRepository } from '@modules/campaing/infra/typeorm/repositories/CampaignRepository';
 
+import { IDonationRepository } from '@modules/donation/IRepository/IDonatitonRepository';
+import { DonationRepository } from '@modules/donation/infra/typeorm/repositories/DonatitonRepository';
+
 /*Providers*/
 import { IStorageProvider } from './providers/StorageProvider/models/IStorageProvider';
 import { DiskStorageProvider } from './providers/StorageProvider/implementations/DiskStorageProvider';
@@ -44,6 +47,11 @@ container.registerSingleton<IInstitutionRepository>(
 container.registerSingleton<ICampaignRepository>(
   'CampaignRepository',
   CampaignRepository
+);
+
+container.registerSingleton<IDonationRepository>(
+  'DonationRepository',
+  DonationRepository
 );
 
 /*Providers*/

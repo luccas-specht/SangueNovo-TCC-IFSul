@@ -42,15 +42,12 @@ export class AuthenticationService {
     let userType: any;
 
     const user = await this.userRepository.findByEmail(email);
-
     if (!user) throw new AppError(MESSAGEINVALID.unathorized, 401);
 
     const passwordMatched = await compare(password, user.password);
-
     if (!passwordMatched) throw new AppError(MESSAGEINVALID.unathorized, 401);
 
     userType = await this.donatorRepository.findByIdUser(user.id);
-
     if (!userType)
       userType = await this.institutionRepository.findByIdUser(user.id);
 

@@ -27,4 +27,10 @@ export const MESSAGEINVALID = {
     'A instituição não está atrelada a campanha.',
   campaignTitleNotExist: 'Campanha deve ter uma descrição.',
   campaignDescriptionNotExist: 'Campanha deve ter uma descrição.',
+  appointmentPastDate:
+    'Você não pode criar um agendamento em uma data passada.',
+  appointmentInvalidHours:
+    'Agendamentos para doação são apenas entre às 8am até às 5pm.',
+
+  appointmentIsAlreadyBooked: 'Esse horário já está agendado.',
 };
