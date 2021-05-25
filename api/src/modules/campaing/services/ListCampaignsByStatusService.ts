@@ -6,6 +6,7 @@ import { ICampaignRepository } from '../IRepository/ICampaingRepository';
 import { AppCampaign } from '../infra/typeorm/entities/AppCampaign';
 import { CampaignStatus } from '../infra/typeorm/entities/EnumCampaignStatus';
 import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
+import { DonationStatus } from '@modules/donation/infra/typeorm/entities/EnumDonationStatus';
 
 interface Request {
   status: any;
@@ -56,10 +57,7 @@ export class ListCampaignsByStatusService {
       id: campaign.id,
       title: campaign.title,
       avatar: campaign.avatar,
-      currentGoal: this.calculatePercentage(
-        campaign.goal,
-        campaign.donations.length
-      ),
+      currentGoal: this.calculatePercentage(campaign.goal, campaign.donations),
       priority: campaign.priority,
       bloodType: campaign.typeBlood,
       description: campaign.description,
@@ -68,11 +66,15 @@ export class ListCampaignsByStatusService {
     }));
   }
 
-  private calculatePercentage(inicialGoal: number, actualDonations: number) {
-    if (actualDonations) {
-      actualDonations = actualDonations * 50;
-      const result = actualDonations / inicialGoal;
-      return result.toPrecision(4);
+  private calculatePercentage(inicialGoal: number, actualDonations: any[]) {
+    const currentDonationsFinished = actualDonations.filter(
+      (donations) => donations?.donationStatus === DonationStatus.FINISHED
+    );
+    let totalDonations = currentDonationsFinished.length;
+    if (totalDonations) {
+      totalDonations = totalDonations * 50;
+      const result = totalDonations / inicialGoal;
+      return result.toPrecision(2);
     } else {
       return '0';
     }

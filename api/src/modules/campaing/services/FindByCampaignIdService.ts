@@ -4,6 +4,7 @@ import { AppError } from '@shared/errors/appError';
 import { MESSAGEINVALID } from '@constants/messageToUser';
 import { ICampaignRepository } from '../IRepository/ICampaingRepository';
 import { AppCampaign } from '../infra/typeorm/entities/AppCampaign';
+import { DonationStatus } from '@modules/donation/infra/typeorm/entities/EnumDonationStatus';
 
 interface Request {
   campaign_id: string;
@@ -29,10 +30,7 @@ export class FindByCampaignIdService {
       title: campaign.title,
       description: campaign.description,
       avatar: campaign.avatar,
-      currentGoal: this.calculatePercentage(
-        campaign.goal,
-        campaign.donations.length
-      ),
+      currentGoal: this.calculatePercentage(campaign.goal, campaign.donations),
       availableDate: campaign.availableDate,
       bloodType: campaign.typeBlood,
       priority: campaign.priority,
@@ -48,11 +46,15 @@ export class FindByCampaignIdService {
     };
   }
 
-  private calculatePercentage(inicialGoal: number, actualDonations: number) {
-    if (actualDonations) {
-      actualDonations = actualDonations * 50;
-      const result = actualDonations / inicialGoal;
-      return result.toPrecision(4);
+  private calculatePercentage(inicialGoal: number, actualDonations: any[]) {
+    const currentDonationsFinished = actualDonations.filter(
+      (donations) => donations?.donationStatus === DonationStatus.FINISHED
+    );
+    let totalDonations = currentDonationsFinished.length;
+    if (totalDonations) {
+      totalDonations = totalDonations * 50;
+      const result = totalDonations / inicialGoal;
+      return result.toPrecision(2);
     } else {
       return '0';
     }
