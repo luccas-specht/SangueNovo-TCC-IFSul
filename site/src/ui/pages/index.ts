@@ -8,5 +8,5 @@ export { EditProfile } from "./screens/editProfile/editProfile.page";
 export { DetailsCampaign } from "./screens/detailsCampaign/DetailsCampaign.page";
 export { ListMyCampaigns } from "./screens/listMyCampaigns/listMyCampaigns.page";
 export { OrderCampaigns } from "./screens/orderCampaigns/orderCampaigns.page";
-export { MyAppointments } from "./screens/myAppoitments/myAppointments.page";
+export { MyAppointments } from "./screens/myAppointments/myAppointments.page";
 export { MyDonations } from "./screens/myDonations/myDonations.page";
