@@ -30,7 +30,7 @@ export const MESSAGEINVALID = {
   appointmentPastDate:
     'Você não pode criar um agendamento em uma data passada.',
   appointmentInvalidHours:
-    'Agendamentos para doação são apenas entre às 8am até às 5pm.',
+    'Agendamentos estão disponíveis, a partir das 8am e até às 17pm.',
 
   appointmentIsAlreadyBooked: 'Esse horário já está agendado.',
 };
