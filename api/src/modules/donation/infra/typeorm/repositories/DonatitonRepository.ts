@@ -38,4 +38,11 @@ export class DonationRepository implements IDonationRepository {
       where: { donationStatus: donationStatus },
     });
   }
+
+  public async findByDonatorId(donatorId: string): Promise<AppDonation[]> {
+    return await this.ormRepository.find({
+      relations: ['donator', 'campaign'],
+      where: { donator: donatorId },
+    });
+  }
 }

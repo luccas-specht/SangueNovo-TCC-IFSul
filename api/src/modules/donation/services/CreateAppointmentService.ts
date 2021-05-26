@@ -1,5 +1,12 @@
 import { injectable, inject } from 'tsyringe';
-import { isBefore, parseISO, startOfHour, getHours } from 'date-fns';
+import {
+  isBefore,
+  parseISO,
+  startOfHour,
+  getHours,
+  addMonths,
+  isAfter,
+} from 'date-fns';
 
 import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
 import { AppError } from '@shared/errors/appError';
@@ -66,4 +73,21 @@ export class CreateAppointmentService {
 
     await this.donationRepository.save(donation);
   }
+
+  // private async verifyDonatorRequestedHasSameDonationInLastTreeMonths(
+  //   donatorId: string
+  // ) {
+  //   const hasDonations = await this.donationRepository.findByDonatorId(
+  //     donatorId
+  //   );
+  //   if (hasDonations.length > 0) {
+  //     const lastDonation = hasDonations[hasDonations.length - 1];
+  //     const month = lastDonation.updated_at;
+
+  //     const compareDate = addMonths(month, 3);
+
+  //     if (isBefore(Date.now(), compareDate))
+  //       throw new AppError(MESSAGEINVALID.timedOut);
+  //   }
+  // }
 }

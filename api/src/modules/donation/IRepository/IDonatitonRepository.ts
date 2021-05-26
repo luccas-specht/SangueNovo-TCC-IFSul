@@ -9,6 +9,8 @@ export interface IDonationRepository {
     donationStatus: string
   ): Promise<AppDonation[]>;
 
+  findByDonatorId(donatorId: string): Promise<AppDonation[]>;
+
   // findAllInMonthFromProvider(
   //   data: IFindAllInMonthFromProviderDTO
   // ): Promise<Appointment[]>;
