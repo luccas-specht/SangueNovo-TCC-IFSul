@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { useCampaign } from "../../../../hooks";
+import { useAuthenticated, useCampaign } from "../../../../hooks";
 
 import { Header, FabButton, CampaignCard, Loader } from "../../../components";
 
@@ -11,6 +11,7 @@ import * as S from "./orderCampaigns.style";
 export const OrderCampaigns = () => {
   const { push } = useHistory();
   const { listAndFilterCampaigns } = useCampaign();
+  const { user } = useAuthenticated();
 
   const [campaigns, setCampaigns] = useState([]);
   const [filter, setFilter] = useState(undefined);
@@ -51,6 +52,11 @@ export const OrderCampaigns = () => {
                       currentGoal={campaign?.currentGoal}
                       availableDate={campaign?.availableDate}
                       onClick={() => push(`/detalhes-campanha/${campaign?.id}`)}
+                      buttonName={
+                        user?.user?.isDonator
+                          ? "Quero doar"
+                          : "Visualizar campanha de doação"
+                      }
                     />
                   ))}
                 </S.WrapperCampaings>

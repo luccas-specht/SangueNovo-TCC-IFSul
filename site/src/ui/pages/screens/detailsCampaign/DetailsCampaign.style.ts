@@ -9,8 +9,9 @@ interface ContentProps {
 
 export const Container = styled.div`
   width: 100%;
-  height: 90%;
+  height: 91%;
   padding-top: 10px;
+  padding-right: 10px;
   display: flex;
 `;
 
@@ -25,7 +26,7 @@ export const Content = styled.div`
 export const Details = styled.main`
   width: 60%;
   margin-top: 50px;
-  height: 85%;
+  height: 84%;
   display: flex;
   flex-direction: column;
   align-items: center;

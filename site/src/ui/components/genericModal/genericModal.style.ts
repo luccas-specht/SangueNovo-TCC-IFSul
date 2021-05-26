@@ -15,11 +15,12 @@ export const Modal = styled.div`
 `;
 
 export const Container = styled.div`
-  background-color: #fff;
-  color: #000;
+  background-color: ${({ theme }) => theme.colors.backgroundSecudary};
+  box-shadow: 2px 2px 10px
+    ${({ theme }) => theme.colors.colorBoxShadowCampaignCard};
   width: 35%;
-  height: 45%;
-  border-radius: 20px;
+  height: 53%;
+  border-radius: 10px;
 `;
 
 export const CloseButton = styled.button`
@@ -28,7 +29,7 @@ export const CloseButton = styled.button`
   border: none;
   width: 32px;
   height: 32px;
-  right: calc(-100% + 64px);
+  right: calc(-104% + 64px);
   top: 16px;
   display: flex;
   cursor: pointer;
@@ -41,7 +42,7 @@ export const CloseButton = styled.button`
     position: absolute;
     width: 2.5px;
     height: 24px;
-    background-color: #333333;
+    background-color: ${({ theme }) => theme.colors.titleColorCampaignCard};
   }
   &:before {
     transform: rotate(45deg);

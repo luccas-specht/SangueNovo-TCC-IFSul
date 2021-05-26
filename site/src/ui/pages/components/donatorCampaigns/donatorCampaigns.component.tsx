@@ -47,7 +47,7 @@ export const DonatorCampaigns = () => {
                 bloodType={campaign?.bloodType}
                 currentGoal={campaign?.currentGoal}
                 availableDate={campaign?.availableDate}
-                buttonName="Visualizar campanha"
+                buttonName="Visualizar campanha de doação"
                 onClick={() => push(`/detalhes-campanha/${campaign.id}`)}
               />
             ))}
