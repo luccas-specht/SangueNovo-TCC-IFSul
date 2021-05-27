@@ -33,4 +33,5 @@ export const MESSAGEINVALID = {
     'Agendamentos estão disponíveis, a partir das 08:00 até às 17:00',
 
   appointmentIsAlreadyBooked: 'Esse horário já está agendado.',
+  campaignStatusIsNotActive: 'Esta campanha indisponível no momento.',
 };

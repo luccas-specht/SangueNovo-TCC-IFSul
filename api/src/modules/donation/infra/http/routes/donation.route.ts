@@ -9,3 +9,7 @@ const donationController = new DonationController();
 donationRouter.use(ensureAuthenticated);
 
 donationRouter.post('/appointment', donationController.createAppointment);
+donationRouter.get(
+  '/appointment/me',
+  donationController.listAppointmentsByInstitutionId
+);

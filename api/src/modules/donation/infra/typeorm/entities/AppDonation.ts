@@ -15,7 +15,7 @@ export class AppDonation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'date' })
+  @Column('timestamp with time zone')
   appointment_date: Date;
 
   @ManyToOne(() => AppDonator, (appDonator) => appDonator.donations)

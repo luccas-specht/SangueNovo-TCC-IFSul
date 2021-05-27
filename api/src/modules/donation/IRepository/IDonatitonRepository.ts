@@ -1,5 +1,16 @@
 import { AppDonation } from '../infra/typeorm/entities/AppDonation';
 
+export interface IFindAllInMonthFromProviderDTO {
+  month: number;
+  year: number;
+}
+
+export interface IFindAllInDayFromProviderDTO
+  extends IFindAllInMonthFromProviderDTO {
+  day: number;
+  status: string;
+}
+
 export interface IDonationRepository {
   save(donation: AppDonation): Promise<AppDonation>;
   findById(id: string): Promise<AppDonation | undefined>;
@@ -11,12 +22,13 @@ export interface IDonationRepository {
 
   findByDonatorId(donatorId: string): Promise<AppDonation[]>;
 
-  // findAllInMonthFromProvider(
-  //   data: IFindAllInMonthFromProviderDTO
-  // ): Promise<Appointment[]>;
-  // findAllInDayFromProvider(
-  //   data: IFindAllInDayFromProviderDTO
-  // ): Promise<Appointment[]>;
+  findAllInMonthFromProvider(
+    data: IFindAllInMonthFromProviderDTO
+  ): Promise<AppDonation[]>;
+
+  findAllInDayFromProvider(
+    data: IFindAllInDayFromProviderDTO
+  ): Promise<AppDonation[]>;
 
   // updateDonatiton(donation: AppDonation): Promise<AppDonation>;
   // updateAppointment(donation: AppDonation): Promise<AppDonation>;

@@ -4,9 +4,11 @@ import {
   parseISO,
   startOfHour,
   getHours,
-  addMonths,
-  isAfter,
+  format,
+  parse,
 } from 'date-fns';
+
+import { zonedTimeToUtc } from 'date-fns-tz';
 
 import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
 import { AppError } from '@shared/errors/appError';
@@ -14,6 +16,7 @@ import { MESSAGEINVALID } from '@constants/messageToUser';
 import { IDonatorRepository } from '@modules/user/donator/IRepository/IDonatorRepository';
 import { IDonationRepository } from '../IRepository/IDonatitonRepository';
 import { AppDonation } from '../infra/typeorm/entities/AppDonation';
+import { CampaignStatus } from '@modules/campaing/infra/typeorm/entities/EnumCampaignStatus';
 
 interface Request {
   appointment: any;
@@ -42,8 +45,13 @@ export class CreateAppointmentService {
     donatorId,
     appointment,
   }: Request): Promise<void> {
+    /* TODO: Adicionar validação caso o mesmo doador tente solictar o agendamento */
+    /* TODO: Adicionar validação caso o o doador já tenha doado nos ultimos 3 meses */
     const campaign = await this.campaignRepository.findById(campaignId);
     if (!campaign) throw new AppError(MESSAGEINVALID.campaignNotExists);
+
+    if (campaign.campaignStatus !== CampaignStatus.ACTIVE)
+      throw new AppError(MESSAGEINVALID.campaignStatusIsNotActive);
 
     const donator = await this.donatorRepository.findById(donatorId);
     if (!donator) throw new AppError(MESSAGEINVALID.donatorNotExists);
@@ -62,6 +70,8 @@ export class CreateAppointmentService {
     const findAppointmentInSameDate =
       await this.donationRepository.findByAppointment(appointmentDate);
 
+    console.log('findAppointmentInSameDate', findAppointmentInSameDate);
+
     if (findAppointmentInSameDate)
       throw new AppError(MESSAGEINVALID.appointmentIsAlreadyBooked);
 
@@ -73,21 +83,4 @@ export class CreateAppointmentService {
 
     await this.donationRepository.save(donation);
   }
-
-  // private async verifyDonatorRequestedHasSameDonationInLastTreeMonths(
-  //   donatorId: string
-  // ) {
-  //   const hasDonations = await this.donationRepository.findByDonatorId(
-  //     donatorId
-  //   );
-  //   if (hasDonations.length > 0) {
-  //     const lastDonation = hasDonations[hasDonations.length - 1];
-  //     const month = lastDonation.updated_at;
-
-  //     const compareDate = addMonths(month, 3);
-
-  //     if (isBefore(Date.now(), compareDate))
-  //       throw new AppError(MESSAGEINVALID.timedOut);
-  //   }
-  // }
 }

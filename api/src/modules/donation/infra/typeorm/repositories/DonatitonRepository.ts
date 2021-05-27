@@ -1,6 +1,10 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Raw } from 'typeorm';
 
-import { IDonationRepository } from '@modules/donation/IRepository/IDonatitonRepository';
+import {
+  IDonationRepository,
+  IFindAllInDayFromProviderDTO,
+  IFindAllInMonthFromProviderDTO,
+} from '@modules/donation/IRepository/IDonatitonRepository';
 import { AppDonation } from '../entities/AppDonation';
 
 export class DonationRepository implements IDonationRepository {
@@ -16,8 +20,8 @@ export class DonationRepository implements IDonationRepository {
 
   public async findById(id: string): Promise<AppDonation | undefined> {
     return await this.ormRepository.findOne({
-      relations: ['donator', 'campaign'],
       where: { id: id },
+      relations: ['donator', 'campaign'],
     });
   }
 
@@ -34,15 +38,53 @@ export class DonationRepository implements IDonationRepository {
     donationStatus: string
   ): Promise<AppDonation[]> {
     return await this.ormRepository.find({
-      relations: ['donator', 'campaign'],
       where: { donationStatus: donationStatus },
+      relations: ['donator', 'campaign'],
     });
   }
 
   public async findByDonatorId(donatorId: string): Promise<AppDonation[]> {
     return await this.ormRepository.find({
-      relations: ['donator', 'campaign'],
       where: { donator: donatorId },
+      relations: ['donator', 'campaign'],
     });
+  }
+  public async findAllInMonthFromProvider({
+    month,
+    year,
+  }: IFindAllInMonthFromProviderDTO): Promise<AppDonation[]> {
+    const parsedMonth = String(month).padStart(2, '0');
+
+    const appointments = await this.ormRepository.find({
+      where: {
+        date: Raw(
+          (dateFieldName) =>
+            `to_char(${dateFieldName}, 'MM-YYYY') = '${parsedMonth}-${year}'`
+        ),
+      },
+    });
+    return appointments;
+  }
+
+  public async findAllInDayFromProvider({
+    day,
+    month,
+    year,
+    status,
+  }: IFindAllInDayFromProviderDTO): Promise<AppDonation[]> {
+    const parsedDay = String(day).padStart(2, '0');
+    const parsedMonth = String(month).padStart(2, '0');
+
+    const appointments = await this.ormRepository.find({
+      where: {
+        date: Raw(
+          (dateFieldName) =>
+            `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`
+        ),
+        donationStatus: status,
+      },
+      relations: ['donator', 'campaign'],
+    });
+    return appointments;
   }
 }
