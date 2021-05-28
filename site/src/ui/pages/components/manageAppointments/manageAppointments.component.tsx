@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router";
+import { FiClock } from "react-icons/fi";
 import { ToastContainer, toast } from "react-toastify";
 import DayPicker, { DayModifiers } from "react-day-picker";
 import "react-day-picker/lib/style.css";
@@ -13,13 +14,12 @@ import {
   DAYS_PT,
   MONTHS_PT,
 } from "../../../../constants";
-
 import { toastConfig } from "../../../../configs";
-
 import { useDonation } from "../../../../hooks";
 
+import imageDefaultProfile from "../../../assets/images/default_user_image.png";
+
 import * as S from "./manageAppointments.style";
-import { FiClock } from "react-icons/fi";
 
 interface Appointment {
   appointment_date: string;
@@ -139,12 +139,12 @@ export const ManageAppointments = () => {
             </div>
             {renderTab()}
           </S.InfoDaily>
-          {isToday(selectedDate) && nextAppointment && (
+          {isToday(selectedDate) && tabActive && nextAppointment && (
             <S.NextAppointment>
               <strong>Agendamento a seguir</strong>
               <div>
                 <img
-                  src={nextAppointment.campaign.avatar}
+                  src={nextAppointment.campaign.avatar ?? imageDefaultProfile}
                   alt={nextAppointment.donator.name}
                 />
                 <strong>{nextAppointment.donator.name}</strong>
@@ -155,50 +155,52 @@ export const ManageAppointments = () => {
               </div>
             </S.NextAppointment>
           )}
-          <S.Section>
-            <strong>Manhã</strong>
-            {morningAppointments.length === 0 ? (
-              <p>Nenhum agendamento neste periodo.</p>
-            ) : (
-              morningAppointments.map((appointment) => (
-                <S.Appointment key={appointment.appointment_date}>
-                  <span>
-                    <FiClock />
-                    {appointment.hourFormatted}
-                  </span>
-                  <div>
-                    <img
-                      src={appointment.campaign.avatar}
-                      alt={appointment.campaign.title}
-                    />
-                    <strong> {appointment.campaign.title}</strong>
-                  </div>
-                </S.Appointment>
-              ))
-            )}
-          </S.Section>
-          <S.Section>
-            <strong>Tarde</strong>
-            {afternoonAppointments.length === 0 ? (
-              <p>Nenhum agendamento neste periodo.</p>
-            ) : (
-              afternoonAppointments.map((appointment) => (
-                <S.Appointment key={appointment.appointment_date}>
-                  <span>
-                    <FiClock />
-                    {appointment.hourFormatted}
-                  </span>
-                  <div>
-                    <img
-                      src={appointment.campaign.avatar}
-                      alt={appointment.campaign.title}
-                    />
-                    <strong> {appointment.campaign.title}</strong>
-                  </div>
-                </S.Appointment>
-              ))
-            )}
-          </S.Section>
+          <S.WrapperAppointments>
+            <S.Section>
+              <strong>Manhã</strong>
+              {morningAppointments.length === 0 ? (
+                <p>Nenhum agendamento para este período.</p>
+              ) : (
+                morningAppointments.map((appointment) => (
+                  <S.Appointment key={appointment.appointment_date}>
+                    <span>
+                      <FiClock />
+                      {appointment.hourFormatted}
+                    </span>
+                    <div>
+                      <img
+                        src={appointment.campaign.avatar ?? imageDefaultProfile}
+                        alt={appointment.donator.name}
+                      />
+                      <strong>{appointment.donator.name}</strong>
+                    </div>
+                  </S.Appointment>
+                ))
+              )}
+            </S.Section>
+            <S.Section>
+              <strong>Tarde</strong>
+              {afternoonAppointments.length === 0 ? (
+                <p>Nenhum agendamento para este período.</p>
+              ) : (
+                afternoonAppointments.map((appointment) => (
+                  <S.Appointment key={appointment.appointment_date}>
+                    <span>
+                      <FiClock />
+                      {appointment.hourFormatted}
+                    </span>
+                    <div>
+                      <img
+                        src={appointment.campaign.avatar ?? imageDefaultProfile}
+                        alt={appointment.donator.name}
+                      />
+                      <strong>{appointment.donator.name}</strong>
+                    </div>
+                  </S.Appointment>
+                ))
+              )}
+            </S.Section>
+          </S.WrapperAppointments>
         </S.Schedule>
         <S.Calendar>
           <DayPicker

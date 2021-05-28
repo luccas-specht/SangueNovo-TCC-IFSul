@@ -24,6 +24,7 @@ export const InfoDaily = styled.div`
   }
   p {
     margin-top: 8px;
+    margin-bottom: 20px;
     color: ${(props) => props.theme.colors.primary};
     display: flex;
     align-items: center;
@@ -104,20 +105,17 @@ export const Schedule = styled.div`
 `;
 
 export const WrapperAppointments = styled.div`
-  margin-top: 7px;
-  width: 65%;
+  width: 100%;
   max-height: 850px;
-
   display: flex;
   flex-direction: column;
-  align-items: center;
   overflow-y: scroll;
-  border: 2px solid red;
 
   &::-webkit-scrollbar-track {
     border: transparent;
     padding: 2px 0;
     background-color: transparent;
+    margin-top: 60px;
   }
 
   &::-webkit-scrollbar {
@@ -185,13 +183,19 @@ export const NextAppointment = styled.div`
 `;
 
 export const Section = styled.section`
-  margin-top: 48px;
+  margin-top: 20px;
+  width: 700px;
+
+  & + section {
+    margin-top: 50px;
+  }
 
   > strong {
-    color: ${({ theme }) => theme.colors.tabColor};
+    color: ${({ theme }) => theme.colors.titleColor};
     font-size: 20px;
     line-height: 26px;
-    border-bottom: 1px solid #3e3b47;
+    border-bottom: 2px solid
+      ${({ theme }) => theme.colors.colorBoxShadowCampaignCard};
     display: block;
     padding-bottom: 16px;
     margin-bottom: 16px;
@@ -199,10 +203,12 @@ export const Section = styled.section`
 
   > p {
     color: #999591;
+    font-weight: 900;
   }
 `;
 
 export const Appointment = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
 

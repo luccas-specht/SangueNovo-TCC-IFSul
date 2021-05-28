@@ -6,12 +6,14 @@ export const useDonation = () => {
   const createAppointment = async (
     appointment: string,
     campaignId: string,
-    donatorId: string
+    donatorId: string,
+    institutionId: string
   ): Promise<any> => {
     const { data, status } = await post("appointment", {
       appointment: appointment,
       donatorId: donatorId,
       campaignId: campaignId,
+      institutionId: institutionId,
     });
     return { data, status };
   };

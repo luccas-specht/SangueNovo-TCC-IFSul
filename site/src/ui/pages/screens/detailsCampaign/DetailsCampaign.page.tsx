@@ -213,6 +213,7 @@ export const DetailsCampaign = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         campaignId={campaign_id}
+        institutionId={campaign.institution.id}
       />
     </>
   );

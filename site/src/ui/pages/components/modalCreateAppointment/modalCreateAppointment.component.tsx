@@ -17,6 +17,7 @@ type Props = {
   isOpen: boolean;
   campaignId: string;
   onClose(): void;
+  institutionId: string;
 };
 
 type FormData = {
@@ -27,6 +28,7 @@ export const ModalCreateAppointment = ({
   isOpen,
   campaignId,
   onClose,
+  institutionId,
 }: Props) => {
   const { createAppointment } = useDonation();
   const { user } = useAuthenticated();
@@ -43,7 +45,8 @@ export const ModalCreateAppointment = ({
     const { data, status } = await createAppointment(
       appointmentDate,
       campaignId,
-      user?.user?.id
+      user?.user?.id,
+      institutionId
     );
     status === 200
       ? push("/meus-agendamentos")
