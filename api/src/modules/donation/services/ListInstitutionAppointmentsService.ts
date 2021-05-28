@@ -1,43 +1,32 @@
 import { injectable, inject } from 'tsyringe';
 
 import { MESSAGEINVALID } from '@constants/messageToUser';
-import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
 import { AppError } from '@shared/errors/appError';
 
 import { IDonationRepository } from '../IRepository/IDonatitonRepository';
 import { AppDonation } from '../infra/typeorm/entities/AppDonation';
-import { AppInstitution } from '@modules/user/institution/infra/typeorm/entities/AppInstitution';
+import { DonationStatus } from '../infra/typeorm/entities/EnumDonationStatus';
 
 interface IRequest {
-  institution_id: string;
   day: number;
   month: number;
   year: number;
-  status: string;
+  status: any;
 }
 
 @injectable()
 export class ListProviderAppointmentsService {
   constructor(
     @inject('DonationRepository')
-    private donationRepository: IDonationRepository,
-
-    @inject('InstitutionRepository')
-    private institutionRepository: IInstitutionRepository
+    private donationRepository: IDonationRepository
   ) {}
 
   public async execute({
-    institution_id,
     day,
     month,
     year,
     status,
   }: IRequest): Promise<AppDonation[]> {
-    const institution = await this.institutionRepository.findById(
-      institution_id
-    );
-    if (!institution) throw new AppError(MESSAGEINVALID.institutionNotExists);
-
     if (
       ![
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -52,31 +41,34 @@ export class ListProviderAppointmentsService {
     if (String(year).length !== 4)
       throw new AppError(MESSAGEINVALID.invalidDateToListAppointments);
 
+    if (
+      ![
+        DonationStatus.ACTIVE,
+        DonationStatus.FINISHED,
+        DonationStatus.REQUESTED,
+      ].includes(status)
+    )
+      throw new AppError(MESSAGEINVALID.invalidDonationStatus);
+
     const appointments = await this.donationRepository.findAllInDayFromProvider(
       { month, year, day, status }
     );
 
-    console.log('appointments', appointments);
-
-    return appointments.length > 0
-      ? this.verifyMatchInstitution(appointments, institution)
-      : [];
+    return appointments.length > 0 ? this.appointmentsMapper(appointments) : [];
   }
 
-  private verifyMatchInstitution(
-    appointments: AppDonation[],
-    institution: AppInstitution
-  ): AppDonation[] {
-    const institutionMatch: AppDonation[] = [];
-
-    for (let i = 0; i < appointments.length; i++) {
-      for (let j = 0; j < institution.campaigns.length; j++) {
-        if (appointments[i].campaign.id === institution.campaigns[j].id) {
-          institutionMatch.push(appointments[i]);
-        }
-      }
-    }
-
-    return institutionMatch;
+  private appointmentsMapper(appointments: AppDonation[]): any[] {
+    return appointments.map((appointment) => ({
+      appointment_date: appointment.appointment_date,
+      donator: {
+        name: appointment.donator.name,
+      },
+      campaign: {
+        title: appointment.campaign.title,
+        priority: appointment.campaign.priority,
+        bloodType: appointment.campaign.typeBlood,
+        avatar: appointment.campaign.avatar,
+      },
+    }));
   }
 }

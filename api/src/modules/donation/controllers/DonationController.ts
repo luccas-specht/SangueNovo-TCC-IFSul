@@ -27,14 +27,13 @@ export class DonationController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { institution_id, day, month, year, status } = request.query;
+    const { day, month, year, status } = request.query;
 
     const listProviderAppointmentsService = container.resolve(
       ListProviderAppointmentsService
     );
 
     const list = await listProviderAppointmentsService.execute({
-      institution_id: String(institution_id),
       day: Number(day),
       month: Number(month),
       year: Number(year),

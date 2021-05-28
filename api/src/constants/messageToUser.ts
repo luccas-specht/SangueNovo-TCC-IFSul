@@ -36,4 +36,5 @@ export const MESSAGEINVALID = {
   campaignStatusIsNotActive: 'Esta campanha indisponível no momento.',
   invalidDateToListAppointments:
     'Data de listagem de agendamento está invalida.',
+  invalidDonationStatus: 'Status da doação invalido',
 };
