@@ -34,4 +34,6 @@ export const MESSAGEINVALID = {
 
   appointmentIsAlreadyBooked: 'Esse horário já está agendado.',
   campaignStatusIsNotActive: 'Esta campanha indisponível no momento.',
+  invalidDateToListAppointments:
+    'Data de listagem de agendamento está invalida.',
 };

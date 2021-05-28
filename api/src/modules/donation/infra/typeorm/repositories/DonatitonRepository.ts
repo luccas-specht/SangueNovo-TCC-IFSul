@@ -26,11 +26,12 @@ export class DonationRepository implements IDonationRepository {
   }
 
   public async findByAppointment(
-    appointment: Date
+    appointment: Date,
+    status: string
   ): Promise<AppDonation | undefined> {
     return await this.ormRepository.findOne({
       relations: ['donator', 'campaign'],
-      where: { appointment_date: appointment },
+      where: { appointment_date: appointment, donationStatus: status },
     });
   }
 
@@ -57,11 +58,12 @@ export class DonationRepository implements IDonationRepository {
 
     const appointments = await this.ormRepository.find({
       where: {
-        date: Raw(
+        appointment_date: Raw(
           (dateFieldName) =>
             `to_char(${dateFieldName}, 'MM-YYYY') = '${parsedMonth}-${year}'`
         ),
       },
+      relations: ['donator', 'campaign'],
     });
     return appointments;
   }
@@ -77,7 +79,7 @@ export class DonationRepository implements IDonationRepository {
 
     const appointments = await this.ormRepository.find({
       where: {
-        date: Raw(
+        appointment_date: Raw(
           (dateFieldName) =>
             `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`
         ),
@@ -85,6 +87,7 @@ export class DonationRepository implements IDonationRepository {
       },
       relations: ['donator', 'campaign'],
     });
+
     return appointments;
   }
 }

@@ -14,7 +14,10 @@ export interface IFindAllInDayFromProviderDTO
 export interface IDonationRepository {
   save(donation: AppDonation): Promise<AppDonation>;
   findById(id: string): Promise<AppDonation | undefined>;
-  findByAppointment(appointment: Date): Promise<AppDonation | undefined>;
+  findByAppointment(
+    appointment: Date,
+    status: string
+  ): Promise<AppDonation | undefined>;
 
   findAllDonationsByDonatitonStatus(
     donationStatus: string

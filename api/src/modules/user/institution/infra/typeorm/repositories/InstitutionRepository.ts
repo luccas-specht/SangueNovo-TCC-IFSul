@@ -16,7 +16,10 @@ export class InstitutionRepository implements IInstitutionRepository {
   }
 
   public async findById(id: string): Promise<AppInstitution | undefined> {
-    return await this.ormRepository.findOne({ where: { id } });
+    return await this.ormRepository.findOne({
+      where: { id },
+      relations: ['campaigns', 'tb_user_fk'],
+    });
   }
 
   public async findByCnpj(cnpj: string): Promise<AppInstitution | undefined> {

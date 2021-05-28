@@ -9,7 +9,7 @@ export class DonationController {
     request: Request,
     response: Response
   ): Promise<Response> {
-    const { appointment, donatorId, campaignId } = request.body;
+    const { appointment, donatorId, campaignId, institutionId } = request.body;
 
     const createAppointmentService = container.resolve(
       CreateAppointmentService
@@ -18,6 +18,7 @@ export class DonationController {
       appointment,
       donatorId,
       campaignId,
+      institutionId,
     });
     return response.json().status(200);
   }
@@ -32,13 +33,13 @@ export class DonationController {
       ListProviderAppointmentsService
     );
 
-    await listProviderAppointmentsService.execute({
+    const list = await listProviderAppointmentsService.execute({
       institution_id: String(institution_id),
       day: Number(day),
       month: Number(month),
       year: Number(year),
       status: String(status),
     });
-    return response.json().status(200);
+    return response.json(list).status(200);
   }
 }

@@ -1,14 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import {
-  isBefore,
-  parseISO,
-  startOfHour,
-  getHours,
-  format,
-  parse,
-} from 'date-fns';
-
-import { zonedTimeToUtc } from 'date-fns-tz';
+import { isBefore, parseISO, startOfHour, getHours } from 'date-fns';
 
 import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
 import { AppError } from '@shared/errors/appError';
@@ -17,11 +8,13 @@ import { IDonatorRepository } from '@modules/user/donator/IRepository/IDonatorRe
 import { IDonationRepository } from '../IRepository/IDonatitonRepository';
 import { AppDonation } from '../infra/typeorm/entities/AppDonation';
 import { CampaignStatus } from '@modules/campaing/infra/typeorm/entities/EnumCampaignStatus';
+import { IInstitutionRepository } from '@modules/user/institution/IRepository/IInstitutionRepository';
 
 interface Request {
   appointment: any;
   donatorId: string;
   campaignId: string;
+  institutionId: string;
 }
 
 @injectable()
@@ -36,6 +29,9 @@ export class CreateAppointmentService {
     @inject('DonatorRepository')
     private donatorRepository: IDonatorRepository,
 
+    @inject('InstitutionRepository')
+    private institutionRepository: IInstitutionRepository,
+
     @inject('DonationRepository')
     private donationRepository: IDonationRepository
   ) {}
@@ -44,20 +40,23 @@ export class CreateAppointmentService {
     campaignId,
     donatorId,
     appointment,
+    institutionId,
   }: Request): Promise<void> {
-    /* TODO: Adicionar validação caso o mesmo doador tente solictar o agendamento */
-    /* TODO: Adicionar validação caso o o doador já tenha doado nos ultimos 3 meses */
     const campaign = await this.campaignRepository.findById(campaignId);
     if (!campaign) throw new AppError(MESSAGEINVALID.campaignNotExists);
 
     if (campaign.campaignStatus !== CampaignStatus.ACTIVE)
       throw new AppError(MESSAGEINVALID.campaignStatusIsNotActive);
 
+    const institution = await this.institutionRepository.findById(
+      institutionId
+    );
+    if (!institution) throw new AppError(MESSAGEINVALID.institutionNotExists);
+
     const donator = await this.donatorRepository.findById(donatorId);
     if (!donator) throw new AppError(MESSAGEINVALID.donatorNotExists);
 
     const appointmentDate = startOfHour(parseISO(appointment));
-
     if (isBefore(appointmentDate, Date.now()))
       throw new AppError(MESSAGEINVALID.appointmentPastDate);
 
@@ -68,12 +67,19 @@ export class CreateAppointmentService {
       throw new AppError(MESSAGEINVALID.appointmentInvalidHours);
 
     const findAppointmentInSameDate =
-      await this.donationRepository.findByAppointment(appointmentDate);
+      await this.donationRepository.findByAppointment(
+        appointmentDate,
+        CampaignStatus.ACTIVE
+      );
 
-    console.log('findAppointmentInSameDate', findAppointmentInSameDate);
+    if (findAppointmentInSameDate) {
+      const scheduledTimes = institution.campaigns.filter(
+        (campaign) => campaign.id === findAppointmentInSameDate.campaign.id
+      );
 
-    if (findAppointmentInSameDate)
-      throw new AppError(MESSAGEINVALID.appointmentIsAlreadyBooked);
+      if (scheduledTimes.length > 0)
+        throw new AppError(MESSAGEINVALID.appointmentIsAlreadyBooked);
+    }
 
     const donation = {
       appointment_date: appointmentDate,
