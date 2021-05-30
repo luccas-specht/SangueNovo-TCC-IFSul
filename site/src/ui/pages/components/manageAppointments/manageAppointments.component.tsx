@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router";
+
 import { FiClock } from "react-icons/fi";
+
 import { ToastContainer, toast } from "react-toastify";
+
 import DayPicker, { DayModifiers } from "react-day-picker";
 import "react-day-picker/lib/style.css";
 
@@ -20,7 +23,8 @@ import { useDonation } from "../../../../hooks";
 import imageDefaultProfile from "../../../assets/images/default_user_image.png";
 
 import * as S from "./manageAppointments.style";
-import { AppointmentRequestedCard } from "../../../components";
+import { AppointmentRequestedCard, AppointmentCard } from "../../../components";
+import { IoIosArrowDown } from "react-icons/io";
 
 interface Appointment {
   id: string;
@@ -42,6 +46,7 @@ export const ManageAppointments = () => {
   const { listAllAppointments } = useDonation();
   const { push } = useHistory();
 
+  const [showButtons, setShowButtons] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [tabActive, setTabActive] = useState<boolean>(true);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -65,6 +70,21 @@ export const ManageAppointments = () => {
       setSelectedDate(day);
     }
   }, []);
+
+  const renderButtons = useCallback(
+    () =>
+      showButtons && (
+        <S.WrapperButtons>
+          <S.StyledButton color="#FF9000" type="submit">
+            Não compareceu ao agendamento
+          </S.StyledButton>
+          <S.StyledButton color="#6DBA73" type="submit">
+            Compareceu ao agendamento
+          </S.StyledButton>
+        </S.WrapperButtons>
+      ),
+    [showButtons]
+  );
 
   useEffect(() => {
     const callApi = async () => {
@@ -147,17 +167,28 @@ export const ManageAppointments = () => {
           {isToday(selectedDate) && tabActive && nextAppointment && (
             <S.NextAppointment>
               <strong>Agendamento a seguir</strong>
-              <div>
-                <img
-                  src={nextAppointment.campaign.avatar ?? imageDefaultProfile}
-                  alt={nextAppointment.donator.name}
-                />
-                <strong>{nextAppointment.donator.name}</strong>
-                <span>
-                  <FiClock />
-                  {nextAppointment.hourFormatted}
-                </span>
-              </div>
+              <S.WrapperInfo isOpen={showButtons}>
+                <div>
+                  <img
+                    src={nextAppointment.campaign.avatar ?? imageDefaultProfile}
+                    alt={nextAppointment.donator.name}
+                  />
+                  <strong>{nextAppointment.donator.name}</strong>
+                  <span>
+                    <FiClock />
+                    {nextAppointment.hourFormatted}
+                  </span>
+                </div>
+                <S.Footer>
+                  <S.StyledButtonIcon
+                    isShowButton={showButtons}
+                    onClick={() => setShowButtons(!showButtons ?? false)}
+                  >
+                    <IoIosArrowDown size={23} />
+                  </S.StyledButtonIcon>
+                  {renderButtons()}
+                </S.Footer>
+              </S.WrapperInfo>
             </S.NextAppointment>
           )}
           <S.WrapperAppointments>
@@ -165,6 +196,15 @@ export const ManageAppointments = () => {
               <strong>Manhã</strong>
               {morningAppointments.length === 0 ? (
                 <p>Nenhum agendamento para este período.</p>
+              ) : tabActive ? (
+                morningAppointments.map((appointment) => (
+                  <AppointmentCard
+                    id={appointment.id}
+                    donator={appointment.donator}
+                    hourFormatted={appointment.hourFormatted}
+                    campaign={appointment.campaign}
+                  />
+                ))
               ) : (
                 morningAppointments.map((appointment) => (
                   <AppointmentRequestedCard
@@ -180,6 +220,15 @@ export const ManageAppointments = () => {
               <strong>Tarde</strong>
               {afternoonAppointments.length === 0 ? (
                 <p>Nenhum agendamento para este período.</p>
+              ) : tabActive ? (
+                afternoonAppointments.map((appointment) => (
+                  <AppointmentCard
+                    id={appointment.id}
+                    donator={appointment.donator}
+                    hourFormatted={appointment.hourFormatted}
+                    campaign={appointment.campaign}
+                  />
+                ))
               ) : (
                 afternoonAppointments.map((appointment) => (
                   <AppointmentRequestedCard

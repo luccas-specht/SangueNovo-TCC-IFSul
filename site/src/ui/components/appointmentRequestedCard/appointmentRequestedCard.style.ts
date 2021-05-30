@@ -27,6 +27,10 @@ export const Appointment = styled.div<{ isOpen: boolean }>`
   & + div {
     margin-top: 16px;
   }
+
+  &:hover {
+    transform: translateX(20px);
+  }
 `;
 
 export const Content = styled.div`
@@ -48,7 +52,7 @@ export const Content = styled.div`
       height: 100%;
       padding-top: 12px;
 
-      color: ${({ theme }) => theme.colors.white};
+      color: ${({ theme }) => theme.colors.titleColor};
 
       svg {
         color: #ff9000;
@@ -91,17 +95,14 @@ export const ContentPriority = styled.div<ContentProps>`
     display: flex;
     height: 100%;
     align-items: center;
-    justify-content: space-between;
-    align-self: flex-end;
     padding-top: 0px !important;
-    padding-left: 10px;
     color: ${({ color }) => color} !important;
 
     svg {
       visibility: ${({ high }) => (high ? "visible" : "hidden")};
       opacity: ${({ high }) => (high ? "1" : "0")};
-      margin-left: 10px;
       cursor: pointer;
+      color: #bf0404 !important;
     }
   }
 `;

@@ -44,14 +44,11 @@ export const AppointmentRequestedCard = ({
         donator.id,
         donationStatus
       );
-
-      if (status === 200) {
-        push("/listar-campanhas");
-      } else {
-        toast.error(`${data.message}`, toastConfig);
-      }
+      status === 200
+        ? push("/listar-campanhas")
+        : toast.error(`${data.message}`, toastConfig);
     },
-    [donator.id, id, push]
+    [donator.id, id, push, updateAppointmentStatus]
   );
 
   const renderButtons = useCallback(

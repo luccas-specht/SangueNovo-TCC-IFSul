@@ -138,26 +138,33 @@ export const NextAppointment = styled.div`
     font-size: 20px;
     font-weight: 400;
   }
+`;
+
+export const WrapperInfo = styled.div<{ isOpen: boolean }>`
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  transition: 1s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 24px;
+  border-radius: 10px;
+  margin-top: 24px;
+  position: relative;
+  transition: 1s;
+
+  ${({ isOpen }) =>
+    isOpen
+      ? css`
+          height: 200px;
+        `
+      : css`
+          height: 120px;
+        `}
 
   div {
-    background: #3e3b47;
     display: flex;
+    width: 100%;
     align-items: center;
-    padding: 16px 24px;
-    border-radius: 10px;
-    margin-top: 24px;
-    position: relative;
-
-    &::before {
-      position: absolute;
-      height: 80%;
-      width: 1px;
-      left: 0%;
-      top: 10%;
-      content: "";
-      background: #ff9000;
-    }
-
     img {
       width: 80px;
       height: 80px;
@@ -166,20 +173,30 @@ export const NextAppointment = styled.div`
 
     strong {
       margin-left: 24px;
-      color: #fff;
+      color: ${({ theme }) => theme.colors.titleColor};
     }
 
     span {
       margin-left: auto;
       display: flex;
       align-items: center;
-      color: #999591;
+      font-size: 18px;
+      color: ${({ theme }) => theme.colors.titleColor};
 
       svg {
         color: #ff9000;
         margin-right: 8px;
       }
     }
+  }
+  &::before {
+    position: absolute;
+    height: 80%;
+    width: 1px;
+    left: 0%;
+    top: 10%;
+    content: "";
+    background: #ff9000;
   }
 `;
 
@@ -316,5 +333,67 @@ export const Calendar = styled.aside`
     background: #ff9000 !important;
     border-radius: 10px;
     color: #232129 !important;
+  }
+`;
+
+export const Footer = styled.footer`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -5px;
+
+  button {
+    max-width: 500px;
+  }
+`;
+
+export const StyledButtonIcon = styled.button<{ isShowButton: boolean }>`
+  border: none;
+  background: none;
+  color: none;
+
+  svg {
+    max-width: 23px;
+    max-height: 23px;
+    ${({ isShowButton }) =>
+      isShowButton
+        ? css`
+            transition: 1s;
+            transform: rotate(180deg);
+          `
+        : css`
+            transition: 1s;
+            transform: rotate(0deg);
+          `}
+    cursor: pointer;
+    color: #c4c4c4;
+  }
+`;
+
+export const WrapperButtons = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+`;
+
+export const StyledButton = styled.button<{ color: string }>`
+  width: 50%;
+  height: 56px;
+  border: none;
+  border-radius: 10px;
+  background-color: ${({ color }) => color};
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: 500;
+  font-size: 18px;
+  margin: 0px 20px 0px 20px;
+
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${({ color }) => shade(0.2, color)};
   }
 `;
