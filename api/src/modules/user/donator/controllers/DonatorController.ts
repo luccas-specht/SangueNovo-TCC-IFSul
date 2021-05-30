@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import { CreateDonatorService } from '../services/CreateDonatorService';
+import { ListDonationsByDonatorId } from '../services/ListDonationsByDonatorIdService';
 import { UpdateDonatorService } from '../services/UpdateDonatorService';
 
 export class DonatorController {
@@ -41,5 +42,22 @@ export class DonatorController {
         avatar: donator.tb_user_fk.avatar,
       })
       .status(200);
+  }
+
+  public async listDonationsByDonatorIdMatch(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { donator_id } = request.query;
+
+    const listDonationsByDonatorId = container.resolve(
+      ListDonationsByDonatorId
+    );
+
+    const donations = await listDonationsByDonatorId.execute({
+      id: String(donator_id),
+    });
+
+    return response.json(donations).status(200);
   }
 }

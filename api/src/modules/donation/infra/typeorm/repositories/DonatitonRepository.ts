@@ -44,9 +44,12 @@ export class DonationRepository implements IDonationRepository {
     });
   }
 
-  public async findByDonatorId(donatorId: string): Promise<AppDonation[]> {
+  public async findByDonatorIdAndDonationStatus(
+    donatorId: string,
+    status: string
+  ): Promise<AppDonation[]> {
     return await this.ormRepository.find({
-      where: { donator: donatorId },
+      where: { donator: donatorId, donationStatus: status },
       relations: ['donator', 'campaign'],
     });
   }

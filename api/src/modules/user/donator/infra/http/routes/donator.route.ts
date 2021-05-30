@@ -15,3 +15,9 @@ donatorRouter.put(
   ensureAuthenticated,
   donatorController.updateDonator
 );
+
+donatorRouter.get(
+  '/donation/me',
+  ensureAuthenticated,
+  donatorController.listDonationsByDonatorIdMatch
+);
