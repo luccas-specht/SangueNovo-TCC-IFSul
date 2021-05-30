@@ -11,7 +11,6 @@ export const useUserProfile = () => {
 
   const getUserAvatar = async (avatarUrl: string): Promise<any> => {
     const response = await get(`${avatarUrl}`);
-
     return response;
   };
 
