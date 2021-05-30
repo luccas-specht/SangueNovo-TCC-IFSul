@@ -37,7 +37,7 @@ export const ManageCampaigns = () => {
       setIsLoading(false);
     };
     handleListCampaign();
-  }, [tabActive, user, user?.user?.id]);
+  }, [tabActive, user?.user?.id]);
 
   const renderTab = useCallback(
     () => (
@@ -53,70 +53,65 @@ export const ManageCampaigns = () => {
     [tabActive]
   );
 
-  const renderCampaigns = useCallback(() => {
-    return (
-      <S.Main>
-        <S.ContentList>
-          {renderTab()}
-          <S.WrapperCampaings>
-            {userCampaigns.length > 0 ? (
-              userCampaigns.map((campaign: any) =>
-                tabActive ? (
-                  <CampaignCard
-                    key={campaign.id}
-                    id={campaign?.id}
-                    title={campaign?.title}
-                    avatar={campaign?.avatar}
-                    priority={campaign?.priority}
-                    bloodType={campaign?.bloodType}
-                    currentGoal={campaign?.currentGoal}
-                    availableDate={campaign?.availableDate}
-                    buttonName="Visualizar campanha"
-                    onClick={() => push(`/detalhes-campanha/${campaign.id}`)}
-                  />
-                ) : (
-                  <CampaignRequestedCard
-                    key={campaign.id}
-                    id={campaign?.id}
-                    title={campaign?.title}
-                    avatar={campaign?.avatar}
-                    priority={campaign?.priority}
-                    bloodType={campaign?.bloodType}
-                    description={campaign?.description}
-                    availableDate={campaign?.availableDate}
-                  />
-                )
-              )
-            ) : (
-              <S.WrapperAnimation>
-                <WaitingAnimation
-                  message={
-                    tabActive
-                      ? "Sem campanhas ativas no momento, crie uma campanha de doação ou veja suas solicitações."
-                      : "Sem campanhas solicitadas aguarte até que um doador crie uma campanha ou crie uma campanha de doação!"
-                  }
+  const renderCampaigns = useCallback(
+    () => (
+      <>
+        {renderTab()}
+        <S.WrapperCampaings>
+          {userCampaigns.length > 0 ? (
+            userCampaigns.map((campaign: any) =>
+              tabActive ? (
+                <CampaignCard
+                  key={campaign?.id}
+                  id={campaign?.id}
+                  title={campaign?.title}
+                  avatar={campaign?.avatar}
+                  priority={campaign?.priority}
+                  bloodType={campaign?.bloodType}
+                  currentGoal={campaign?.currentGoal}
+                  availableDate={campaign?.availableDate}
+                  buttonName="Visualizar campanha"
+                  onClick={() => push(`/detalhes-campanha/${campaign.id}`)}
                 />
-              </S.WrapperAnimation>
-            )}
-          </S.WrapperCampaings>
-        </S.ContentList>
-      </S.Main>
-    );
-  }, [userCampaigns, renderTab, push, tabActive]);
+              ) : (
+                <CampaignRequestedCard
+                  key={campaign?.id}
+                  id={campaign?.id}
+                  title={campaign?.title}
+                  avatar={campaign?.avatar}
+                  priority={campaign?.priority}
+                  bloodType={campaign?.bloodType}
+                  description={campaign?.description}
+                  availableDate={campaign?.availableDate}
+                />
+              )
+            )
+          ) : (
+            <S.WrapperAnimation>
+              <WaitingAnimation
+                message={
+                  tabActive
+                    ? "Sem campanhas ativas no momento, crie uma campanha de doação ou veja suas solicitações."
+                    : "Sem campanhas solicitadas aguarte até que um doador crie uma campanha ou crie uma campanha de doação!"
+                }
+              />
+            </S.WrapperAnimation>
+          )}
+        </S.WrapperCampaings>
+      </>
+    ),
+    [userCampaigns, renderTab, push, tabActive]
+  );
 
   return (
     <>
       <ToastContainer />
       <S.Container>
-        {isLoading ? (
-          <S.Main>
-            <S.ContentList>
-              <Loader />
-            </S.ContentList>
-          </S.Main>
-        ) : (
-          renderCampaigns()
-        )}
+        <S.Main>
+          <S.ContentList>
+            {isLoading ? <Loader /> : renderCampaigns()}
+          </S.ContentList>
+        </S.Main>
       </S.Container>
     </>
   );

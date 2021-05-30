@@ -20,8 +20,10 @@ import { useDonation } from "../../../../hooks";
 import imageDefaultProfile from "../../../assets/images/default_user_image.png";
 
 import * as S from "./manageAppointments.style";
+import { AppointmentRequestedCard } from "../../../components";
 
 interface Appointment {
+  id: string;
   appointment_date: string;
   hourFormatted: string;
   donator: {
@@ -88,11 +90,13 @@ export const ManageAppointments = () => {
     callApi();
   }, [selectedDate, tabActive, push]);
 
-  const selectedDateAsText = useMemo(() => {
-    return format(selectedDate, "'Dia' dd 'de' MMMM", {
-      locale: ptBR,
-    });
-  }, [selectedDate]);
+  const selectedDateAsText = useMemo(
+    () =>
+      format(selectedDate, "'Dia' dd 'de' MMMM", {
+        locale: ptBR,
+      }),
+    [selectedDate]
+  );
 
   const selectedWeekDay = useMemo(
     () => format(selectedDate, "cccc", { locale: ptBR }),
@@ -162,19 +166,13 @@ export const ManageAppointments = () => {
                 <p>Nenhum agendamento para este período.</p>
               ) : (
                 morningAppointments.map((appointment) => (
-                  <S.Appointment key={appointment.appointment_date}>
-                    <span>
-                      <FiClock />
-                      {appointment.hourFormatted}
-                    </span>
-                    <div>
-                      <img
-                        src={appointment.campaign.avatar ?? imageDefaultProfile}
-                        alt={appointment.donator.name}
-                      />
-                      <strong>{appointment.donator.name}</strong>
-                    </div>
-                  </S.Appointment>
+                  <AppointmentRequestedCard
+                    id={appointment.id}
+                    donatorAvatar={null}
+                    donatorName={appointment.donator.name}
+                    hourFormatted={appointment.hourFormatted}
+                    campaign={appointment.campaign}
+                  />
                 ))
               )}
             </S.Section>
@@ -184,19 +182,13 @@ export const ManageAppointments = () => {
                 <p>Nenhum agendamento para este período.</p>
               ) : (
                 afternoonAppointments.map((appointment) => (
-                  <S.Appointment key={appointment.appointment_date}>
-                    <span>
-                      <FiClock />
-                      {appointment.hourFormatted}
-                    </span>
-                    <div>
-                      <img
-                        src={appointment.campaign.avatar ?? imageDefaultProfile}
-                        alt={appointment.donator.name}
-                      />
-                      <strong>{appointment.donator.name}</strong>
-                    </div>
-                  </S.Appointment>
+                  <AppointmentRequestedCard
+                    id={appointment.id}
+                    donatorAvatar={null}
+                    donatorName={appointment.donator.name}
+                    hourFormatted={appointment.hourFormatted}
+                    campaign={appointment.campaign}
+                  />
                 ))
               )}
             </S.Section>

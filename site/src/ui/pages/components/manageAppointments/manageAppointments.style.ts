@@ -4,13 +4,14 @@ import { shade } from "polished";
 export const Content = styled.main`
   width: 100%;
   max-width: 1400px;
-  margin: 64px auto;
+  margin: 2.5% auto;
   display: flex;
   justify-content: space-between;
 `;
 
 export const InfoDaily = styled.div`
-  width: 100%;
+  width: 95%;
+  align-self: center;
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -92,7 +93,7 @@ export const Ul = styled.ul<{ active: boolean }>`
 export const Schedule = styled.div`
   display: flex;
   flex: 1;
-  max-height: 850px;
+  max-height: 840px;
   max-width: 900px;
   flex-direction: column;
   padding: 25px;
@@ -106,7 +107,7 @@ export const Schedule = styled.div`
 
 export const WrapperAppointments = styled.div`
   width: 100%;
-  max-height: 850px;
+  max-height: 840px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -184,7 +185,8 @@ export const NextAppointment = styled.div`
 
 export const Section = styled.section`
   margin-top: 20px;
-  width: 700px;
+  width: 95%;
+  align-self: center;
 
   & + section {
     margin-top: 50px;
@@ -250,6 +252,7 @@ export const Appointment = styled.div`
     }
   }
 `;
+
 export const Calendar = styled.aside`
   width: 360px;
 

@@ -15,3 +15,4 @@ export { GenericModal } from "./genericModal/genericModal.component";
 export { Loader } from "./loader/loader.component";
 export { CampaignRequestedCard } from "./campaignRequestedCard/campaignRequestedCard.component";
 export { AppointmentCard } from "./appointmentCard/appointmentCard.component";
+export { AppointmentRequestedCard } from "./appointmentRequestedCard/appointmentRequestedCard.component";
