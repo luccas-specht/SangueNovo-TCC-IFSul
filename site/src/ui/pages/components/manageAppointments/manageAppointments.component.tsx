@@ -27,6 +27,7 @@ interface Appointment {
   appointment_date: string;
   hourFormatted: string;
   donator: {
+    id: string;
     name: string;
   };
   campaign: {
@@ -168,8 +169,7 @@ export const ManageAppointments = () => {
                 morningAppointments.map((appointment) => (
                   <AppointmentRequestedCard
                     id={appointment.id}
-                    donatorAvatar={null}
-                    donatorName={appointment.donator.name}
+                    donator={appointment.donator}
                     hourFormatted={appointment.hourFormatted}
                     campaign={appointment.campaign}
                   />
@@ -184,8 +184,7 @@ export const ManageAppointments = () => {
                 afternoonAppointments.map((appointment) => (
                   <AppointmentRequestedCard
                     id={appointment.id}
-                    donatorAvatar={null}
-                    donatorName={appointment.donator.name}
+                    donator={appointment.donator}
                     hourFormatted={appointment.hourFormatted}
                     campaign={appointment.campaign}
                   />

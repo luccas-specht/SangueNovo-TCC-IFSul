@@ -1,6 +1,11 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { FiClock } from "react-icons/fi";
 import { IoIosArrowDown, IoMdAlert } from "react-icons/io";
+import { useHistory } from "react-router";
+import { toast } from "react-toastify";
+
+import { toastConfig } from "../../../configs";
+import { useDonation } from "../../../hooks";
 
 import imageDefaultProfile from "../../assets/images/default_user_image.png";
 
@@ -9,8 +14,11 @@ import * as S from "./appointmentRequestedCard.style";
 type Props = {
   id: string;
   hourFormatted: string;
-  donatorAvatar?: string | null;
-  donatorName: string;
+  donator: {
+    name: string;
+    id: string;
+    avatar?: string | null;
+  };
   campaign: {
     title: string;
     priority: string;
@@ -20,27 +28,57 @@ type Props = {
 };
 
 export const AppointmentRequestedCard = ({
-  donatorAvatar,
-  donatorName,
-  hourFormatted,
+  donator,
   campaign,
+  hourFormatted,
   id,
 }: Props) => {
   const [showButtons, setShowButtons] = useState(false);
+  const { updateAppointmentStatus } = useDonation();
+  const { push } = useHistory();
+
+  const handleChangeAppointmentStatus = useCallback(
+    async (donationStatus: "Recusado" | "Ativo") => {
+      const { data, status } = await updateAppointmentStatus(
+        id,
+        donator.id,
+        donationStatus
+      );
+
+      if (status === 200) {
+        push("/listar-campanhas");
+      } else {
+        toast.error(`${data.message}`, toastConfig);
+      }
+    },
+    [donator.id, id, push]
+  );
 
   const renderButtons = useCallback(
     () =>
       showButtons && (
         <S.WrapperButtons>
-          <S.StyledButton color="#FF9000" type="submit">
+          <S.StyledButton
+            color="#FF9000"
+            type="submit"
+            onClick={() => {
+              handleChangeAppointmentStatus("Recusado");
+            }}
+          >
             Recusar
           </S.StyledButton>
-          <S.StyledButton color="#6DBA73" type="submit">
+          <S.StyledButton
+            color="#6DBA73"
+            type="submit"
+            onClick={() => {
+              handleChangeAppointmentStatus("Ativo");
+            }}
+          >
             Aceitar
           </S.StyledButton>
         </S.WrapperButtons>
       ),
-    [showButtons]
+    [showButtons, handleChangeAppointmentStatus]
   );
 
   const renderPriority = useCallback(() => {
@@ -73,8 +111,11 @@ export const AppointmentRequestedCard = ({
             {hourFormatted}
           </span>
           <S.WrapperImg>
-            <img src={donatorAvatar ?? imageDefaultProfile} alt={donatorName} />
-            <strong>{donatorName}</strong>
+            <img
+              src={donator.avatar ?? imageDefaultProfile}
+              alt={donator.name}
+            />
+            <strong>{donator.name}</strong>
           </S.WrapperImg>
         </div>
         <S.WrapperCampaign>
