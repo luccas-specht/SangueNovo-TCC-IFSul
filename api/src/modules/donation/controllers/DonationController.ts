@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import { CreateAppointmentService } from '../services/CreateAppointmentService';
 import { ListProviderAppointmentsService } from '../services/ListInstitutionAppointmentsService';
 import { UpdateAppointmentStatusService } from '../services/UpdateAppointmentStatusService';
+import { UpdateDonationService } from '../services/UpdateDonationService';
 
 export class DonationController {
   public async createAppointment(
@@ -53,6 +54,21 @@ export class DonationController {
       UpdateAppointmentStatusService
     );
     await updateAppointmentStatusService.execute({
+      donator_id,
+      donation_id,
+      donation_status,
+    });
+    return response.json().status(200);
+  }
+
+  public async updateCompleteDonation(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { donator_id, donation_id, donation_status } = request.body;
+
+    const updateDonationService = container.resolve(UpdateDonationService);
+    await updateDonationService.execute({
       donator_id,
       donation_id,
       donation_status,

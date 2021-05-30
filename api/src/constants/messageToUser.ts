@@ -37,4 +37,5 @@ export const MESSAGEINVALID = {
     'Data de listagem de agendamento está invalida.',
   invalidDonationStatus: 'Status da doação invalido',
   appointmentNotExists: 'Agendamento não existe',
+  appointmentNotActive: 'Agendamento não está aprovado.',
 };

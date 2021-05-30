@@ -17,3 +17,8 @@ donationRouter.get(
   '/appointment/me',
   donationController.listAppointmentsByInstitutionId
 );
+
+donationRouter.put(
+  '/donations/update/status',
+  donationController.updateCompleteDonation
+);

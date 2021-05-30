@@ -22,6 +22,13 @@ export class AppDonator {
   @JoinColumn({ name: 'tb_user_fk' })
   tb_user_fk: AppUser;
 
+  @Column({
+    type: 'timestamp with time zone',
+    nullable: true,
+    default: null,
+  })
+  date_last_donation: Date;
+
   @OneToMany(() => AppDonation, (appDonation) => appDonation.donator)
   donations: AppDonation[];
 }

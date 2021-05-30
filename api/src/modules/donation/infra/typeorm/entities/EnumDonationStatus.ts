@@ -3,4 +3,5 @@ export enum DonationStatus {
   ACTIVE = 'Ativo',
   FINISHED = 'Finalizado',
   REFUSED = 'Recusado',
+  DID_NOT_ATTEND = 'Nao compareceu',
 }
