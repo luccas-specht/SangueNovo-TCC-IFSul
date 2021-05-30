@@ -8,8 +8,7 @@ export const MESSAGEINVALID = {
   invalidToken: 'Token invalido.',
   userNotExists: 'Usuário não existe.',
   campaignNotExists: 'Campanha solicitada não existe.',
-  statusNotChanged:
-    'A Alteração do status da campanha deve ser diferente do atual.',
+  statusNotChanged: 'A Alteração do status deve ser diferente do status atual.',
   invalidStatus: 'Status invalido.',
   invalidPriority: 'Prioridade inválida.',
   invalidTypeBlood: 'Tipo de sangue não existe.',
@@ -37,4 +36,5 @@ export const MESSAGEINVALID = {
   invalidDateToListAppointments:
     'Data de listagem de agendamento está invalida.',
   invalidDonationStatus: 'Status da doação invalido',
+  appointmentNotExists: 'Agendamento não existe',
 };

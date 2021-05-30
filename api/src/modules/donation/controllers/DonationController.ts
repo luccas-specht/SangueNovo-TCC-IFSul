@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import { CreateAppointmentService } from '../services/CreateAppointmentService';
 import { ListProviderAppointmentsService } from '../services/ListInstitutionAppointmentsService';
+import { UpdateAppointmentStatusService } from '../services/UpdateAppointmentStatusService';
 
 export class DonationController {
   public async createAppointment(
@@ -40,5 +41,22 @@ export class DonationController {
       status: String(status),
     });
     return response.json(list).status(200);
+  }
+
+  public async updateAppointmentStatus(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const { donator_id, donation_id, donation_status } = request.body;
+
+    const updateAppointmentStatusService = container.resolve(
+      UpdateAppointmentStatusService
+    );
+    await updateAppointmentStatusService.execute({
+      donator_id,
+      donation_id,
+      donation_status,
+    });
+    return response.json().status(200);
   }
 }

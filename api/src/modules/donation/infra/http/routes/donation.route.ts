@@ -8,6 +8,10 @@ const donationController = new DonationController();
 
 donationRouter.use(ensureAuthenticated);
 
+donationRouter.patch(
+  '/appointment/update/status',
+  donationController.updateAppointmentStatus
+);
 donationRouter.post('/appointment', donationController.createAppointment);
 donationRouter.get(
   '/appointment/me',

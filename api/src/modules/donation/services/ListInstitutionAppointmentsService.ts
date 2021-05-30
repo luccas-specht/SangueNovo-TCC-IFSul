@@ -59,8 +59,10 @@ export class ListProviderAppointmentsService {
 
   private appointmentsMapper(appointments: AppDonation[]): any[] {
     return appointments.map((appointment) => ({
+      id: appointment.id,
       appointment_date: appointment.appointment_date,
       donator: {
+        id: appointment.donator.id,
         name: appointment.donator.name,
       },
       campaign: {
