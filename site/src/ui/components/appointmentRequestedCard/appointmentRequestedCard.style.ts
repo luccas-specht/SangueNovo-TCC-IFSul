@@ -27,10 +27,6 @@ export const Appointment = styled.div<{ isOpen: boolean }>`
   & + div {
     margin-top: 16px;
   }
-
-  &:hover {
-    transform: translateX(20px);
-  }
 `;
 
 export const Content = styled.div`

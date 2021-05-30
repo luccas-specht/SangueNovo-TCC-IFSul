@@ -1,7 +1,7 @@
 import { useRequest } from "../useRequest/useRequest.hook";
 
 export const useDonation = () => {
-  const { post, get, patch } = useRequest("/donation");
+  const { post, get, patch, put } = useRequest("/donation");
 
   const createAppointment = async (
     appointment: string,
@@ -43,9 +43,23 @@ export const useDonation = () => {
     return { data, status };
   };
 
+  const updateCompleteDonation = async (
+    donatitonId: string,
+    donatorId: string,
+    donatitonStatus: string
+  ): Promise<any> => {
+    const { data, status } = await put("donations/update/status", {
+      donation_id: donatitonId,
+      donator_id: donatorId,
+      donation_status: donatitonStatus,
+    });
+    return { data, status };
+  };
+
   return {
     createAppointment,
     listAllAppointments,
     updateAppointmentStatus,
+    updateCompleteDonation,
   };
 };

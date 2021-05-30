@@ -25,6 +25,7 @@ import imageDefaultProfile from "../../../assets/images/default_user_image.png";
 import * as S from "./manageAppointments.style";
 import { AppointmentRequestedCard, AppointmentCard } from "../../../components";
 import { IoIosArrowDown } from "react-icons/io";
+import { isEqual } from "date-fns/esm";
 
 interface Appointment {
   id: string;
@@ -43,7 +44,7 @@ interface Appointment {
 }
 
 export const ManageAppointments = () => {
-  const { listAllAppointments } = useDonation();
+  const { listAllAppointments, updateCompleteDonation } = useDonation();
   const { push } = useHistory();
 
   const [showButtons, setShowButtons] = useState(false);
@@ -71,19 +72,50 @@ export const ManageAppointments = () => {
     }
   }, []);
 
+  const handleUpdateDonationRequested = useCallback(
+    async (
+      donatorId: string,
+      donationId: string,
+      donationStatus: "Nao compareceu" | "Finalizado"
+    ) => {
+      const { data, status } = await updateCompleteDonation(
+        donationId,
+        donatorId,
+        donationStatus
+      );
+    },
+    [updateCompleteDonation]
+  );
+
   const renderButtons = useCallback(
-    () =>
+    (donatorId: string, donationId: string) =>
       showButtons && (
         <S.WrapperButtons>
-          <S.StyledButton color="#FF9000" type="submit">
+          <S.StyledButton
+            color="#FF9000"
+            type="submit"
+            onClick={() =>
+              handleUpdateDonationRequested(
+                donatorId,
+                donationId,
+                "Nao compareceu"
+              )
+            }
+          >
             Não compareceu ao agendamento
           </S.StyledButton>
-          <S.StyledButton color="#6DBA73" type="submit">
+          <S.StyledButton
+            color="#6DBA73"
+            type="submit"
+            onClick={() =>
+              handleUpdateDonationRequested(donatorId, donationId, "Finalizado")
+            }
+          >
             Compareceu ao agendamento
           </S.StyledButton>
         </S.WrapperButtons>
       ),
-    [showButtons]
+    [showButtons, handleUpdateDonationRequested]
   );
 
   useEffect(() => {
@@ -143,7 +175,10 @@ export const ManageAppointments = () => {
   const nextAppointment = useMemo(
     () =>
       appointments.find((appointment) =>
-        isAfter(parseISO(appointment.appointment_date), new Date())
+        isEqual(
+          parseISO(appointment.appointment_date).getHours(),
+          new Date().getHours()
+        )
       ),
     [appointments]
   );
@@ -166,7 +201,7 @@ export const ManageAppointments = () => {
           </S.InfoDaily>
           {isToday(selectedDate) && tabActive && nextAppointment && (
             <S.NextAppointment>
-              <strong>Agendamento a seguir</strong>
+              <strong>Agendamento(s) a seguir</strong>
               <S.WrapperInfo isOpen={showButtons}>
                 <div>
                   <img
@@ -186,7 +221,10 @@ export const ManageAppointments = () => {
                   >
                     <IoIosArrowDown size={23} />
                   </S.StyledButtonIcon>
-                  {renderButtons()}
+                  {renderButtons(
+                    nextAppointment.donator.id,
+                    nextAppointment.id
+                  )}
                 </S.Footer>
               </S.WrapperInfo>
             </S.NextAppointment>
