@@ -109,7 +109,7 @@ export const Header = () => {
       </S.Burguer>
       <S.Ul open={isOpenBurguerMenu} isDonator={!!user?.user?.isDonator}>
         {navegations?.map((navegation) => (
-          <li>
+          <S.Li isHover={!!navegation?.to && !!navegation?.title}>
             {navegation?.to ? (
               <Link to={navegation?.to}>
                 {navegation?.icon}
@@ -118,7 +118,7 @@ export const Header = () => {
             ) : (
               navegation?.icon
             )}
-          </li>
+          </S.Li>
         ))}
       </S.Ul>
     </S.Container>

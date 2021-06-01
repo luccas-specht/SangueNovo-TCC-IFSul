@@ -168,6 +168,18 @@ export const Burguer = styled.div<BurbuerProps>`
   }
 `;
 
+export const Li = styled.li<{ isHover: boolean }>`
+  transition: 0.5s;
+  ${({ isHover }) =>
+    isHover &&
+    css`
+      &:hover {
+        transform: translateX(10px);
+        border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
+      }
+    `}
+`;
+
 export const Ul = styled.ul<BurbuerProps>`
   display: flex;
   padding-top: 15px;

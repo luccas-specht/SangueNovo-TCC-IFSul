@@ -68,7 +68,7 @@ export const CampaignCard = ({
           >
             {currentGoal !== "0" && currentGoal}
           </S.ProgressDone>
-          <span>Porcentagem de doação da campanha</span>
+          <span>Doações realizadas para campanha</span>
         </S.Progress>
         <S.StyledCurrentGoal>{currentGoal}%</S.StyledCurrentGoal>
       </S.ContentProgress>
