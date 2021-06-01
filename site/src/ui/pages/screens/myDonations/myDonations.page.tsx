@@ -66,16 +66,16 @@ export const MyDonations = () => {
                           {donation.campaign.description}
                         </S.Description>
                         <S.Details>
+                          <S.Info color="#666360">
+                            <FiHome size={20} />
+                            {donation.campaign.institution.razaoSocial}
+                          </S.Info>
                           <S.Info color="#F9AF42">
                             <RiCalendarEventLine size={20} />
                             {format(
                               parseISO(donation.donator.date_last_donation),
                               "dd/MM - HH:mm"
                             )}
-                          </S.Info>
-                          <S.Info color="#666360">
-                            <FiHome size={20} />
-                            {donation.campaign.institution.razaoSocial}
                           </S.Info>
                           <S.Info color="#6DBA73">
                             <FiCheckCircle size={20} />
