@@ -38,4 +38,6 @@ export const MESSAGEINVALID = {
   invalidDonationStatus: 'Status da doação invalido',
   appointmentNotExists: 'Agendamento não existe',
   appointmentNotActive: 'Agendamento não está aprovado.',
+  donatorInvalidToDonation:
+    'Ops... Parece que você já fez uma doação nos últimos 3 meses.',
 };

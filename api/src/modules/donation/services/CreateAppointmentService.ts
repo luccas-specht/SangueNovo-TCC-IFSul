@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { isBefore, parseISO, startOfHour, getHours } from 'date-fns';
+import { isBefore, parseISO, startOfHour, getHours, addMonths } from 'date-fns';
 
 import { ICampaignRepository } from '@modules/campaing/IRepository/ICampaingRepository';
 import { AppError } from '@shared/errors/appError';
@@ -55,6 +55,14 @@ export class CreateAppointmentService {
 
     const donator = await this.donatorRepository.findById(donatorId);
     if (!donator) throw new AppError(MESSAGEINVALID.donatorNotExists);
+
+    if (!!donator.date_last_donation) {
+      const donatorLastDonation = donator.date_last_donation;
+      const compareDate = addMonths(donatorLastDonation, 3);
+
+      if (isBefore(Date.now(), compareDate))
+        throw new AppError(MESSAGEINVALID.donatorInvalidToDonation);
+    }
 
     const appointmentDate = startOfHour(parseISO(appointment));
     if (isBefore(appointmentDate, Date.now()))
