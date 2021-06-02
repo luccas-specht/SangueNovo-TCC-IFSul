@@ -21,3 +21,9 @@ donatorRouter.get(
   ensureAuthenticated,
   donatorController.listDonationsByDonatorIdMatch
 );
+
+donatorRouter.get(
+  '/appointment/me',
+  ensureAuthenticated,
+  donatorController.listAppointmentsByDonatorId
+);

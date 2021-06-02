@@ -57,8 +57,7 @@ export class CreateAppointmentService {
     if (!donator) throw new AppError(MESSAGEINVALID.donatorNotExists);
 
     if (!!donator.date_last_donation) {
-      const donatorLastDonation = donator.date_last_donation;
-      const compareDate = addMonths(donatorLastDonation, 3);
+      const compareDate = addMonths(donator.date_last_donation, 4);
 
       if (isBefore(Date.now(), compareDate))
         throw new AppError(MESSAGEINVALID.donatorInvalidToDonation);

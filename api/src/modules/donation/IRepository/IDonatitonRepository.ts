@@ -36,6 +36,5 @@ export interface IDonationRepository {
     data: IFindAllInDayFromProviderDTO
   ): Promise<AppDonation[]>;
 
-  // updateDonatiton(donation: AppDonation): Promise<AppDonation>;
-  // updateAppointment(donation: AppDonation): Promise<AppDonation>;
+  findByDonatorId(donatorId: string): Promise<AppDonation[]>;
 }
