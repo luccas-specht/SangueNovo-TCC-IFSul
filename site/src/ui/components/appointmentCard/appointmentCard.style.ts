@@ -134,9 +134,6 @@ export const Title = styled.div`
   font-weight: 400;
   font-style: normal;
   color: ${({ theme }) => theme.colors.titleColorCampaignCard};
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 export const WrapperInfo = styled.div`

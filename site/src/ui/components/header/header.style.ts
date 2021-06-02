@@ -175,7 +175,7 @@ export const Li = styled.li<{ isHover: boolean }>`
     css`
       &:hover {
         transform: translateX(10px);
-        border-bottom: 2px solid ${({ theme }) => theme.colors.tabColor};
+        border-bottom: 1px solid ${({ theme }) => theme.colors.tabColor};
       }
     `}
 `;
