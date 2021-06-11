@@ -21,7 +21,6 @@ interface Request {
   priority: any;
   user_id: string;
   institution_id: string;
-  // avatar: any;
 }
 
 @injectable()
@@ -44,7 +43,6 @@ export class CreateCampaignService {
     goal,
     typeBlood,
     priority,
-    // avatar,
     user_id,
     institution_id,
   }: Request): Promise<void> {
@@ -79,8 +77,6 @@ export class CreateCampaignService {
 
     if (!description)
       throw new AppError(MESSAGEINVALID.campaignDescriptionNotExist);
-
-    /*TODO: não pode ser possivel criar uma campanha com data menor que a atual*/
 
     const campaign = {
       title: title,
