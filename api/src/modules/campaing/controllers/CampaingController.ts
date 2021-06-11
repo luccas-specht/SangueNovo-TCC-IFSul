@@ -23,7 +23,6 @@ export class CampaignController {
       user_id,
       institution_id,
     } = request.body;
-    // const avatar = request.file.filename;
 
     const createCampaignService = container.resolve(CreateCampaignService);
     await createCampaignService.execute({
@@ -35,7 +34,6 @@ export class CampaignController {
       priority,
       user_id,
       institution_id,
-      // avatar,
     });
     return response.json().status(200);
   }
