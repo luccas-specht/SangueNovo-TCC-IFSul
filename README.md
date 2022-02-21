@@ -17,4 +17,6 @@ Please, for more information, feel free to contact me and I've also set here a p
 
 ## Presenting
 
-[![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/Sangue%20Novo-apresentação.pdf)
+
+
+[![image](https://user-images.githubusercontent.com/40741571/155039421-6b7bf41d-4f0f-4600-adbc-2adf0e6032e0.png)](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/Sangue%20Novo-apresentação.pdf)
