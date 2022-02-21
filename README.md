@@ -15,3 +15,6 @@ Please, for more information, feel free to contact me and I've also set here a p
 [![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
 
 
+## Presenting
+
+[![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/Sangue%20Novo-apresentação.pdf)
