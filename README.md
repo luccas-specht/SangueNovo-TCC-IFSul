@@ -14,3 +14,6 @@ Please, for more information, feel free to contact me and I've also set here a p
 
 ## Features demo
 ![Donator User](https://j.gifs.com/WPBWng.gif)
+![Institution User](https://j.gifs.com/36JY2Q.gif)
+
+If you want to take a look on this youtube video, it's [here](https://www.youtube.com/watch?v=DwRFsjTvamk).
