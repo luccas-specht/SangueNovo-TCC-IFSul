@@ -1,6 +1,6 @@
 # Sangue Novo: Plataform for dynammize contact between donors and blood donation campaigns.
 
-
+## Context
 During the end of the Technical Course I took in the Federal Institute, we needed to deliver a final paper and a product in order to conclude the course. I knew it was something that would demand a lot of time during that year, so I thought: 
 
 _"Why not choose a topic that could matter not only to me but also for other people? Why not help people while I'm producing my final paper?"_ 
