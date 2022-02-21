@@ -13,7 +13,6 @@ On the other hand, the psychologist can register keywords they believe are impor
 Please, for more information, feel free to contact me and I've also set here a public link to the drive folder where you can find the project demo and information.
 
 ## Features demo
-![Donator User](https://j.gifs.com/WPBWng.gif)
-![Institution User](https://j.gifs.com/36JY2Q.gif)
+[![image](https://user-images.githubusercontent.com/40741571/155037459-de7aed15-e998-4b0a-a88b-073c86610480.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
 
 If you want to take a look on this youtube video, it's [here](https://www.youtube.com/watch?v=DwRFsjTvamk).
