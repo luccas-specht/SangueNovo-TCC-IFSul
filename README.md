@@ -13,6 +13,6 @@ On the other hand, the psychologist can register keywords they believe are impor
 Please, for more information, feel free to contact me and I've also set here a public link to the drive folder where you can find the project demo and information.
 
 ## Feature demo on Youtube
-[![image](https://user-images.githubusercontent.com/40741571/155038042-40b9a698-a9ee-4c73-8a36-a4a4142a7dae.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
+[![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
 
 
