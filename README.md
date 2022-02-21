@@ -12,5 +12,5 @@ On the other hand, the psychologist can register keywords they believe are impor
 
 Please, for more information, feel free to contact me and I've also set here a public link to the drive folder where you can find the project demo and information.
 
-## Apresentation features core demo
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/DwRFsjTvamk/0.jpg)](http://www.youtube.com/watch?v=DwRFsjTvamk)
+## Features demo
+![Donator User](https://j.gifs.com/WPBWng.gif)
