@@ -11,12 +11,11 @@ On the other hand, the psychologist can register keywords they believe are impor
 
 Please, for more information, feel free to contact me and I've also set here a public link to the drive folder where you can find the project demo and information.
 
+## The Research Project 
+
 ## Feature demo on Youtube
 [![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
 
 
 ## Presenting
-
-
-
 [![image](https://user-images.githubusercontent.com/40741571/155039421-6b7bf41d-4f0f-4600-adbc-2adf0e6032e0.png)](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/Sangue%20Novo-apresentação.pdf)
