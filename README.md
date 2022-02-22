@@ -54,9 +54,9 @@ On the other hand, the psychologist can register keywords they believe are impor
   - [NodeMailer](https://nodemailer.com/about/) - A Module for NodeJs to allows easy as cake email sending
   - [Pg](https://github.com/brianc/node-postgres) - A Non-blocking PostgreSQL client for NodeJs
   - [reflect-metadata](https://github.com/rbuckton/reflect-metadata) - A Metadata Reflection API
-  - [Tsyringe]
-  - [TypeORM]
-  - [Uuidv4]
+  - [Tsyringe](https://github.com/Microsoft/tsyringe) - A lightweight dependency injection container for TypeScript/JavaScript for constructor injection
+  - [TypeORM](https://typeorm.io/#/) - A ORM for NodeJs Applications
+  - [Uuidv4](https://www.npmjs.com/package/uuidv4) An uuid that includes only v4
   - [Yup](https://www.npmjs.com/package/yup) - Schema validation
 
 ## More informations
