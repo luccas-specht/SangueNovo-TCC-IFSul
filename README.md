@@ -18,28 +18,30 @@ On the other hand, the psychologist can register keywords they believe are impor
 [![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
 
 ## Built with love and using the following techs 
-- [Axios](https://github.com/axios/axios) - HTTP client
-- [Babel](https://babeljs.io/) - JavaScript compiler
-- [ESlint](https://eslint.org/) - Linter
-- [Prettier](https://prettier.io/) - Code formatter
-- [React]
-- [React Date Picker]
-- [React Day Picker]
-- [React Dom]
-- [React Icons](https://react-icons.github.io/react-icons/) - Icons for ReactJs
-- [React Geocode]
-- [React Leaflet]
-- [React Lottie]
-- [React Router Dom]
-- [React Toastify](https://fkhadra.github.io/react-toastify/introduction) - Notification for ReactJs
-- [TypeScript](https://www.typescriptlang.org) - JavaScript with syntax for types
-- [Yup](https://www.npmjs.com/package/yup) - Schema validation
-- [Material Ui]
-- [Date-fns]
-- [Formik]
-- [leaflet]
-- [Polished]
-- [Styled-components]
+- Front-end React:
+  - [Axios](https://github.com/axios/axios) - HTTP client
+  - [Babel](https://babeljs.io/) - JavaScript compiler
+  - [ESlint](https://eslint.org/) - Linter
+  - [Prettier](https://prettier.io/) - Code formatter
+  - [React]
+  - [React Date Picker]
+  - [React Day Picker]
+  - [React Dom]
+  - [React Icons](https://react-icons.github.io/react-icons/) - Icons for ReactJs
+  - [React Geocode]
+  - [React Leaflet]
+  - [React Lottie]
+  - [React Router Dom]
+  - [React Toastify](https://fkhadra.github.io/react-toastify/introduction) - Notification for ReactJs
+  - [TypeScript](https://www.typescriptlang.org) - JavaScript with syntax for types
+  - [Yup](https://www.npmjs.com/package/yup) - Schema validation
+  - [Material Ui]
+  - [Date-fns]
+  - [Formik]
+  - [leaflet]
+  - [Polished]
+  - [Styled-components]
+- Back-End Node:
 
 ## More informations
 Please, for more information, feel free to contact me.
