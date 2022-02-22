@@ -20,7 +20,7 @@ On the other hand, the psychologist can register keywords they believe are impor
 
 
 
-## How to know more
+## More informations
 Please, for more information, feel free to contact me.
 
 You can send me an [Email](mailto:luccasspecht70@gmail.com). Or Find and connect with me on my [LinkedIn](https://www.linkedin.com/in/luccas-specht/).
