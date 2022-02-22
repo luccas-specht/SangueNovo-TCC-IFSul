@@ -23,14 +23,14 @@ On the other hand, the psychologist can register keywords they believe are impor
   - [Babel](https://babeljs.io/) - JavaScript compiler
   - [ESlint](https://eslint.org/) - Linter
   - [Prettier](https://prettier.io/) - Code formatter
-  - [React Date Picker]
-  - [React Day Picker]
-  - [React Dom]
+  - [React Date Picker](https://github.com/Hacker0x01/react-datepicker) - Datepicker component for ReactJs
+  - [React Day Picker](https://react-day-picker.js.org)- Daypicker component for ReactJs
+  - [React Dom](https://pt-br.reactjs.org/docs/react-dom.html) - DOM manager for ReactJs
   - [React Icons](https://react-icons.github.io/react-icons/) - Icons for ReactJs
-  - [React Geocode]
-  - [React Leaflet]
-  - [React Lottie]
-  - [React Router Dom]
+  - [React Geocode](https://github.com/shukerullah/react-geocode) - Geolocation for ReactJs
+  - [React Leaflet](https://react-leaflet.js.org) - ReactJs components for Leaflet maps
+  - [React Lottie](React components for Leaflet maps) - Lottie animation for ReatJs
+  - [React Router Dom](https://v5.reactrouter.com/web/guides/quick-start) - Routers for ReactJS
   - [React Toastify](https://fkhadra.github.io/react-toastify/introduction) - Notification for ReactJs
   - [TypeScript](https://www.typescriptlang.org) - JavaScript with syntax for types
   - [Yup](https://www.npmjs.com/package/yup) - Schema validation
