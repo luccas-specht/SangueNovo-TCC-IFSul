@@ -10,7 +10,6 @@ It also creates a viable and simpler way for the teenager to get access to the f
 On the other hand, the psychologist can register keywords they believe are important to each patient treatment. These keywords generate reports for them, so they know when a conversation needs more of their attention and they can know what was happening at that specific time. Ant this time might be even in the middle of the night — cause the chatbots never sleep, it is always available for talking to the adolescents and generating a report to the psychologist.
 
 
-
 ## The Research Project 
 [![image](https://user-images.githubusercontent.com/40741571/155040476-83ef50bc-3e00-473b-8433-7862e82a90e5.png)
 ](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/TCC_2021_LuccasSpecht_065640INFQ-mesclado_organized.pdf)
@@ -18,6 +17,15 @@ On the other hand, the psychologist can register keywords they believe are impor
 ## Feature demo on Youtube
 [![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
 
+## Built with love and using the following techs 
+- [Axios](https://github.com/axios/axios) - HTTP client
+- [Babel](https://babeljs.io/) - JavaScript compiler
+- [ESlint](https://eslint.org/) - Linter
+- [Prettier](https://prettier.io/) - Code formatter
+- [React Icons](https://react-icons.github.io/react-icons/) - Icons for ReactJs
+- [React Toastify](https://fkhadra.github.io/react-toastify/introduction) - Notification for ReactJs
+- [TypeScript](https://www.typescriptlang.org) - JavaScript with syntax for types
+- [Yup](https://www.npmjs.com/package/yup) - Schema validation
 
 
 ## More informations
