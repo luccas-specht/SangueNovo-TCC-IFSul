@@ -30,7 +30,7 @@ On the other hand, the psychologist can register keywords they believe are impor
   - [React Icons](https://react-icons.github.io/react-icons/) - Icons for ReactJs
   - [React Geocode](https://github.com/shukerullah/react-geocode) - Geolocation for ReactJs
   - [React Leaflet](https://react-leaflet.js.org) - ReactJs components for Leaflet maps
-  - [React Lottie](https://github.com/chenqingspring/react-lottie) - Lottie animation for ReatJs
+  - [React Lottie](https://github.com/chenqingspring/react-lottie) - Lottie animation for ReactJs
   - [React Router Dom](https://v5.reactrouter.com/web/guides/quick-start) - Routers for ReactJS
   - [React Toastify](https://fkhadra.github.io/react-toastify/introduction) - Notification for ReactJs
   - [TypeScript](https://www.typescriptlang.org) - JavaScript with syntax for types
