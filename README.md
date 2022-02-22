@@ -12,7 +12,8 @@ On the other hand, the psychologist can register keywords they believe are impor
 Please, for more information, feel free to contact me and I've also set here a public link to the drive folder where you can find the project demo and information.
 
 ## The Research Project 
-[![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/TCC_2021_LuccasSpecht_065640INFQ-mesclado_organized.pdf)
+[![image](https://user-images.githubusercontent.com/40741571/155040335-a923ddb0-09eb-467b-ac90-38c1216474f0.png)
+](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/TCC_2021_LuccasSpecht_065640INFQ-mesclado_organized.pdf)
 
 ## Feature demo on Youtube
 [![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
