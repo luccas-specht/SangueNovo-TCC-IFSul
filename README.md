@@ -34,12 +34,11 @@ On the other hand, the psychologist can register keywords they believe are impor
   - [React Toastify](https://fkhadra.github.io/react-toastify/introduction) - Notification for ReactJs
   - [TypeScript](https://www.typescriptlang.org) - JavaScript with syntax for types
   - [Yup](https://www.npmjs.com/package/yup) - Schema validation
-  - [Material Ui]
-  - [Date-fns]
-  - [Formik]
-  - [leaflet]
-  - [Polished]
-  - [Styled-components]
+  - [Material Ui](https://v4.mui.com) - ReactJs components for faster and easier web development
+  - [Date-fns](https://date-fns.org) - JavaScript date utility library
+  - [Formik](https://formik.org/docs/overview) - Custom forms to ReactJS
+  - [Polished](https://formik.org/docs/overview) - Styles in JavaScript
+  - [Styled-components](https://styled-components.com/docs) - CSS-in-Js
   
 - Back-End NodeJs:
   - [BCryptJS]
