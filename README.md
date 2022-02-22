@@ -60,7 +60,7 @@ On the other hand, the psychologist can register keywords they believe are impor
   - [Yup](https://www.npmjs.com/package/yup) - Schema validation
 
 ## More informations
-Please, for more information, feel free to contact me.
+Please, for more informations, feel free to contact me.
 
 You can send me an [Email](mailto:luccasspecht70@gmail.com). Or connect with me on my [LinkedIn](https://www.linkedin.com/in/luccas-specht/).
 
