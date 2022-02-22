@@ -17,13 +17,12 @@ On the other hand, the psychologist can register keywords they believe are impor
 ## Feature demo on Youtube
 [![image](https://github.com/luccas-specht/SangueNovo-TCC-IFSul/blob/master/readme-apresentation.png)](https://www.youtube.com/watch?v=DwRFsjTvamk)
 
-## Built with love and using the following techs 
-- Front-end React:
+## Built with love using the following techs 
+- Front-end ReactJs:
   - [Axios](https://github.com/axios/axios) - HTTP client
   - [Babel](https://babeljs.io/) - JavaScript compiler
   - [ESlint](https://eslint.org/) - Linter
   - [Prettier](https://prettier.io/) - Code formatter
-  - [React]
   - [React Date Picker]
   - [React Day Picker]
   - [React Dom]
@@ -41,7 +40,24 @@ On the other hand, the psychologist can register keywords they believe are impor
   - [leaflet]
   - [Polished]
   - [Styled-components]
-- Back-End Node:
+  
+- Back-End NodeJs:
+  - [BCryptJS]
+  - [Cors]
+  - [Date-fns]
+  - [Date-fns-tz]
+  - [Express]
+  - [Express-async-errors]
+  - [handlebars]
+  - [JsonWebToken (JWT)]
+  - [Multer]
+  - [NodeMailer]
+  - [Pg]
+  - [reflect-metadata]
+  - [tsyringe]
+  - [typeorm]
+  - [uuidv4]
+  - [yup]
 
 ## More informations
 Please, for more information, feel free to contact me.
