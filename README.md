@@ -41,22 +41,22 @@ On the other hand, the psychologist can register keywords they believe are impor
   - [Styled-components](https://styled-components.com/docs) - CSS-in-Js
   
 - Back-End NodeJs:
-  - [BCryptJS]
-  - [Cors]
-  - [Date-fns]
-  - [Date-fns-tz]
-  - [Express]
-  - [Express-async-errors]
-  - [handlebars]
-  - [JsonWebToken (JWT)]
-  - [Multer]
-  - [NodeMailer]
-  - [Pg]
-  - [reflect-metadata]
-  - [tsyringe]
-  - [typeorm]
-  - [uuidv4]
-  - [yup]
+  - [BCryptJS](https://github.com/dcodeIO/bcrypt.js) - Cryptography for Js
+  - [Cors](https://github.com/expressjs/cors) -  A NodeJs package for providing a Connect/Express middleware that can be used to enable CORS
+  - [Date-fns](https://date-fns.org) - JavaScript date utility library
+  - [Date-fns-tz](https://github.com/marnusw/date-fns-tz#readme) - Time zone support for date-fns
+  - [Express](https://expressjs.com/pt-br/) A Framework web for NodeJs
+  - [Express-async-errors](https://github.com/davidbanham/express-async-errors) - Async errors
+  - [handlebars](https://handlebarsjs.com/installation/) - A Provider to build semantic templates
+  - [JsonWebToken (JWT)](https://jwt.io) - Token
+  - [Multer](https://www.npmjs.com/package/multer) - A NodeJs middleware for handling multipart/form-data
+  - [NodeMailer](https://nodemailer.com/about/) - A Module for NodeJs to allows easy as cake email sending
+  - [Pg](https://github.com/brianc/node-postgres) - A Non-blocking PostgreSQL client for NodeJs
+  - [reflect-metadata](https://github.com/rbuckton/reflect-metadata) - A Metadata Reflection API
+  - [Tsyringe]
+  - [TypeORM]
+  - [Uuidv4]
+  - [Yup](https://www.npmjs.com/package/yup) - Schema validation
 
 ## More informations
 Please, for more information, feel free to contact me.
