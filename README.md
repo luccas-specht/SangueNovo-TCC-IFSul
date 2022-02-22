@@ -23,6 +23,6 @@ On the other hand, the psychologist can register keywords they believe are impor
 ## How to know more
 Please, for more information, feel free to contact me.
 
-Send me a email[(mailto:luccasspecht70@gmail.com)]. Or Connect with me on [LinkedIn](https://www.linkedin.com/in/luccas-specht/).
+Send me an [Email](mailto:luccasspecht70@gmail.com). Or Connect with me on [LinkedIn](https://www.linkedin.com/in/luccas-specht/).
 
 Thank you!
